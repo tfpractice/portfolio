@@ -7,7 +7,7 @@ import { ApolloProvider, } from 'react-apollo';
 import { BrowserRouter, Route, } from 'react-router-dom';
 import { MuiThemeProvider, } from 'material-ui/styles';
 
-import { initClient, styleManager, theme, } from './utils';
+import { qUtils, styleManager, theme, } from './utils';
 
 import { getStore, } from './store';
 
@@ -16,6 +16,7 @@ import App from './components/base/App';
 import Main from './components';
 
 import registerServiceWorker from './registerServiceWorker';
+const { initClient, } = qUtils;
 
 const client = initClient();
 
