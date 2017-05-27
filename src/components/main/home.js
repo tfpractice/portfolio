@@ -4,9 +4,9 @@ import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 
-//
-// import About from './about';
-// import Nav from './nav';
+import About from './about';
+import Nav from './nav';
+
 // import { Game, } from './game';
 
 const styles = { paddingTop: '5rem', };
@@ -19,12 +19,11 @@ class Home extends Component {
     // console.log('this.prop', this.props);
     return (
       <Grid container justify="center" style={styles} >
-        {/* <Nav /> */}
+        <Nav />
         <Grid item sm={12}>
-          <h1>this is the home route</h1>
           <Switch >
             {/* <Route path="/play" component={Game} /> */}
-            {/* <Route path="/" exact component={About} /> */}
+            <Route path="/" exact component={About} />
           </Switch>
         </Grid>
       </Grid>
