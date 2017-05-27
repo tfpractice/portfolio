@@ -9,15 +9,18 @@ import { MuiThemeProvider, } from 'material-ui/styles';
 
 import { initClient, styleManager, theme, } from './utils';
 
-// import getStore from './store';
+import { getStore, } from './store';
 
 // import { App, } from './components';
 import App from './components/base/App';
 import Main from './components';
 
 import registerServiceWorker from './registerServiceWorker';
+
+const client = initClient();
+
 render(
-  <ApolloProvider client={initClient()}>
+  <ApolloProvider client={client} store={getStore(client)}>
     <MuiThemeProvider theme={theme} styleManager={styleManager}>
       <BrowserRouter>
         <Route component={Main} />
