@@ -17,7 +17,7 @@ const About = () => (
         <CardContent>
           <Text type="subheading">
             A web developer with a passion for functional programming and application architecture
-             </Text>
+          </Text>
         </CardContent>
         <CardActions>
           <Button compact>Learn More</Button>

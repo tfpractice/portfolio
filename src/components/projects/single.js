@@ -4,22 +4,40 @@ import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
+import { connect, } from 'react-redux';
+
+import { containers, } from '../../store/projects';
+
+const { WithProject, } = containers;
 
 const styles = { paddingTop: '5rem', };
 
-// const stateToProps = state => (state);
+// const stateToProps = ({ projects, }, { match: { params: { project_id, }, }, }) =>
+// ({
+//  project: projects.find(p => p.id === project_id
+// ),
+// });
 
-const Project = ({ title, description, ...props }) => {
+const stateToProps = (state, { match: { params: { project_id, }, }, ...own }) => {
+  console.log('state, own', state, own);
+  return ({ id: project_id, });
+
+// ({
+ // project: projects.find(p => p.id === project_id
+// ),
+};
+
+const Project = ({ project, ...props }) => {
   console.log('SINGLE PROJECT PORPS', props);
   return (
     <Grid container justify="center" style={styles} >
-      <Grid item sm={6}>
+      <Grid item>
         <Card raised>
-          <CardHeader title="Welcome to My site" />
+          <CardHeader title={project && project.title} />
           <CardContent>
             <Text type="subheading">
-            A web developer with a passion for functional programming and application architecture
-          </Text>
+              {project && project.description}
+            </Text>
           </CardContent>
           <CardActions>
             <Button compact>Learn More</Button>
@@ -30,4 +48,4 @@ const Project = ({ title, description, ...props }) => {
   );
 };
 
-export default (Project);
+export default connect(stateToProps)(WithProject(Project));

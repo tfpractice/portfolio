@@ -6,12 +6,12 @@ const binVoke = (arg, f) => invokeOn(arg)(f);
 
 export const getData = ({ data, }) => data;
 export const getViewer = ({ viewer, }) => viewer;
-export const getColl = ({ collection, }) => collection;
-export const getEdges = ({ edges, }) => spread(edges);
+export const getColl = ({ collection, }) => (collection);
+export const getEdges = ({ edges, }) => (edges);
 export const getNode = ({ node, }) => node;
 
 export const viewEdges = (qRes) => {
-  console.log('viewEdges,qRes', qRes);
+  console.log('viewEdges,qRes', qRes.data);
   return [ getViewer, getColl, getEdges, ].reduce(binVoke, qRes);
 };
 
