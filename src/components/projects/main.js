@@ -1,17 +1,16 @@
-import React, { Component, } from 'react';
+import React from 'react';
 import { connect, } from 'react-redux';
-import { Link, Route, Switch, } from 'react-router-dom';
+import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
+
 import { containers, } from '../../store/projects';
 import Single from './single';
 import ProjectLink from './link';
 import ProjectInfo from './info';
-const { WithProject, WithAll, } = containers;
 
-// /const
-// const stateToProps = ({ game: { inPlay, }, }) => ({ inPlay, });
+const { WithProject, WithAll, } = containers;
 
 const Projects = (props) => {
   console.log('projects');
