@@ -7,6 +7,7 @@ import Paper from 'material-ui/Paper';
 import { containers, } from '../../store/projects';
 import Projects from '../projects';
 import About from './about';
+import Teaching from './teaching';
 import Nav from './nav';
 
 const { WithAll, } = containers;
@@ -26,6 +27,8 @@ class Home extends Component {
                 <Projects projects={this.props.projects} {...props} />}
             />
             <Route path="/" exact component={About} />
+            <Route path="/about" component={About} />
+            <Route path="/teaching" component={Teaching} />
           </Switch>
         </Grid>
       </Grid>

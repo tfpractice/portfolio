@@ -26,11 +26,31 @@ const Nav = ({ match, ...props }) => (
           </Grid>
         </Grid>
         <Grid item>
-          <Link to="/projects" >
-            <Text type="headline" secondary >
-                Projects
-              </Text>
-          </Link>
+          <Grid container direction="row">
+            <Grid item>
+              <Link to="/projects" >
+                <Text type="headline" secondary >
+                  Projects
+                </Text>
+              </Link>
+            </Grid>
+            <Grid item>
+
+              <Link to="/about" >
+                <Text type="headline" secondary >
+                  About
+                </Text>
+              </Link>
+            </Grid>
+            <Grid item>
+
+              <Link to="/teaching" >
+                <Text type="headline" secondary >
+                  Teaching
+                </Text>
+              </Link>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
     </Toolbar>

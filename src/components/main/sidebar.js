@@ -8,6 +8,7 @@ import MenuIcon from 'material-ui-icons/Menu';
 import { connect, } from 'react-redux';
 import { createStyleSheet, } from 'jss-theme-reactor';
 import List, { ListItem, ListSubheader, } from 'material-ui/List';
+import { Link, } from 'react-router-dom';
 
 // import { SideBarActions, } from '../stateful';
 // import LoginForm from './login_form';
@@ -69,14 +70,36 @@ class Sidebar extends Component {
           <List
             id="simple-List"
             open={this.state.open}
-
           >
             <ListSubheader primary>
-            LIST                                </ListSubheader>
-            {/* {loggedIn && <ListItem> <LogoutLink /></ListItem>}
-              {!loggedIn && <ListItem><LoginForm formID={'navBarLogin'} /></ListItem>}
-            {!loggedIn && <ListItem><RegisterForm formID={'navBarRegister'} /> </ListItem>} */}
+              LIST
+            </ListSubheader>
+            <Grid item>
+              <Link to="/projects" >
+                <Text type="headline" secondary >
+                  Projects
+                </Text>
+              </Link>
+            </Grid>
+            <Grid item>
 
+              <Link to="/about" >
+                <Text type="headline" secondary >
+                  About
+                </Text>
+              </Link>
+            </Grid>
+            <Grid item>
+
+              <Link to="/teaching" >
+                <Text type="headline" secondary >
+                  Teaching
+                </Text>
+              </Link>
+            </Grid>
+            <ListItem>
+              hey i am a list item
+            </ListItem>
           </List>
 
         </Drawer>
