@@ -8,8 +8,6 @@ import { connect, } from 'react-redux';
 
 import { containers, } from '../../store/projects';
 
-const { WithProject, } = containers;
-
 const styles = { paddingTop: '5rem', };
 
 const ProjectInfo = (props) => {

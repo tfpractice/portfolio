@@ -1,13 +1,10 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 
 const styles = { paddingTop: '5rem', };
-
-const stateToProps = state => (state);
 
 const About = () => (
   <Grid container justify="center" style={styles} >

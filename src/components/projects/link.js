@@ -5,13 +5,11 @@ import { containers, } from '../../store/projects';
 
 const { WithProject, } = containers;
 
-//     onMouseOver={() => props.projectQuery.refetch({ id: project.id, })}
-
-const ProjectLink = (props) => {
+const ProjectLink = ({ project, children, ...props }) => {
   console.log('ProjectLink props', props);
   return (
-    <Link to={`/projects/${props.project.id}`}>
-      { props.project.title}
+    <Link to={`/projects/${project.id}`}>
+      {children}
     </Link>);
 };
 

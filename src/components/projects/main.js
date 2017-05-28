@@ -26,14 +26,11 @@ const Projects = (props) => {
         <Text type="subheading">
           Projects
         </Text>
-        {props.projects.map((p) => {
-          console.log('p', p);
-          return <ProjectLink project={p} key={p.id} />;
-        }
+        {props.projects.map(p => <ProjectLink project={p} key={p.id}>{p.title}</ProjectLink>
         )}
         <Switch >
-          <Route exact path={`${props.match.url}/:project_id`} component={Single} />
           <Route exact path={`${props.match.url}`} component={ProjectInfo} />
+          <Route exact path={`${props.match.url}/:project_id`} component={Single} />
         </Switch>
       </Grid>
     </Grid>

@@ -1,8 +1,6 @@
 import React, { Component, } from 'react';
-import { connect, } from 'react-redux';
 import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 
 import { containers, } from '../../store/projects';
 import Projects from '../projects';
@@ -17,14 +15,17 @@ const styles = { paddingTop: '5rem', };
 class Home extends Component {
   render() {
     // console.log('this.prop', this.props);
+    const { projects, } = this.props;
+
     return (
       <Grid container justify="center" style={styles} >
         <Nav />
         <Grid item sm={12}>
           <Switch >
             <Route
-              path="/projects" component={props =>
-                <Projects projects={this.props.projects} {...props} />}
+              path="/projects"
+              component={props =>
+                <Projects projects={projects} {...props} />}
             />
             <Route path="/" exact component={About} />
             <Route path="/about" component={About} />
