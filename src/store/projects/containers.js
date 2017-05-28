@@ -5,14 +5,11 @@ import { ALL_PROJECTS, GET_PROJECT, } from './queries';
 const { viewNodes, } = qUtils;
 
 export const WithProject = component => graphql(GET_PROJECT, {
-  skip:  ({ project, ...props }) => { console.log('WithProject will skip?', props, !!project); return !!project; },
-  options: ({ id, ...props }) => {
-    console.log('props', props);
-    return ({ variables: { id, }, });
-  },
+  skip:  ({ project, ...props }) => { console.log('WithProject will skip?', props, !!project); return !project; },
+  options: ({ project: { id, }, }) => ({ variables: { id, }, }),
   props: ({ data, }) => ({
- projectQuery: data,
- project: data.project || null,
+      projectQuery: data,
+      project: data.loading ? {} : data.project,
   }),
 })(component);
 

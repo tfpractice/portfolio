@@ -12,11 +12,7 @@ const { WithProject, } = containers;
 
 const styles = { paddingTop: '5rem', };
 
-const stateToProps = (state, { match: { params: { project_id: id, }, }, }) => ({ project: { id, }, })
-
-;
-
-const Project = (props) => {
+const ProjectInfo = (props) => {
   console.log('SINGLE PROJECT PORPS', props);
   const { project, } = props;
 
@@ -24,10 +20,10 @@ const Project = (props) => {
     <Grid container justify="center" >
       <Grid item>
         <Card raised>
-          <CardHeader title={project && project.title} />
+          <CardHeader title="THese are my projects" />
           <CardContent>
             <Text type="subheading">
-              {project && project.description}
+              THese are my projects
             </Text>
           </CardContent>
           <CardActions>
@@ -39,4 +35,4 @@ const Project = (props) => {
   );
 };
 
-export default connect(stateToProps)(WithProject(Project));
+export default (ProjectInfo);
