@@ -12,7 +12,11 @@ const { WithProject, } = containers;
 
 const styles = { paddingTop: '5rem', };
 
-const stateToProps = (state, { match: { params: { project_id: id, }, }, }) => ({ project: { id, }, })
+const stateToProps = (state, { match: { params: { project_id: id, }, ...own }, }) => {
+  console.log('own', state, own);
+  return {};
+  return ({ project: { id, }, });
+}
 
 ;
 

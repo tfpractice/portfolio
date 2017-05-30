@@ -75,11 +75,15 @@ class Sidebar extends Component {
               LIST
             </ListSubheader>
             <Grid item>
-              <Link to="/projects" >
-                <Text type="headline" secondary >
-                  Projects
-                </Text>
-              </Link>
+              <List>
+
+                <Link to="/projects" >
+                  <Text type="headline" secondary >
+                    Projects
+                  </Text>
+                </Link>
+
+              </List>
             </Grid>
             <Grid item>
 

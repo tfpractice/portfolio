@@ -11,6 +11,7 @@ import ProjectLink from './link';
 import ProjectInfo from './info';
 
 const { WithProject, WithAll, } = containers;
+const slug = ({ title, }) => title.toLowerCase().replace(/(\W)/, '-');
 
 const Projects = (props) => {
   console.log('projects');
@@ -26,11 +27,21 @@ const Projects = (props) => {
         <Text type="subheading">
           Projects
         </Text>
-        {props.projects.map(p => <ProjectLink project={p} key={p.id}>{p.title}</ProjectLink>
+
+        {props.projects.map(p =>
+          <ProjectLink project={p} key={p.id}>{p.title}</ProjectLink>
         )}
         <Switch >
           <Route exact path={`${props.match.url}`} component={ProjectInfo} />
-          <Route exact path={`${props.match.url}/:project_id`} component={Single} />
+          
+          {props.projects.map(p =>
+            (<Route
+              key={p.id}
+              exact path={`${props.match.url}/${slug(p)}`}
+              component={rProps =>
+                <Single project={p} {...rProps} />}
+            />)
+          )}
         </Switch>
       </Grid>
     </Grid>

@@ -6,11 +6,14 @@ const { viewNodes, } = qUtils;
 
 export const WithProject = component => graphql(GET_PROJECT, {
   skip:  ({ project, ...props }) => { console.log('WithProject will skip?', props, !!project); return !project; },
-  options: ({ project: { id, }, }) => ({ variables: { id, }, }),
-  props: ({ data, }) => ({
+  options: ({ project, }) => { console.log('project', project); return ({ variables: { id: project.id, }, }); },
+  props: ({ data, ownProps: { project, ...rest }, }) => {
+    console.log('"rest"', rest);
+    return ({
       projectQuery: data,
-      project: data.loading ? {} : data.project,
-  }),
+      project: data.loading ? project : data.project,
+    });
+  },
 })(component);
 
 export const WithAll = component => graphql(ALL_PROJECTS, {

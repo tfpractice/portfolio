@@ -33,6 +33,7 @@
     "material-ui": "next",
     "material-ui-icons": "^1.0.0-alpha.3",
     "pluralize": "^5.0.0",
+    "qs": "^6.4.0",
     "react": "^15.5.4",
     "react-apollo": "^1.2.0",
     "react-dom": "^15.5.4",
