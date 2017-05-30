@@ -17,8 +17,11 @@ export const WithProject = component => graphql(GET_PROJECT, {
 })(component);
 
 export const WithAll = component => graphql(ALL_PROJECTS, {
-  props: ({ data, }) => ({
+  props: ({ data, ...rest }) => {
+    console.log('WithAll rest', rest);
+    return ({
     projectsData: data,
     projects: data.loading ? [] : viewNodes(data),
-  }),
+    });
+  },
 })(component);

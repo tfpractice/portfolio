@@ -1,7 +1,7 @@
 import React, { Component, } from 'react';
 import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
-
+import { connect, } from 'react-redux';
 import { containers, } from '../../store/projects';
 import Projects from '../projects';
 import About from './about';
@@ -19,7 +19,7 @@ class Home extends Component {
 
     return (
       <Grid container justify="center" style={styles} >
-        <Nav />
+        <Nav projects={projects} />
         <Grid item sm={12}>
           <Switch >
             <Route
@@ -36,4 +36,4 @@ class Home extends Component {
     );
   }
 }
-export default WithAll(Home);
+export default connect()(WithAll(Home));
