@@ -9,7 +9,7 @@ import { slug, } from '../../utils';
 import Single from './single';
 import ProjectLink from './link';
 import ProjectInfo from './info';
-
+import ProjectCard from './card';
 const stateToProps = ({ projects, }) => ({ projects, });
 
 const Projects = (props) => {
@@ -23,17 +23,9 @@ const Projects = (props) => {
         </Text>
       </Grid>
       <Grid item sm={12}>
-        <Text type="subheading">
-          Projects
-        </Text>
-
-        {props.projects.map(p =>
-          <ProjectLink project={p} key={p.id}>{p.title}</ProjectLink>
-        )}
         <Switch >
           <Route exact path={`${props.match.url}`} component={ProjectInfo} />
           <Route exact path={`${props.match.url}/:slug`} component={Single} />
-          
         </Switch>
       </Grid>
     </Grid>

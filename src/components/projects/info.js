@@ -5,23 +5,31 @@ import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
-
+import List, { ListSubheader, } from 'material-ui/List';
 import { containers, } from '../../store/projects';
+import { appFilt, libFilt, scrFilt, } from '../../utils';
 
-const styles = { paddingTop: '5rem', };
+import ProjectLink from './link';
+import ProjectCard from './card';
+import CardList from './cardList';
 
-const ProjectInfo = (props) => {
-  console.log('SINGLE PROJECT PORPS', props);
-  const { project, } = props;
+const stateToProps = ({ projects, }) => ({
+  apps: appFilt(projects),
+  libs: libFilt(projects),
+  scripts: scrFilt(projects),
+});
+
+const ProjectInfo = ({ apps, libs, scripts, }) => {
+  const a = 0;
 
   return (
     <Grid container justify="center" >
-      <Grid item>
+      <Grid item >
         <Card raised>
           <CardHeader title="THese are my projects" />
           <CardContent>
             <Text type="subheading">
-              THese are my projects
+              These are my projects
             </Text>
           </CardContent>
           <CardActions>
@@ -29,8 +37,36 @@ const ProjectInfo = (props) => {
           </CardActions>
         </Card>
       </Grid>
+      <Grid item sm={12}>
+        <Grid container direction="column" align="center">
+          <Grid item md={10}>
+            <Text type="title" >
+              Applications
+            </Text>
+            <CardList items={apps} />
+          </Grid>
+          <Grid item md={10}>
+            <Text type="title" >
+              Libraries
+            </Text>
+            <CardList items={libs} />
+
+          </Grid>
+          <Grid item sm={12}>
+            <Text type="subheading">
+              Misc
+            </Text>
+            <Grid container>
+              <Text type="subheading">
+                Projects
+              </Text>
+              <CardList items={scripts} />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </Grid>
   );
 };
 
-export default (ProjectInfo);
+export default connect(stateToProps)(ProjectInfo);

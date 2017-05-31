@@ -1,16 +1,15 @@
 import React, { Component, } from 'react';
-import customPropTypes from 'material-ui/utils/customPropTypes';
+import { connect, } from 'react-redux';
 import Drawer from 'material-ui/Drawer';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
-import { connect, } from 'react-redux';
-import { createStyleSheet, } from 'jss-theme-reactor';
+import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import List, { ListItem, ListSubheader, } from 'material-ui/List';
 import { Link, } from 'react-router-dom';
 import { appFilt, libFilt, scrFilt, } from '../../utils';
-import ProjectLink from '../projects/link';
+import { LinkList, ProjectLink, } from '../projects';
 
 const stateToProps = ({ projects, }) => ({
   applications: appFilt(projects),
@@ -46,29 +45,27 @@ class Sidebar extends Component {
     this.setState({ open: drawerState, });
   };
 
-  handleRightOpen = () => this.toggleDrawer('left', true);
-  handleRightClose = () => this.toggleDrawer('left', false);
+  expand = () => this.toggleDrawer('left', true);
+  collapse = () => this.toggleDrawer('left', false);
 
   render() {
-    const classes = this.context.styleManager.render(styleSheet);
-    const { toggle, user, applications, libraries, scripts, ...props } = this.props;
+    const { applications, libraries, classes, scripts, } = this.props;
 
     console.log(' DRAWER this.props', this.props);
     return (
       <Grid container>
-        {/* <Grid item> */}
-        <IconButton contrast onClick={this.handleRightOpen}>
+        <IconButton contrast onClick={this.expand}>
           <MenuIcon />
         </IconButton>
-        {/* </Grid> */}
 
         <Drawer
           anchor="left"
           open={this.state.open.left}
-          onRequestClose={this.handleRightClose}
+          onRequestClose={this.collapse}
         >
 
           <List
+            className={classes.listFull}
             id="simple-List"
             open={this.state.open}
           >
@@ -76,7 +73,8 @@ class Sidebar extends Component {
               LIST
             </ListSubheader>
             <Grid item>
-              <List>
+              <LinkList path="/projects" heading="Applications" items={applications} />
+              {/* <List dense >
                 <ListSubheader>
                   <Link to="/projects" >
                     <Text type="headline" secondary >
@@ -84,49 +82,32 @@ class Sidebar extends Component {
                     </Text>
                   </Link>
                 </ListSubheader>
-                {applications.map(a =>
+
+                <LinkList projects={applications} />
+                {/* {applications.map(a =>
                   (<ListItem key={a.id}>
                     <ProjectLink project={a} />
                   </ListItem>)
-                  )}
+                )}
 
-              </List>
+            </List> */}
               <List>
                 <ListSubheader>
                   <Link to="/projects" >
                     <Text type="headline" secondary >
-                            Libraries
-                          </Text>
+                      Libraries
+                    </Text>
                   </Link>
                 </ListSubheader>
                 {libraries.map(a =>
-                        (<ListItem key={a.id}>
-                          <ProjectLink project={a} />
-                        </ListItem>)
+                  (<ListItem key={a.id}>
+                    <ProjectLink project={a} />
+                  </ListItem>)
                 )}
-
               </List>
 
             </Grid>
-            <Grid item>
 
-              <Link to="/about" >
-                <Text type="headline" secondary >
-                  About
-                </Text>
-              </Link>
-            </Grid>
-            <Grid item>
-
-              <Link to="/teaching" >
-                <Text type="headline" secondary >
-                  Teaching
-                </Text>
-              </Link>
-            </Grid>
-            <ListItem>
-              hey i am a list item
-            </ListItem>
           </List>
 
         </Drawer>
@@ -135,6 +116,4 @@ class Sidebar extends Component {
   }
 }
 
-Sidebar.contextTypes = { styleManager: customPropTypes.muiRequired, };
-
-export default connect(stateToProps)(Sidebar);
+export default connect(stateToProps)(withStyles(styleSheet)(Sidebar));
