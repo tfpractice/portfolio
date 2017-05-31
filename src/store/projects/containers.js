@@ -14,7 +14,12 @@ export const WithProject = component => graphql(GET_PROJECT, {
 })(component);
 
 export const WithAll = component => graphql(ALL_PROJECTS, {
-  options: (...ops) => ({ variables: { where: { category: { in: [ 'APP', 'LIB', 'SCRIPT', ], }, }, }, }),
+  options: (...ops) => ({
+ variables: {
+ where: { category: { in: [ 'APP', 'LIB', 'SCRIPT', ], }, },
+ orderBy: [{ field: 'category', direction: 'ASC', }, ],
+ },
+  }),
   props: ({ data, ...rest }) => ({
       projectsData: data,
       projectsArray: data.loading ? [] : viewNodes(data),

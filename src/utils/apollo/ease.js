@@ -11,7 +11,6 @@ export const getEdges = ({ edges, }) => spread(edges);
 export const getNode = ({ node, }) => node;
 
 export const viewEdges = qRes =>
-
    [ getViewer, getColl, getEdges, ].reduce(binVoke, qRes);
 
 export const viewNodes = qRes =>
