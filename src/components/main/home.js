@@ -2,17 +2,24 @@ import React, { Component, } from 'react';
 import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import { connect, } from 'react-redux';
-import { containers, } from '../../store/projects';
-import Projects from '../projects';
+import { Projects, } from '../../store';
+
+import ProjectRoute from '../projects';
 import About from './about';
 import Teaching from './teaching';
 import Nav from './nav';
+
+const { containers, actions: pActions, } = Projects;
 
 const { WithAll, } = containers;
 
 const styles = { paddingTop: '5rem', };
 
 class Home extends Component {
+  componentWillReceiveProps({ setProjects, projects, }) {
+    setProjects(projects);
+  }
+  
   render() {
     // console.log('this.prop', this.props);
     const { projects, } = this.props;
@@ -25,7 +32,7 @@ class Home extends Component {
             <Route
               path="/projects"
               component={props =>
-                <Projects projects={projects} {...props} />}
+                <ProjectRoute projects={projects} {...props} />}
             />
             <Route path="/" exact component={About} />
             <Route path="/about" component={About} />
@@ -36,4 +43,4 @@ class Home extends Component {
     );
   }
 }
-export default connect()(WithAll(Home));
+export default connect(null, pActions)(WithAll(Home));

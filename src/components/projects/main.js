@@ -12,6 +12,7 @@ import ProjectInfo from './info';
 
 const { WithProject, WithAll, } = containers;
 const slug = ({ title, }) => title.toLowerCase().replace(/(\W)/, '-');
+const stateToProps = ({ projects, }) => ({ projects, });
 
 const Projects = (props) => {
   console.log('projects');
@@ -48,4 +49,4 @@ const Projects = (props) => {
   );
 };
 
-export default WithAll(Projects);
+export default connect(stateToProps)(Projects);

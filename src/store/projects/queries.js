@@ -5,7 +5,7 @@ export const ALL_PROJECTS = gql`
   query GetProjects {
   viewer {
     id
-    collection: allProjects{
+    collection:allProjects{
       edges{
         node{
           ...projectInfo

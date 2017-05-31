@@ -5,5 +5,7 @@ export const PROJECT_INFO = gql`
     id
     title
     description
+    features
+      
   }
 `;
