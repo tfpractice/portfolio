@@ -52,7 +52,7 @@ class Sidebar extends Component {
     const classes = this.context.styleManager.render(styleSheet);
     const { loggedIn, toggle, user, ...props } = this.props;
 
-    console.log(' DRAWER this.props', this.props);
+    // console.log(' DRAWER this.props', this.props);
     return (
       <Grid container>
         {/* <Grid item> */}

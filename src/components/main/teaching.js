@@ -7,7 +7,7 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 
 const styles = { paddingTop: '5rem', };
 
-const stateToProps = state => (state);
+// const stateToProps = state => (state);
 
 const Teaching = () => (
   <Grid container justify="center" style={styles} >

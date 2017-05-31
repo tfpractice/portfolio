@@ -16,17 +16,17 @@ const { WithAll, } = containers;
 const styles = { paddingTop: '5rem', };
 
 class Home extends Component {
-  componentWillReceiveProps({ setProjects, projects, }) {
-    setProjects(projects);
+  componentWillReceiveProps({ setProjects, projectsArray, projectsData: { loading, }, }) {
+    !loading && setProjects(projectsArray);
   }
   
   render() {
-    // console.log('this.prop', this.props);
+    console.log('HOME this.prop', this.props);
     const { projects, } = this.props;
 
     return (
       <Grid container justify="center" style={styles} >
-        <Nav projects={projects} />
+        <Nav />
         <Grid item sm={12}>
           <Switch >
             <Route

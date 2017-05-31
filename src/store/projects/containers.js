@@ -5,23 +5,18 @@ import { ALL_PROJECTS, GET_PROJECT, } from './queries';
 const { viewNodes, } = qUtils;
 
 export const WithProject = component => graphql(GET_PROJECT, {
-  skip:  ({ project, ...props }) => { console.log('WithProject will skip?', props, !!project); return !project; },
-  options: ({ project, }) => { console.log('project', project); return ({ variables: { id: project.id, }, }); },
-  props: ({ data, ownProps: { project, ...rest }, }) => {
-    console.log('"rest"', rest);
-    return ({
+  skip:  ({ project, }) => !project,
+  options: ({ project: { id, }, }) => ({ variables: { id, }, }),
+  props: ({ data, ownProps: { project, ...rest }, }) => ({
       projectQuery: data,
-      project: data.loading ? project : data.project,
-    });
-  },
+      projectData: data.loading ? project : data.project,
+  }),
 })(component);
 
 export const WithAll = component => graphql(ALL_PROJECTS, {
-  props: ({ data, ...rest }) => {
-    console.log('WithAll rest', rest);
-    return ({
-    projectsData: data,
-    projects: data.loading ? [] : viewNodes(data),
-    });
-  },
+  options: (...ops) => ({ variables: { where: { category: { in: [ 'APP', 'LIB', 'SCRIPT', ], }, }, }, }),
+  props: ({ data, ...rest }) => ({
+      projectsData: data,
+      projectsArray: data.loading ? [] : viewNodes(data),
+  }),
 })(component);

@@ -5,13 +5,11 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 
-import { containers, } from '../../store/projects';
+import { slug, } from '../../utils';
 import Single from './single';
 import ProjectLink from './link';
 import ProjectInfo from './info';
 
-const { WithProject, WithAll, } = containers;
-const slug = ({ title, }) => title.toLowerCase().replace(/(\W)/, '-');
 const stateToProps = ({ projects, }) => ({ projects, });
 
 const Projects = (props) => {
@@ -34,15 +32,8 @@ const Projects = (props) => {
         )}
         <Switch >
           <Route exact path={`${props.match.url}`} component={ProjectInfo} />
+          <Route exact path={`${props.match.url}/:slug`} component={Single} />
           
-          {props.projects.map(p =>
-            (<Route
-              key={p.id}
-              exact path={`${props.match.url}/${slug(p)}`}
-              component={rProps =>
-                <Single project={p} {...rProps} />}
-            />)
-          )}
         </Switch>
       </Grid>
     </Grid>

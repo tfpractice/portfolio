@@ -7,21 +7,18 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 
 import { containers, } from '../../store/projects';
-
+import { findMatch, } from '../../utils';
 const { WithProject, } = containers;
 
 const styles = { paddingTop: '5rem', };
 
-const stateToProps = (state, { match: { params: { project_id: id, }, ...own }, }) => {
-  console.log('own', state, own);
-  return {};
-  return ({ project: { id, }, });
-}
+const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, ...own }) =>
+   ({ project: findMatch(slug)(projects), })
 
 ;
 
 const Project = (props) => {
-  console.log('SINGLE PROJECT PORPS', props);
+  // console.log('SINGLE PROJECT PORPS', props);
   const { project, } = props;
 
   return (
