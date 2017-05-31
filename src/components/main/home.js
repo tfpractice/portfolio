@@ -16,8 +16,9 @@ const { WithAll, } = containers;
 const styles = { paddingTop: '5rem', };
 
 class Home extends Component {
-  componentWillReceiveProps({ setProjects, projectsArray, projectsData: { loading, }, }) {
-    !loading && setProjects(projectsArray);
+  componentWillReceiveProps({ setProjects, projectsArray, projectsData, }) {
+    !projectsData.loading && setProjects(projectsArray);
+    !projectsData.loading && console.log('allTools', projectsData);
   }
   
   render() {

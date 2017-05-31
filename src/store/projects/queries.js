@@ -12,6 +12,14 @@ export const ALL_PROJECTS = gql`
         }
       }
     }
+    allTools { 
+      edges {
+        node {
+          id
+          name
+     }
+   }
+   }
   }
 }
 ${PROJECT_INFO}`;
@@ -22,5 +30,32 @@ export const GET_PROJECT = gql`
       ...projectInfo
       
     }
+    viewer{
+      collection: allTools { 
+        edges {
+          node {
+            id
+            name
+       }
+     }
+     }
+    }
   } 
 ${PROJECT_INFO}`;
+
+export const ADD_TOOL = gql`
+  mutation AddTool($input: AddToToolsConnectionInput!){
+addToToolsConnection(input:$input){
+  changedTools{
+    tool{
+      id
+      name
+    }
+    project{
+      id
+      title
+    }
+  }
+}
+}
+`;

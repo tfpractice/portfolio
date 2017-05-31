@@ -8,7 +8,7 @@ import { connect, } from 'react-redux';
 
 import { containers, } from '../../store/projects';
 import { findMatch, } from '../../utils';
-const { WithProject, } = containers;
+const { WithProject, WithTools, } = containers;
 
 const styles = { paddingTop: '5rem', };
 
@@ -18,7 +18,7 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, .
 ;
 
 const Project = (props) => {
-  // console.log('SINGLE PROJECT PORPS', props);
+  console.log('SINGLE PROJECT PORPS', props);
   const { project, } = props;
 
   return (
@@ -36,8 +36,15 @@ const Project = (props) => {
           </CardActions>
         </Card>
       </Grid>
+      <Grid container>
+        {props.toolArray && props.toolArray.map(t =>
+          (<Grid item key={t.id}>
+            <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
+          </Grid>)
+        )}
+      </Grid>
     </Grid>
   );
 };
 
-export default connect(stateToProps)(WithProject(Project));
+export default connect(stateToProps)(WithTools(Project));
