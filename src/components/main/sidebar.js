@@ -9,13 +9,14 @@ import { connect, } from 'react-redux';
 import { createStyleSheet, } from 'jss-theme-reactor';
 import List, { ListItem, ListSubheader, } from 'material-ui/List';
 import { Link, } from 'react-router-dom';
+import { appFilt, libFilt, scrFilt, } from '../../utils';
+import ProjectLink from '../projects/link';
 
-// import { SideBarActions, } from '../stateful';
-// import LoginForm from './login_form';
-// import RegisterForm from './registration_form';
-// import LogoutLink from './logout_link';
-
-// const mapStateToProps = ({ auth: { user, }, }) => ({ loggedIn: !!user, user, });
+const stateToProps = ({ projects, }) => ({
+  applications: appFilt(projects),
+  libraries: libFilt(projects),
+  scripts: scrFilt(projects),
+});
 
 const styleSheet = createStyleSheet('Sidebar', () => ({
   list: {
@@ -45,14 +46,14 @@ class Sidebar extends Component {
     this.setState({ open: drawerState, });
   };
 
-  handleRightOpen = () => this.toggleDrawer('right', true);
-  handleRightClose = () => this.toggleDrawer('right', false);
+  handleRightOpen = () => this.toggleDrawer('left', true);
+  handleRightClose = () => this.toggleDrawer('left', false);
 
   render() {
     const classes = this.context.styleManager.render(styleSheet);
-    const { loggedIn, toggle, user, ...props } = this.props;
+    const { toggle, user, applications, libraries, scripts, ...props } = this.props;
 
-    // console.log(' DRAWER this.props', this.props);
+    console.log(' DRAWER this.props', this.props);
     return (
       <Grid container>
         {/* <Grid item> */}
@@ -62,8 +63,8 @@ class Sidebar extends Component {
         {/* </Grid> */}
 
         <Drawer
-          anchor="right"
-          open={this.state.open.right}
+          anchor="left"
+          open={this.state.open.left}
           onRequestClose={this.handleRightClose}
         >
 
@@ -79,12 +80,33 @@ class Sidebar extends Component {
                 <ListSubheader>
                   <Link to="/projects" >
                     <Text type="headline" secondary >
-                      Projects
+                      Applications
                     </Text>
                   </Link>
                 </ListSubheader>
-                
+                {applications.map(a =>
+                  (<ListItem key={a.id}>
+                    <ProjectLink project={a} />
+                  </ListItem>)
+                  )}
+
               </List>
+              <List>
+                <ListSubheader>
+                  <Link to="/projects" >
+                    <Text type="headline" secondary >
+                            Libraries
+                          </Text>
+                  </Link>
+                </ListSubheader>
+                {libraries.map(a =>
+                        (<ListItem key={a.id}>
+                          <ProjectLink project={a} />
+                        </ListItem>)
+                )}
+
+              </List>
+
             </Grid>
             <Grid item>
 
@@ -115,4 +137,4 @@ class Sidebar extends Component {
 
 Sidebar.contextTypes = { styleManager: customPropTypes.muiRequired, };
 
-export default connect()(Sidebar);
+export default connect(stateToProps)(Sidebar);

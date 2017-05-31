@@ -10,7 +10,7 @@ const ProjectLink = ({ project, children, ...props }) => {
 
   return (
     <Link to={`/projects/${slug(project)}`}>
-      {children}
+      {children || project.title}
     </Link>);
 };
 
