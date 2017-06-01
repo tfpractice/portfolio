@@ -10,8 +10,6 @@ import { containers, } from '../../store/projects';
 import { findMatch, qUtils, } from '../../utils';
 const { WithProject, WithTools, } = containers;
 
-// import { , slug, } from '../../utils';
-
 const { edgeNodes, } = qUtils;
 
 const styles = { paddingTop: '5rem', };
@@ -29,17 +27,19 @@ const Project = (props) => {
   return (
     <Grid container justify="center" >
       <Grid item>
-        <Card raised>
-          <CardHeader title={project && project.title} />
-          <CardContent>
-            <Text type="subheading">
-              {project && project.description}
-            </Text>
-          </CardContent>
-          <CardActions>
-            <Button compact>Learn More</Button>
-          </CardActions>
-        </Card>
+        <Paper>
+          <Card raised>
+            <CardHeader title={project && project.title} />
+            <CardContent>
+              <Text type="subheading">
+                {project && project.description}
+              </Text>
+            </CardContent>
+            <CardActions>
+              <Button compact>Learn More</Button>
+            </CardActions>
+          </Card>
+        </Paper>
       </Grid>
       <Grid container>
         {props.toolArray && props.toolArray.filter(isMissing).map(t => (

@@ -7,7 +7,6 @@ import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material
 import List, { ListItem, } from 'material-ui/List';
 
 import Collapse from 'material-ui/transitions/Collapse';
-import Slide from 'material-ui/transitions/Slide';
 
 import IconButton from 'material-ui/IconButton';
 
@@ -79,7 +78,6 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
       </Collapse>
       <CardMedia>
         <img src={imageUrl(project)} />
-
       </CardMedia>
       <CardActions>``
         <IconButton onClick={() => toggle(x => !x)} >
