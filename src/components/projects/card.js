@@ -5,7 +5,7 @@ import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Chip from 'material-ui/Chip';
 import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
-import List from 'material-ui/List';
+import List, { ListItem, } from 'material-ui/List';
 
 import Collapse from 'material-ui/transitions/Collapse';
 import Slide from 'material-ui/transitions/Slide';
@@ -16,44 +16,82 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 
 import { withState, } from 'recompose';
-import { qUtils, } from '../../utils';
 
 import { containers, } from '../../store/projects';
+import { qUtils, slug, } from '../../utils';
+
 import ProjectLink from './link';
 
-const { WithProject, } = containers;
 const { edgeNodes, } = qUtils;
 
 const toggler = (open => !open);
 const stateful = withState('open', 'toggle', false);
+const imageUrl = pj => `http://via.placeholder.com/350?text=${slug(pj)}`;
 
 const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
   // card: { maxWidth: 400, },
+  card: { display: 'flex', },
+  details: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  content: { flex: '1 0 auto', },
+  cover: {
+    // maxWidth: 9%,
+    maxHeight: '9%',
+  },
+  controls: {
+    display: 'flex',
+    alignItems: 'center',
+    paddingLeft: 8,
+    paddingBottom: 8,
+  },
+  playIcon: {
+    height: 38,
+    width: 38,
+  },
   expand: {
     transform: 'rotate(0deg)',
     transition: theme.transitions.create('transform', { duration: theme.transitions.duration.shortest, }),
   },
   expandOpen: { transform: 'rotate(90deg)', },
 
-  // avatar: { backgroundColor: red[500], },
+// avatar: { backgroundColor: red[500], },
   flexGrow: { flex: '1 1 auto', },
 }));
 const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
-  console.log('ProjectCard props', props);
+  // console.log('ProjectCard props', props);
   return (
     <Card raised>
       <CardHeader title={<ProjectLink project={project} />} />
-      <CardContent>
-        {project.features.map((f, i) =>
-          (<Text key={i} type="subheading">
-            {f}
-          </Text>)
-        )}
-      </CardContent>
+      <Collapse
+        in={props.open}
+        transitionDuration="auto"
+      >
+        <CardContent>
+          <Grid
+            container direction="row" align="center"
+          >
+            <Grid item xs={4} >
+              <img src={imageUrl(project)} />
+            </Grid>
+            <Grid item xs={8}>
+              {project.features.map((f, i) => (
+                <Text key={i} type="paragraph">
+                  {f}
+                </Text>
+              ))}
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Collapse>
       <CardActions>
-        <Grid container direction="row" className={classes.flexGrow} align="center" >
+        <Grid
+          container direction="row"
+          align="center"
+        >
           <Grid item >
             <IconButton
               className={classnames(classes.expand, { [classes.expandOpen]: props.open, })}
@@ -62,22 +100,19 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
               <ExpandMoreIcon />
             </IconButton>
           </Grid>
-
         </Grid>
-
       </CardActions>
       <Collapse
         in={props.open}
         transitionDuration="auto"
       >
-        {/* <Grid item > */}
-        <CardContent>
+        <Grid container direction="row" >
           {edgeNodes(project.tools).map(t => (
-            <Chip key={t.id} label={t.name} />
-          ))}
-          {/* </Grid> */}
-
-        </CardContent>
+            <Grid key={t.id} item>
+              <Chip key={t.id} label={t.name} />
+            </Grid>
+            ))}
+        </Grid>
       </Collapse>
     </Card>
   );
