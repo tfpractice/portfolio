@@ -23,8 +23,8 @@ const ProjectInfo = ({ apps, libs, scripts, }) => {
   const a = 0;
 
   return (
-    <Grid container justify="center" >
-      <Grid item >
+    <Grid container >
+      <Grid item sm={12}>
         <Card raised>
           <CardHeader title="THese are my projects" />
           <CardContent>
@@ -38,30 +38,24 @@ const ProjectInfo = ({ apps, libs, scripts, }) => {
         </Card>
       </Grid>
       <Grid item sm={12}>
-        <Grid container direction="column" align="center">
-          <Grid item md={10}>
-            <Text type="title" >
+        <Grid container >
+          <Grid item sm={10} style={{ backgroundColor: 'rgba(255,0,255,.2)', }} >
+            <Text type="display1" >
               Applications
             </Text>
             <CardList items={apps} />
           </Grid>
-          <Grid item md={10}>
+          <Grid item sm={10} style={{ backgroundColor: 'rgba(0, 255,255,.2)', }}>
             <Text type="title" >
               Libraries
             </Text>
             <CardList items={libs} />
-
           </Grid>
-          <Grid item sm={12}>
-            <Text type="subheading">
+          <Grid item sm={10} style={{ backgroundColor: 'rgba( 255,255,0,.2)', }}>
+            <Text type="display1">
               Misc
             </Text>
-            <Grid container>
-              <Text type="subheading">
-                Projects
-              </Text>
-              <CardList items={scripts} />
-            </Grid>
+            <CardList items={scripts} />
           </Grid>
         </Grid>
       </Grid>

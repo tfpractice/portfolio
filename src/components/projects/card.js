@@ -59,8 +59,6 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
 const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
-  console.log('project', project);
-
   return (
     <Card raised>
       <CardHeader title={<ProjectLink project={project} />} />
