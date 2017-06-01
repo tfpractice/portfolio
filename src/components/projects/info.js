@@ -13,15 +13,11 @@ import ProjectLink from './link';
 import ProjectCard from './card';
 import CardList from './cardList';
 
-const stateToProps = ({ projects, }) => {
-  console.log('project', projects.map(({ id, }) => id));
-
-  return ({
+const stateToProps = ({ projects, }) => ({
   apps: appFilt(projects),
   libs: libFilt(projects),
   scripts: scrFilt(projects),
-  });
-};
+});
 
 const ProjectInfo = ({ apps, libs, scripts, }) => {
   const a = 0;

@@ -51,7 +51,7 @@ class Sidebar extends Component {
   render() {
     const { applications, libraries, classes, scripts, } = this.props;
 
-    console.log(' DRAWER this.props', this.props);
+    // console.log(' DRAWER this.props', this.props);
     return (
       <Grid container>
         <IconButton contrast onClick={this.expand}>
