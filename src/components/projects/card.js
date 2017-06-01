@@ -3,7 +3,6 @@ import classnames from 'classnames';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import Chip from 'material-ui/Chip';
 import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import List, { ListItem, } from 'material-ui/List';
 
@@ -17,9 +16,8 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 
 import { withState, } from 'recompose';
 
-import { containers, } from '../../store/projects';
 import { qUtils, slug, } from '../../utils';
-
+import { ChipList, } from '../tools';
 import ProjectLink from './link';
 
 const { edgeNodes, } = qUtils;
@@ -62,57 +60,32 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
 const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
-  // console.log('ProjectCard props', props);
   return (
     <Card raised>
       <CardHeader title={<ProjectLink project={project} />} />
-      <Collapse
-        in={props.open}
-        transitionDuration="auto"
-      >
+      <Collapse in={props.open}>
         <CardContent>
-          <Grid
-            container direction="row" align="center"
-          >
-            <Grid item xs={4} >
-              <img src={imageUrl(project)} />
-            </Grid>
-            <Grid item xs={8}>
-              {project.features.map((f, i) => (
-                <Text key={i} type="paragraph">
+          <Grid container direction="column" align="center">
+            {project.features.map((f, i) => (
+              <Grid item key={i} >
+                <Text type="subheading">
                   {f}
                 </Text>
-              ))}
-            </Grid>
+              </Grid>))}
           </Grid>
         </CardContent>
       </Collapse>
-      <CardActions>
-        <Grid
-          container direction="row"
-          align="center"
-        >
-          <Grid item >
-            <IconButton
-              className={classnames(classes.expand, { [classes.expandOpen]: props.open, })}
-              onClick={() => toggle(x => !x)}
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </Grid>
-        </Grid>
+      <CardMedia>
+        <img src={imageUrl(project)} />
+
+      </CardMedia>
+      <CardActions>``
+        <IconButton onClick={() => toggle(x => !x)} >
+          <ExpandMoreIcon />
+        </IconButton>
       </CardActions>
-      <Collapse
-        in={props.open}
-        transitionDuration="auto"
-      >
-        <Grid container direction="row" >
-          {edgeNodes(project.tools).map(t => (
-            <Grid key={t.id} item>
-              <Chip key={t.id} label={t.name} />
-            </Grid>
-            ))}
-        </Grid>
+      <Collapse in={props.open}>
+        <ChipList tools={edgeNodes(project.tools)} />
       </Collapse>
     </Card>
   );
