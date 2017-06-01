@@ -12,11 +12,11 @@ import ProjectCard from './card';
 const CardList = ({ items, }) => (
   <Grid container direction="row" >
     {items.map(p =>
-    (<Grid item md={4} key={p.id}>
-      <ProjectLink project={p}>
-        <ProjectCard project={p} />
-      </ProjectLink>
-    </Grid>)
+      (<Grid item md={8} key={p.id}>
+        <ProjectLink project={p}>
+          <ProjectCard project={p} />
+        </ProjectLink>
+      </Grid>)
   )}
   </Grid>);
 

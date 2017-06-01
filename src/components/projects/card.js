@@ -2,25 +2,30 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import Button from 'material-ui/Button';
+import Chip from 'material-ui/Chip';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
-import { connect, } from 'react-redux';
+import { qUtils, } from '../../utils';
 
 import { containers, } from '../../store/projects';
 const { WithProject, } = containers;
+const { edgeNodes, } = qUtils;
 
-const ProjectCard = ({ project, ...props }) => {
-  console.log('ProjectCardprops', props);
+const ProjectCard = ({ project, }) => {
+  const a = 0;
+
   return (
     <Card raised>
       <CardHeader title={project.title} />
       <CardContent>
-        <Text type="subheading">
-          {project.description}
-        </Text>
+        {project.features.map(f =>
+          (<Text type="subheading">
+            {f}
+          </Text>)
+        )}
       </CardContent>
       <CardActions>
-        <Button compact>Learn More</Button>
+        {edgeNodes(project.tools).map(t =>
+          <Chip label={t.name} />)}
       </CardActions>
     </Card>
   );

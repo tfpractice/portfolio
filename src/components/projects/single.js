@@ -37,11 +37,11 @@ const Project = (props) => {
         </Card>
       </Grid>
       <Grid container>
-        {props.toolArray && props.toolArray.map(t =>
-          (<Grid item key={t.id}>
+        {props.toolArray && props.toolArray.map(t => (
+          <Grid item key={t.id}>
             <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
-          </Grid>)
-        )}
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );

@@ -16,4 +16,7 @@ export const viewEdges = qRes =>
 export const viewNodes = qRes =>
    viewEdges(qRes).map(getNode);
    
+export const edgeNodes = connection =>
+  getEdges(connection).map(getNode);
+   
 export const getID = ({ id, }) => id;

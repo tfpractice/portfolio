@@ -6,6 +6,14 @@ export const PROJECT_INFO = gql`
     title
     description
     features
-    category      
+    category    
+    tools  {
+      edges {
+        node {
+          id
+          name
+     }
+   }
+    }
   }
 `;

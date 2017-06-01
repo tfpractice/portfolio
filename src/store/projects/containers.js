@@ -33,6 +33,7 @@ export const WithAll = component => graphql(ALL_PROJECTS, {
 
 export const WithTools = component => WithProject(graphql(ADD_TOOL, {
   skip:  ({ project, }) => !project,
+  options: ({ project: { id, }, }) => ({ refetechQueries: { query: GET_PROJECT, variables: { id, }, }, }),
   props: ({ mutate, ownProps: { project, }, }) => ({
  addTool: ({ id: toolId, }) =>
     mutate({ variables: { input: { projectId: project.id, toolId, }, }, }),
