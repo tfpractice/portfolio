@@ -7,8 +7,12 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 
 import { containers, } from '../../store/projects';
-import { findMatch, } from '../../utils';
+import { findMatch, qUtils, } from '../../utils';
 const { WithProject, WithTools, } = containers;
+
+// import { , slug, } from '../../utils';
+
+const { edgeNodes, } = qUtils;
 
 const styles = { paddingTop: '5rem', };
 
@@ -18,8 +22,9 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, .
 ;
 
 const Project = (props) => {
-  console.log('SINGLE PROJECT PORPS', props);
+  // console.log('SINGLE PROJECT PORPS', props);
   const { project, } = props;
+  const isMissing = ({ id: toolId, }) => !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
 
   return (
     <Grid container justify="center" >
@@ -37,7 +42,7 @@ const Project = (props) => {
         </Card>
       </Grid>
       <Grid container>
-        {props.toolArray && props.toolArray.map(t => (
+        {props.toolArray && props.toolArray.filter(isMissing).map(t => (
           <Grid item key={t.id}>
             <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
           </Grid>

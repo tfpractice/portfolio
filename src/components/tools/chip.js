@@ -16,9 +16,14 @@ const styleSheet = createStyleSheet('ToolChip', theme => ({
   },
 }));
 
-const ToolChip = ({ tool, classes, }) => (
-  <Chip label={tool.name} />
+const ToolChip = ({ tool, classes, ...rest }) => {
+  // console.log('tool', Object.keys(tool), rest);
+  const a = 0;
 
-);
+  return (
+    <Chip avatar={<Avatar src={tool.logo} />} label={tool.name} />
+
+  );
+};
 
 export default withStyles(styleSheet)(ToolChip);

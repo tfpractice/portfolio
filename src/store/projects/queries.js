@@ -17,6 +17,7 @@ export const ALL_PROJECTS = gql`
         node {
           id
           name
+          logo
      }
    }
    }
@@ -36,6 +37,7 @@ export const GET_PROJECT = gql`
           node {
             id
             name
+            logo
        }
      }
      }
@@ -50,6 +52,7 @@ addToToolsConnection(input:$input){
     tool{
       id
       name
+      
     }
     project{
       id

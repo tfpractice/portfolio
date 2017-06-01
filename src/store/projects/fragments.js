@@ -12,6 +12,7 @@ export const PROJECT_INFO = gql`
         node {
           id
           name
+          logo
      }
    }
     }
