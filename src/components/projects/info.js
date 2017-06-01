@@ -23,35 +23,30 @@ const ProjectInfo = ({ apps, libs, scripts, }) => {
   const a = 0;
 
   return (
-    <Grid container >
-      <Grid item sm={12}>
+    <Grid container gutter={24} justify="center">
+      <Grid item xs={10}>
         <Card raised>
           <CardHeader title="THese are my projects" />
-          <CardContent>
-            <Text type="subheading">
-              These are my projects
-            </Text>
-          </CardContent>
           <CardActions>
             <Button compact>Learn More</Button>
           </CardActions>
         </Card>
       </Grid>
-      <Grid item sm={12}>
-        <Grid container >
-          <Grid item sm={10} style={{ backgroundColor: 'rgba(255,0,255,.2)', }} >
+      <Grid item xs={12} sm={10}>
+        <Grid container justify="center" >
+          <Grid item xs={12} sm={10} style={{ backgroundColor: 'rgba(255,0,255,.2)', }} >
             <Text type="display1" >
               Applications
             </Text>
             <CardList items={apps} />
           </Grid>
-          <Grid item sm={10} style={{ backgroundColor: 'rgba(0, 255,255,.2)', }}>
+          <Grid item xs={12} sm={10} style={{ backgroundColor: 'rgba(0, 255,255,.2)', }}>
             <Text type="title" >
               Libraries
             </Text>
             <CardList items={libs} />
           </Grid>
-          <Grid item sm={10} style={{ backgroundColor: 'rgba( 255,255,0,.2)', }}>
+          <Grid item xs={12} sm={10} style={{ backgroundColor: 'rgba( 255,255,0,.2)', }}>
             <Text type="display1">
               Misc
             </Text>

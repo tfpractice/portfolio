@@ -5,13 +5,9 @@ import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 
-const styles = { paddingTop: '5rem', };
-
-// const stateToProps = state => (state);
-
 const Teaching = () => (
-  <Grid container justify="center" style={styles} >
-    <Grid item sm={6}>
+  <Grid container justify="center" >
+    <Grid item xs={11}>
       <Card raised>
         <CardHeader title="Welcome to My site" />
         <CardContent>

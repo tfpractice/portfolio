@@ -10,9 +10,9 @@ import Sidebar from './sidebar';
 const Nav = ({ match, ...props }) => (
   <AppBar>
     <Toolbar>
-      <Grid container justify="space-between" direction="row" align="center">
+      <Grid container>
         <Grid item>
-          <Grid container justify="center">
+          <Grid container >
             <Grid item >
               <Sidebar />
             </Grid>
@@ -25,33 +25,33 @@ const Nav = ({ match, ...props }) => (
             </Grid>
           </Grid>
         </Grid>
+        {/* <Grid item> */}
+        {/* <Grid container> */}
         <Grid item>
-          <Grid container direction="row">
-            <Grid item>
-              <Link to="/projects" >
-                <Text type="headline" secondary >
-                  Projects
-                </Text>
-              </Link>
-            </Grid>
-            <Grid item>
-
-              <Link to="/about" >
-                <Text type="headline" secondary >
-                  About
-                </Text>
-              </Link>
-            </Grid>
-            <Grid item>
-
-              <Link to="/teaching" >
-                <Text type="headline" secondary >
-                  Teaching
-                </Text>
-              </Link>
-            </Grid>
-          </Grid>
+          <Link to="/projects" >
+            <Text type="headline" secondary >
+            Projects
+          </Text>
+          </Link>
         </Grid>
+        <Grid item>
+
+          <Link to="/about" >
+            <Text type="headline" secondary >
+            About
+          </Text>
+          </Link>
+        </Grid>
+        <Grid item>
+
+          <Link to="/teaching" >
+            <Text type="headline" secondary >
+            Teaching
+          </Text>
+          </Link>
+        </Grid>
+        {/* </Grid> */}
+        {/* </Grid> */}
       </Grid>
     </Toolbar>
   </AppBar>
