@@ -3,7 +3,9 @@ import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import { connect, } from 'react-redux';
 import { Projects, } from '../../store';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { CSSTransitionGroup, } from 'react-transition-group'; // ES6
+import { createStyleSheet, withStyles, } from 'material-ui/styles';
+import { FadeIn, } from 'animate-components';
 
 import ProjectRoute from '../projects';
 import About from './about';
@@ -14,52 +16,65 @@ const { containers, actions: pActions, } = Projects;
 
 const { WithAll, } = containers;
 
-const styles = {
+const styleSheet = createStyleSheet('Home', theme => ({
+  root: {
  paddingTop: '5rem',
-// '.fade-enter' {
-//   opacity: 0,
-//   zIndex: 1
-// },
-//
-// '.fade-enter.fade-enter-active '{
-//   opacity: 1,
-//   transition: opacity 250ms ease-in
-// }
-};
+ '&.active': { backgroundColor: '#ff00ff', },
+  },
+  appear: { opacity: 0.01, },
+  appearActive: {
+    opacity: 1,
+    transition: 'opacity 400ms ease-in',
+  },
+  enter: {
+    opacity: 0,
+    zIndex: 1,
+  },
+  enterActive: {
+    opacity: 1,
+    transition: 'opacity 400ms ease-in',
+  },
+  leave: { opacity: 1, },
+  leaveActive: {
+  opacity: 0.1,
+  transition: 'opacity 400ms ease-in',
+  },
+}));
 
 class Home extends Component {
   componentWillReceiveProps({ setProjects, projectsArray, projectsData, }) {
     !projectsData.loading && setProjects(projectsArray);
-    !projectsData.loading && console.log('allTools', projectsData);
   }
   
   render() {
     console.log('HOME this.prop', this.props);
-    const { projects, } = this.props;
+    const { projects, classes, } = this.props;
 
     return (
-      <Grid container justify="center" style={styles} >
+      <Grid container justify="center" className={classes.root}>
         <Nav />
         <Grid item sm={12}>
-          {/* <ReactCSSTransitionGroup
-            transitionName="fade"
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={300}
-          > */}
-          <Switch >
-            <Route
-              path="/projects"
-              component={props =>
-                <ProjectRoute projects={projects} {...props} />}
-            />
-            <Route path="/" exact component={About} />
-            <Route path="/about" component={About} />
-            <Route path="/teaching" component={Teaching} />
-          </Switch>
-          {/* </ReactCSSTransitionGroup> */}
+          <FadeIn duration="300ms" timingFunction="ease-in">
+            <Switch >
+              <Route path="/projects" component={ProjectRoute} />
+              <Route exact path="/about" component={About} />
+              <Route exact path="/teaching" component={Teaching} />
+              <Route exact path="/" component={About} />
+            </Switch>
+          </FadeIn>
         </Grid>
       </Grid>
     );
   }
 }
-export default connect(null, pActions)(WithAll(Home));
+export default connect(null, pActions)(WithAll(withStyles(styleSheet)(Home)));
+
+// {/* <CSSTransitionGroup
+//   transitionName={classes}
+//   transitionAppear
+//   transitionAppearTimeout={400}
+//   transitionEnterTimeout={400}
+//   transitionLeaveTimeout={400}
+// > */}
+//
+// {/* </CSSTransitionGroup> */}
