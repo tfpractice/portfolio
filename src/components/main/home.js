@@ -3,6 +3,7 @@ import { Route, Switch, } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import { connect, } from 'react-redux';
 import { Projects, } from '../../store';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import ProjectRoute from '../projects';
 import About from './about';
@@ -13,7 +14,18 @@ const { containers, actions: pActions, } = Projects;
 
 const { WithAll, } = containers;
 
-const styles = { paddingTop: '5rem', };
+const styles = {
+ paddingTop: '5rem',
+// '.fade-enter' {
+//   opacity: 0,
+//   zIndex: 1
+// },
+//
+// '.fade-enter.fade-enter-active '{
+//   opacity: 1,
+//   transition: opacity 250ms ease-in
+// }
+};
 
 class Home extends Component {
   componentWillReceiveProps({ setProjects, projectsArray, projectsData, }) {
@@ -29,6 +41,11 @@ class Home extends Component {
       <Grid container justify="center" style={styles} >
         <Nav />
         <Grid item sm={12}>
+          {/* <ReactCSSTransitionGroup
+            transitionName="fade"
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
+          > */}
           <Switch >
             <Route
               path="/projects"
@@ -39,6 +56,7 @@ class Home extends Component {
             <Route path="/about" component={About} />
             <Route path="/teaching" component={Teaching} />
           </Switch>
+          {/* </ReactCSSTransitionGroup> */}
         </Grid>
       </Grid>
     );
