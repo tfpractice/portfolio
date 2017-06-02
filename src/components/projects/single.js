@@ -26,27 +26,24 @@ const Project = (props) => {
 
   return (
     <Grid container justify="center" >
-      <Grid item>
-        <Paper>
-          <Card raised>
-            <CardHeader title={project && project.title} />
-            <CardContent>
-              <Text type="subheading">
-                {project && project.description}
-              </Text>
-            </CardContent>
-            <CardActions>
-              <Button compact>Learn More</Button>
-            </CardActions>
-          </Card>
-        </Paper>
+      <Grid item xs={11}>
+        <Card raised>
+          <CardHeader title={project && project.title} />
+          <CardContent>
+            <Text type="subheading" >
+              {project && project.description}
+            </Text>
+          </CardContent>
+        </Card>
       </Grid>
       <Grid container>
-        {props.toolArray && props.toolArray.filter(isMissing).map(t => (
-          <Grid item key={t.id}>
-            <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
-          </Grid>
-        ))}
+        <Paper>
+          {props.toolArray && props.toolArray.filter(isMissing).map(t => (
+            <Grid item key={t.id}>
+              <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
+            </Grid>
+          ))}
+        </Paper>
       </Grid>
     </Grid>
   );

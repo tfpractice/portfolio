@@ -9,7 +9,7 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import List, { ListItem, ListSubheader, } from 'material-ui/List';
 import { Link, } from 'react-router-dom';
 import { appFilt, libFilt, scrFilt, } from '../../utils';
-import { LinkList, ProjectLink, } from '../projects';
+import { LinkList, } from '../projects';
 
 const stateToProps = ({ projects, }) => ({
   applications: appFilt(projects),
@@ -37,83 +37,84 @@ class Sidebar extends Component {
       right: false,
     },
   };
-
   toggleDrawer = (side, open) => {
     const drawerState = {};
 
     drawerState[side] = open;
     this.setState({ open: drawerState, });
   };
-
   expand = () => this.toggleDrawer('left', true);
   collapse = () => this.toggleDrawer('left', false);
-
   render() {
     const { applications, libraries, classes, scripts, } = this.props;
 
-    // console.log(' DRAWER this.props', this.props);
     return (
       <Grid container>
         <IconButton contrast onClick={this.expand}>
           <MenuIcon />
         </IconButton>
+        <Grid item xs={4}>
+          <Drawer anchor="left" open={this.state.open.left} onRequestClose={this.collapse} >
+            {/* <Grid item> */}
+            <List dense className={classes.listFull} open={this.state.open} >
+              <ListSubheader primary>
+                <Link to="/" >
+                  <Text type="button" secondary >
+                    tfpractice
+                  </Text>
+                </Link>
+              </ListSubheader>
+              <ListItem inset dense divider >
+                <Grid container>
+                  <Grid item>
+                    <Link to="/about" >
+                      about
+                    </Link>
+                  </Grid>
+                  <Grid item>
+                    <Link to="/teaching" >
+                      teaching
+                    </Link>
+                  </Grid>
+                </Grid>
+              </ListItem>
 
-        <Drawer
-          anchor="left"
-          open={this.state.open.left}
-          onRequestClose={this.collapse}
-        >
+            </List>
+            <LinkList path="/projects" heading="Applications" items={applications} />
+            <LinkList path="/projects" heading="Libraries" items={libraries} />
 
-          <List
-            className={classes.listFull}
-            id="simple-List"
-            open={this.state.open}
-          >
-            <ListSubheader primary>
-              LIST
-            </ListSubheader>
-            <Grid item>
-              <LinkList path="/projects" heading="Applications" items={applications} />
-              {/* <List dense >
-                <ListSubheader>
-                  <Link to="/projects" >
-                    <Text type="headline" secondary >
-                      Applications
-                    </Text>
-                  </Link>
-                </ListSubheader>
-
-                <LinkList projects={applications} />
-                {/* {applications.map(a =>
-                  (<ListItem key={a.id}>
-                    <ProjectLink project={a} />
-                  </ListItem>)
-                )}
-
-            </List> */}
-              <List>
-                <ListSubheader>
-                  <Link to="/projects" >
-                    <Text type="headline" secondary >
-                      Libraries
-                    </Text>
-                  </Link>
-                </ListSubheader>
-                {libraries.map(a =>
-                  (<ListItem key={a.id}>
-                    <ProjectLink project={a} />
-                  </ListItem>)
-                )}
-              </List>
-
-            </Grid>
-
-          </List>
-
-        </Drawer>
+            {/* </Grid> */}
+          </Drawer>
+        </Grid>
       </Grid>
     );
   }
 }
 
 export default connect(stateToProps)(withStyles(styleSheet)(Sidebar));
+
+//
+//
+// <ListItem item>
+//   <Link to="/projects" >
+//     <Text type="button" secondary >
+//       Projects
+//     </Text>
+//   </Link>
+// </ListItem>
+// <ListItem item>
+//
+//   <Link to="/about" >
+//     <Text type="button" secondary >
+//       About
+//     </Text>
+//   </Link>
+// </ListItem>
+// <ListItem item>
+//
+//   <Link to="/teaching" >
+//     <Text type="button" secondary >
+//       Teaching
+//     </Text>
+//   </Link>
+// </ListItem>

@@ -15,16 +15,11 @@ import ProjectCard from './card';
 const stateToProps = ({ projects, }) => ({ projects, });
 
 const Projects = (props) => {
-  console.log('projects');
-  console.log('Projects props', props);
+  const a = 0;
+
   return (
     <Grid container justify="center" align="center" direction="column">
-      <Grid item sm={12}>
-        <Text type="subheading">
-          Projects
-        </Text>
-      </Grid>
-      <Grid item sm={12}>
+      <Grid item >
         <FadeIn duration="200ms" timingFunction="ease-in">
           <Switch >
             <Route exact path={`${props.match.url}`} component={ProjectInfo} />

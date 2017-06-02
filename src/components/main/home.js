@@ -19,11 +19,8 @@ class Home extends Component {
   
   render() {
     return (
-      <Grid container justify="center" gutter={24} style={{ paddingTop: '5rem', }}>
-        {/* <Grid item xs={12} > */}
+      <Grid container justify="center" style={{ paddingTop: '5rem', }}>
         <Nav />
-        {/* <Route component={Nav} /> */}
-        {/* </Grid> */}
         <Grid item xs={11} sm={10}>
           <Switch >
             <FadeRoute path="/projects" component={ProjectRoute} />

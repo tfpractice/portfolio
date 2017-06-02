@@ -7,7 +7,7 @@ import { FadeIn, } from 'animate-components';
 
 const About = () => (
   <Grid container justify="center">
-    <Grid item xs={11} sm={10}>
+    <Grid item xs={11}>
       <Card raised>
         <CardHeader title="Welcome to My site" />
         <CardContent>

@@ -5,6 +5,7 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import FaceIcon from 'material-ui-icons/Face';
 import { grey, } from 'material-ui/styles/colors';
+import Paper from 'material-ui/Paper';
 import ToolChip from './chip';
 
 const styleSheet = createStyleSheet('ToolChipList', theme => ({
@@ -17,12 +18,13 @@ const styleSheet = createStyleSheet('ToolChipList', theme => ({
 }));
 
 const ChipList = ({ tools, }) => (
-  <Grid container direction="row" >
+  <Grid container direction="row" justify="center" >
+
+    {/* <Paper> */}
     {tools.map(t => (
-      <Grid key={t.id} item>
-        <ToolChip tool={t} />
-      </Grid>
+      <ToolChip tool={t} key={t.id} />
     ))}
+    {/* </Paper> */}
   </Grid>
 );
 

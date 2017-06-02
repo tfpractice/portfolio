@@ -67,7 +67,7 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
           <Grid container direction="column" align="center">
             {project.features.map((f, i) => (
               <Grid item key={i} >
-                <Text type="subheading">
+                <Text type="subheading" noWrap>
                   {f}
                 </Text>
               </Grid>))}
@@ -75,15 +75,20 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
         </CardContent>
       </Collapse>
       <CardMedia>
-        <img src={imageUrl(project)} />
+        <Paper>
+          <img src={imageUrl(project)} />
+        </Paper>
       </CardMedia>
-      <CardActions>``
+      <CardActions>
         <IconButton onClick={() => toggle(x => !x)} >
           <ExpandMoreIcon />
         </IconButton>
       </CardActions>
       <Collapse in={props.open}>
-        <ChipList tools={edgeNodes(project.tools)} />
+        <Paper>
+          <ChipList tools={edgeNodes(project.tools)} />
+
+        </Paper>
       </Collapse>
     </Card>
   );
