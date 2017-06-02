@@ -21,7 +21,6 @@ import ProjectLink from './link';
 
 const { edgeNodes, } = qUtils;
 
-const toggler = (open => !open);
 const stateful = withState('open', 'toggle', false);
 const imageUrl = pj => `http://via.placeholder.com/350?text=${slug(pj)}`;
 

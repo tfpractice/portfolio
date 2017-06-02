@@ -8,7 +8,7 @@ import { connect, } from 'react-redux';
 
 import { containers, } from '../../store/projects';
 import { findMatch, qUtils, } from '../../utils';
-const { WithProject, WithTools, } = containers;
+const { WithProject, WithTools, WithSkills, } = containers;
 
 const { edgeNodes, } = qUtils;
 
@@ -20,10 +20,25 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, .
 ;
 
 const Project = (props) => {
-  // console.log('SINGLE PROJECT PORPS', props);
+  console.log('SINGLE PROJECT PORPS', props);
   const { project, } = props;
-  const isMissing = ({ id: toolId, }) => !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
 
+  console.log('+++++++++++++++++++++');
+  console.log('+++++++++++++++++++++');
+  console.log('+++++++++++++++++++++');
+  console.log('project.files', project);
+  console.log('+++++++++++++++++++++');
+  console.log('+++++++++++++++++++++');
+  console.log('+++++++++++++++++++++');
+  console.log('+++++++++++++++++++++');
+
+  // const images = edgeNodes(project.files);
+  const isMissing = ({ id: toolId, }) =>
+   !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
+  const xSkill = ({ id: skillId, }) =>
+  !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
+
+  // console.log('images', images);
   return (
     <Grid container justify="center" >
       <Grid item xs={11}>
@@ -37,16 +52,21 @@ const Project = (props) => {
         </Card>
       </Grid>
       <Grid container>
-        <Paper>
-          {props.toolArray && props.toolArray.filter(isMissing).map(t => (
-            <Grid item key={t.id}>
-              <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
-            </Grid>
-          ))}
-        </Paper>
+        {/* <Paper> */}
+        {/* {props.toolArray && props.toolArray.filter(isMissing).map(t => (
+          <Grid item key={t.id}>
+            <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
+          </Grid>
+        ))} */}
+        {/* </Paper> */}
+        {props.skillArray && props.skillArray.filter(xSkill).map(t => (
+          <Grid item key={t.id}>
+            <Button primary onClick={e => props.addSkill(t)}>{t.name}</Button>
+          </Grid>
+        ))}
       </Grid>
     </Grid>
   );
 };
 
-export default connect(stateToProps)(WithTools(Project));
+export default connect(stateToProps)(WithSkills(Project));

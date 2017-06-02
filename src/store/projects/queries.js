@@ -20,7 +20,16 @@ export const ALL_PROJECTS = gql`
           logo
      }
    }
-   }
+ }
+ allSkills {
+    edges {
+      node {
+        name
+        id
+      }
+    }
+  }
+ 
   }
 }
 ${PROJECT_INFO}`;
@@ -41,24 +50,50 @@ export const GET_PROJECT = gql`
        }
      }
      }
+     allSkills {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
     }
   } 
 ${PROJECT_INFO}`;
 
 export const ADD_TOOL = gql`
   mutation AddTool($input: AddToToolsConnectionInput!){
-addToToolsConnection(input:$input){
-  changedTools{
-    tool{
-      id
-      name
-      
-    }
+    addToToolsConnection(input:$input){
+      changedTools{
+        tool{
+          id
+          name
+          
+      }
     project{
       id
       title
     }
   }
+}
+}
+`;
+
+export const ADD_SKILL = gql`
+    mutation AddSkill($input: AddToProjectSkillsConnectionInput!){
+      addToProjectSkillsConnection(input:$input){
+      changedProjectSkills{
+        skill{
+          id
+          name
+          
+        }
+        project{
+          id
+          title
+        }
+      }
 }
 }
 `;

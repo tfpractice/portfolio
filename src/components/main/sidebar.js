@@ -64,7 +64,7 @@ class Sidebar extends Component {
                   </Text>
                 </Link>
               </ListSubheader>
-              <ListItem inset dense divider >
+              <ListItem dense divider >
                 <Grid container>
                   <Grid item>
                     <Link to="/about" >

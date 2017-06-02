@@ -6,7 +6,8 @@ export const PROJECT_INFO = gql`
     title
     description
     features
-    category    
+    category  
+    details  
     tools  {
       edges {
         node {
@@ -14,7 +15,25 @@ export const PROJECT_INFO = gql`
           name
           logo
      }
-   }
     }
+    }
+    skills  {
+      edges {
+        node {
+          id
+          name
+          
+     }
+    }
+    }
+    files {
+     edges {
+       node {
+         name
+         blobUrl
+         id
+       }
+     }
+   }
   }
 `;
