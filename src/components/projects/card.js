@@ -5,14 +5,10 @@ import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import List, { ListItem, } from 'material-ui/List';
-
 import Collapse from 'material-ui/transitions/Collapse';
-
 import IconButton from 'material-ui/IconButton';
-
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
-
 import { withState, } from 'recompose';
 
 import { qUtils, slug, } from '../../utils';
@@ -50,35 +46,32 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
   expandOpen: { transform: 'rotate(90deg)', },
   flexGrow: { flex: '1 1 auto', },
 }));
-const divStyle = { minHeight: '100', };
+const divStyle = { minHeight: '80', };
 
 const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
   return (
     <Card raised>
-      <CardHeader title={<IconButton onClick={() => toggle(x => !x)} >
-        <ExpandMoreIcon />
-      </IconButton>}
-      />
+      <CardHeader title={<ProjectLink project={project} />} />
 
-      <CardMedia className={classes.details} style={makeStyle(project)}>
+      <CardMedia className={classes.details} style={{ ...makeStyle(project), ...divStyle, }}>
         {/* <Grid item xs={4} style={divStyle} className={classes.details} style={makeStyle(project)} /> */}
-        <div style={divStyle} >
-          <Text type="display1" align="center">{project.title}</Text>
-          <Collapse in={props.open}>
-            <CardContent>
-              <Grid container direction="column" align="center">
-                {project.features.map((f, i) => (
-                  <Grid item key={i} >
-                    <Text type="subheading" noWrap>
-                      {f}
-                    </Text>
-                  </Grid>))}
-              </Grid>
-            </CardContent>
-          </Collapse>
-        </div>
+        {/* <Grid container > */}
+        <Text type="display1" align="center">{project.title}</Text>
+        <Collapse in={props.open}>
+          <CardContent>
+            <Grid container direction="column" align="center">
+              {project.features.map((f, i) => (
+                <Grid item key={i} >
+                  <Text type="subheading" noWrap>
+                    {f}
+                  </Text>
+                </Grid>))}
+            </Grid>
+          </CardContent>
+        </Collapse>
+        {/* </Grid> */}
         {/* <img src={imgUrl(project)} /> */}
       </CardMedia>
       <CardActions>

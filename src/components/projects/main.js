@@ -18,8 +18,8 @@ const Projects = (props) => {
   const a = 0;
 
   return (
-    <Grid container justify="center" align="center" direction="column">
-      <Grid item >
+    <Grid container justify="center" align="center" direction="column" className="projects-main">
+      <Grid item xs={11} sm={10} >
         <FadeIn duration="200ms" timingFunction="ease-in">
           <Switch >
             <Route exact path={`${props.match.url}`} component={ProjectInfo} />

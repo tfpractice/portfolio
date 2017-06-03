@@ -12,7 +12,7 @@ import Sidebar from './sidebar';
 const Nav = ({ match, ...props }) => (
   <AppBar>
     <Toolbar>
-      <Grid container justify="space-around" direction="row" align="center">
+      <Grid container justify="space-around" >
         <Grid item>
           <Grid container >
             <Grid item >
