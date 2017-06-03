@@ -1,5 +1,6 @@
 import React, { Component, } from 'react';
 import Grid from 'material-ui/Grid';
+import Paper from 'material-ui/Paper';
 import { Route, Switch, } from 'react-router-dom';
 import { connect, } from 'react-redux';
 
@@ -22,12 +23,14 @@ class Home extends Component {
       <Grid container direction="column" justify="center" align="center" style={{ paddingTop: '5rem', }}>
         <Nav />
         <Grid item xs={11} sm={10} className="homeDiv">
-          <Switch >
-            <FadeRoute path="/projects" component={ProjectRoute} />
-            <FadeRoute path="/about" component={About} />
-            <FadeRoute path="/teaching" component={Teaching} />
-            <Route exact path="/" component={About} />
-          </Switch>
+          <Paper>
+            <Switch >
+              <FadeRoute path="/projects" component={ProjectRoute} />
+              <FadeRoute path="/about" component={About} />
+              <FadeRoute path="/teaching" component={Teaching} />
+              <Route exact path="/" component={About} />
+            </Switch>
+          </Paper>
         </Grid>
       </Grid>
     );

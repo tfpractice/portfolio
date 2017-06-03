@@ -55,7 +55,6 @@ class Sidebar extends Component {
         </IconButton>
         <Grid item xs={4}>
           <Drawer anchor="left" open={this.state.open.left} onRequestClose={this.collapse} >
-            {/* <Grid item> */}
             <List dense className={classes.listFull} open={this.state.open} >
               <ListSubheader primary>
                 <Link to="/" >
@@ -78,12 +77,9 @@ class Sidebar extends Component {
                   </Grid>
                 </Grid>
               </ListItem>
-
             </List>
             <LinkList path="/projects" heading="Applications" items={applications} />
             <LinkList path="/projects" heading="Libraries" items={libraries} />
-
-            {/* </Grid> */}
           </Drawer>
         </Grid>
       </Grid>
@@ -92,29 +88,3 @@ class Sidebar extends Component {
 }
 
 export default connect(stateToProps)(withStyles(styleSheet)(Sidebar));
-
-//
-//
-// <ListItem item>
-//   <Link to="/projects" >
-//     <Text type="button" secondary >
-//       Projects
-//     </Text>
-//   </Link>
-// </ListItem>
-// <ListItem item>
-//
-//   <Link to="/about" >
-//     <Text type="button" secondary >
-//       About
-//     </Text>
-//   </Link>
-// </ListItem>
-// <ListItem item>
-//
-//   <Link to="/teaching" >
-//     <Text type="button" secondary >
-//       Teaching
-//     </Text>
-//   </Link>
-// </ListItem>

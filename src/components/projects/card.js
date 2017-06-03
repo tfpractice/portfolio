@@ -46,7 +46,7 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
   expandOpen: { transform: 'rotate(90deg)', },
   flexGrow: { flex: '1 1 auto', },
 }));
-const divStyle = { minHeight: '80', };
+const divStyle = { minHeight: '80px', };
 
 const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
@@ -54,10 +54,7 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
   return (
     <Card raised>
       <CardHeader title={<ProjectLink project={project} />} />
-
       <CardMedia className={classes.details} style={{ ...makeStyle(project), ...divStyle, }}>
-        {/* <Grid item xs={4} style={divStyle} className={classes.details} style={makeStyle(project)} /> */}
-        {/* <Grid container > */}
         <Text type="display1" align="center">{project.title}</Text>
         <Collapse in={props.open}>
           <CardContent>
@@ -65,23 +62,19 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
               {project.features.map((f, i) => (
                 <Grid item key={i} >
                   <Text type="subheading" noWrap>
-                    {f}
-                  </Text>
+                   {f}
+                 </Text>
                 </Grid>))}
             </Grid>
           </CardContent>
         </Collapse>
-        {/* </Grid> */}
-        {/* <img src={imgUrl(project)} /> */}
       </CardMedia>
       <CardActions>
         <IconButton onClick={() => toggle(x => !x)} >
           <ExpandMoreIcon />
         </IconButton>
         <ChipList tools={edgeNodes(project.tools)} />
-
       </CardActions>
-
     </Card>
   );
 };
