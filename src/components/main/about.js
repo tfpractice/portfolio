@@ -11,7 +11,7 @@ const About = () => (
       <Card raised>
         <CardHeader title="Welcome to My site" />
         <CardContent>
-          <Text type="body1">
+          <Text secondary type="body1">
             A web developer with a passion for functional programming and application architecture
             </Text>
         </CardContent>
