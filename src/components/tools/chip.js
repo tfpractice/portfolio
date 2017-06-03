@@ -21,7 +21,7 @@ const ToolChip = ({ tool, classes, ...rest }) => {
   const a = 0;
 
   return (
-    <Chip avatar={<Avatar src={tool.logo} />} label={tool.name} />
+    <Chip label={tool.name} />
 
   );
 };

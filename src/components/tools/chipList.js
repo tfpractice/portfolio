@@ -18,7 +18,7 @@ const styleSheet = createStyleSheet('ToolChipList', theme => ({
 }));
 
 const ChipList = ({ tools, }) => (
-  <Grid container direction="row" justify="center" >
+  <Grid container direction="row" >
 
     {/* <Paper> */}
     {tools.map(t => (

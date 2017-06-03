@@ -23,15 +23,6 @@ const Project = (props) => {
   console.log('SINGLE PROJECT PORPS', props);
   const { project, } = props;
 
-  console.log('+++++++++++++++++++++');
-  console.log('+++++++++++++++++++++');
-  console.log('+++++++++++++++++++++');
-  console.log('project.files', project);
-  console.log('+++++++++++++++++++++');
-  console.log('+++++++++++++++++++++');
-  console.log('+++++++++++++++++++++');
-  console.log('+++++++++++++++++++++');
-
   // const images = edgeNodes(project.files);
   const isMissing = ({ id: toolId, }) =>
    !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);

@@ -19,8 +19,11 @@ export const LinkList = ({ items, path, heading, }) => (
       </Link>
     </ListSubheader>
     {items.map(p =>
-      (<ListItem inset button dense divider key={p.id}>
-        <ProjectLink project={p} />
+      (<ListItem button dense divider key={p.id}>
+        <ListItemText
+          inset primary={<ProjectLink project={p} />
+          }
+        />
       </ListItem>)
     )}
   </List>
