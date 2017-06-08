@@ -13,7 +13,7 @@ const About = () => (
         <CardContent>
           <Text secondary type="body1">
             A web developer with a passion for functional programming and application architecture
-            </Text>
+          </Text>
         </CardContent>
         <CardActions>
           <Button compact>Learn More</Button>
