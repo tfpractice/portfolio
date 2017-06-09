@@ -7,29 +7,33 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { FadeIn, } from 'animate-components';
 import { Polygon, } from 'endogenesis';
 import * as endo from 'endogenesis';
-const { polygon, range, setNumSides, } = Polygon;
+const { polygon, range, setNumSides, center, vertices, tickPoints, } = Polygon;
 const mygons = range(20).map(i => setNumSides(6)(polygon(i, i, 10)));
 
 const style = {
   width: '100%',
   height: '100%',
 
-  // transformOrigin: 'initial',
 };
+const xBox = data => box => d3.scaleLinear()
+  .domain(d3.extent(data, g => g.x))
+  .range([ box.width * 0.1, box.width * 0.9, ]);
 
+const yBox = data => box => d3.scaleLinear()
+  .domain(d3.extent(data, g => g.y))
+  .range([ box.height * 0.1, box.height * 0.9, ]);
+
+const rBox = data => box => d3.scaleLinear()
+  .domain(d3.extent(data, g => g.radius))
+  .range([ box.bottom / data.length, box.top / data.length, ]);
+  
 class Endo extends Component {
   componentDidMount() {
     const vSelect = d3.select('.endovis');
+    const getBox = sel => sel.node().getBoundingClientRect();
+    const endoBox = getBox(vSelect);
     const vBox = vSelect.node().getBoundingClientRect();
 
-    console.log('vbox', vBox);
-    console.log(' vBox.left, vBox.right,', vBox.left - vBox.right);
-    console.log('vSelect.node()', vSelect.node());
-    console.log(' vBox.top, vBox.bottom', vBox.top - vBox.bottom);
-    console.log('d3.extent(mygons, g => g.x)', d3.extent(mygons, g => g.x));
-    console.log('[ vBox.left, vBox.right, ]', [ vBox.left, vBox.right, ]);
-
-    // console.log('vSelect', vSelect.node().getBoundingClientRect());
     const xScale = d3.scaleLinear()
     .domain(d3.extent(mygons, g => g.x))
     .range([ vBox.width * 0.1, vBox.width * 0.9, ]);
@@ -52,10 +56,37 @@ class Endo extends Component {
       return i;
     })
     .insert('circle')
-    .attr('cx', d => xScale(d.x))
-    .attr('cy', d => yScale(d.y))
-    .attr('r', d => rScale(d.radius))
-    .attr('stroke', '#f0f');
+    .attr('cx', d => xBox(mygons)(endoBox)(d.x))
+    .attr('cy', d => yBox(mygons)(endoBox)(d.y))
+    .attr('r', d => rBox(mygons)(endoBox)(d.radius))
+    .attr('stroke', '#f0f')
+    .attr('fill', 'none');
+    
+    const polyLine = (p, idx) => {
+      const wCent = tickPoints(p)(3).reduce((p, n, i) => {
+        console.log('p,n,i', p, n, i);
+        
+        return (i && (i % 3 === 0)) ? p.concat(center(p), n) : p.concat(n);
+      }, []);
+      const localD = vertices(p).concat(wCent);
+
+      return d3.line()
+        .x(d => xBox([{ x: 0, y: 0, }, p, ])(getBox(d3.select(`#vis${idx}`)))(d.x))
+        .y(d => xBox([ p, ])(getBox(d3.select(`#vis${idx}`)))(d.y))(localD);
+    };
+
+    d3
+
+      // .select('.disBox')
+      // .select('.disVis')
+      .selectAll('.disVis')
+      .selectAll('.displayed')
+      .data(mygons)
+
+      // .append('path')
+      .attr('d', polyLine)
+      .attr('stroke', '#0f0')
+      .attr('fill', 'none');
   }
   render() {
     return (
@@ -65,8 +96,18 @@ class Endo extends Component {
             {mygons.map((p, i) => (
               <g className="polygon" key={i} />)
             )}
-          </svg>
+            {mygons.map((p, i) => (
+              <g className="displayed" key={i} />)
+            )}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      </svg>
         </Grid>
+        {mygons.map((p, i) => (
+          <Grid item xs={2} className="disBox">
+            <svg className="disVis" id={`vis${i}`} style={style}>
+              {/* {mygons.map((p, i) => ( */}
+              <path className="displayed" key={i} />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                </svg>
+          </Grid>
+        )
+        )}
         <Grid item xs={11}>
           <Card raised>
             <CardHeader title="Welcome to My site" />
