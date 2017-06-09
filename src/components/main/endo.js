@@ -87,15 +87,8 @@ class Endo extends Component {
         </Grid>
         <Grid item xs={11}>
           <Card raised>
-            <CardHeader title="Welcome to My site" />
-            <CardContent>
-              <Text secondary type="body1">
-                {'FUCKINPOLYGONS'}
-              </Text>
-            </CardContent>
-            <CardActions>
-              <Button compact>Learn More</Button>
-            </CardActions>
+            <CardHeader title="FUCKINPOLYGONS" />
+            
           </Card>
         </Grid>
       </Grid>
