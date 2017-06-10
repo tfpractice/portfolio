@@ -57,9 +57,21 @@ export const showCircles = (data) => {
     .selectAll('.polygon')
     .data(data)
     .append('circle')
-    .attr('cx', d => xBox(data)(endoBox)(d.x))
-    .attr('cy', d => yBox(data)(endoBox)(d.y))
-    .attr('r', d => rBox(data)(endoBox)(d.radius))
+    .attr('cx', (d, i) => {
+      const sx = xBox(data)(endoBox)(d.x);
+
+      return `${5 * i}%`;
+    })
+    .attr('cy', (d, i) => {
+      const rs = yBox(data)(endoBox)(d.y);
+
+      return `${5 * i}%`;
+    })
+    .attr('r', (d) => {
+      const rs = rBox(data)(endoBox)(d.radius);
+
+      return '5%';
+    })
     .attr('stroke', '#f0f')
     .attr('fill', 'none');
 };
