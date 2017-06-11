@@ -4,7 +4,7 @@ import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { FadeIn, } from 'animate-components';
-
+import Endo from './endo';
 const About = () => (
   <Grid container justify="center">
     <Grid item xs={11}>
@@ -19,6 +19,7 @@ const About = () => (
           <Button compact>Learn More</Button>
         </CardActions>
       </Card>
+      <Endo />
     </Grid>
   </Grid>
     );

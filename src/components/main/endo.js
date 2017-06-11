@@ -14,25 +14,16 @@ const mygons = polyGrid(20)(6);
 const stateToProps = ({ projects, }) => {
   console.log('state', projects);
 
-  // showCircles(mygons);
-  // showPolys(mygons);
   return ({ shapes: polyGrid(projects.length)(6), });
-
-  // return ({ shapes: mygons, });
 };
 
-// console.log('mygons', mygons);
 const style = {
   width: '100%',
   height: '100%',
 };
 
 class Endo extends Component {
-  // constructor(props) {
-  //   super(props);
-  //
-  //   // this.state = { color: props.initialColor, };
-  // }
+
   componentDidMount() {
     const { shapes, } = this.props;
     
@@ -40,11 +31,6 @@ class Endo extends Component {
     showCircles(shapes);
     showPolys(shapes);
   }
-
-  // componentWillReceiveProps({ shapes, }) {
-  //   showCircles(shapes);
-  //   showPolys(shapes);
-  // }
   
   componentDidUpdate(prev, pp) {
     const { shapes, } = this.props;
@@ -55,20 +41,6 @@ class Endo extends Component {
     showCircles(shapes);
     showPolys(shapes);
   }
-
-  // componentWillUpdate(prev) {
-  //   const { shapes, } = this.props;
-  //
-  //   console.log('componentWillUpdate prev', prev);
-  //   console.log('shapes', shapes);
-  //   showCircles(shapes);
-  //   showPolys(shapes);
-  // }
-
-  // componentWillReceiveProps({ shapes, projects, }) {
-  //   showCircles(shapes);
-  //   showPolys(shapes);
-  // }
 
   render() {
     let { shapes, } = this.props;

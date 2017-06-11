@@ -8,6 +8,7 @@ import Text from 'material-ui/Typography';
 import { FadeIn, } from 'animate-components';
 import Card, { CardContent, } from 'material-ui/Card';
 import { devEx, future, highlights, info, technicals, } from './data';
+
 const styles = {
  slide: {
    padding: 15,
@@ -18,6 +19,7 @@ const styles = {
  slide2: { background: '#B3DC4A', },
  slide3: { background: '#6AC0FF', },
 };
+
 const getStyle = data => ix => Object.assign({}, styles.slide,
  styles[`slide${(ix + 1) % data.length}`]);
  
@@ -30,42 +32,18 @@ const Slides = ({ data, }) => (
             <Card>
               <CardContent>
                 {h}
-                <ul className="sections">
-                  <li id="title">
-                    <div className="annotation">
-                     <h1>iterable.js</h1>
-                   </div>
-                  </li>
-                  <li id="section-1">
-                    <div className="annotation">
-                     <div className="pilwrap ">
-                       <a className="pilcrow" href="#section-1">&#182;</a>
-                     </div>
-                     <p>
-                       <strong>isIterable</strong>
-                       <code>:: obj ->; bool</code>
-                       "checks if an object is iterable"
-                     </p>
-                   </div>
-                    <div className="content"><div className="highlight"><pre><span className="hljs-keyword">export</span> <span className="hljs-keyword">const</span> isIterable = <span className="hljs-function"><span className="hljs-params">o</span> =>;</span> !!o[<span className="hljs-built_in">Symbol</span>.iterator];</pre></div></div>
-                  </li>
-                 
-                  <li id="section-2">
-                    <div className="annotation">
-                     <div className="pilwrap ">
-                       <a className="pilcrow" href="#section-2">&#182;</a>
-                     </div>
-                     <p><strong>iterify</strong> <code>:: obj ->; iterable</code>
-                       returns the object or an Iterable
-                     </p>
-                   </div>
-                    <div className="content"><div className="highlight"><pre><span className="hljs-keyword">export</span> <span className="hljs-keyword">const</span> iterify = <span className="hljs-function"><span className="hljs-params">o</span> =>;</span> isIterable(o) ? o : [ o, ];</pre></div></div>
-                  </li>
-                </ul>
+              </CardContent>
+              <CardContent>
+                <code>
+                  export const isIterable = o => !!o[Symbol.iterator];
+
+                  export const iterify = o => isIterable(o) ? o : [ o, ];
+
+                </code>
               </CardContent>
             </Card>
           </Grid>
-       ))}
+        ))}
       </SwipeableViews>
     </Grid>
   </Grid>

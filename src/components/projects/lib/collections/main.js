@@ -5,8 +5,11 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import { FadeIn, } from 'animate-components';
+import SwipeableViews from 'react-swipeable-views';
 
 import Slides from './slides';
+import Thoughts from './thoughts';
+import Examples from './example';
 import { devEx,
 future,
 highlights,
@@ -33,6 +36,8 @@ class Fenugreek extends Component {
         <Grid item xs={11} sm={10} >
           <FadeIn duration="200ms" timingFunction="ease-in">
             <Slides data={highlights} />
+            <Examples />
+            <Thoughts data={devEx} />
           </FadeIn>
         </Grid>
       </Grid>

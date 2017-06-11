@@ -31,7 +31,6 @@ class Home extends Component {
             <FadeRoute path="/teaching" component={Teaching} />
             <Route exact path="/" component={About} />
           </Switch>
-          {/* <Route component={Endo} /> */}
         </Grid>
       </Grid>
     );
