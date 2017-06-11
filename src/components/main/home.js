@@ -8,7 +8,8 @@ import { Projects, } from '../../store';
 import { FadeRoute, } from '../../utils';
 import ProjectRoute from '../projects';
 import About from './about';
-import Endo from './endo';
+
+// import Endo from './endo';
 import Teaching from './teaching';
 import Nav from './nav';
 
@@ -30,7 +31,7 @@ class Home extends Component {
             <FadeRoute path="/teaching" component={Teaching} />
             <Route exact path="/" component={About} />
           </Switch>
-          <Route component={Endo} />
+          {/* <Route component={Endo} /> */}
         </Grid>
       </Grid>
     );

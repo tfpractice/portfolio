@@ -8,6 +8,7 @@ import { connect, } from 'react-redux';
 
 import { containers, } from '../../store/projects';
 import { findMatch, qUtils, } from '../../utils';
+import { Fenugreek, } from './lib';
 const { WithProject, WithTools, WithSkills, } = containers;
 
 const { edgeNodes, } = qUtils;
@@ -43,19 +44,14 @@ const Project = (props) => {
         </Card>
       </Grid>
       <Grid container>
-        {/* <Paper> */}
-        {/* {props.toolArray && props.toolArray.filter(isMissing).map(t => (
-          <Grid item key={t.id}>
-            <Button primary onClick={e => props.addTool(t)}>{t.name}</Button>
-          </Grid>
-        ))} */}
-        {/* </Paper> */}
+
         {props.skillArray && props.skillArray.filter(xSkill).map(t => (
           <Grid item key={t.id}>
             <Button primary onClick={e => props.addSkill(t)}>{t.name}</Button>
           </Grid>
         ))}
       </Grid>
+      <Fenugreek />
     </Grid>
   );
 };
