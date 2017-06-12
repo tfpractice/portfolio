@@ -54,7 +54,7 @@ class Sidebar extends Component {
 
     return (
       <Grid container>
-        <IconButton contrast onClick={expand}>
+        <IconButton color="contrast" onClick={expand}>
           <MenuIcon />
         </IconButton>
         <Grid item xs={4}>
@@ -62,7 +62,7 @@ class Sidebar extends Component {
             <List dense className={classes.listFull} open={this.state.open} >
               <ListSubheader primary>
                 <Link to="/" >
-                  <Text type="button" secondary >
+                  <Text type="button" color="secondary" >
                     tfpractice
                   </Text>
                 </Link>

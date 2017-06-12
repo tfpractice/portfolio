@@ -12,7 +12,7 @@ export const LinkList = ({ items, path, heading, }) => (
   <List dense>
     <ListSubheader>
       <Link to={path} >
-        <Text type="headline" secondary >
+        <Text type="headline" color="secondary" >
           {heading}
         </Text>
       </Link>

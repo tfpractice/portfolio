@@ -28,11 +28,11 @@ const Slides = ({ data, }) => (
   <Grid container>
     <Grid item xs={11}>
       <SwipeableViews enableMouseEvents>
-        {[ ...data, ].map((h, i) => (
+        {data.map((h, i) => (
           <Grid key={i} style={styles.slide}>
             <Card>
               <CardContent>
-                {h}
+                {h.data}
               </CardContent>
               <CardContent>
                 <code>

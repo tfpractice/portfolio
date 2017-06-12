@@ -20,7 +20,7 @@ const Nav = ({ match, ...props }) => (
             </Grid>
             <Grid item >
               <Link to="/" >
-                <Text type="headline" secondary >
+                <Text type="headline" color="secondary" >
                   tfpractice portfolio
                 </Text>
               </Link>
@@ -32,21 +32,21 @@ const Nav = ({ match, ...props }) => (
             <Grid container justify="space-around" align="center">
               <Grid item>
                 <Link to="/projects" >
-                  <Text type="headline" secondary >
+                  <Text type="headline" color="secondary" >
                     Projects
                   </Text>
                 </Link>
               </Grid>
               <Grid item>
                 <Link to="/about" >
-                  <Text type="headline" secondary >
+                  <Text type="headline" color="secondary" >
                     About
                   </Text>
                 </Link>
               </Grid>
               <Grid item>
                 <Link to="/teaching" >
-                  <Text type="headline" secondary >
+                  <Text type="headline" color="secondary" >
                     Teaching
                   </Text>
                 </Link>
