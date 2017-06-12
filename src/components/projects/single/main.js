@@ -21,13 +21,9 @@ const { edgeNodes, } = qUtils;
 
 const styles = { paddingTop: '5rem', };
 
-const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, ...own }) => {
-  console.log('slug', slug);
-  console.log(' slugData(slug)', slugData(slug));
-
-  // console.log('projects.map(slug', projects.map(slug);
-  return ({ project: findMatch(slug)(projects), sData: slugData(slug), });
-}
+const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, ...own }) =>
+  
+  ({ project: findMatch(slug)(projects), sData: slugData(slug), })
 
 ;
 
@@ -35,6 +31,7 @@ const Project = (props) => {
   console.log('SINGLE PROJECT PORPS', props);
   const { project, sData, } = props;
 
+  // const thoughts = project.thoughts || [];
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
@@ -52,19 +49,21 @@ const Project = (props) => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid container>
-        {props.skillArray && props.skillArray.filter(xSkill).map(t => (
-          <Grid item key={t.id}>
-            <Button color="primary" onClick={e => props.addSkill(t)}>{t.name}</Button>
-          </Grid>
-        ))}
-      </Grid>
 
       <Grid item xs={11} sm={10} >
         <FadeIn duration="200ms" timingFunction="ease-in">
           <Slides data={sData.slides} />
-          <Thoughts data={sData.thoughts} />
+          {/* <Thoughts data={project.thoughts ? project.thoughts : []} /> */}
         </FadeIn>
+      </Grid>
+      <Grid item>
+        <Grid container>
+          {props.skillArray && props.skillArray.filter(xSkill).map(t => (
+            <Grid item key={t.id}>
+              <Button color="primary" onClick={e => props.addSkill(t)}>{t.name}</Button>
+            </Grid>
+          ))}
+        </Grid>
       </Grid>
     </Grid>
   );

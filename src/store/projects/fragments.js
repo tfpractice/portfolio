@@ -8,6 +8,7 @@ export const PROJECT_INFO = gql`
     features
     category  
     details  
+    thoughts
     tools  {
       edges {
         node {
@@ -29,6 +30,7 @@ export const PROJECT_INFO = gql`
     files {
      edges {
        node {
+         details
          name
          blobUrl
          id

@@ -10,10 +10,12 @@ import IconButton from 'material-ui/IconButton';
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import { withState, } from 'recompose';
+import { containers, } from '../../store/projects';
 
 import { qUtils, slug, } from '../../utils';
 import { ChipList, } from '../tools';
 import ProjectLink from './link';
+const { WithProject, } = containers;
 
 const { edgeNodes, } = qUtils;
 
@@ -51,6 +53,8 @@ const divStyle = { minHeight: '80px', };
 const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
+  console.log('props', props);
+  console.log('ProjectCardproject', project);
   return (
     <Card raised>
       <CardHeader title={<ProjectLink project={project} />} />
@@ -62,8 +66,8 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
               {project.features.map((f, i) => (
                 <Grid item key={i} >
                   <Text type="subheading" noWrap>
-                   {f}
-                 </Text>
+                    {f}
+                  </Text>
                 </Grid>))}
             </Grid>
           </CardContent>
@@ -79,5 +83,5 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
   );
 };
 
-export default withStyles(styleSheet)(stateful(ProjectCard));
+export default withStyles(styleSheet)(stateful(WithProject(ProjectCard)));
   

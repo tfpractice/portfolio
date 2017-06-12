@@ -12,8 +12,8 @@ const variables = {
 export const WithAll = component => graphql(ALL_PROJECTS, {
   options: () => ({ variables, }),
   props: ({ data, }) => ({
-      projectsData: data,
-      projectsArray: data.loading ? [] : viewNodes(data),
+    projectsData: data,
+    projectsArray: data.loading ? [] : viewNodes(data),
   }),
 })(component);
 
@@ -21,12 +21,12 @@ export const WithProject = component => graphql(GET_PROJECT, {
   skip:  ({ project, }) => !project,
   options: ({ project: { id, }, }) => ({ variables: { id, }, }),
   props: ({ data, ownProps: { project, }, }) => ({
-      projectQuery: data,
-      project: data.loading ? project : data.project,
-      projectData: data.loading ? project : data.project,
-      images: data.loading ? [] : edgeNodes(data.project.files),
-      toolArray: data.loading ? [] : viewNodes(data),
-      skillArray: data.loading ? [] : viewNodes({ viewer: { collection: data.viewer.allSkills, }, }),
+    projectQuery: data,
+    project: data.loading ? project : data.project,
+    projectData: data.loading ? project : data.project,
+    images: data.loading ? [] : edgeNodes(data.project.files),
+    toolArray: data.loading ? [] : viewNodes(data),
+    skillArray: data.loading ? [] : viewNodes({ viewer: { collection: data.viewer.allSkills, }, }),
   }),
 })(component);
 
@@ -36,7 +36,7 @@ export const WithTools = component => WithProject(graphql(ADD_TOOL, {
     ({ refetechQueries: { query: GET_PROJECT, variables: { id, }, }, }),
   props: ({ mutate, ownProps: { project, }, }) => ({
     addTool: ({ id: toolId, }) =>
-       mutate({ variables: { input: { projectId: project.id, toolId, }, }, }),
+      mutate({ variables: { input: { projectId: project.id, toolId, }, }, }),
   }),
 })(component));
 
@@ -46,6 +46,6 @@ export const WithSkills = component => WithTools(graphql(ADD_SKILL, {
     ({ refetechQueries: { query: GET_PROJECT, variables: { id, }, }, }),
   props: ({ mutate, ownProps: { project, }, }) => ({
     addSkill: ({ id: skillId, }) =>
-       mutate({ variables: { input: { projectId: project.id, skillId, }, }, }),
+      mutate({ variables: { input: { projectId: project.id, skillId, }, }, }),
   }),
 })(component));

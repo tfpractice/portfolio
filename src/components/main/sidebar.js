@@ -60,7 +60,7 @@ class Sidebar extends Component {
         <Grid item xs={4}>
           <Drawer anchor="left" open={this.state.open.left} onRequestClose={collapse} >
             <List dense className={classes.listFull} open={this.state.open} >
-              <ListSubheader primary>
+              <ListSubheader color="primary">
                 <Link to="/" >
                   <Text type="button" color="secondary" >
                     tfpractice
