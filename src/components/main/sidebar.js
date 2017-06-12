@@ -29,32 +29,36 @@ const styleSheet = createStyleSheet('Sidebar', () => ({
 }));
 
 class Sidebar extends Component {
-  state = {
-    open: {
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
-    },
-  };
-  toggleDrawer = (side, open) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: {
+        top: false,
+        left: false,
+        bottom: false,
+        right: false,
+      },
+    };
+  }
+  toggleDrawer (side, open) {
     const drawerState = {};
 
     drawerState[side] = open;
     this.setState({ open: drawerState, });
-  };
-  expand = () => this.toggleDrawer('left', true);
-  collapse = () => this.toggleDrawer('left', false);
+  }
+  
   render() {
     const { applications, libraries, classes, scripts, } = this.props;
+    const expand = () => this.toggleDrawer('left', true);
+    const collapse = () => this.toggleDrawer('left', false);
 
     return (
       <Grid container>
-        <IconButton contrast onClick={this.expand}>
+        <IconButton contrast onClick={expand}>
           <MenuIcon />
         </IconButton>
         <Grid item xs={4}>
-          <Drawer anchor="left" open={this.state.open.left} onRequestClose={this.collapse} >
+          <Drawer anchor="left" open={this.state.open.left} onRequestClose={collapse} >
             <List dense className={classes.listFull} open={this.state.open} >
               <ListSubheader primary>
                 <Link to="/" >

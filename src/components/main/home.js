@@ -9,7 +9,6 @@ import { FadeRoute, } from '../../utils';
 import ProjectRoute from '../projects';
 import About from './about';
 
-// import Endo from './endo';
 import Teaching from './teaching';
 import Nav from './nav';
 

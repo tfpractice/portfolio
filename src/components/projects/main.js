@@ -7,16 +7,17 @@ import Text from 'material-ui/Typography';
 import { FadeIn, } from 'animate-components';
 
 import { slug, } from '../../utils';
-import Single from './single';
 import ProjectLink from './link';
 import ProjectInfo from './info';
 import ProjectCard from './card';
+
+import Single from './single';
 
 const stateToProps = ({ projects, }) => ({ projects, });
 
 const Projects = (props) => {
   const a = 0;
-
+  
   return (
     <Grid container justify="center" align="center" direction="column" className="projects-main">
       <Grid item xs={11} sm={10} >

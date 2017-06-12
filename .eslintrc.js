@@ -1,5 +1,5 @@
 module.exports = {
-    extends: ['react-app','airbnb',],
+    extends: ['react-app','airbnb-base',],
     settings: {
       'import/resolver': {
         'babel-module': {},
@@ -12,11 +12,11 @@ module.exports = {
     },
     parser: 'babel-eslint',
     parserOptions: {
-        ecmaFeatures: {
-            experimentalObjectRestSpread: true,
-            jsx: true,
-            modules: true,
-          },
+        // ecmaFeatures: {
+        //     experimentalObjectRestSpread: true,
+        //     jsx: true,
+        //     modules: true,
+        //   },
         sourceType: 'module',
       },
     plugins: [

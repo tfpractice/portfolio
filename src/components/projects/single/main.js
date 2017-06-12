@@ -6,9 +6,9 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 
-import { containers, } from '../../store/projects';
-import { findMatch, qUtils, } from '../../utils';
-import { Fenugreek, } from './lib';
+import { containers, } from '../../../store/projects';
+import { findMatch, qUtils, } from '../../../utils';
+import { Fenugreek, } from '../lib';
 const { WithProject, WithTools, WithSkills, } = containers;
 
 const { edgeNodes, } = qUtils;
@@ -16,7 +16,7 @@ const { edgeNodes, } = qUtils;
 const styles = { paddingTop: '5rem', };
 
 const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, ...own }) =>
-   ({ project: findMatch(slug)(projects), })
+  ({ project: findMatch(slug)(projects), })
 
 ;
 
@@ -26,9 +26,9 @@ const Project = (props) => {
 
   // const images = edgeNodes(project.files);
   const isMissing = ({ id: toolId, }) =>
-   !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
+    !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
-  !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
+    !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
 
   // console.log('images', images);
   return (

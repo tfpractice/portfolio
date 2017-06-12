@@ -10,24 +10,11 @@ import SwipeableViews from 'react-swipeable-views';
 import Slides from './slides';
 import Thoughts from './thoughts';
 import Examples from './example';
-import { devEx,
-future,
-highlights,
-info,
-technicals, } from './data';
-console.log('highlights', highlights);
-
-//
-// import { slug, } from '../../utils';
-// import Single from './single';
-// import ProjectLink from './link';
-// import ProjectInfo from './info';
-// import ProjectCard from './card';
+import { devEx, future, highlights, info, technicals, } from './data';
 
 const stateToProps = ({ projects, }) => ({ projects, });
 
 class Fenugreek extends Component {
-  
   render () {
     const props = this.props;
 
