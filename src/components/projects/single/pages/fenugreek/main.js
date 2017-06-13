@@ -8,11 +8,7 @@ import { FadeIn, } from 'animate-components';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 
-// import Slides from './slides';
-// import Thoughts from './thoughts';
 import { mapTo, } from 'fenugreek-collections';
-
-// import { devEx, future, highlights, info, technicals, } from './data';
 
 import SwipeableViews from 'react-swipeable-views';
 

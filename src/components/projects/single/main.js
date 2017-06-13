@@ -7,11 +7,14 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 import { FadeIn, } from 'animate-components';
 
+import { MarkdownPreview, } from 'react-marked-markdown';
+
 import { containers, } from '../../../store/projects';
 import { findMatch, qUtils, } from '../../../utils';
 import { Fenugreek, } from '../lib';
 
-import { getDemos, } from './demos';
+import { getDemos, } from './pages';
+import { markdown as content, } from './pages/fenugreek/markdown';
 
 import { slugData, slugMap, } from './data';
 import Slides from './slides';
@@ -23,7 +26,6 @@ const { edgeNodes, } = qUtils;
 const styles = { paddingTop: '5rem', };
 
 const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }) =>
-
   ({ project: findMatch(slug)(projects), sData: slugData(slug), slug, })
 
 ;
@@ -31,33 +33,31 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }
 const Project = (props) => {
   console.log('SINGLE PROJECT PORPS', props);
   const { project, sData, slug, slides, } = props;
-
-  console.log('slides', slides);
+  
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
     !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
   const Demo = getDemos(slug);
-
+  
   return (
     <Grid container justify="center" >
-      <Grid item xs={11}>
-        <Card raised>
-          <CardHeader title={project && project.title} />
-          <CardContent>
-            <Text type="subheading" >
-              {project && project.description}
-            </Text>
-          </CardContent>
-        </Card>
-      </Grid>
-
-      <Grid item xs={11} sm={10} >
-        <FadeIn duration="200ms" timingFunction="ease-in">
+      <Card raised>
+        <CardHeader title={project && project.title} />
+        <CardContent>
           {slides && <Slides project={project} data={slides} />}
-          {<Demo/>}
-          {/* <Thoughts data={project.thoughts ? project.thoughts : []} /> */}
-        </FadeIn>
+          <Text type="subheading" >
+            {project && project.description}
+          </Text>
+        </CardContent>
+      </Card>
+      <Grid item xs={11} />
+
+      <Grid item xs={11}>
+        <MarkdownPreview value={content} />
+      </Grid>
+      <Grid item xs={11} >
+        <Demo/>
       </Grid>
       <Grid item>
         <Grid container>
