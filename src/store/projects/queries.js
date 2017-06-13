@@ -29,6 +29,19 @@ export const ALL_PROJECTS = gql`
       }
     }
   }
+  allFiles {
+     edges {
+       node {
+         id
+         details
+         name
+         blobUrl
+         project{
+           id
+         }
+       }
+     }
+   }
  
   }
 }

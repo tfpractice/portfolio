@@ -2,8 +2,8 @@
 export const info = 'a library of utilities for functionally handling collections in javascript';
 
 export const highlights = [
-  'allows a high degree of interoperability between arrays, Maps, and Sets collections such as Maps',
-  'recasts native variadic functions as partially applied/curried unary functions   of composability',
+  'allows a high degree of interoperability between Javascript collections',
+  'recasts native variadic functions as partially applied/curried unary functions',
   'implements mathematical set functions',
 ];
 
