@@ -22,7 +22,7 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }
 
 ;
 const Project = (props) => {
-  console.log('SINGLE PROJECT PORPS', props);
+  
   const { project, sData, slug, slides, } = props;
  
   const isMissing = ({ id: toolId, }) =>

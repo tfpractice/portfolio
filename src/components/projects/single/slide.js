@@ -25,7 +25,7 @@ const getStyle = data => ix => Object.assign({}, styles.slide,
   styles[`slide${(ix + 1) % data.length}`]);
  
 const Slide = ({ slide, project, ...props }) => {
-  console.log('Slides project', slide, project);
+  
   const a = 0;
 
   return (

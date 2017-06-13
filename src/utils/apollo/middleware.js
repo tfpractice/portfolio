@@ -8,7 +8,7 @@ const preWare = (applyMiddleware = pre) => ({ applyMiddleware, });
 const postWare = (applyAfterware = post) => ({ applyAfterware, });
 
 const preLog = (req, next) => {
-  // console.log('APOLLO REQUEST IN PRGRESS ');
+  // 
 
   next();
 };
@@ -26,7 +26,7 @@ const auth = (req, next) => {
 };
 
 const postLog = ({ response, ...rest }, next) => {
-  // console.log('APOLLO RESPONSE IN PRGRESS ');
+  // 
 
   next();
 };

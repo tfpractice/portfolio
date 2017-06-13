@@ -54,9 +54,9 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
   //
-  // console.log('props', props);
+  // 
   //
-  // console.log('ProjectCardproject', project);
+  // 
 
   return (
     <Card raised>

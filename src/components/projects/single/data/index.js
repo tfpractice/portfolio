@@ -17,6 +17,6 @@ export const slugMap = {
 };
 
 export const slugData = (slug) => {
-  console.log('Object.keys(slugMap)', Object.keys(slugMap));
+  
   return new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
 };

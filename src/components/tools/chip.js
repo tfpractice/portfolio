@@ -17,7 +17,7 @@ const styleSheet = createStyleSheet('ToolChip', theme => ({
 }));
 
 const ToolChip = ({ tool, classes, ...rest }) => {
-  // console.log('tool', Object.keys(tool), rest);
+  // 
   const a = 0;
 
   return (

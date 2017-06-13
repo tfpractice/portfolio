@@ -24,7 +24,7 @@ class Endo extends Component {
   componentDidMount() {
     const { shapes, } = this.props;
     
-    // console.log('componentDidMountshapes', shapes);
+    // 
     showCircles(shapes);
     showPolys(shapes);
   }
@@ -33,9 +33,9 @@ class Endo extends Component {
     const { shapes, } = this.props;
 
     //
-    // console.log('componentDidUpdate prev', prev);
-    // console.log('pp', pp);
-    // console.log('shapes', shapes);
+    // 
+    // 
+    // 
 
     showCircles(shapes);
     showPolys(shapes);
