@@ -11,11 +11,9 @@ import { getBox, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, }
 
 const mygons = polyGrid(20)(6);
 
-const stateToProps = ({ projects, }) => {
-  console.log('state', projects);
+const stateToProps = ({ projects, }) =>
 
-  return ({ shapes: polyGrid(projects.length)(6), });
-};
+  ({ shapes: polyGrid(projects.length)(6), });
 
 const style = {
   width: '100%',
@@ -23,21 +21,22 @@ const style = {
 };
 
 class Endo extends Component {
-
   componentDidMount() {
     const { shapes, } = this.props;
     
-    console.log('componentDidMountshapes', shapes);
+    // console.log('componentDidMountshapes', shapes);
     showCircles(shapes);
     showPolys(shapes);
   }
   
   componentDidUpdate(prev, pp) {
     const { shapes, } = this.props;
-  
-    console.log('componentDidUpdate prev', prev);
-    console.log('pp', pp);
-    console.log('shapes', shapes);
+
+    //
+    // console.log('componentDidUpdate prev', prev);
+    // console.log('pp', pp);
+    // console.log('shapes', shapes);
+
     showCircles(shapes);
     showPolys(shapes);
   }

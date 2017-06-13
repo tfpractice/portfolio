@@ -1,5 +1,6 @@
 import * as Fenugreek from './fenugreek';
 import * as Graph from './graph';
+
 const xData = {
   technicals: [],
   techniques: [],

@@ -25,6 +25,7 @@ export const WithProject = component => graphql(GET_PROJECT, {
     project: data.loading ? project : data.project,
     projectData: data.loading ? project : data.project,
     images: data.loading ? [] : edgeNodes(data.project.files),
+    slides: data.loading ? [] : edgeNodes(data.project.files),
     toolArray: data.loading ? [] : viewNodes(data),
     skillArray: data.loading ? [] : viewNodes({ viewer: { collection: data.viewer.allSkills, }, }),
   }),

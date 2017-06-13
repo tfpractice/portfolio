@@ -11,7 +11,8 @@ import { containers, } from '../../../store/projects';
 import { findMatch, qUtils, } from '../../../utils';
 import { Fenugreek, } from '../lib';
 
-//
+import { getDemos, } from './demos';
+
 import { slugData, slugMap, } from './data';
 import Slides from './slides';
 import Thoughts from './thoughts';
@@ -21,21 +22,22 @@ const { edgeNodes, } = qUtils;
 
 const styles = { paddingTop: '5rem', };
 
-const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, ...own }) =>
-  
-  ({ project: findMatch(slug)(projects), sData: slugData(slug), })
+const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }) =>
+
+  ({ project: findMatch(slug)(projects), sData: slugData(slug), slug, })
 
 ;
 
 const Project = (props) => {
   console.log('SINGLE PROJECT PORPS', props);
-  const { project, sData, } = props;
+  const { project, sData, slug, slides, } = props;
 
-  // const thoughts = project.thoughts || [];
+  console.log('slides', slides);
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
     !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
+  const Demo = getDemos(slug);
 
   return (
     <Grid container justify="center" >
@@ -52,7 +54,8 @@ const Project = (props) => {
 
       <Grid item xs={11} sm={10} >
         <FadeIn duration="200ms" timingFunction="ease-in">
-          <Slides data={sData.slides} />
+          {slides && <Slides project={project} data={slides} />}
+          {<Demo/>}
           {/* <Thoughts data={project.thoughts ? project.thoughts : []} /> */}
         </FadeIn>
       </Grid>

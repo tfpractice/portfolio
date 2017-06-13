@@ -8,8 +8,7 @@ import Paper from 'material-ui/Paper';
 
 // import Text from 'material-ui/Typography';
 // import { FadeIn, } from 'animate-components';
-import Card, { CardContent, } from 'material-ui/Card';
-import Slide from './slide';
+import Card, { CardContent, CardMedia, } from 'material-ui/Card';
 
 const styles = {
   slide: {
@@ -22,35 +21,31 @@ const styles = {
   slide3: { background: '#6AC0FF', },
 };
 
-/* <Grid key={i} style={styles.slide}> */
-/* <Card>
-      <CardContent>
-        {h.data}
-      </CardContent>
-      <CardContent>
-
-      </CardContent>
-      </Card>
-    </Grid> */
 const getStyle = data => ix => Object.assign({}, styles.slide,
   styles[`slide${(ix + 1) % data.length}`]);
  
-const Slides = ({ data, project, ...props }) => {
-  console.log('Slides project', data, project);
+const Slide = ({ slide, project, ...props }) => {
+  console.log('Slides project', slide, project);
   const a = 0;
 
   return (
-    <Grid container>
-      <Grid item xs={11}>
-        <SwipeableViews enableMouseEvents>
-          {data.map((h, i) => (
-            <Slide key={i} slide={h}/>
-
-          ))}
-        </SwipeableViews>
-      </Grid>
+    <Grid style={styles.slide}>
+      <Card>
+        <Grid container direction="column" align="center">
+          
+          <CardMedia>
+            <Grid item xs={11}>
+              <img width="100%" src={slide.blobUrl}/>
+            </Grid>
+          </CardMedia>
+          <CardContent>
+            {slide.details[0].text}
+          </CardContent>
+          <CardContent />
+        </Grid>
+      </Card>
     </Grid>
   );
 };
 
-export default Slides;
+export default Slide;
