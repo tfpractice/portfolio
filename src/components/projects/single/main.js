@@ -6,40 +6,31 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 import { FadeIn, } from 'animate-components';
-
+import kramed from 'kramed';
 import { MarkdownPreview, } from 'react-marked-markdown';
-
 import { containers, } from '../../../store/projects';
 import { findMatch, qUtils, } from '../../../utils';
-import { Fenugreek, } from '../lib';
-
 import { getDemos, } from './pages';
 import { markdown as content, } from './pages/fenugreek/markdown';
-
-import { slugData, slugMap, } from './data';
+import { slugData, } from './data';
 import Slides from './slides';
-import Thoughts from './thoughts';
-const { WithProject, WithTools, WithSkills, } = containers;
-
+const { WithSkills, } = containers;
 const { edgeNodes, } = qUtils;
-
-const styles = { paddingTop: '5rem', };
 
 const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }) =>
   ({ project: findMatch(slug)(projects), sData: slugData(slug), slug, })
 
 ;
-
 const Project = (props) => {
   console.log('SINGLE PROJECT PORPS', props);
   const { project, sData, slug, slides, } = props;
-  
+ 
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
     !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
   const Demo = getDemos(slug);
-  
+ 
   return (
     <Grid container justify="center" >
       <Card raised>
@@ -51,10 +42,10 @@ const Project = (props) => {
           </Text>
         </CardContent>
       </Card>
-      <Grid item xs={11} />
 
       <Grid item xs={11}>
-        <MarkdownPreview value={content} />
+        <MarkdownPreview value={content} markedOptions={
+          { renderer: new kramed.Renderer(), gfm: true, breaks: true, } }/>
       </Grid>
       <Grid item xs={11} >
         <Demo/>

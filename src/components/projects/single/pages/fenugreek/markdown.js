@@ -17,7 +17,7 @@ export const isIterable = o => !!o[Symbol.iterator];
 export const iterify = o => isIterable(o) ? o : [ o, ];
 ~~~
 
-With the need to develop a general API, much of the project coerces things into an Array via the ~iterify~ and the ~spread*~ functions.
+{: .MARKDDD }With the need to develop a general API, much of the project coerces things into an Array via the ~iterify~ and the ~spread*~ functions.
 
 ~~~javascript
 import { iterify, } from './iterable';
@@ -92,6 +92,5 @@ export const diff = c0 => c1 => spread(c0).filter(xhasK(c1));
 // returns elements of both iterables
 export const union = c0 => c1 => spread(c0).concat(diff(c1)(c0));
 ~~~
-
 
 `;

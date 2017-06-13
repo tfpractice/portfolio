@@ -21,7 +21,6 @@ export const slides = [{
 {
   caption: 'recasts native variadic functions as partially applied/curried unary functions',
   content: `
-  
   ~~~js
 
 // **first** ``:: Iterable<a> -> a `` 
