@@ -9,18 +9,22 @@ import { withState, } from 'recompose';
 
 const stateful = withState('open', 'toggle', false);
 
-const Expand = ({ open, children, toggle, }) => (
-  <Grid container>
-    <Grid item xs={12}>
-      <Paper>
-        <IconButton onClick={() => toggle(x => !x)} >
-          <ExpandMoreIcon />
-        </IconButton>
-      </Paper>
+const Expand = ({ open, children, toggle, header, }) => (
+  <Grid container direction="column" >
+    <Grid item xs={12} onClick={() => toggle(x => !x)}>
+      <Grid container justify="space-between" align="center">
+        <Grid item >
+          {header}
+        </Grid>
+        <Grid item >
+          <IconButton onClick={() => toggle(x => !x)} >
+            <ExpandMoreIcon />
+          </IconButton>
+        </Grid>
+      </Grid>
     </Grid>
+    <Divider />
     <Grid item xs={12}>
-
-      <Divider inset/>
       <Collapse in={open}>
         {children}
       </Collapse>

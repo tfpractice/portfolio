@@ -24,16 +24,15 @@ const getStyle = data => ix => Object.assign({}, styles.slide,
 const Slides = ({ data, project, ...props }) => {
   const a = 0;
 
+  // style={getStyle(data)(i)}
+
   return (
-    <Grid container justify="center" align="stretch">
-      <Grid item xs={12}>
-        <SwipeableViews enableMouseEvents>
-          {data.map((h, i) => (
-            <Slide key={i} slide={h} style={getStyle(data)(i)}/>
-          ))}
-        </SwipeableViews>
-      </Grid>
-    </Grid>
+
+    <SwipeableViews enableMouseEvents>
+      {data.map((h, i) => (
+        <Slide key={i} slide={h} />
+      ))}
+    </SwipeableViews>
 
   );
 };

@@ -16,7 +16,7 @@ const myManager = createStyleManager({
 
 const { styleManager, theme, } =
 MuiThemeProvider.createDefaultContext(
-  { theme: myTheme, styleManager: myManager, });
+  { theme: myTheme, });
 
 styleManager.render(syntaxStyles);
 export { styleManager, theme, };

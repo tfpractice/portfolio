@@ -37,42 +37,71 @@ const Project = (props) => {
   //
  
   return (
-    <Grid container align="center" justify="center" >
-      <Card >
-        <CardHeader title={project && project.title} />
-        <CardContent>
-          <Text type="title" >
-            {project && project.description}
-          </Text>
-        </CardContent>
-        <CardMedia>
-          <Grid container justify="center" align="center">
-            <Grid item xs={12}>
-              <Slides project={project} data={lSlides} />
+    <Grid container >
+      <Grid item xs >
+        {/* <Grid container > */}
+        {/* <Grid item > */}
+        <Card>
+          <CardHeader title={project && project.title} />
+          <CardContent>
+            <Text type="title" >
+              {project && project.description}
+            </Text>
+          </CardContent>
+          <CardMedia>
+            <Grid container justify="center" align="center">
+              <Grid item xs={12}>
+                <Slides project={project} data={lSlides} />
 
+              </Grid>
             </Grid>
-          </Grid>
-        </CardMedia>
-      </Card>
+          </CardMedia>
+        </Card>
+        {/* </Grid> */}
+        {/* </Grid> */}
 
+      </Grid>
+      <Grid item xs>
+        {/* <Grid container> */}
+        {/* <Grid item xs> */}
+        <Slides project={project} data={lSlides} />
+
+        {/* </Grid> */}
+        {/* </Grid> */}
+      </Grid>
       <Grid item xs={12}>
-        <Expand>
+        <Expand header={
+          <Text color="inherit" type="title">
+            content
+          </Text>}>
           <Text color="inherit" type="body1">
             <MarkdownPreview value={content} />
           </Text>
         </Expand>
       </Grid>
       <Grid item xs={12} >
-        <Demo/>
+        <Expand header={
+          <Text color="inherit" type="title">
+            Demos
+          </Text>}>
+          <Demo/>
+
+        </Expand>
       </Grid>
-      <Grid item>
-        <Grid container>
-          {props.skillArray && props.skillArray.filter(xSkill).map(t => (
-            <Grid item key={t.id}>
-              <Button color="primary" onClick={e => props.addSkill(t)}>{t.name}</Button>
-            </Grid>
-          ))}
-        </Grid>
+      <Grid item xs>
+        <Expand header={
+          <Text color="inherit" type="title">
+            Skills
+          </Text>}>
+          <Grid container>
+            {props.skillArray && props.skillArray.filter(xSkill).map(t => (
+              <Grid item key={t.id}>
+                <Button color="primary" onClick={e => props.addSkill(t)}>{t.name}</Button>
+              </Grid>
+            ))}
+          </Grid>
+        </Expand>
+
       </Grid>
     </Grid>
   );

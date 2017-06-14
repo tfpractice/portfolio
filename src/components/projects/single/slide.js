@@ -25,13 +25,12 @@ const Slide = ({ slide, project, ...props }) => {
   const a = 0;
 
   return (
-    <Card style={styles.slide}>
+    <Card>
       <CardContent>
         <Text type="body2">
           <MarkdownPreview value={slide.content}/>
         </Text>
       </CardContent>
-      <CardContent />
     </Card>
   );
 };
