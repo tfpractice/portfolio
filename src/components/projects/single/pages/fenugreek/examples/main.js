@@ -12,26 +12,6 @@ import { mapTo, } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
 
-const dubstring = `doubleNums() {
-  const { numbers, } = this.state;
-
-  this.setState({
-    numbers: mapTo(double)(numbers),
-  });
-}`;
-const halfStr = `halveNums() {
-  const { numbers, } = this.state;
-  
-  this.setState({
-    numbers: mapTo(halve)(numbers),
-  });
-}`;
-const resStr = `resetNums() {
-  this.setState({ 
-    numbers: [ 1, 2, 3, 4, ],
-  });
-}`;
-
 const double = x => x * 2;
 const halve = x => x / 2;
 const stateToProps = ({ projects, }) => ({ projects, });

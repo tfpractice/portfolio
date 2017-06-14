@@ -6,7 +6,9 @@ export const syntaxStyles = createStyleSheet('hljs', theme =>
       '.hljs': {
         'border-top': '0.5px solid rgba(255,0,255,0.5)',
         'border-bottom': '0.5px solid rgba(255,0,255,0.5)',
-        
+        'outline-top': '0.5px solid rgba(255,0,255,0.5)',
+        'padding-bottom': '1rem',
+
         // background: theme.palette.background.default,
       },
       '.hljs-comment': { color: '#99b5b5', },

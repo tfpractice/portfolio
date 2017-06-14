@@ -75,15 +75,6 @@ const main = `
   
   should return an array containing all those numbers doubled
   
-  ~~~js
-  doubleNums() {
-    const { numbers, } = this.state;
-
-    this.setState({
-      numbers: mapTo(double)(numbers),
-    });
-  }
-  ~~~
 `;
 
 { /* <MarkdownPreview value={slide.content}/> */ }
@@ -123,8 +114,6 @@ class MapEx extends Component {
   
   render () {
     const props = this.props;
-    
-    
     
     return (
       <Card>
