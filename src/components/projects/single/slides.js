@@ -27,13 +27,11 @@ const Slides = ({ data, project, ...props }) => {
   // style={getStyle(data)(i)}
 
   return (
-
     <SwipeableViews enableMouseEvents>
       {data.map((h, i) => (
         <Slide key={i} slide={h} />
       ))}
     </SwipeableViews>
-
   );
 };
 

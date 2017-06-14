@@ -37,8 +37,8 @@ const Project = (props) => {
   //
  
   return (
-    <Grid container >
-      <Grid item xs >
+    <Grid container direction="column" align="center">
+      <Grid item xs={12}>
         {/* <Grid container > */}
         {/* <Grid item > */}
         <Card>
@@ -62,12 +62,12 @@ const Project = (props) => {
 
       </Grid>
       <Grid item xs>
-        {/* <Grid container> */}
-        {/* <Grid item xs> */}
-        <Slides project={project} data={lSlides} />
+        <Grid container justify="center" align="center">
+          <Grid item xs>
+            <Slides project={project} data={lSlides} />
+          </Grid>
 
-        {/* </Grid> */}
-        {/* </Grid> */}
+        </Grid>
       </Grid>
       <Grid item xs={12}>
         <Expand header={
