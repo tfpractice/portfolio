@@ -4,9 +4,9 @@ import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import Card, { CardContent, CardMedia, } from 'material-ui/Card';
+import Card, { CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import { MarkdownPreview, } from 'react-marked-markdown';
-
+import { Expand, } from '../../misc';
 const styles = {
   slide: {
     // padding: 15,
@@ -25,12 +25,22 @@ const Slide = ({ slide, project, ...props }) => {
   const a = 0;
 
   return (
-    <Card>
-      <CardContent>
-        <Text type="body2">
-          <MarkdownPreview value={slide.content}/>
-        </Text>
-      </CardContent>
+    <Text type="body2">
+      <MarkdownPreview value={slide.content}/>
+    </Text>
+  );
+  return (
+    <Card style={styles.slide}>
+      <CardHeader title={
+        <MarkdownPreview value={slide.caption}/>
+      } />
+      <Expand>
+        <CardContent>
+          <Text type="body2">
+            <MarkdownPreview value={slide.content}/>
+          </Text>
+        </CardContent>
+      </Expand>
     </Card>
   );
 };

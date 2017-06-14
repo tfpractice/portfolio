@@ -94,3 +94,9 @@ export const union = c0 => c1 => spread(c0).concat(diff(c1)(c0));
 ~~~
 
 `;
+
+export const tech = [
+  'built with es6, bundled with Rollup',
+  '90% code-coverage, tested with Jest',
+  'full documentation deployed on surge',
+];

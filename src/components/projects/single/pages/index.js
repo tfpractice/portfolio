@@ -10,3 +10,5 @@ export const getProject = slug =>
   new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
 export const getSlides = slug =>
   new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug].slides : [];
+export const getTech = slug =>
+  new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug].tech : [];

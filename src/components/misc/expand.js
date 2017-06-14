@@ -11,9 +11,9 @@ const stateful = withState('open', 'toggle', false);
 
 const Expand = ({ open, children, toggle, header, }) => (
   <Grid container direction="column" >
-    <Grid item xs={12} onClick={() => toggle(x => !x)}>
+    <Grid item >
       <Grid container justify="space-between" align="center">
-        <Grid item >
+        <Grid item onClick={() => toggle(x => !x)} >
           {header}
         </Grid>
         <Grid item >
@@ -24,7 +24,7 @@ const Expand = ({ open, children, toggle, header, }) => (
       </Grid>
     </Grid>
     <Divider />
-    <Grid item xs={12}>
+    <Grid item xs>
       <Collapse in={open}>
         {children}
       </Collapse>
