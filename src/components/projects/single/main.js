@@ -11,6 +11,7 @@ import { MarkdownPreview, } from 'react-marked-markdown';
 
 import { containers, } from '../../../store/projects';
 import { findMatch, qUtils, } from '../../../utils';
+import { Expand, } from '../../misc';
 import { getDemos, getProject, getSlides, } from './pages';
 import { markdown as content, } from './pages/fenugreek/markdown';
 import { slugData, } from './data';
@@ -55,9 +56,11 @@ const Project = (props) => {
       </Card>
 
       <Grid item xs={12}>
-        <Text color="inherit" type="body1">
-          <MarkdownPreview value={content} />
-        </Text>
+        <Expand>
+          <Text color="inherit" type="body1">
+            <MarkdownPreview value={content} />
+          </Text>
+        </Expand>
       </Grid>
       <Grid item xs={12} >
         <Demo/>
