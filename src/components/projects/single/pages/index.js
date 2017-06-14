@@ -1,16 +1,9 @@
-import Fenugreek from './fenugreek';
-
+import Fenugreek, * as FenData from './fenugreek';
+console.log('Fenugreek', Fenugreek);
 const xData = () => null;
 
-export const demoMap = { 'fenugreek-collections': Fenugreek, };
+export const slugMap = { 'fenugreek-collections': FenData, };
 
-export const getDemos = (slug) => {
-  
-  return new Set(Object.keys(demoMap)).has(slug) ? demoMap[slug] : xData;
-};
-
-//
-// export const getProject =(slug){
-//   return new Set(Object.keys(demoMap)).has(slug) ? demoMap[slug] : xData;
-//
-// }
+export const getDemos = slug => new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
+export const getProject = slug => new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
+export const getSlides = slug => new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug].slides : [];

@@ -3,14 +3,15 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
-import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
+import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 import { FadeIn, } from 'animate-components';
 import kramed from 'kramed';
 import { MarkdownPreview, } from 'react-marked-markdown';
+
 import { containers, } from '../../../store/projects';
 import { findMatch, qUtils, } from '../../../utils';
-import { getDemos, } from './pages';
+import { getDemos, getProject, getSlides, } from './pages';
 import { markdown as content, } from './pages/fenugreek/markdown';
 import { slugData, } from './data';
 import Slides from './slides';
@@ -18,13 +19,15 @@ const { WithSkills, } = containers;
 const { edgeNodes, } = qUtils;
 
 const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }) =>
-  ({ project: findMatch(slug)(projects), sData: slugData(slug), slug, })
+  ({
+    project: findMatch(slug)(projects), lSlides: getSlides(slug), localP: getProject(slug), sData: slugData(slug), slug,
+  })
 
 ;
 const Project = (props) => {
-  
-  const { project, sData, slug, slides, } = props;
- 
+  const { project, sData, slug, localP, slides, lSlides, } = props;
+
+  console.log('props', props);
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
@@ -33,14 +36,21 @@ const Project = (props) => {
  
   return (
     <Grid container justify="center" >
-      <Card raised>
+      <Card >
         <CardHeader title={project && project.title} />
         <CardContent>
-          {slides && <Slides project={project} data={slides} />}
-          <Text type="subheading" >
+          <Text type="title" >
             {project && project.description}
           </Text>
         </CardContent>
+        <CardMedia>
+          <Grid container justify="center" align="center">
+            <Grid item xs={11}>
+              <Slides project={project} data={lSlides} />
+
+            </Grid>
+          </Grid>
+        </CardMedia>
       </Card>
 
       <Grid item xs={11}>
@@ -48,7 +58,8 @@ const Project = (props) => {
           { renderer: new kramed.Renderer(), gfm: true, breaks: true, } }/>
       </Grid>
       <Grid item xs={11} >
-        <Demo/>
+        demo
+        {/* <Demo/> */}
       </Grid>
       <Grid item>
         <Grid container>

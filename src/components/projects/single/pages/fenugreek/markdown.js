@@ -3,9 +3,9 @@ export const markdown = `
 ## Fenugreek Collections
 This is one of the projects I've been most proud of, and marks the moment in my development experience at which my interests moved from programming solutions to programming about programming. Having developed a certain comfort with the complicated things I could do _with_ code, I became interested in what the code _itself_ could do. And as I was moving toward a more collection-based functional style, I decided to fully investigate the Array.
 
-With es6 and the advent of collections Maps, Set, WekaMaps, and WeakSets, many of my programmatic problems had been addressed, but I had very little interest in validations, prototype checking, and try...catch blocks, so this projects main purpose was to allow for a certain interoperability between these collections.
+With es6 and the advent of collections Maps, Set, WekaMaps, and WeakSets, many of my programmatic problems had been addressed, but I had very little interest in validations, prototype checking, and \`try...catch\` blocks, so this projects main purpose was to allow for a certain interoperability between these collections.
 
-The conceptual root of this entire project is iterability, and in javascript all collections have the ~[Symbol.iterator]~ property. This led to two functions which form the basis of the project
+The conceptual root of this entire project is iterability, and in javascript all collections have the \`[Symbol.iterator]\` property. This led to two functions which form the basis of the project
 
 ~~~javascript
 // **isIterable** ~:: obj -> bool  ~
@@ -17,7 +17,7 @@ export const isIterable = o => !!o[Symbol.iterator];
 export const iterify = o => isIterable(o) ? o : [ o, ];
 ~~~
 
-{: .MARKDDD }With the need to develop a general API, much of the project coerces things into an Array via the ~iterify~ and the ~spread*~ functions.
+With the need to develop a general API, much of the project coerces things into an Array via the ~iterify~ and the ~spread*~ functions.
 
 ~~~javascript
 import { iterify, } from './iterable';
@@ -38,7 +38,7 @@ export const spreadV = (coll = []) => spread(iterify(coll).values());
 // returns an Iterable<a> of the collections entries
 export const spreadE = (coll = []) => spread(iterify(coll).entries());
 ~~~
-Once I had successfully coerced things to the structure I wanted, most validations were reduced to a simple ternary expression, and abstracting native methods such as ~Array#push~ and ~Array#slice~ became a breeze.
+Once I had successfully coerced things to the structure I wanted, most validations were reduced to a simple ternary expression, and abstracting native methods such as \`Array#push\` and \`Array#slice\` became a breeze.
 
 ~~~javascript
 // **first** ~:: Iterable<a> -> a~  
@@ -55,7 +55,7 @@ export const rest = coll => spread(coll).slice(1);
 
 And then the real fun began. I could explore deeper theoretical interests in monoids/monads, partial application and currying, and immutability. All without the pesky context of meeting a spec for an actual application.
 
-I knew that I would want "collections in, collections out", and that ~Array#map~ ~Array#reduce~ and ~Array#filter~ would help with this. This is why many of the unary functions have a binary counterpart.
+I knew that I would want "collections in, collections out", and that \`Array#map\` \`Array#reduce\` and \`Array#filter\` would help with this. This is why many of the unary functions have a binary counterpart.
 
 
 ~~~javascript
