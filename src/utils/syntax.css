@@ -1,11 +1,6 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-   background-color:#efefef;
-   
-}
 /*
+Original highlight.js style (c) Ivan Sagalaev <maniac@softwaremaniacs.org>
+*/
 
 .hljs {
   display: block;
@@ -13,11 +8,9 @@ body {
   padding: 0.5em;
   background: #F0F0F0;
 }
-.hljs-function {
-  color: #f0f;
-}
 
 
+/* Base color: saturation 0; */
 
 .hljs,
 .hljs-subst {
@@ -38,7 +31,7 @@ body {
 }
 
 
-
+/* User color: hue: 0 */
 
 .hljs-type,
 .hljs-string,
@@ -64,11 +57,11 @@ body {
 .hljs-link,
 .hljs-selector-attr,
 .hljs-selector-pseudo {
-  color: #ff00ff;
+  color: #BC6060;
 }
 
 
-
+/* Language color: hue: 90; */
 
 .hljs-literal {
   color: #78A960;
@@ -82,7 +75,7 @@ body {
 }
 
 
-
+/* Meta color: hue: 200 */
 
 .hljs-meta {
   color: #1f7199;
@@ -93,7 +86,7 @@ body {
 }
 
 
-
+/* Misc effects */
 
 .hljs-emphasis {
   font-style: italic;
@@ -101,4 +94,4 @@ body {
 
 .hljs-strong {
   font-weight: bold;
-}*/
+}

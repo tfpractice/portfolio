@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
-
+import Text from 'material-ui/Typography';
 import Card, { CardContent, CardMedia, } from 'material-ui/Card';
 import { MarkdownPreview, } from 'react-marked-markdown';
 
@@ -27,8 +27,9 @@ const Slide = ({ slide, project, ...props }) => {
   return (
     <Card style={styles.slide}>
       <CardContent>
-        <MarkdownPreview value={slide.content}
-          markedOptions={ { gfm: true, breaks: true, } }/>
+        <Text type="body2">
+          <MarkdownPreview value={slide.content}/>
+        </Text>
       </CardContent>
       <CardContent />
     </Card>

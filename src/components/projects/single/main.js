@@ -26,16 +26,17 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }
 ;
 const Project = (props) => {
   const { project, sData, slug, localP, slides, lSlides, } = props;
-
-  console.log('props', props);
+  
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
     !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
   const Demo = getDemos(slug);
+
+  //
  
   return (
-    <Grid container justify="center" >
+    <Grid container align="center" justify="center" >
       <Card >
         <CardHeader title={project && project.title} />
         <CardContent>
@@ -45,7 +46,7 @@ const Project = (props) => {
         </CardContent>
         <CardMedia>
           <Grid container justify="center" align="center">
-            <Grid item xs={11}>
+            <Grid item xs={12}>
               <Slides project={project} data={lSlides} />
 
             </Grid>
@@ -53,13 +54,13 @@ const Project = (props) => {
         </CardMedia>
       </Card>
 
-      <Grid item xs={11}>
-        <MarkdownPreview value={content} markedOptions={
-          { renderer: new kramed.Renderer(), gfm: true, breaks: true, } }/>
+      <Grid item xs={12}>
+        <Text color="inherit" type="body1">
+          <MarkdownPreview value={content} />
+        </Text>
       </Grid>
-      <Grid item xs={11} >
-        demo
-        {/* <Demo/> */}
+      <Grid item xs={12} >
+        <Demo/>
       </Grid>
       <Grid item>
         <Grid container>

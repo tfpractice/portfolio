@@ -7,6 +7,7 @@ import Text from 'material-ui/Typography';
 import { FadeIn, } from 'animate-components';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
+import { MarkdownPreview, } from 'react-marked-markdown';
 
 import { mapTo, } from 'fenugreek-collections';
 
@@ -18,35 +19,84 @@ import SwipeableViews from 'react-swipeable-views';
 // // function called on each element of an iterable
 // export const mapTo = fn => coll => map(coll)(fn);`;
 
-const dubstring = `doubleNums() {
+const dubstring = `~~~js
+doubleNums() {
   const { numbers, } = this.state;
 
   this.setState({
     numbers: mapTo(double)(numbers),
   });
-}`;
-const halfStr = `halveNums() {
+
+}
+  ~~~
+`;
+const halfStr = `
+~~~js
+halveNums() {
   const { numbers, } = this.state;
   
   this.setState({
     numbers: mapTo(halve)(numbers),
   });
-}`;
-const resStr = `resetNums() {
+}
+~~~
+`;
+const resStr = `
+~~~js
+resetNums() {
   this.setState({ 
     numbers: [ 1, 2, 3, 4, ],
   });
-}`;
+}
+~~~`;
 
+const main = `
+  MapTo is a function in two parts. 
+  
+  First it takes a function which operates ideally on a single argument
+
+  ~~~js
+  const mapTo = fn => coll => map(coll)(fn);
+  ~~~
+
+  Then it returns a second function which takes a collection
+  and returns that function applied to each element of the collection
+  
+  Given a unary function called \`double\` which takes a single number and doubles it
+  
+  ~~~js
+  const double = x => x * 2;
+  ~~~
+  and doubles it and a collection (nums) of numbers
+  
+  ~~~js
+  mapTo(double)(numbers)
+  ~~~
+  
+  should return an array containing all those numbers doubled
+  
+  ~~~js
+  doubleNums() {
+    const { numbers, } = this.state;
+
+    this.setState({
+      numbers: mapTo(double)(numbers),
+    });
+  }
+  ~~~
+`;
+
+{ /* <MarkdownPreview value={slide.content}/> */ }
 //
 // // **filtBy** ':: (a->bool) -> Iterable<a>  -> [a]'
 // // returns the iterable's values which return true for a given function
 // export const filtBy = fn => coll => filter(coll)(fn);
 const double = x => x * 2;
 const halve = x => x / 2;
-const stateToProps = ({ projects, }) => ({ projects, });
 
-class Examples extends Component {
+// const stateToProps = ({ projects, }) => ({ projects, });
+
+class MapEx extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -74,6 +124,8 @@ class Examples extends Component {
   render () {
     const props = this.props;
     
+    
+    
     return (
       <Card>
         <CardHeader title="mapTo(fn)(coll)" />
@@ -81,21 +133,8 @@ class Examples extends Component {
           <Grid container justify="center">
             <Grid item xs={11}>
               <Text type="body2">
-                {`MapTo is a function in two parts. First it takes a function fn.
-
-                      Then it returns a second function which takes a collection 'coll'
-                      and returns that function applied to each element of the collection
-
-                      Given a unary function called 'double' which takes a single number (num)
-                `}
+                <MarkdownPreview value={main}/>
               </Text>
-              <Grid item xs={11}>
-                <Text type="body2">
-                  <pre>
-                        export const mapTo = fn => coll => map(coll)(fn)
-                  </pre>
-                </Text>
-              </Grid>
             </Grid>
             <Text align="center" type="display1"> {this.state.numbers.join()} </Text>
 
@@ -103,21 +142,13 @@ class Examples extends Component {
               <SwipeableViews enableMouseEvents>
 
                 <Text type="body2">
-                  <pre>
-                    {`${dubstring}`}
-                  </pre>
+                  <MarkdownPreview value={dubstring}/>
                 </Text>
-
                 <Text type="body2">
-                  <pre>
-                    {`${halfStr}`}
-                  </pre>
+                  <MarkdownPreview value={halfStr}/>
                 </Text>
-
                 <Text type="body2">
-                  <pre>
-                    {`${resStr}`}
-                  </pre>
+                  <MarkdownPreview value={resStr}/>
                 </Text>
 
               </SwipeableViews>
@@ -138,4 +169,4 @@ class Examples extends Component {
     );
   }
 }
-export default connect(stateToProps)(Examples);
+export default (MapEx);

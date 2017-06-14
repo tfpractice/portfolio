@@ -4425,7 +4425,7 @@ jss-global@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/jss-global/-/jss-global-0.4.1.tgz#41862c78528de4d333853004eb71adecde1a5fda"
 
-jss-global@^1.0.0:
+jss-global@^1.0.0, jss-global@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/jss-global/-/jss-global-1.0.1.tgz#36731778f6d8649110611f7c178dbcd60fd92b24"
 
@@ -4514,7 +4514,7 @@ jss@^6.3.0:
     is-in-browser "1.0.2"
     warning "3.0.0"
 
-jss@^7.0.3:
+jss@^7.0.3, jss@^7.1.5:
   version "7.1.5"
   resolved "https://registry.yarnpkg.com/jss/-/jss-7.1.5.tgz#7d27b07b0f2f7f1a2ec9fe0ee1e2ab3f9d903de5"
   dependencies:
