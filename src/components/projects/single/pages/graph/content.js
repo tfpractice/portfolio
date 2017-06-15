@@ -57,3 +57,21 @@ export const tech = [
   '90% code-coverage, tested with Jest',
   'full documentation deployed on surge',
 ];
+
+//
+//
+// export const description = 'a functional implementation of classical graph algorithms';
+// export const technologies = [ 'rollup, babel, jest,', ];
+// export const technicals = [
+//   'built with es6, bundled with Rollup',
+//   '90% code-coverage, tested with Jest',
+// ];
+export const techniques = [
+  'functional programming', ];
+
+// export const highlights = slides;
+
+export const future = [
+  `re-integrating a a key-based node-type that more easily conforms to the 
+  classical approach`,
+];

@@ -68,3 +68,18 @@ export const union = c0 => c1 => spread(c0).concat(diff(c1)(c0));
 `,
 },
 ];
+
+export const slides2 = [
+  {
+    data: `functionally implements classical graph 
+  data structures`,
+  },
+  {
+    data: `makes pure uses of JS collections, 
+  for an agnostic API`,
+  },
+  {
+    data: `implements basic serach and traversals as well as cuts,
+components, and shortest paths`,
+  },
+];
