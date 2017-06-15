@@ -12,7 +12,7 @@ const About = () => (
         <CardHeader title="Welcome to My site" />
         <CardContent>
           <Text color="secondary" type="body1">
-            A web developer with a passion for functional programming and application architecture
+            I'm a full-stack web developer and educator with a passion for functional programming and application architecture
           </Text>
         </CardContent>
         <CardActions>
