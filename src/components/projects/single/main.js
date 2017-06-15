@@ -38,8 +38,6 @@ const Project = (props) => {
   const Demo = getDemos(slug);
   const tech = getTech(slug);
   const content = getContent(slug);
-
-  console.log('project', project);
   
   return (
     <Grid container direction="column" justify="center">

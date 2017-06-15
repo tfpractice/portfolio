@@ -31,6 +31,7 @@
     "axios": "^0.16.2",
     "classnames": "^2.2.5",
     "fenugreek-collections": "^1.2.0-0",
+    "graph-curry": "^2.1.0",
     "graphql-tag": "^2.2.2",
     "highlight": "^0.2.4",
     "highlight.js": "^9.12.0",

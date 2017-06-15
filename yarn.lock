@@ -2943,6 +2943,10 @@ fbjs@^0.8.1, fbjs@^0.8.4, fbjs@^0.8.5, fbjs@^0.8.6, fbjs@^0.8.9:
     setimmediate "^1.0.5"
     ua-parser-js "^0.7.9"
 
+fenugreek-collections@^1.1.0:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/fenugreek-collections/-/fenugreek-collections-1.1.1.tgz#92e1c5915d5dce1c266b5737c1b6eaddb194732f"
+
 fenugreek-collections@^1.2.0-0:
   version "1.2.0-0"
   resolved "https://registry.yarnpkg.com/fenugreek-collections/-/fenugreek-collections-1.2.0-0.tgz#36a301e01c06eb365c34c3b529d05140d30fd879"
@@ -3267,6 +3271,12 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
+
+graph-curry@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/graph-curry/-/graph-curry-2.1.0.tgz#4a3908f8ab3840aa4e706addb279e2e080d21bca"
+  dependencies:
+    fenugreek-collections "^1.1.0"
 
 graphql-anywhere@^3.0.0, graphql-anywhere@^3.0.1:
   version "3.1.0"

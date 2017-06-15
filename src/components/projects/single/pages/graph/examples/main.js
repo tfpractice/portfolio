@@ -7,7 +7,7 @@ import Text from 'material-ui/Typography';
 import { FadeIn, } from 'animate-components';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
-import MapEx from './mapTo';
+import MapEx from './fizzbuzz';
 import { mapTo, } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
