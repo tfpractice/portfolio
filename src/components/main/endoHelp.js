@@ -3,7 +3,7 @@ import * as Polygon from 'endogenesis';
 
 const {
   polygon, range, center, vertices, triangulate,
-  closedInterval, path, nthTick, tickPath, tickPathInt, vertices, tickPoints,
+  closedInterval, path, nthTick, tickPath, tickPathInt, tickPoints,
 } = Polygon;
 
 export const polyGrid = count => sides =>
@@ -24,8 +24,8 @@ export const rBox = data => box => d3.scaleLinear()
 export const getBox = sel => d3.select(sel).node().getBoundingClientRect();
 
 export const lineFunc = sel => data => d3.line()
-  .x(d => xBox(data)(getBox(sel))(d.x))
-  .y(d => xBox(data)(getBox(sel))(d.y))(data);
+  .x(d => yBox(data)(getBox(sel))(d.x))
+  .y(d => yBox(data)(getBox(sel))(d.y))(data);
   
 export const polyLine = selector => (p, idx) => {
   let lSrc,
@@ -103,7 +103,7 @@ export const linkGons2 = links => d3
   .select('svg')
   .data(polygon(1, 1, 10, 0, links.length))
   .selectAll('a')
-  .data(vertices(d))
+  .data(vertices)
   .append('a');
 
 //  .attr('id', (d, i) => `link2Path${i}`)

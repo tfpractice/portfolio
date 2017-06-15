@@ -25,8 +25,12 @@ class Landing extends Component {
     return (
       <Grid container justify="center">
         <Grid item xs={11} id="landingGrid">
-          Landing
-          {linkArray.map((path, i) => <Link to={`/${path}`} key={i}/>)}
+          <Grid container className="linkWrapper">
+            Landing
+            {linkArray.map((path, i) => (<Grid item xs key={i}>
+              <Link to={`/${path}`} className="svgLink" key={i}/>
+            </Grid>))}
+          </Grid>
         </Grid>
       </Grid>
     );
