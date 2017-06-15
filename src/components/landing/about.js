@@ -8,14 +8,14 @@ import ScrollableAnchor from 'react-scrollable-anchor';
 
 import { FadeIn, } from 'animate-components';
 import { Slide, } from '../misc';
-import Endo from './endo';
+
 const About = () => (
   <Grid container direction="column" justify="center">
     <Grid item xs>
       <a href="#sa1"> Go to section 1 </a>
       <a href="#a2"> Go to section 2 </a>
     </Grid>
-    <Grid item xs={11}>
+    <Grid item xs={12}>
       <Card raised>
         <CardHeader title="Welcome to My site" />
         <CardContent>
@@ -30,13 +30,6 @@ const About = () => (
 
     </Grid>
 
-    {/* <Grid item xs> */}
-    <SwipeableViews enableMouseEvents resistance>
-      <Grid item xs id={`ag${1}`}><ScrollableAnchor id={`a${1}`}><Card>Slides</Card></ScrollableAnchor></Grid>
-      <Grid item xs id={`ag${2}`}><ScrollableAnchor id={`a${2}`}><Card>Slides</Card></ScrollableAnchor></Grid>
-      <Grid item xs id={`ag${3}`}><ScrollableAnchor id={`a${3}`}><Card>Slides</Card></ScrollableAnchor></Grid>
-    </SwipeableViews>
-    {/* </Grid> */}
   </Grid>
 );
 

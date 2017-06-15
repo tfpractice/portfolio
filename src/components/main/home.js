@@ -8,7 +8,7 @@ import { Projects, } from '../../store';
 import { FadeRoute, } from '../../utils';
 import ProjectRoute from '../projects';
 import About from './about';
-import Landing from './landing';
+import Landing from '../landing';
 import Teaching from './teaching';
 import Nav from './nav';
 
@@ -23,14 +23,14 @@ class Home extends Component {
     return (
       <Grid container direction="column" justify="center" align="center" style={{ paddingTop: '5rem', }}>
         <Nav />
-        <Grid item xs={11} sm={10} className="homeDiv">
-          <Route exact path="/" component={Landing} />
-          
+        <Grid item xs={12} className="homeDiv">
+          {/* <Route exact path="/" component={Landing} /> */}
+
           <Switch >
             <FadeRoute path="/projects" component={ProjectRoute} />
             <FadeRoute path="/about" component={About} />
             <FadeRoute path="/teaching" component={Teaching} />
-            <Route exact path="/" component={About} />
+            <Route exact path="/" component={Landing} />
           </Switch>
 
         </Grid>

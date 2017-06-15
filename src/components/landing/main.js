@@ -1,3 +1,4 @@
+
 import React, { Component, } from 'react';
 import d3 from 'd3';
 import Grid from 'material-ui/Grid';
@@ -6,11 +7,13 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { FadeIn, } from 'animate-components';
 import { Link, } from 'react-router-dom';
-import { getBox, linkGons, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from './endoHelp';
+import { getBox, linkGons, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from '../main/endoHelp';
 import SwipeableViews from 'react-swipeable-views';
 import About from './about';
-import Teaching from './teaching';
-import Endo from './endo';
+import Teaching from '../main/teaching';
+import Overview from './overview';
+
+// import Endo from './endo';
 
 const linkArray = [ 'about', 'teaching', 'projects', ];
 const selectLinks = () =>
@@ -36,26 +39,17 @@ class Landing extends Component {
               ))}
             </Grid>
           </Grid>
-          <Grid item xs>
-            <Card raised>
-              <CardHeader title="Welcome to My site" />
-              <CardContent>
-                <Text color="secondary" type="body1">
-                  I'm a full-stack web developer and educator with a passion for functional programming and application architecture
-                </Text>
-              </CardContent>
-              <CardActions>
-                <Button compact>Learn More</Button>
-              </CardActions>
-            </Card>
-          </Grid>
+          {/* <Grid item xs> */}
+          <Overview/>
+
+          {/* </Grid> */}
           <Grid item xs >
             {/* <About/> */}
             <Teaching/>
             <Teaching/>
             <Teaching/>
             <Teaching/>
-            
+
           </Grid>
         </SwipeableViews>
 
