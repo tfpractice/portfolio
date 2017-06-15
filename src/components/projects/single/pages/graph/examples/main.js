@@ -12,17 +12,12 @@ import { mapTo, } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
 
-const double = x => x * 2;
-const halve = x => x / 2;
-const stateToProps = ({ projects, }) => ({ projects, });
-
 const Demo = () =>
-  (<Grid container>
+  (<Grid container align="center">
     <Grid item xs={11}>
       <SwipeableViews enableMouseEvents >
         <MapEx/>
       </SwipeableViews>
-
     </Grid>
   </Grid>);
 

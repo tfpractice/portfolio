@@ -8,14 +8,15 @@ import { FadeIn, } from 'animate-components';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { MarkdownPreview, } from 'react-marked-markdown';
-import { Graph, } from 'graph-curry';
+import { Graph, Show, } from 'graph-curry';
 
 // import { byAdj, colAdj, negAdj, posAdj, rowAdj, } from './filter';
 
 import { mapTo, spreadK, } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
-const { addEdges, nodes, } = Graph;
+const { addEdges, nodes, graph, adj, neighbors, } = Graph;
+const { graphString, } = Show;
 
 const localNums = spreadK(Array(20));
 
@@ -28,9 +29,12 @@ const buzzables = nums => nums.filter(isBuzz);
 const joinFizz = (g, n) => addEdges(g)(n, 0)(...fizzables(nodes(g)));
 const joinBuzz = (g, n) => addEdges(g)(n, 0)(...buzzables(nodes(g)));
 
-const fizzGraph = nums => nodes(nums).reduce(joinFizz, nums);
-const buzzGraph = nums => nodes(nums).reduce(joinBuzz, nums);
+const fizzGraph = nums => nodes(graph(...nums)).reduce(joinFizz, nums);
+const buzzGraph = nums => nodes(graph(...nums)).reduce(joinBuzz, nums);
 
+console.log('graphString(fizzGraph(localNums))', graphString(fizzGraph(localNums)));
+console.log('adj', adj(fizzGraph(localNums))(2));
+console.log('fizzGraph(localNums)', fizzGraph(localNums));
 const dubstring = `~~~js
  const isFizz = n => n % 3 === 0;
 
@@ -132,8 +136,9 @@ class MapEx extends Component {
                 <MarkdownPreview value={main}/>
               </Text>
             </Grid>
-            <Text align="center" type="display1"> {this.state.numbers.join()} </Text>
-
+            <Text > {graphString(fizzGraph(localNums)).split('}', 3)} </Text>
+            {/* <Text align="center" type="display1"> {this.state.numbers.join()} </Text> */}
+            
             <Grid item xs={11}>
               <SwipeableViews enableMouseEvents>
 

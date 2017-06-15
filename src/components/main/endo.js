@@ -24,26 +24,20 @@ class Endo extends Component {
   componentDidMount() {
     const { shapes, } = this.props;
     
-    // 
     showCircles(shapes);
     showPolys(shapes);
   }
   
   componentDidUpdate(prev, pp) {
     const { shapes, } = this.props;
-
-    //
-    // 
-    // 
-    // 
-
+    
     showCircles(shapes);
     showPolys(shapes);
   }
-
+  
   render() {
     let { shapes, } = this.props;
-
+    
     shapes = shapes.length ? shapes : polyGrid(20)(6);
     return (
       <Grid container justify="center">

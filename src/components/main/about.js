@@ -19,9 +19,9 @@ const About = () => (
           <Button compact>Learn More</Button>
         </CardActions>
       </Card>
-      <Endo />
+      {/* <Endo /> */}
     </Grid>
   </Grid>
-    );
+);
 
 export default (About);
