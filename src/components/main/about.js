@@ -3,7 +3,10 @@ import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
+import SwipeableViews from 'react-swipeable-views';
+
 import { FadeIn, } from 'animate-components';
+import { Slide, } from '../misc';
 import Endo from './endo';
 const About = () => (
   <Grid container justify="center">
@@ -19,8 +22,16 @@ const About = () => (
           <Button compact>Learn More</Button>
         </CardActions>
       </Card>
-      {/* <Endo /> */}
+
     </Grid>
+
+    {/* <Grid item xs> */}
+    <SwipeableViews enableMouseEvents axis="y" resistance>
+      <Grid item xs><div>Slides</div></Grid>
+      <Grid item xs><div>Slides</div></Grid>
+      <Grid item xs><div>Slides</div></Grid>
+    </SwipeableViews>
+    {/* </Grid> */}
   </Grid>
 );
 
