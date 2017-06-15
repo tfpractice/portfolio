@@ -13,10 +13,11 @@ import Divider from 'material-ui/Divider';
 import { containers, } from '../../../store/projects';
 import { findMatch, qUtils, } from '../../../utils';
 import { Expand, } from '../../misc';
-import { getDemos, getProject, getSlides, getTech, } from './pages';
-import { markdown as content, } from './pages/fenugreek/markdown';
-import { slugData, } from './data';
+import { getContent, getDemos, getProject, getSlides, getTech, } from './pages';
+import { markdown as mCont, } from './pages/fenugreek/markdown';
+
 import Slides from './slides';
+import { autoplay, } from 'react-swipeable-views-utils';
 
 const { WithSkills, } = containers;
 const { edgeNodes, } = qUtils;
@@ -24,19 +25,19 @@ const stateToProps = ({ projects, ...state }, { match: { params: { slug, }, }, }
   project: findMatch(slug)(projects),
   lSlides: getSlides(slug),
   localP: getProject(slug),
-  sData: slugData(slug),
   slug,
 })
 
 ;
 const Project = (props) => {
-  const { project, sData, slug, localP, slides, lSlides, } = props;
+  const { project, slug, localP, slides, lSlides, } = props;
   const isMissing = ({ id: toolId, }) =>
     !new Set(edgeNodes(project.tools).map(({ id, }) => id)).has(toolId);
   const xSkill = ({ id: skillId, }) =>
     !new Set(edgeNodes(project.skills).map(({ id, }) => id)).has(skillId);
   const Demo = getDemos(slug);
   const tech = getTech(slug);
+  const content = getContent(slug);
 
   console.log('project', project);
   
@@ -59,11 +60,10 @@ const Project = (props) => {
 
         </Card>
       </Grid>
-      <Divider />
       <Grid item xs>
         <Grid container direction="column" justify="center" align="center">
           <Expand header={ <Text color="inherit" type="title">
-            {'<Code Highlights>'}
+            {'Project Highlights'}
           </Text>}>
             <Grid item >
               <Slides project={project} data={lSlides} />
@@ -71,21 +71,19 @@ const Project = (props) => {
           </Expand>
         </Grid>
       </Grid>
-      <Divider />
 
-      <Grid item xs={12}>
+      <Grid item xs>
         <Expand open header={
           <Text color="inherit" type="title">
             In-Depth
           </Text>}>
-          <Text color="inherit" type="body1">
+          <Text color="inherit" component="div" type="body1">
             <MarkdownPreview value={content} />
           </Text>
         </Expand>
       </Grid>
-      <Divider />
 
-      <Grid item xs={12} >
+      <Grid item xs >
         <Expand header={
           <Text color="inherit" type="title">
             Demos
@@ -93,7 +91,6 @@ const Project = (props) => {
           <Demo/>
         </Expand>
       </Grid>
-      <Divider />
 
       <Grid item xs>
         <Expand header={

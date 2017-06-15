@@ -10,7 +10,8 @@ import SwipeableViews from 'react-swipeable-views';
 import Slides from './slides';
 import Thoughts from './thoughts';
 import Examples from './example';
-import { devEx, future, highlights, info, technicals, } from './data';
+
+// import { devEx, future, highlights, info, technicals, } from './data';
 
 const stateToProps = ({ projects, }) => ({ projects, });
 

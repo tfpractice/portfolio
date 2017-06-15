@@ -1,1 +1,1 @@
-export { default as Fenugreek, } from './main';
+// export { default as Fenugreek, } from './main';
