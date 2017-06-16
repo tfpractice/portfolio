@@ -9,9 +9,12 @@ import List, { ListItem, } from 'material-ui/List';
 import Testimonial from './testimonial';
 import { FadeIn, } from 'animate-components';
 import { Slide, } from '../misc';
+import Skills from './skills';
+import Reviews from './reviews';
+import { Expand, } from '../misc';
 
 const Overview = () => (
-  <Grid container align="center">
+  <Grid container justify="center" align="center">
     <Grid item xs={11}>
       <Card>
         <CardHeader title="Welcome to My site" />
@@ -26,53 +29,16 @@ const Overview = () => (
       </Card>
     </Grid>
     <Grid item xs={11}>
-      <Grid container >
-
-        <Grid item xs={12} sm={6}>
-          <Grid container >
-            <Grid item xs={12} sm={4}>
-              <List>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-              </List>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <List>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-              </List>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <List>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-                <ListItem>"I have this skill and am very good"</ListItem>
-              </List>
-            </Grid>
-
-          </Grid>
-
+      <Grid container justify="center" gutter={40} >
+        <Grid item xs={10} sm={6}>
+          <Expand
+            header={<Text color="inherit" type="display1" children="Skills" />}
+            children={<Skills/>} />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <Grid container justify="center">
-            <Grid item xs={12} sm={3}>
-              <Testimonial/>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Testimonial/>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Testimonial/>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <Testimonial/>
-            </Grid>
-          </Grid>
+        <Grid item xs={10} sm={6}>
+          <Expand
+            header={<Text color="inherit" type="display1" children="Reviews" />}
+            children={<Reviews/>} />
         </Grid>
       </Grid>
     </Grid>

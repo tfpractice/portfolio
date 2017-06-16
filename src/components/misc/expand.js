@@ -7,11 +7,11 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import { withState, } from 'recompose';
 
-const stateful = withState('open', 'toggle', false);
+const stateful = withState('open', 'toggle', ({ open, }) => !!open);
 
 const Expand = ({ open, children, toggle, header, }) => (
   <Grid container direction="column" >
-    <Grid item >
+    <Grid item xs >
       <Grid container justify="space-between" align="center">
         <Grid item onClick={() => toggle(x => !x)} >
           {header}
@@ -24,7 +24,7 @@ const Expand = ({ open, children, toggle, header, }) => (
       </Grid>
     </Grid>
     <Divider />
-    <Grid item xs>
+    <Grid item xs >
       <Collapse in={open}>
         {children}
       </Collapse>

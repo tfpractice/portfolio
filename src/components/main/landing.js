@@ -55,7 +55,7 @@ class Landing extends Component {
             <Teaching/>
             <Teaching/>
             <Teaching/>
-            
+
           </Grid>
         </SwipeableViews>
 
