@@ -7,7 +7,7 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import { withState, } from 'recompose';
 
-const stateful = withState('open', 'toggle', ({ open, }) => !!open);
+const stateful = withState('open', 'toggle', ({ open = true, }) => !!open);
 
 const Expand = ({ open, children, toggle, header, }) => (
   <Grid container direction="column" >
