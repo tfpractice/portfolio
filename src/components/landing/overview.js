@@ -11,7 +11,7 @@ import { FadeIn, } from 'animate-components';
 import { Slide, } from '../misc';
 import Skills from './skills';
 import Reviews from './reviews';
-import { Expand, } from '../misc';
+import { Expand, Virtualize, VirtualSwipe, } from '../misc';
 
 const Overview = () => (
   <Grid container justify="center" align="center">
@@ -28,6 +28,7 @@ const Overview = () => (
         </CardActions>
       </Card>
     </Grid>
+
     <Grid item xs={11}>
       <Grid container justify="center" gutter={40} >
         <Grid item xs={10} sm={6}>
@@ -39,6 +40,29 @@ const Overview = () => (
           <Expand
             header={<Text color="inherit" type="display1" children="Reviews" />}
             children={<Reviews/>} />
+        </Grid>
+
+        {/* <Grid item xs >
+          <Virtualize enableMouseEvents renderer={() =>
+            (
+          <SwipeableViews>
+          <Testimonial key={1}/>
+          <Testimonial key={2}/>
+          <Testimonial key={3}/>
+          <Testimonial key={4}/>
+          </SwipeableViews>
+
+            )
+
+          } />
+        </Grid>  */}
+        <Grid item xs >
+          <Virtualize >
+            <Testimonial/>
+            <Testimonial/>
+            <Testimonial/>
+            <Testimonial/>
+          </Virtualize>
         </Grid>
       </Grid>
     </Grid>
