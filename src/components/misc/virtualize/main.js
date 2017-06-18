@@ -21,7 +21,6 @@ const Carousel = ({ index, setIndex, children, renderer = dRender, ...props }) =
         enableMouseEvents
         onChangeIndex={cix => setIndex(ixHandler(index))}
         slideRenderer={({ index: ix, key, }) =>
-
           <SwipeableViews index={ix}>{children}</SwipeableViews>
         }
       />
