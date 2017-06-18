@@ -58,10 +58,10 @@ const Overview = () => (
         </Grid>  */}
         <Grid item xs >
           <Virtualize >
-            <Testimonial/>
-            <Testimonial/>
-            <Testimonial/>
-            <Testimonial/>
+            <Testimonial key={0}/>
+            <Testimonial key={1}/>
+            <Testimonial key={2}/>
+            <Testimonial key={3}/>
           </Virtualize>
         </Grid>
       </Grid>
