@@ -7,7 +7,7 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { FadeIn, } from 'animate-components';
 
-import { getBox, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from './endoHelp';
+import { getBox, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from '../visualization';
 
 const mygons = polyGrid(20)(6);
 

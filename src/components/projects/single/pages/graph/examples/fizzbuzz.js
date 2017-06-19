@@ -20,7 +20,7 @@ const { graphString, } = Show;
 
 const localNums = spreadK(Array(20));
 
-console.log('localNums', localNums);
+// console.log('localNums', localNums);
 const isFizz = n => n % 3 === 0;
 const isBuzz = n => n % 3 === 0;
 const fizzables = nums => nums.filter(isFizz);
@@ -32,9 +32,9 @@ const joinBuzz = (g, n) => addEdges(g)(n, 0)(...buzzables(nodes(g)));
 const fizzGraph = nums => nodes(graph(...nums)).reduce(joinFizz, nums);
 const buzzGraph = nums => nodes(graph(...nums)).reduce(joinBuzz, nums);
 
-console.log('graphString(fizzGraph(localNums))', graphString(fizzGraph(localNums)));
-console.log('adj', adj(fizzGraph(localNums))(2));
-console.log('fizzGraph(localNums)', fizzGraph(localNums));
+// console.log('graphString(fizzGraph(localNums))', graphString(fizzGraph(localNums)));
+// console.log('adj', adj(fizzGraph(localNums))(2));
+// console.log('fizzGraph(localNums)', fizzGraph(localNums));
 const dubstring = `~~~js
  const isFizz = n => n % 3 === 0;
 

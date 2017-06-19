@@ -1,32 +1,26 @@
 import * as d3 from 'd3';
 import * as Polygon from 'endogenesis';
-
 const {
-  polygon, range, center, vertices, triangulate,
-  closedInterval, path, nthTick, tickPath, tickPathInt, tickPoints,
+  polygon, range, setNumSides, centralTicks, center, vertices, surroundTix, triangulate, tesselate,
+  closedInterval, path, nthTick, tickPath, setRadius, tickPathInt, tickPoints,
 } = Polygon;
 
 export const polyGrid = count => sides =>
   range(count).map(i => polygon(i, i, 10, 0, sides));
-
 export const xBox = data => box => d3.scaleLinear()
   .domain(d3.extent(data, g => g.x))
   .range([ box.width * 0.1, box.width * 0.9, ]);
-
 export const yBox = data => box => d3.scaleLinear()
   .domain(d3.extent(data, g => g.y))
   .range([ box.height * 0.1, box.height * 0.9, ]);
-
 export const rBox = data => box => d3.scaleLinear()
   .domain(d3.extent(data, g => g.radius))
   .range([ box.height * 0.1, box.height * 0.9, ]);
-
 export const getBox = sel => d3.select(sel).node().getBoundingClientRect();
-
 export const lineFunc = sel => data => d3.line()
   .x(d => yBox(data)(getBox(sel))(d.x))
   .y(d => yBox(data)(getBox(sel))(d.y))(data);
-  
+
 export const polyLine = selector => (p, idx) => {
   let lSrc,
   lData;
@@ -37,9 +31,69 @@ export const polyLine = selector => (p, idx) => {
   const cloLocal = closedInterval(5)(lSrc)(tickPoints(9)(p));
   const patLocal = path(p);
   
-  lData = triLocal;
+  console.log('p', p);
+  lData = centralTicks(3)(setRadius(1)(p));
   return lineFunc(selector)(lData);
 };
+
+const tessPath = links => p =>
+  setRadius(
+    xBox(
+      tesselate(setNumSides(links.length)(setRadius(10)())).map(vertices)
+    )(
+      getBox('.myHex')
+    )(10)
+  
+  )(p);
+
+export const createImage = links =>
+  d3.select('#landingGrid')
+    .append('svg')
+    
+    .classed('myHex', true)
+    .selectAll('a')
+    .data(links)
+    .enter()
+    .append('a')
+    .attr('href', d => `/${d}`)
+    .selectAll('path')
+    .data(tesselate(setNumSides(links.length)(setRadius(1)())), (g, i) => {
+      console.log('g', g);
+      return g;
+    })
+    .enter()
+    .append('g')
+
+    .append('path')
+    .attr('id', (d, i) => `linkPath${i}`)
+    .attr('d', (d, i) => {
+      console.log('POLYLINE', d);
+      return polyLine('.myHex')(d);
+    })
+    .attr('stroke', '#0f0')
+    .attr('stroke-width', '0.5')
+    .attr('fill', 'none')
+;
+
+export const selectLinks = links =>
+  d3.select('#landingGrid')
+
+    .selectAll('a')
+    .data(links)
+    .data(tesselate(setNumSides(links.length)()))
+    .append('svg')
+    .attr('id', function (d, i) {
+      console.log('d', d);
+      console.log('d3.select(this).node()', d3.select(this).node());
+      return `linkSVG${i}`;
+    })
+
+    .append('path')
+    .attr('id', (d, i) => `linkPath${i}`)
+    .attr('d', (d, i) => polyLine(`#linkSVG${i}`)(d))
+    .attr('stroke', '#0f0')
+    .attr('stroke-width', '0.5')
+    .attr('fill', 'none');
 
 export const showCircles = (data) => {
   const endoBox = getBox('.endovis');
@@ -52,17 +106,17 @@ export const showCircles = (data) => {
     .append('circle')
     .attr('cx', (d, i) => {
       const sx = xBox(data)(endoBox)(d.x);
-
+      
       return `${5 * i}%`;
     })
     .attr('cy', (d, i) => {
       const rs = yBox(data)(endoBox)(d.y);
-
+      
       return `${5 * i}%`;
     })
     .attr('r', (d) => {
       const rs = rBox(data)(endoBox)(d.radius);
-
+      
       return '5%';
     })
     .attr('stroke', '#f0f')
@@ -77,20 +131,19 @@ export const showPolys = data => d3
   .attr('stroke', '#0f0')
   .attr('stroke-width', '0.5')
   .attr('fill', 'none');
-  
+
 export const linkGons = links => d3
   .select('#landingGrid')
   .selectAll('a')
-
   .data(links)
   .data(polyGrid(links.length)(6))
+
   .append('svg')
-  .attr('id', function(d, i) {
+  .attr('id', function (d, i) {
     console.log('d', d);
     console.log('d3.select(this).node()', d3.select(this).node());
     return `linkSVG${i}`;
   })
-
   .append('path')
   .attr('id', (d, i) => `linkPath${i}`)
   .attr('d', (d, i) => polyLine(`#linkSVG${i}`)(d))
@@ -98,6 +151,27 @@ export const linkGons = links => d3
   .attr('stroke-width', '0.5')
   .attr('fill', 'none');
 
+export const linkGons3 = links => d3
+  .select('#landingGrid')
+  .selectAll('a')
+  .data(links)
+
+  .data([ polygon(1, 1, 10, 0, links.length), ], (d, i) => {
+    console.log('polygon', d, i);
+    return tesselate(d);
+  }).enter()
+  .append('svg')
+  .attr('id', function (d, i) {
+    console.log('d', d);
+    console.log('d3.select(this).node()', d3.select(this).node());
+    return `linkSVG${i}`;
+  })
+  .append('path')
+  .attr('id', (d, i) => `linkPath${i}`)
+  .attr('d', (d, i) => polyLine(`#linkSVG${i}`)(d))
+  .attr('stroke', '#0f0')
+  .attr('stroke-width', '0.5')
+  .attr('fill', 'none');
 export const linkGons2 = links => d3
   .select('#landingGrid')
   .select('#trefoil')
@@ -108,44 +182,17 @@ export const linkGons2 = links => d3
     return vertices(d);
   })
 
-  // .append('a')
-
-  // .attr('id', (d, i) => {
-  //   console.log('polygon', d, i);
-  //   return 'linkBox';
-  // })
-  //
   .select('a')
-
   .data(vertices(polygon(1, 1, 10, 0, links.length)), (d, i) => {
     console.log('vertices', d, i);
     return d;
   })
 
-  // .append('a')
   .attr('id', (d, i) => {
     console.log('a tag', d, i);
-
     return `link2Path${i}`;
   })
   .attr('href', (d, i) => {
     console.log('d,i', d, i);
     return links[i];
   });
-
-//
-//  // .data(links)
-//  .data(polyGrid(links.length)(6))
-//  .append('svg')
-//  .attr('id', function(d, i) {
-//    console.log('d', d);
-//    console.log('d3.select(this).node()', d3.select(this).node());
-//    return `linkSVG${i}`;
-//  })
-//
-//  .append('path')
-//  .attr('id', (d, i) => `linkPath${i}`)
-//  .attr('d', (d, i) => polyLine(`#linkSVG${i}`)(d))
-//  .attr('stroke', '#0f0')
-//  .attr('stroke-width', '0.5')
-//  .attr('fill', 'none');

@@ -6,7 +6,7 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { FadeIn, } from 'animate-components';
 import { Link, } from 'react-router-dom';
-import { getBox, linkGons, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from './endoHelp';
+import { getBox, linkGons, polyGrid, showCircles, showPolys, } from '../visualization';
 import SwipeableViews from 'react-swipeable-views';
 import About from './about';
 import Teaching from './teaching';
