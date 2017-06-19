@@ -7,7 +7,7 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { FadeIn, } from 'animate-components';
 import { Link, } from 'react-router-dom';
-import { getBox, linkGons, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from '../main/endoHelp';
+import { getBox, linkGons, linkGons2, polyGrid, polyLine, rBox, showCircles, showPolys, xBox, yBox, } from '../main/endoHelp';
 import SwipeableViews from 'react-swipeable-views';
 import About from './about';
 import Teaching from '../main/teaching';
@@ -23,14 +23,21 @@ const selectLinks = () =>
     
 class Landing extends Component {
   componentDidMount() {
-    linkGons(linkArray);
-    showPolys(polyGrid(3)(6));
+    // linkGons(linkArray);
+    linkGons2(linkArray);
+    console.log('    linkGons2(linkArray);', linkGons2(linkArray));
+
+    // showPolys(polyGrid(3)(6));
   }
   render() {
     return (
       <Grid container direction="column" justify="center">
         <SwipeableViews enableMouseEvents >
+          <Grid item xs id="trefoil" style={{ backgroundColor: '#ff00ff', }}>
+            <svg id="linkBox"/>
+          </Grid>
           <Grid item xs id="landingGrid">
+
             <Grid container justify="center" className="linkWrapper">
               {linkArray.map((path, i) => (
                 <Grid item xs key={i}>

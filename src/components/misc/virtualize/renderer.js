@@ -9,7 +9,6 @@ import { mod, } from 'react-swipeable-views-core';
 
 export const VirtualSwipe = (virtualize(SwipeableViews));
 
-// VirtualSwipe
 const styles = {
   slide: {
     padding: 15,
@@ -31,40 +30,3 @@ export const renderer = ({ index, key, ...props }) => {
     </div>
   );
 };
-
-//
-// class DemoVirtualize extends Component {
-//   constructor(p) {
-//     super(p);
-//     this.state = { index: 0, }
-//     ;
-//   }
-//
-//   handleChangeIndex (index) {
-//     this.setState({ index, });
-//   }
-//
-//   handleClick () {
-//     this.setState({ index: 49, });
-//   }
-//
-//   render() {
-//     return (
-//       <MuiThemeProvider>
-//         <div>
-//           <VirtualizeSwipeableViews
-//             index={this.state.index}
-//             onChangeIndex={() => this.handleChangeIndex()}
-//             slideRenderer={slideRenderer}
-//           />
-//           <br />
-//           <Button onClick={this.handleClick}>
-//             {'go to slide n°50'}
-//           </Button>
-//         </div>
-//       </MuiThemeProvider>
-//     );
-//   }
-// }
-//
-// export default DemoVirtualize;

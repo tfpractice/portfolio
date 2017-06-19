@@ -100,13 +100,39 @@ export const linkGons = links => d3
 
 export const linkGons2 = links => d3
   .select('#landingGrid')
-  .select('svg')
-  .data(polygon(1, 1, 10, 0, links.length))
-  .selectAll('a')
-  .data(vertices)
-  .append('a');
+  .select('#trefoil')
+  .select('#linkBox')
+  .data(links)
+  .data([ polygon(1, 1, 10, 0, links.length), ], (d, i) => {
+    console.log('polygon', d, i);
+    return vertices(d);
+  })
 
-//  .attr('id', (d, i) => `link2Path${i}`)
+  // .append('a')
+
+  // .attr('id', (d, i) => {
+  //   console.log('polygon', d, i);
+  //   return 'linkBox';
+  // })
+  //
+  .select('a')
+
+  .data(vertices(polygon(1, 1, 10, 0, links.length)), (d, i) => {
+    console.log('vertices', d, i);
+    return d;
+  })
+
+  // .append('a')
+  .attr('id', (d, i) => {
+    console.log('a tag', d, i);
+
+    return `link2Path${i}`;
+  })
+  .attr('href', (d, i) => {
+    console.log('d,i', d, i);
+    return links[i];
+  });
+
 //
 //  // .data(links)
 //  .data(polyGrid(links.length)(6))
