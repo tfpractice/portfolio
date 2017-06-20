@@ -6,8 +6,9 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { Link, } from 'react-router-dom';
 
-import { createImage, linkGons, tessGons, } from '../visualization';
+import { createImage, linkGons, LandingVis, } from '../visualization';
 
+const { tessGons, } = LandingVis;
 const linkArray = [ 'about', 'teaching', 'projects', ];
 
 class Header extends Component {
@@ -19,9 +20,9 @@ class Header extends Component {
   
   render() {
     return (
-      <Grid container direction="column" justify="center">
-        <Grid item xs={12} id="tess">
-          <svg className="myTess" width="100%" height="100%"/>
+      <Grid container justify="center" id="header">
+        <Grid item xs={11} id="tess">
+          {/* <svg className="myTess" width="100%" height="100%"/> */}
         </Grid>
         <Grid item xs id="landingGrid">
           <Grid container justify="center" className="linkWrapper">
