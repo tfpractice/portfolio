@@ -6,19 +6,21 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { Link, } from 'react-router-dom';
 
-import { createImage, linkGons, } from '../visualization';
+import { createImage, linkGons, tessGons, } from '../visualization';
 
 const linkArray = [ 'about', 'teaching', 'projects', ];
 
 class Header extends Component {
   componentDidMount() {
     linkGons(linkArray);
+    tessGons(linkArray);
     createImage(linkArray);
   }
   
   render() {
     return (
       <Grid container direction="column" justify="center">
+        <Grid item xs id="tess"/>
         <Grid item xs id="landingGrid">
           <Grid container justify="center" className="linkWrapper">
             {linkArray.map((path, i) => (
