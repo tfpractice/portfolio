@@ -20,7 +20,9 @@ class Header extends Component {
   render() {
     return (
       <Grid container direction="column" justify="center">
-        <Grid item xs id="tess"/>
+        <Grid item xs={12} id="tess">
+          <svg className="myTess" width="100%" height="100%"/>
+        </Grid>
         <Grid item xs id="landingGrid">
           <Grid container justify="center" className="linkWrapper">
             {linkArray.map((path, i) => (

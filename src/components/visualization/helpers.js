@@ -8,6 +8,10 @@ const {
 export const colorScale = data => d3.scaleLinear()
   .domain(d3.extent(data, g => g.x))
   .range([ '#f0f', '#0f0', ]);
+const polyScale = count => d3.scaleLinear()
+  .domain([ 0, count - 1, ])
+  .range([ '#f0f', '#0f0', ]);
+
 export const polyGrid = count => sides =>
   range(count).map(i => polygon(i, i, 10, 0, sides));
 export const xBox = data => box => d3.scaleLinear()
@@ -16,9 +20,11 @@ export const xBox = data => box => d3.scaleLinear()
 export const yBox = data => box => d3.scaleLinear()
   .domain(d3.extent(data, g => g.y))
   .range([ box.height * 0.1, box.height * 0.9, ]);
+  
 export const rBox = data => box => d3.scaleLinear()
   .domain(d3.extent(data, g => g.radius))
   .range([ box.height * 0.1, box.height * 0.9, ]);
+  
 export const getBox = sel => d3.select(sel).node().getBoundingClientRect();
 export const lineFunc = sel => data => d3.line()
   .x(d => yBox(data)(getBox(sel))(d.x))
@@ -30,19 +36,71 @@ export const polyLine = selector => (p, idx) => {
 
   lSrc = vertices(inscribed(p))[0];
 
-  // lSrc = nthTick(8)(p)(4);
   const tickLocal = tickPathInt(3)(lSrc)(7)(p);
   const triLocal = triangulate(lSrc)(tickPoints(3)(p));
   const cloLocal = closedInterval(5)(lSrc)(tickPoints(9)(p));
   const patLocal = path(p);
   
-  lData = triLocal;
+  lData = centralTicks(8)(p);
 
-  // lData = centralTicks(3)(setRadius(1)(p));
+  // .concat(vertices(inscribed(p)));
+
   return lineFunc(selector)(lData);
-  return d3.polygonHull(lData.map(d => [ yBox(lData)(getBox(selector))(d.x), yBox(lData)(getBox(selector))(d.y), ]));
 };
 
+export const tessGons = (links) => {
+  const baseGon = setNumSides(links.length * 2)(setRadius(10)());
+  const gons = [ baseGon, ].concat(tesselate(baseGon));
+  const xScale = yBox(gons.map(vertices).reduce((a, b) => a.concat(b), []))(getBox('#tess'));
+  const yScale = yBox(gons.map(vertices).reduce((a, b) => a.concat(b), []))(getBox('#tess'));
+
+  return d3.select('#tess')
+    .append('svg')
+    .classed('myTess', true)
+    .selectAll('path')
+    .data(gons, (g, i) => {
+      const a = 0;
+
+      console.log('g', g);
+      return g;
+    })
+    .enter()
+
+    .append('g')
+
+    .attr('x', d => xScale(d.x))
+    .attr('y', d => yScale(d.y))
+    
+    .append('path')
+    .attr('id', (d, i) => `tessPath${i}`)
+    .attr('d', (d, i) => {
+      const a = 0;
+
+      return polyLine('.myTess')(d);
+    })
+
+    .attr('stroke', (d, i) => {
+      console.log('d', d);
+      colorScale(vertices(d))(i);
+      console.log('colorScale(vertices(d))(i)', colorScale(vertices(d))(center(d).x));
+      return polyScale(4)(i);
+    })
+    .attr('stroke-width', '0.5')
+    .attr('fill', (d, i) => polyScale(4)(i))
+
+    // .enter()
+    .append('text')
+    .attr('x', d => xScale(d.x))
+    .attr('y', d => yScale(d.y))
+    .text((d, i) => {
+      console.log('d', d);
+      return `hex${i}`;
+    })
+
+    .attr('font-family', 'sans-serif')
+    .attr('font-size', '20px')
+    .attr('fill', 'red');
+};
 export const createImage = links =>
   d3.select('#landingGrid')
     .append('svg')
@@ -65,8 +123,6 @@ export const createImage = links =>
     .attr('d', (d, i) => {
       const a = 0;
 
-      // console.log('POLYLINE', d);
-
       return polyLine('.myHex')(d);
     })
 
@@ -74,42 +130,6 @@ export const createImage = links =>
   
     .attr('stroke-width', '0.5')
     .attr('fill', 'none')
-;
-
-export const tessGons = links =>
-  d3.select('#tess')
-    .append('svg')
-    .classed('myTess', true)
-    .selectAll('path')
-    .data(tesselate(setNumSides(links.length)(setRadius(1)())).concat(setNumSides(links.length)(setRadius(1)())), (g, i) => {
-      const a = 0;// console.log('g', g);
-
-      return g;
-    })
-    .enter()
-
-    .append('g')
-    
-    .append('path')
-    .attr('id', (d, i) => `tessPath${i}`)
-    .attr('d', (d, i) => {
-      const a = 0;
-
-      // console.log('POLYLINE', d);
-
-      return polyLine('.myTess')(d);
-    })
-    .attr('stroke', (d, i) => {
-      console.log('d', d);
-      colorScale(vertices(d))(i);
-      console.log('colorScale(vertices(d))(i)', colorScale(vertices(d))(center(d).x));
-      return colorScale(vertices(d))(center(d).x);
-    })
-    .attr('stroke-width', '0.5')
-    .attr('fill', 'none')
-
-    // .enter()
-    
 ;
 
 export const selectLinks = links =>
@@ -121,9 +141,6 @@ export const selectLinks = links =>
     .append('svg')
     .attr('id', (d, i) => {
       const a = 0;
-
-      // console.log('d', d);
-      // console.log('d3.select(this).node()', d3.select(this).node());
 
       return `linkSVG${i}`;
     })
@@ -152,9 +169,6 @@ export const linkGons = links => d3
   .append('svg')
   .attr('id', (d, i) => {
     const a = 0;
-
-    // console.log('d', d);
-    // console.log('d3.select(this).node()', d3.select(this).node());
 
     return `linkSVG${i}`;
   })
