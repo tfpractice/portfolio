@@ -11,7 +11,7 @@ import ProjectCard from './card';
 const CardList = ({ items, }) => (
   <Grid container justify="center" >
     {items.map(p =>
-      (<Grid item xs={11} md={6} lg={4} key={p.id}>
+      (<Grid item xs={11} sm={6} md={4} lg={3} key={p.id}>
         <ProjectCard project={p} />
       </Grid>)
     )}

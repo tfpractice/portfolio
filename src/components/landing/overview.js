@@ -6,12 +6,11 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import List, { ListItem, } from 'material-ui/List';
+
+import { Expand, Virtualize, VirtualSwipe, } from '../misc';
 import Testimonial from './testimonial';
-import { FadeIn, } from 'animate-components';
-import { Slide, } from '../misc';
 import Skills from './skills';
 import Reviews from './reviews';
-import { Expand, Virtualize, VirtualSwipe, } from '../misc';
 
 const Overview = () => (
   <Grid container justify="center" align="center">
@@ -20,7 +19,7 @@ const Overview = () => (
         <CardHeader title="Welcome to My site" />
         <CardContent>
           <Text color="secondary" type="body1">
-            I'm a full-stack web developer and educator with a passion for functional programming and application architecture
+           I'm a full-stack web developer and educator with a passion for functional programming and application architecture
           </Text>
         </CardContent>
         <CardActions>
@@ -28,7 +27,6 @@ const Overview = () => (
         </CardActions>
       </Card>
     </Grid>
-
     <Grid item xs={11}>
       <Grid container justify="center" gutter={40} >
         <Grid item xs={10} sm={6}>
@@ -41,32 +39,9 @@ const Overview = () => (
             header={<Text color="inherit" type="display1" children="Reviews" />}
             children={<Reviews/>} />
         </Grid>
-
-        {/* <Grid item xs >
-          <Virtualize enableMouseEvents renderer={() =>
-            (
-          <SwipeableViews>
-          <Testimonial key={1}/>
-          <Testimonial key={2}/>
-          <Testimonial key={3}/>
-          <Testimonial key={4}/>
-          </SwipeableViews>
-
-            )
-
-          } />
-        </Grid>  */}
-        {/* <Grid item xs >
-          <Virtualize >
-            <Testimonial key={0}/>
-            <Testimonial key={1}/>
-            <Testimonial key={2}/>
-            <Testimonial key={3}/>
-          </Virtualize>
-        </Grid> */}
+       
       </Grid>
     </Grid>
-
   </Grid>
 );
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-
+import List, { ListItem, } from 'material-ui/List';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import FaceIcon from 'material-ui-icons/Face';
@@ -18,14 +18,14 @@ const styleSheet = createStyleSheet('ToolChipList', theme => ({
 }));
 
 const ChipList = ({ tools, }) => (
-  <Grid container direction="row" >
+  <ListItem >
 
     {/* <Paper> */}
-    {tools.map(t => (
+    {tools.sort((a, b) => a.name.length - b.name.length).map(t => (
       <ToolChip tool={t} key={t.id} />
     ))}
     {/* </Paper> */}
-  </Grid>
+  </ListItem>
 );
 
 export default ChipList;
