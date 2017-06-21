@@ -6,13 +6,19 @@ const {
   closedInterval, path, nthTick, radius, inscribed, tickPath, setX, setY, setRadius, tickPathInt, tickPoints,
 } = Polygon;
 
-const tDom = poly => ((1.5 * apoMag(poly)) + radius(poly));
+// const tDom = poly => ((1.5 * apoMag(poly)) + radius(poly));
+const tDom = poly => (2 * radius(poly)) + (apoMag(poly) / 2);
+const catBin = (a = [], b = []) => [ ...a, ...b, ];
 
-// const tDom = poly => ((radius(poly)) * apoFactor(poly) * apoFactor(poly));
-const tRange = poly => tesselate(poly).map(vertices).map(v => v.x);
+const cVals = v => [ v.x, v.y, ];
+
+const tVals = poly => tesselate(poly).map(vertices).reduce(catBin, []).map(cVals).reduce(catBin, []);
 
 export const tessScale = base => box => d3.scaleLinear()
+
   .domain([ -tDom(base), tDom(base), ])
+
+  // .domain([ d3.min(tVals(base)), d3.max(tVals(base)), ])
   .range([ box.height * 0.1, box.height * 0.9, ]);
 
 export const colorScale = data => d3.scaleLinear()
@@ -68,23 +74,20 @@ export const tessGons = (links) => {
   const localScale = tessScale(baseGon)(tessBox);
   const gons = [ baseGon, ].concat(tesselate(baseGon));
   const allV = gons.map(vertices).reduce((a, b) => a.concat(b), []);
-  const xScale = xBox(allV)(getBox('#header'));
-  const yScale = yBox(allV)(getBox('#header'));
-  const rScale = rBox(gons)(getBox('#header'));
-  const scaleGon = g => [ setX(xScale(g.x)), setY(yScale(g.y)), ]
-    .reduce((pl, fn) => fn(pl), g);
+
+  console.log('tVals(baseGon)', tVals(baseGon));
+
+  // const xScale = xBox(allV)(getBox('#header'));
+  // const yScale = yBox(allV)(getBox('#header'));
+  // const rScale = rBox(gons)(getBox('#header'));
+  // const scaleGon = g => [ setX(xScale(g.x)), setY(yScale(g.y)), ]
+  //   .reduce((pl, fn) => fn(pl), g);
   const modGon = g => [ setX(localScale(g.x)), setY(localScale(g.y)), ]
     .reduce((pl, fn) => fn(pl), g);
-  const scaledGons = gons.map(scaleGon);
+
+  // const scaledGons = gons.map(scaleGon);
   const mGons = gons.map(modGon);
 
-  console.log('allV', allV);
-  console.log('gons', gons);
-  console.log('scaledGons', scaledGons);
-  console.log('mGons', mGons);
-  console.log('tessBox.height', tessBox.height);
-  console.log('tessBox', tessBox);
-  console.log('tessheight', tessheight);
   return d3.select('#tess')
     .append('svg')
     .classed('myTess', true)
@@ -105,9 +108,8 @@ export const tessGons = (links) => {
     .attr('y', d => (d.y))
     .attr('id', (d, i) => `tessPath${i}`)
     .attr('d', pathLine('#tessPath'))
+    .attr('stroke', (d, i) => 'none')
 
-    // .attr('transform', (d, i) => `translate(${tessBox.width / 2},${tessBox.height / 2})`)
-    .attr('stroke', (d, i) => ixScale(scaledGons)(i))
-    .attr('stroke-width', '0.5')
-    .attr('fill', (d, i) => ixScale(scaledGons)(i));
+    // .attr('stroke-width', 'non')
+    .attr('fill', (d, i) => 'rgba(255,0,255,0.4)');
 };
