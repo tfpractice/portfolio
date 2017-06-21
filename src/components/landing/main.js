@@ -16,7 +16,7 @@ import Header from './header';
 import ProjectInfo from '../projects/info';
 import Apps from './apps';
 import Libraries from './libraries';
-
+import { Hex, } from '../visualization';
 const linkArray = [ 'about', 'teaching', 'projects', ];
 const swipeLabels = [ 'main', 'teaching', 'apps', 'libraries', ];
 const TextLinks = txtArr => txtArr.map(t => <Text type="title">{t.toUpperCase()}</Text>);
@@ -26,8 +26,10 @@ class Landing extends Component {
     return (
       <Grid container direction="column" justify="center">
         <Grid item xs>
-          <NavSlide labels={TextLinks(swipeLabels)}>
+          <NavSlide labels={[ <Hex/>, ...TextLinks(swipeLabels), ]}>
+            <Hex />
             <Header/>
+
             <Overview/>
             <Apps/>
             <Libraries/>

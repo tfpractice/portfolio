@@ -14,7 +14,7 @@ const NavSlide = ({ labels, index, setIndex, children, ...sprops }) => (
     <Grid item xs={12}>
       <BottomNavigation index={index} onChange={(...args) => console.log('args', args)}>
         {labels.map((l, i) => (
-          <BottomNavigationButton key={i} onClick={() => setIndex(() => i)} label={l} />
+          <BottomNavigationButton key={i} onClick={() => setIndex(() => i)} label={l} children={l} />
         ))}
       </BottomNavigation>
     </Grid>
