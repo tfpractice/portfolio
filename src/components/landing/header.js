@@ -13,16 +13,17 @@ const linkArray = [ 'about', 'teaching', 'projects', ];
 
 class Header extends Component {
   componentDidMount() {
-    linkGons(linkArray);
+    // linkGons(linkArray);
     tessGons(linkArray);
-    createImage(linkArray);
+
+    // createImage(linkArray);
   }
   
   render() {
     return (
       <Grid container justify="center" id="header">
         <Grid item xs={11} id="tess">
-          {/* <svg className="myTess" width="100%" height="100%"/> */}
+          <svg className="myTess" width="100%" height="100%"/>
         </Grid>
         <Grid item xs id="landingGrid">
           <Grid container justify="center" className="linkWrapper">

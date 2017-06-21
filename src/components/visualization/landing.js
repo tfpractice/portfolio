@@ -2,12 +2,17 @@ import * as d3 from 'd3';
 import * as Polygon from 'endogenesis';
 
 const {
-  polygon, range, setNumSides, apoMag, centralTicks, center, vertices, surroundTix, triangulate, tesselate,
-  closedInterval, path, nthTick, inscribed, tickPath, setX, setY, setRadius, tickPathInt, tickPoints,
+  polygon, range, setNumSides, apoMag, apoFactor, centralTicks, center, vertices, surroundTix, triangulate, tesselate,
+  closedInterval, path, nthTick, radius, inscribed, tickPath, setX, setY, setRadius, tickPathInt, tickPoints,
 } = Polygon;
 
+const tDom = poly => ((1.5 * apoMag(poly)) + radius(poly));
+
+// const tDom = poly => ((radius(poly)) * apoFactor(poly) * apoFactor(poly));
+const tRange = poly => tesselate(poly).map(vertices).map(v => v.x);
+
 export const tessScale = base => box => d3.scaleLinear()
-  .domain([ -(apoMag(base) * 2), apoMag(base) * 2, ])
+  .domain([ -tDom(base), tDom(base), ])
   .range([ box.height * 0.1, box.height * 0.9, ]);
 
 export const colorScale = data => d3.scaleLinear()
@@ -50,15 +55,16 @@ export const pathLine = selector => (p, idx) => {
   const triLocal = triangulate(lSrc)(tickPoints(3)(p));
   const cloLocal = closedInterval(5)(lSrc)(tickPoints(9)(p));
   const patLocal = path(p);
+  const centralD = centralTicks(7)(p);
 
-  lData = tPath;
+  lData = idx === 0 ? centralD : tPath;
   return rawLine(selector)(lData);
 };
 
 export const tessGons = (links) => {
   const tessBox = getBox('#header');
-  const tessheight = (getBox('#header').height) / 3;
-  const baseGon = setNumSides(links.length * 2)(setRadius(70)());
+  const tessheight = (tessBox.height) / 6;
+  const baseGon = setNumSides(links.length * 2)(setRadius(tessheight)());
   const localScale = tessScale(baseGon)(tessBox);
   const gons = [ baseGon, ].concat(tesselate(baseGon));
   const allV = gons.map(vertices).reduce((a, b) => a.concat(b), []);
@@ -99,7 +105,8 @@ export const tessGons = (links) => {
     .attr('y', d => (d.y))
     .attr('id', (d, i) => `tessPath${i}`)
     .attr('d', pathLine('#tessPath'))
-    .attr('transform', (d, i) => `translate(${tessBox.width / 4},${tessBox.height / 2})`)
+
+    // .attr('transform', (d, i) => `translate(${tessBox.width / 2},${tessBox.height / 2})`)
     .attr('stroke', (d, i) => ixScale(scaledGons)(i))
     .attr('stroke-width', '0.5')
     .attr('fill', (d, i) => ixScale(scaledGons)(i));

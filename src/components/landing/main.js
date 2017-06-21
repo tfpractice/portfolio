@@ -19,7 +19,7 @@ import Libraries from './libraries';
 
 const linkArray = [ 'about', 'teaching', 'projects', ];
 const swipeLabels = [ 'main', 'teaching', 'apps', 'libraries', ];
-const TextLinks = txtArr => txtArr.map(t => <Text>{t}</Text>);
+const TextLinks = txtArr => txtArr.map(t => <Text type="title">{t.toUpperCase()}</Text>);
 
 class Landing extends Component {
   render() {

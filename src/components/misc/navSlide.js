@@ -12,14 +12,10 @@ const withIndex = withState('index', 'setIndex', ({ index, }) => index || 0);
 const NavSlide = ({ labels, index, setIndex, children, ...sprops }) => (
   <Grid container align="center" justify="center" >
     <Grid item xs={12}>
-      <BottomNavigation>
-
+      <BottomNavigation index={index} onChange={(...args) => console.log('args', args)}>
         {labels.map((l, i) => (
-          <Grid item key={i} >
-            <Button onClick={() => setIndex(() => i)} children={l} />
-          </Grid>
+          <BottomNavigationButton key={i} onClick={() => setIndex(() => i)} label={l} />
         ))}
-
       </BottomNavigation>
     </Grid>
     <Grid item xs={12}>
