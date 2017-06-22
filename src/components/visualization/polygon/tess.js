@@ -1,22 +1,29 @@
 import React, { Component, } from 'react';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Hex from './hex';
+import Grid from 'material-ui/Grid';
+
 import { appendTess, } from './funcs';
 
 const styleSheet = createStyleSheet('Tess', () => ({
   container: {
-    width: '100%',
-    height: '100%',
+    width: 'auto',
+    height: 'auto',
+
     overflow: 'visible',
   },
   tessGroup: {
-    width: '100%',
-    height: '100%',
+    width: 'auto',
+    height: 'auto',
+    overflow: 'visible',
+
   },
   
   path: {
-    width: '100%',
-    height: '100%',
+    width: 'auto',
+    height: 'auto',
+    overflow: 'visible',
+
   },
 }));
 
@@ -30,13 +37,28 @@ class Tess extends Component {
     const cArray = [ ...Array(count).keys(), ];
 
     return (
-      <svg className={classes.container}>
-        <g className={classes.tessGroup}>
-          {cArray.map(k => (
-            <Hex className={classes.path} key={k}/>
-          ))}
-        </g>
-      </svg>
+      <Grid container align="center" justify="center">
+        <Grid item xs={12}>
+
+          <svg className={classes.container} >
+            <g className={classes.tessGroup}>
+              {/* {cArray.map(k => (
+                <Grid item xs>
+                  <Hex key={k}/>
+                </Grid>
+              ))} */}
+            </g>
+          </svg>
+        </Grid>
+        {/* </Grid> */}
+        {/* {cArray.map(k => (
+
+          // <Grid item xs>
+            <Hex className="tHex" key={k}/>
+
+          // </Grid>
+        ))} */}
+      </Grid>
     );
   }
 }

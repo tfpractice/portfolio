@@ -26,8 +26,8 @@ class Landing extends Component {
     return (
       <Grid container direction="column" justify="center">
         <Grid item xs>
-          <NavSlide labels={[ <Icon><Hex/></Icon>, ...TextLinks(swipeLabels), ]}>
-            <Tess count={4} />
+          <NavSlide className="mainSlide" labels={[ <Icon><Hex/></Icon>, ...TextLinks(swipeLabels), ]}>
+            <Tess count={4} style={{ 'min-height': '50vh', }}/>
             <Header/>
 
             <Overview/>

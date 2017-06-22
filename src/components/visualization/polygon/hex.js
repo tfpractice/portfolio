@@ -1,22 +1,29 @@
 import React, { Component, } from 'react';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import { appendHex, singleHex, } from './funcs';
+import Grid from 'material-ui/Grid';
 
 const styleSheet = createStyleSheet('HexSVG', () => ({
-  container: {
+  hexBox: {
     width: 'auto',
-
     height: 'auto',
-    overflow: 'visible',
+
+    // overflow: 'visible',
   },
   hexGroup: {
-    width: 'auto',
 
+    width: 'auto',
+    backgroundColor: '#333',
     height: 'auto',
+
+    // overflow: 'visible',
+
   },
 
   hexPath: {
     width: 'auto',
+
+    // overflow: 'visible',
 
     height: 'auto',
   },
@@ -30,11 +37,16 @@ class Hex extends Component {
     const { classes, } = this.props;
 
     return (
-      <svg className={classes.container}>
-        <g className={classes.hexGroup}>
-          <path className={classes.hexPath}/>
-        </g>
-      </svg>
+      <Grid container direction="column" justify="center">
+        <Grid item xs={12} >
+          <svg className={`hexBox ${classes.hexBox}`}>
+            <g className={`hexGroup ${classes.hexGroup}`}>
+              <path className={`hexPath ${classes.hexPath}`}/>
+            </g>
+          </svg>
+        </Grid>
+      </Grid>
+
     );
   }
 }
