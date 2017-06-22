@@ -11,13 +11,17 @@ const withIndex = withState('index', 'setIndex', ({ index, }) => index || 0);
 
 const NavSlide = ({ labels, index, setIndex, children, ...sprops }) => (
   <Grid container align="center" justify="center" >
-    <Grid item xs={12}>
-      <BottomNavigation index={index} onChange={(...args) => console.log('args', args)}>
+    {/* <Grid item xs={12}> */}
+    <AppBar>
+      <Toolbar>
+        {/* <BottomNavigation index={index}> */}
         {labels.map((l, i) => (
-          <BottomNavigationButton key={i} onClick={() => setIndex(() => i)} label={l} children={l} />
+          <Button key={i} onClick={() => setIndex(() => i)} children={l} />
         ))}
-      </BottomNavigation>
-    </Grid>
+        {/* </BottomNavigation> */}
+      </Toolbar>
+    </AppBar>
+    {/* </Grid> */}
     <Grid item xs={12}>
       <SwipeableViews index={index} enableMouseEvents {...sprops}>
         {children}
