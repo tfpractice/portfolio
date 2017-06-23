@@ -6,6 +6,7 @@ const {
   setNumSides, apoMag, apoFactor, centralTicks, tickPath, inscribed, numSides,
   center, vertices, surroundTix, tesselate, radius, setX, setY, setRadius,
 } = Polygon;
+
 const tDom = poly => (2 * radius(poly)) + (apoMag(poly) / 2);
 const pDom = poly => radius(poly);
 const catBin = (a = [], b = []) => [ ...a, ...b, ];
@@ -77,14 +78,41 @@ export const viewHex = classes => (links) => {
     .attr('stroke', 'none');
 };
 
-export const viewTess = classes => (count) => {
+export const appendHex = classes => (links) => {
+  const viewGon = setNumSides(6)();
+  const vx = -1 * radius(viewGon);
+  const vy = -1 * radius(viewGon);
+  const vw = 2 * radius(viewGon);
+  const vh = 2 * radius(viewGon);
+
+  return d3.selectAll(`.${classes.hexWrapper}`)
+    .append('svg')
+    .attr('viewBox', `${vx},${vy},${vw},${vh}`)
+
+    // .selectAll(`.${classes.hexGroup}`)
+    .selectAll(`.${classes.hexGroup}`)
+    .data([ viewGon, ])
+    .append('g')
+    .classed(classes.hexGroup, true)
+    .append('path')
+    .classed(classes.path, true)
+    .attr('d', pathLine)
+    .attr('stroke', 'none');
+};
+
+function fillPink(d, i, nodes) {
+  d3.select(this).attr('fill', '#f0f');
+}
+function fillBlack() {
+  d3.select(this).attr('fill', '#000');
+}
+
+export const viewTess = classes => (children) => {
   const viewGon = setNumSides(6)();
   const gons = (tesselate(viewGon));
   const allV = gons.map(vertices);
-
   const vx = radius(viewGon) * (-3);
   const vy = radius(viewGon) * (-3);
-
   const vw = radius(viewGon) * 2 * 3;
   const vh = radius(viewGon) * 2 * 3;
 
@@ -94,13 +122,14 @@ export const viewTess = classes => (count) => {
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll('g')
     .classed(classes.tessGroup, true)
-    .selectAll(`.${classes.path}`)
-    .data(gons)
-    .enter()
-    .append('path')
-    .classed(classes.path, true)
+
+    // .attr('transform', `rotate(${60})`)
+    .selectAll(`.${classes.tessPath}`)
+    .data(gons.slice(1))
     .attr('d', tessLine)
-    .attr('stroke', 'none');
+    .attr('stroke', 'none')
+    .on('mouseover', fillPink)
+    .on('mouseout', fillBlack);
 };
 
 export const appendTess = classes => (count) => {

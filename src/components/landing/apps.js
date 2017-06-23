@@ -1,17 +1,12 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 import List, { ListSubheader, } from 'material-ui/List';
-import { containers, } from '../../store/projects';
 import { appFilt, libFilt, scrFilt, } from '../../utils';
 
-// import ProjectLink from '../projects/link';
-// import ProjectCard from '../projects/card';
-// import CardList from '../projects/cardList';
 import LandingList from '../projects/landingList';
 const stateToProps = ({ projects, }) => ({
   apps: appFilt(projects),
