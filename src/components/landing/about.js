@@ -24,7 +24,7 @@ const About = () => (
           </Text>
         </CardContent>
         <CardActions>
-          <Button compact>Learn More</Button>
+          <Button >Learn More</Button>
         </CardActions>
       </Card>
 

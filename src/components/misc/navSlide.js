@@ -14,11 +14,16 @@ const NavSlide = ({ labels, index, setIndex, children, ...sprops }) => (
     {/* <Grid item xs={12}> */}
     <AppBar>
       <Toolbar>
-        {/* <BottomNavigation index={index}> */}
-        {labels.map((l, i) => (
-          <Button key={i} onClick={() => setIndex(() => i)} children={l} />
-        ))}
-        {/* </BottomNavigation> */}
+        <Grid container align="center" >
+
+          {/* <BottomNavigation index={index}> */}
+          {labels.map((l, i) => (
+            <Grid item xs key={i}>
+              <Button key={i} onClick={() => setIndex(() => i)} children={l} />
+            </Grid>
+          ))}
+          {/* </BottomNavigation> */}
+        </Grid>
       </Toolbar>
     </AppBar>
     {/* </Grid> */}

@@ -9,9 +9,9 @@ import List, { ListSubheader, } from 'material-ui/List';
 import { containers, } from '../../store/projects';
 import { appFilt, libFilt, scrFilt, } from '../../utils';
 
-import ProjectLink from '../projects/link';
-import ProjectCard from '../projects/card';
-import CardList from '../projects/cardList';
+// import ProjectLink from '../projects/link';
+// import ProjectCard from '../projects/card';
+// import CardList from '../projects/cardList';
 import LandingList from '../projects/landingList';
 const stateToProps = ({ projects, }) => ({
   apps: appFilt(projects),
@@ -28,7 +28,7 @@ const ProjectInfo = ({ apps, }) => {
         <Card raised>
           <CardHeader title="THese are my Apps" />
           <CardActions>
-            <Button compact>Learn More</Button>
+            <Button >Learn More</Button>
           </CardActions>
         </Card>
       </Grid>

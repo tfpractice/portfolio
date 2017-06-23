@@ -28,7 +28,7 @@ const ProjectInfo = ({ apps, libs, scripts, }) => {
         <Card raised>
           <CardHeader title="THese are my projects" />
           <CardActions>
-            <Button compact>Learn More</Button>
+            <Button >Learn More</Button>
           </CardActions>
         </Card>
       </Grid>

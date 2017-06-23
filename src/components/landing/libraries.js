@@ -28,7 +28,7 @@ const Libraries = ({ libs, }) => {
         <Card raised>
           <CardHeader title="THese are my Libraries" />
           <CardActions>
-            <Button compact>Learn More</Button>
+            <Button >Learn More</Button>
           </CardActions>
         </Card>
       </Grid>

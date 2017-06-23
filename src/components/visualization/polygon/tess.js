@@ -3,61 +3,36 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Hex from './hex';
 import Grid from 'material-ui/Grid';
 
-import { appendTess, } from './funcs';
+import { appendTess, viewTess, } from './funcs';
 
 const styleSheet = createStyleSheet('Tess', () => ({
-  container: {
-    width: 'auto',
-    height: 'auto',
-
-    overflow: 'visible',
-  },
-  tessGroup: {
-    width: 'auto',
-    height: 'auto',
-    overflow: 'visible',
-
-  },
+  container: {},
+  tessGroup: {},
   
-  path: {
-    width: 'auto',
-    height: 'auto',
-    overflow: 'visible',
-
-  },
+  tessPath: {},
 }));
 
 class Tess extends Component {
   componentDidMount() {
-    appendTess(this.props.classes)(this.props.count || 6);
+    viewTess(this.props.classes)(this.props.count || 6);
   }
 
   render() {
     const { classes, count, } = this.props;
-    const cArray = [ ...Array(count).keys(), ];
+    const cArray = [ ...Array(6).keys(), ];
 
     return (
-      <Grid container align="center" justify="center">
-        <Grid item xs={12}>
-
-          <svg className={classes.container} >
+      <Grid container align="center" justify="center" >
+        <Grid item xs={11}>
+          <svg preserveAspectRatio="xMidYMid" className={classes.container} >
             <g className={classes.tessGroup}>
-              {/* {cArray.map(k => (
-                <Grid item xs>
-                  <Hex key={k}/>
-                </Grid>
-              ))} */}
+              {cArray.map(k => (
+                <path className={classes.tessPath} key={k}/>
+              ))}
             </g>
           </svg>
         </Grid>
-        {/* </Grid> */}
-        {/* {cArray.map(k => (
-
-          // <Grid item xs>
-            <Hex className="tHex" key={k}/>
-
-          // </Grid>
-        ))} */}
+        
       </Grid>
     );
   }

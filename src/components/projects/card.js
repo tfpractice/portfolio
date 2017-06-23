@@ -1,7 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import List, { ListItem, } from 'material-ui/List';
@@ -54,9 +53,9 @@ const ProjectCard = ({ project, classes, toggle, ...props }) => {
   const a = 0;
 
   //
-  // 
   //
-  // 
+  //
+  //
 
   return (
     <Card raised>

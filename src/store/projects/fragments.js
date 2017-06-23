@@ -27,6 +27,7 @@ export const PROJECT_INFO = gql`
   fragment projectInfo on Project {
     id
     title
+    repo
     description
     features
     category  

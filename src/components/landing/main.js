@@ -13,12 +13,13 @@ import { createImage, linkGons, } from '../visualization';
 import { NavSlide, } from '../misc';
 import Overview from './overview';
 import Header from './header';
-import ProjectInfo from '../projects/info';
+
+// import ProjectInfo from '../projects/info';
 import Apps from './apps';
 import Libraries from './libraries';
 import { Hex, Tess, } from '../visualization';
 const linkArray = [ 'about', 'teaching', 'projects', ];
-const swipeLabels = [ 'main', 'teaching', 'apps', 'libraries', ];
+const swipeLabels = [ 'about', 'apps', 'libraries', ];
 const TextLinks = txtArr => txtArr.map(t => <Text type="title">{t.toUpperCase()}</Text>);
 
 class Landing extends Component {
@@ -26,10 +27,9 @@ class Landing extends Component {
     return (
       <Grid container direction="column" justify="center">
         <Grid item xs>
-          <NavSlide className="mainSlide" labels={[ <Icon><Hex/></Icon>, ...TextLinks(swipeLabels), ]}>
-            <Tess count={4} style={{ 'min-height': '50vh', }}/>
-            <Header/>
-
+          <NavSlide className="mainSlide" labels={[ <Hex/>, ...TextLinks(swipeLabels), ]}>
+            <Tess count={4} />
+            {/* <Header/> */}
             <Overview/>
             <Apps/>
             <Libraries/>

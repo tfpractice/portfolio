@@ -1,8 +1,8 @@
 import React from 'react';
 import classnames from 'classnames';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
+import Avatar from 'material-ui/Avatar';
 import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import List, { ListItem, } from 'material-ui/List';
 import Collapse from 'material-ui/transitions/Collapse';
@@ -15,17 +15,16 @@ import { Expand, } from '../misc';
 import { qUtils, slug, } from '../../utils';
 import { ChipList, } from '../tools';
 import ProjectLink from './link';
-const { WithProject, } = containers;
+import FeatureList from './featureList';
 
+const { WithProject, } = containers;
+const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 const { edgeNodes, } = qUtils;
 
 const stateful = withState('open', 'toggle', false);
 const imgBase = 'http://image.tmdb.org/t/p/w300/';
 const hasImage = proj => proj.backdrop_path || proj.poster_path;
 const projImg = proj => proj.backdrop_path ? proj.backdrop_path : proj.poster_path;
-
-// const imgUrl = proj =>
-//   hasImage(proj) ? `${imgBase}${projImg(proj)}` : `http://placehold.it/300x200?text=${proj.title}`;
 
 const imgUrl = pj => 'http://via.placeholder.com/350/ff00ff/ffffff?text=_';
 const makeStyle = proj => ({ backgroundImage: `url(${imgUrl(proj)})`, });
@@ -55,12 +54,17 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
 
   return (
     <Card raised>
-      <CardHeader title={<ProjectLink project={project} >
-        <Text type="title" align="center">{project.title}</Text>
-      </ProjectLink>} />
+      <CardHeader
+        avatar={<a target="_blank" href={project.repo}>
+          <Avatar src={gitLogo} aria-label={`${project.title}`}/>
+        </a>}
+        title={
+          <ProjectLink project={project} >
+            <Text type="title">{project.title}</Text>
+          </ProjectLink>} />
       <CardMedia className={classes.details}
         style={!open ? { ...makeStyle(project), ...divStyle, } : divStyle}>
-
+        {!open && <Text type="subheading" align="center">{project.description}</Text>}
         <Collapse in={open}>
           <CardContent>
             <Grid container align="center">
@@ -68,9 +72,14 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
                 <img src={imgUrl(project)} style={{ maxWidth: '100%', }}/>
               </Grid>
               <Grid item xs={7}>
-                {project.features.map((f, i) => (
-                  <Text type="body1" children={f} key={i} noWrap />
-                ))}
+                <List>
+                  {project.features.map((f, i) => (
+                    <ListItem key={i}>
+                      <Text type="body1" children={f} key={i} noWrap />
+                    </ListItem>
+
+                  ))}
+                </List>
               </Grid>
             </Grid>
           </CardContent>
