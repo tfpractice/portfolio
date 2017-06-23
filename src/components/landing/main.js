@@ -24,12 +24,41 @@ const TextLinks = txtArr => txtArr.map(t => <Text type="title">{t.toUpperCase()}
 
 class Landing extends Component {
   render() {
+    const { labels, index, setIndex, children, ...sprops } = this.props;
+
+    // const wNav=({ labels, index, setIndex, children, ...sprops }) => (
+    //
+    // <Grid container align="center" justify="center" >
+    //   <AppBar>
+    //     <Toolbar>
+    //       <Grid container align="center" >
+    //
+    //         {/* <BottomNavigation index={index}> */}
+    //         {labels.map((l, i) => (
+    //           <Grid item xs key={i}>
+    //             <Button key={i} onClick={() => setIndex(() => i)} children={l} />
+    //           </Grid>
+    //         ))}
+    //         {/* </BottomNavigation> */}
+    //       </Grid>
+    //     </Toolbar>
+    //   </AppBar>
+    //   <Grid item xs={12}>
+    //     <SwipeableViews index={index} enableMouseEvents {...sprops}>
+    //  <Header/>
+    //  <Overview/>
+    //  <Apps/>
+    //  <Libraries/>
+    // </SwipeableViews>
+    //   </Grid>
+    // </Grid>
+    // );
+    
     return (
       <Grid container direction="column" justify="center">
         <Grid item xs>
           <NavSlide className="mainSlide" labels={[ <Hex/>, ...TextLinks(swipeLabels), ]}>
-            <Tess count={4} />
-            {/* <Header/> */}
+            <Header/>
             <Overview/>
             <Apps/>
             <Libraries/>
@@ -39,5 +68,33 @@ class Landing extends Component {
     );
   }
 }
+
+//
+// const wNav=({ labels, index, setIndex, children, ...sprops }) => (
+//
+// <Grid container align="center" justify="center" >
+//   {/* <Grid item xs={12}> */}
+//   <AppBar>
+//     <Toolbar>
+//       <Grid container align="center" >
+//
+//         {/* <BottomNavigation index={index}> */}
+//         {labels.map((l, i) => (
+//           <Grid item xs key={i}>
+//             <Button key={i} onClick={() => setIndex(() => i)} children={l} />
+//           </Grid>
+//         ))}
+//         {/* </BottomNavigation> */}
+//       </Grid>
+//     </Toolbar>
+//   </AppBar>
+//   {/* </Grid> */}
+//   <Grid item xs={12}>
+//     <SwipeableViews index={index} enableMouseEvents {...sprops}>
+//       {children}
+//     </SwipeableViews>
+//   </Grid>
+// </Grid>
+// );
 
 export default (Landing);
