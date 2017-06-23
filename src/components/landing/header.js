@@ -6,7 +6,9 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { Link, } from 'react-router-dom';
 
-import { createImage, linkGons, LandingVis, Hex, } from '../visualization';
+// import { Hex, Tess, } from '../visualization';
+
+import { createImage, linkGons, LandingVis, Hex, Tess, } from '../visualization';
 
 const { tessGons, } = LandingVis;
 const linkArray = [ 'about', 'teaching', 'projects', ];
@@ -22,21 +24,9 @@ class Header extends Component {
   render() {
     return (
       <Grid container justify="center" id="header">
-        
-        <Grid item xs>
-          <Hex/>
 
-        </Grid>
         <Grid item xs>
-          <Hex/>
-
-        </Grid>
-        <Grid item xs>
-          <Hex/>
-
-        </Grid>
-        <Grid item xs>
-          <Hex/>
+          <Tess count={4} />
 
         </Grid>
 
