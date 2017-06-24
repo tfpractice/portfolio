@@ -69,7 +69,7 @@ export const viewHex = classes => (links) => {
 
   const parentSelect = d3.select(hexParent);
 
-  d3.selectAll(`.${classes.hexBox}`)
+  const hexVG = d3.selectAll(`.${classes.hexBox}`)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.hexGroup}`)
     .data([ viewGon, ])
@@ -79,6 +79,8 @@ export const viewHex = classes => (links) => {
     .classed(classes.path, true)
     .attr('d', pathLine)
     .attr('stroke', 'none');
+
+  // console.log('hexVG.node()', hexVG.node());
 };
 
 export const appendHex = classes => (links) => {

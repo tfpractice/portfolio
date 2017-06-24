@@ -9,19 +9,18 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { Link, } from 'react-router-dom';
 import Icon from 'material-ui/Icon';
 import IconButton from 'material-ui/IconButton';
-
+import { Route, } from 'react-router-dom';
 import SwipeableViews from 'react-swipeable-views';
 import { withState, } from 'recompose';
 
 import Teaching from '../main/teaching';
-import { createImage, linkGons, } from '../visualization';
 import { NavSlide, } from '../misc';
 import Overview from './overview';
 import Header from './header';
-
+import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
-import { Hex, NavTess, } from '../visualization';
+import { Hex, NavTess, HexSVG, } from '../visualization';
 
 const linkArray = [ 'about', 'teaching', 'projects', ];
 const swipeLabels = [ 'about', 'apps', 'libraries', ];
@@ -31,8 +30,9 @@ const withIndex = withState('index', 'setIndex', ({ index, }) => index || 0);
 class Landing extends Component {
   render() {
     const labels = TextLinks(swipeLabels);
-    const { index, setIndex, } = this.props;
-    
+    const { index, setIndex, match, } = this.props;
+
+    console.log('this.props', this.props);
     return (
       <Grid container direction="column" justify="center">
         <Grid item xs>
@@ -49,17 +49,24 @@ class Landing extends Component {
           </AppBar>
         </Grid>
         <Grid item xs>
-          <SwipeableViews enableMouseEvents className="mainSlide" index={index}>
-            <NavTess index={index} >
-              {labels.map((l, i) => (
-                <Button key={i} onClick={() => setIndex(() => i)} />
-              ))}
-            </NavTess>
-            <Header/>
-            <Overview/>
-            <Apps/>
-            <Libraries/>
-          </SwipeableViews>
+          <Route path="/:key?" render={({ match, history, }) => {
+            console.log('match', match.params.key);
+            console.log('history', history);
+            return (<SwipeableViews enableMouseEvents className="mainSlide" index={index}>
+              <NavTess index={index} >
+                {labels.map((l, i) => (
+                  <Button key={i} onClick={() => setIndex(() => i)} />
+                ))}
+              </NavTess>
+              <HexSVG/>
+              
+              <FrontMatter/>
+              <Overview/>
+              <Apps/>
+              <Libraries/>
+            </SwipeableViews>);
+          }}/>
+
         </Grid>
       </Grid>
     );
