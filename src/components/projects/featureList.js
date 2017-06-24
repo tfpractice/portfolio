@@ -7,7 +7,7 @@ const FeatureList = ({ header, data, }) => (
       {header}
     </ListSubheader>}
     {data.map((f, i) => (
-      <ListItem divider key={i}>
+      <ListItem dense divider key={i}>
         <ListItemAvatar><img src="/images/hex.svg"/></ListItemAvatar>
         <ListItemText primary={f} />
       </ListItem>
