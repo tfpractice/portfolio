@@ -1,7 +1,6 @@
 import * as d3 from 'd3';
 import * as Polygon from 'endogenesis';
-import React, { Component, } from 'react';
-import { createStyleSheet, withStyles, } from 'material-ui/styles';
+
 const {
   setNumSides, apoMag, apoFactor, centralTicks, tickPath, inscribed, numSides,
   center, vertices, surroundTix, tesselate, radius, setX, setY, setRadius,
@@ -12,8 +11,6 @@ const pDom = poly => radius(poly);
 const catBin = (a = [], b = []) => [ ...a, ...b, ];
 const cVals = v => [ v.x, v.y, ];
 const tVals = poly => tesselate(poly).map(vertices).reduce(catBin, []).map(cVals).reduce(catBin, []);
-
-// <img src='data:image/svg+xml;utf8,<svg ... > ... </svg>'>
 
 export const tessScale = base => box => d3.scaleLinear()
   .domain([ -tDom(base), tDom(base), ])
@@ -72,7 +69,6 @@ export const viewHex = classes => (links) => {
 
   const parentSelect = d3.select(hexParent);
 
-  console.log('parentSelect', parentSelect);
   d3.selectAll(`.${classes.hexBox}`)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.hexGroup}`)
@@ -83,23 +79,6 @@ export const viewHex = classes => (links) => {
     .classed(classes.path, true)
     .attr('d', pathLine)
     .attr('stroke', 'none');
-
-  //
-  // console.log('d3.select(`.${classes.hexBox}`).node()', d3.select(`.${classes.hexBox}`).html());
-  //
-  // parentSelect.append('img')
-  //   .attr('src', () => {
-  //     const sel = d3.select(`.${classes.hexBox}`);
-  //     const serial = new XMLSerializer().serializeToString(sel.node());
-  //
-  //     console.log('serial', serial);
-  //     const srcString = `data:image/svg+xml;utf8,${serial}`;
-  //
-  //     // console.log('sel', sel);
-  //     // console.log('srcString', srcString);
-  //     return srcString;
-  //   }
-  //   );
 };
 
 export const appendHex = classes => (links) => {
@@ -113,7 +92,6 @@ export const appendHex = classes => (links) => {
     .append('svg')
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
 
-    // .selectAll(`.${classes.hexGroup}`)
     .selectAll(`.${classes.hexGroup}`)
     .data([ viewGon, ])
     .append('g')
@@ -147,7 +125,6 @@ export const viewTess = classes => (children) => {
     .selectAll('g')
     .classed(classes.tessGroup, true)
 
-    // .attr('transform', `rotate(${60})`)
     .selectAll(`.${classes.tessPath}`)
     .data(gons.slice(1))
     .attr('d', tessLine)

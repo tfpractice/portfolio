@@ -16,14 +16,8 @@ const styleSheet = createStyleSheet('ToolChip', theme => ({
   },
 }));
 
-const ToolChip = ({ tool, classes, ...rest }) => {
-  //
-  const a = 0;
-
-  return (
-    <Chip label={tool.name} />
-
-  );
-};
+const ToolChip = ({ tool, classes, ...rest }) => (
+  <Chip label={tool.name} />
+);
 
 export default withStyles(styleSheet)(ToolChip);
