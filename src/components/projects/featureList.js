@@ -1,14 +1,16 @@
 import React from 'react';
 import List, { ListItem, ListItemText, ListItemIcon, ListSubheader, } from 'material-ui/List';
 import Text from 'material-ui/Typography';
-
+import { Hex, } from '../visualization';
+import Avatar from 'material-ui/Avatar';
 const FeatureList = ({ header, data, }) => (
   <List dense>
-    <ListSubheader>
+    { header && <ListSubheader>
       {header}
-    </ListSubheader>
+    </ListSubheader>}
     {data.map((f, i) => (
       <ListItem dense key={i}>
+        <ListItemIcon><Hex/></ListItemIcon>
         <ListItemText primary={f} />
       </ListItem>
     ))}

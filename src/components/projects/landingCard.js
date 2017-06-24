@@ -27,18 +27,24 @@ const hasImage = proj => proj.backdrop_path || proj.poster_path;
 const projImg = proj => proj.backdrop_path ? proj.backdrop_path : proj.poster_path;
 
 const imgUrl = pj => 'http://via.placeholder.com/350/ff00ff/ffffff?text=_';
-const makeStyle = proj => ({ backgroundImage: `url(${imgUrl(proj)})`, });
+const makeStyle = proj => ({
+  backgroundImage: `url(${imgUrl(proj)})`,
+
+  'details::after': { opacity: 0.5, },
+  'details:hover': {
+    opacity: 0.5,
+    content: `${proj.description}`,
+  },
+});
 
 const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
-  // card: { maxWidth: 400, },
   details: {
-    display: 'flex',
-    flexDirection: 'column',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     backgroundRepeat: 'no-repeat',
-    opacity: '0.5',
   },
+
+  closed: { '&:hover': { opacity: 0.5, }, },
   content: { flex: '1 0 auto', },
   expand: {
     transform: 'rotate(0deg)',
@@ -64,12 +70,6 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
     { caption: 'full documentation deployed on surge', },
   ];
 
-  // const details = project.details.map(d => d.caption) || [
-  //   'built with es6, bundled with Rollup',
-  //   '90% code-coverage, tested with Jest',
-  //   'full documentation deployed on surge',
-  // ];
-
   return (
     <Card raised>
       <CardHeader
@@ -77,29 +77,39 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
           <Avatar src={gitLogo} aria-label={`${project.title}`}/>
         </a>}
         title={
-          <ProjectLink project={project} >
-            <Text type="title">{project.title}</Text>
-          </ProjectLink>} />
-      <CardMedia className={classes.details}
+          <Grid container justify="space-between" align="center">
+            <Grid item>
+              <ProjectLink project={project} >
+                <Text type="title">{project.title}</Text>
+              </ProjectLink>
+            </Grid>
+            <Grid item>
+              <IconButton onClick={() => toggle(x => !x)} >
+                <ExpandMoreIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+        }
+      />
+      <CardMedia className={`details ${classes.details} ${!open && classes.closed}`}
         style={!open ? { ...makeStyle(project), ...divStyle, } : divStyle}>
-        {!open && <Text type="subheading" align="center">{project.description}</Text>}
+        <Collapse in={!open}>
+          <Text type="subheading" align="center">{project.description}</Text>
+        </Collapse>
         <Collapse in={open}>
           <CardContent>
             <SwipeTabs enableMouseEvents>
-
-              <FeatureList tabLabel="tech" header={'tech features'} data={features}/>
-              <FeatureList tabLabel="highlights" header={'project higlights '} data={project.details.map(d => d.caption)}/>
+              <FeatureList tabLabel="tech" data={features}/>
+              <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
             </SwipeTabs>
           </CardContent>
-
         </Collapse>
       </CardMedia>
-      <CardActions>
-        <IconButton onClick={() => toggle(x => !x)} >
-          <ExpandMoreIcon />
-        </IconButton>
-        <ChipList tools={edgeNodes(project.tools)} />
-      </CardActions>
+      <Collapse in={!open}>
+        <CardActions>
+          <ChipList tools={edgeNodes(project.tools)} />
+        </CardActions>
+      </Collapse>
     </Card>
   );
 };

@@ -113,8 +113,8 @@ export const viewTess = classes => (children) => {
   const allV = gons.map(vertices);
   const vx = radius(viewGon) * (-3);
   const vy = radius(viewGon) * (-3);
-  const vw = radius(viewGon) * 2 * 3;
-  const vh = radius(viewGon) * 2 * 3;
+  const vw = radius(viewGon) * 4 * 3;
+  const vh = radius(viewGon) * 4 * 3;
 
   const cont = `.${classes.container}`;
 
