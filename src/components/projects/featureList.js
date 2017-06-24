@@ -2,10 +2,10 @@ import React from 'react';
 import List, { ListItem, ListItemText, ListItemIcon, ListSubheader, } from 'material-ui/List';
 import Text from 'material-ui/Typography';
 
-const FeatureList = ({ data, }) => (
+const FeatureList = ({ header, data, }) => (
   <List dense>
     <ListSubheader>
-      Project Features
+      {header}
     </ListSubheader>
     {data.map((f, i) => (
       <ListItem dense key={i}>

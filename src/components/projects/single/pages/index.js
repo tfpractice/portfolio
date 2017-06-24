@@ -8,12 +8,18 @@ export const slugMap = {
 };
 export const getProject = slug =>
   new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
+
 export const getDemos = slug =>
   getProject(slug).Demo || xData;
 
 export const getSlides = slug =>
   getProject(slug).slides || [];
 export const getTech = slug =>
-  getProject(slug).tech || [];
+  getProject(slug).tech || [
+    'built with es6, bundled with Rollup',
+    '90% code-coverage, tested with Jest',
+    'full documentation deployed on surge',
+  ];
+
 export const getContent = slug =>
   getProject(slug).content || '';

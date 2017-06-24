@@ -11,12 +11,12 @@ import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import { withState, } from 'recompose';
 import { containers, } from '../../store/projects';
-import { Expand, } from '../misc';
+import { Expand, SwipeTabs, } from '../misc';
 import { qUtils, slug, } from '../../utils';
 import { ChipList, } from '../tools';
 import ProjectLink from './link';
 import FeatureList from './featureList';
-
+import SwipableViews from 'react-swipeable-views';
 const { WithProject, } = containers;
 const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 const { edgeNodes, } = qUtils;
@@ -51,6 +51,24 @@ const divStyle = { minHeight: '80px', };
 
 const LandingCard = ({ project, classes, toggle, open, ...props }) => {
   const a = 0;
+  const features = project.features || [
+    'built with es6, bundled with Rollup',
+    '90% code-coverage, tested with Jest',
+    'full documentation deployed on surge',
+  ];
+
+  !project.details.every(d => d.caption) && console.log('project has no details', project.title);
+  const details = [
+    { caption: 'built with es6, bundled with Rollup', },
+    { caption: '90% code-coverage, tested with Jest', },
+    { caption: 'full documentation deployed on surge', },
+  ];
+
+  // const details = project.details.map(d => d.caption) || [
+  //   'built with es6, bundled with Rollup',
+  //   '90% code-coverage, tested with Jest',
+  //   'full documentation deployed on surge',
+  // ];
 
   return (
     <Card raised>
@@ -67,22 +85,13 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
         {!open && <Text type="subheading" align="center">{project.description}</Text>}
         <Collapse in={open}>
           <CardContent>
-            <Grid container align="center">
-              <Grid item xs={4}>
-                <img src={imgUrl(project)} style={{ maxWidth: '100%', }}/>
-              </Grid>
-              <Grid item xs={7}>
-                <List>
-                  {project.features.map((f, i) => (
-                    <ListItem key={i}>
-                      <Text type="body1" children={f} key={i} noWrap />
-                    </ListItem>
+            <SwipeTabs enableMouseEvents>
 
-                  ))}
-                </List>
-              </Grid>
-            </Grid>
+              <FeatureList tabLabel="tech" header={'tech features'} data={features}/>
+              <FeatureList tabLabel="highlights" header={'project higlights '} data={project.details.map(d => d.caption)}/>
+            </SwipeTabs>
           </CardContent>
+
         </Collapse>
       </CardMedia>
       <CardActions>
