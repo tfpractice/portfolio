@@ -6,7 +6,6 @@ import { viewHex, } from './funcs';
 const styleSheet = createStyleSheet('HexSVG', () => ({
   hexBox: {},
   hexGroup: {},
-
   hexPath: {},
 }));
 
