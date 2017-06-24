@@ -13,6 +13,8 @@ const catBin = (a = [], b = []) => [ ...a, ...b, ];
 const cVals = v => [ v.x, v.y, ];
 const tVals = poly => tesselate(poly).map(vertices).reduce(catBin, []).map(cVals).reduce(catBin, []);
 
+// <img src='data:image/svg+xml;utf8,<svg ... > ... </svg>'>
+
 export const tessScale = base => box => d3.scaleLinear()
   .domain([ -tDom(base), tDom(base), ])
   .range([ box.height * 0.1, box.height * 0.9, ]);
@@ -66,7 +68,12 @@ export const viewHex = classes => (links) => {
   const vw = 2 * radius(viewGon);
   const vh = 2 * radius(viewGon);
 
-  return d3.selectAll(`.${classes.hexBox}`)
+  const hexParent = d3.select(`.${classes.hexBox}`).node().parentNode;
+
+  const parentSelect = d3.select(hexParent);
+
+  console.log('parentSelect', parentSelect);
+  d3.selectAll(`.${classes.hexBox}`)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.hexGroup}`)
     .data([ viewGon, ])
@@ -76,6 +83,23 @@ export const viewHex = classes => (links) => {
     .classed(classes.path, true)
     .attr('d', pathLine)
     .attr('stroke', 'none');
+
+  //
+  // console.log('d3.select(`.${classes.hexBox}`).node()', d3.select(`.${classes.hexBox}`).html());
+  //
+  // parentSelect.append('img')
+  //   .attr('src', () => {
+  //     const sel = d3.select(`.${classes.hexBox}`);
+  //     const serial = new XMLSerializer().serializeToString(sel.node());
+  //
+  //     console.log('serial', serial);
+  //     const srcString = `data:image/svg+xml;utf8,${serial}`;
+  //
+  //     // console.log('sel', sel);
+  //     // console.log('srcString', srcString);
+  //     return srcString;
+  //   }
+  //   );
 };
 
 export const appendHex = classes => (links) => {

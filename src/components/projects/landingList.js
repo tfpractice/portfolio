@@ -1,9 +1,5 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Text from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import { connect, } from 'react-redux';
 
 import LandingCard from './landingCard';
 

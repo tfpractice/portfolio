@@ -22,6 +22,7 @@ import Header from './header';
 import Apps from './apps';
 import Libraries from './libraries';
 import { Hex, NavTess, } from '../visualization';
+
 const linkArray = [ 'about', 'teaching', 'projects', ];
 const swipeLabels = [ 'about', 'apps', 'libraries', ];
 const TextLinks = txtArr => [ <Hex/>, ].concat(txtArr.map(t => <Text type="title">{t.toUpperCase()}</Text>));
