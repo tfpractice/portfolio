@@ -1,7 +1,7 @@
 import React, { Component, } from 'react';
+import Grid from 'material-ui/Grid';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import { viewHex, } from './funcs';
-import Grid from 'material-ui/Grid';
 
 const styleSheet = createStyleSheet('HexSVG', () => ({
   hexBox: {},
