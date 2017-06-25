@@ -2,34 +2,17 @@ import React, { Component, } from 'react';
 import d3 from 'd3';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
-import { Link, } from 'react-router-dom';
-import * as visualization from '../visualization';
-import { createImage, linkGons, LandingVis, Hex, Tess, WithHex, } from '../visualization';
+import { NavTess, } from '../visualization';
+import { withRouter, } from 'react-router-dom';
 
-const HexButton = WithHex(Button);
-const { tessGons, } = LandingVis;
-const linkArray = [ 'about', 'teaching', 'projects', ];
+const sections = [ '#frontMatter', '#about', '#apps', '#libs', ];
 
-class Header extends Component {
-  componentDidMount() {
+const FrontMatter = ({ history, }) => (
+  <Grid container justify="center" id="header">
+    <Grid item xs>
+      <NavTess paths={sections} />
+    </Grid>
+  </Grid>
+);
 
-  }
-  
-  render() {
-    return (
-      <Grid container justify="center" id="header">
-
-        { [ ...Array(5).keys(), ].map(k =>
-          (<Grid item xs key={k}>
-            <HexButton>hexbutton</HexButton>
-          </Grid>)
-        )}
-
-      </Grid>
-    );
-  }
-}
-export default Header;
-            
+export default withRouter(FrontMatter);

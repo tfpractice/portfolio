@@ -2,6 +2,7 @@ import React, { Component, } from 'react';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Hex from './hex';
 import Grid from 'material-ui/Grid';
+import { NavLink, } from 'react-router-dom';
 
 import { appendTess, viewTess, } from './funcs';
 
@@ -18,7 +19,7 @@ class Tess extends Component {
   }
 
   render() {
-    const { classes, } = this.props;
+    const { classes, paths, } = this.props;
     const cArray = [ ...Array(6).keys(), ];
     
     return (
@@ -26,8 +27,8 @@ class Tess extends Component {
         <Grid item xs={10}>
           <svg className={classes.container} >
             <g className={classes.tessGroup}>
-              {this.props.children.map((c, k) => (
-                k !== 0 && <path key={k} className={classes.tessPath} {...c.props} />
+              {this.props.paths.map((c, k) => (
+                k !== 0 && <NavLink to={c} key={k} {...c.props}><path key={k} className={classes.tessPath} {...c.props} /></NavLink>
               ))}
             </g>
           </svg>

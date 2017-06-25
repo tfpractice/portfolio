@@ -5,6 +5,7 @@ import Avatar from 'material-ui/Avatar';
 
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
+
 import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
 import Card, { CardActions, CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
@@ -61,14 +62,15 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
   return (
     <Card raised>
       <CardHeader
-        avatar={<a target="_blank" href={project.repo}>
-          <Avatar src={gitLogo} aria-label={`${project.title}`}/>
-        </a>}
+        avatar={
+          <a target="_blank" href={project.repo}>
+            <Avatar src={gitLogo} aria-label={`${project.title}`}/>
+          </a>}
         title={
           <Grid container justify="space-between" align="center">
             <Grid item>
               <ProjectLink project={project} >
-                <Text type="title">{project.title}</Text>
+                <Text type="subheading">{project.title}</Text>
               </ProjectLink>
             </Grid>
             <Grid item>
@@ -87,12 +89,15 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
         </Collapse>
         <Collapse in={open}>
           <CardContent>
+            <Grid container align="center" justify="center">
+              <Grid item xs>
+                <SwipeTabs enableMouseEvents>
+                  <FeatureList tabLabel="tech" data={features}/>
+                  <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
+                </SwipeTabs>
+              </Grid>
+            </Grid>
 
-            <SwipeTabs enableMouseEvents>
-              <FeatureList tabLabel="tech" data={features}/>
-              <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
-            </SwipeTabs>
-            
           </CardContent>
         </Collapse>
       </CardMedia>

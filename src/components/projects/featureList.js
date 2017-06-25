@@ -1,17 +1,18 @@
 import React from 'react';
 import Icon from 'material-ui/Icon';
+import SvgIcon from 'material-ui/SvgIcon';
 import List, { ListItem, ListItemText, ListItemIcon, ListSubheader, ListItemAvatar, } from 'material-ui/List';
 
-import { HexSVG, } from '../visualization';
+import { HexSVG, RawHex, } from '../visualization';
 const FeatureList = ({ header, data, }) => (
   <List dense>
     { header && <ListSubheader>
       {header}
     </ListSubheader>}
     {data.map((f, i) => (
-      <ListItem divider key={i}>
-        <ListItemIcon><Icon ><HexSVG/></Icon></ListItemIcon>
-        <ListItemText primary={f} />
+      <ListItem divider dense key={i}>
+        <ListItemIcon><SvgIcon ><RawHex/></SvgIcon></ListItemIcon>
+        <ListItemText inset primary={f} />
       </ListItem>
     ))}
   </List>
