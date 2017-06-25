@@ -3,13 +3,13 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Hex from './hex';
 import Grid from 'material-ui/Grid';
 
-import { appendTess, viewTess, } from './funcs';
+import { viewTess, } from './funcs';
 
 const styleSheet = createStyleSheet('Tess', () => ({
   container: {},
   tessGroup: {},
   tessWrap: {},
-  tessPath: {},
+  animPath: {},
 }));
 
 class Tess extends Component {
@@ -27,7 +27,7 @@ class Tess extends Component {
           <svg className={classes.container} >
             <g className={classes.tessGroup}>
               {this.props.children.map((c, k) => (
-                k !== 0 && <path key={k} className={classes.tessPath} {...c.props} />
+                k !== 0 && <path key={k} className={classes.animPath} {...c.props} />
               ))}
             </g>
           </svg>

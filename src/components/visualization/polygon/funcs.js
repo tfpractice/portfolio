@@ -110,7 +110,22 @@ function fillPink(d, i, nodes) {
 function fillBlack() {
   d3.select(this).attr('fill', '#000');
 }
+function pathLength(d, i, e) {
+  // console.log('d,i,e', d, i, e);
+  const len = d3.select(this).node().getTotalLength();
 
+  console.log('len', len);
+}
+function dashArray() {
+  const len = d3.select(this).node().getTotalLength();
+
+  return `${len} ${len}`;
+}
+function pathOffset() {
+  const len = d3.select(this).node().getTotalLength();
+
+  return len;
+}
 export const viewTess = classes => (children) => {
   const viewGon = setNumSides(6)();
   const gons = (tesselate(viewGon));
@@ -120,44 +135,133 @@ export const viewTess = classes => (children) => {
   const vw = radius(viewGon) * 4 * 3;
   const vh = radius(viewGon) * 4 * 3;
 
-  const cont = `.${classes.container}`;
+  const cont = `.${classes.wrapper}`;
 
-  return d3.selectAll(cont)
+  const t750 = d3.transition()
+    .duration(750)
+    .ease(d3.easeLinear);
+  
+  const tessBox = d3.selectAll(cont)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll('g')
-    .classed(classes.tessGroup, true)
+    .classed(classes.group, true)
 
-    .selectAll(`.${classes.tessPath}`)
+    .selectAll(`.${classes.path}`)
     .data(gons.slice(1))
     .attr('d', tessLine)
     .attr('stroke', 'none')
     .on('mouseover', fillPink)
     .on('mouseout', fillBlack);
-};
+    
+  const paths = d3.selectAll(`.${classes.path}`);
 
-export const appendTess = classes => (count) => {
-  const cont = `.${classes.container}`;
-  const tessBox = getBox(cont);
-  const tessheight = (tessBox.height) / (7 * Math.cos(Math.PI / (6)));
-  const baseGon = setNumSides(6)(setRadius(tessheight)());
-  const localScale = tessScale(baseGon)(tessBox);
-  const gons = (tesselate(baseGon));
-  const modGon = g =>
-    [ setX(localScale(g.x)), setY(localScale(g.y)), ]
-      .reduce((pl, fn) => fn(pl), g);
-  const mGons = gons.map(modGon);
-  const hexes = d3.selectAll('.tHex');
-  const dBox = getBox('.mainSlide').height;
- 
-  return d3.selectAll(cont)
-    .selectAll('g')
-    .attr('transform', `scale(${5})`)
-    .classed(classes.tessGroup, true)
-    .selectAll(`.${classes.path}`)
-    .data(mGons)
-    .enter()
-    .append('path')
-    .classed(classes.path, true)
-    .attr('d', tessLine)
-    .attr('stroke', 'none');
+  paths
+    .attr('stroke', 'steelblue')
+    .attr('stroke-width', '2')
+    .attr('stroke-dasharray', dashArray)
+    .attr('stroke-dashoffset', pathOffset);
+
+  // .transition(t750)
+    
+  // .attr('stroke-dashoffset', 0);
+  paths.on('mouseenter', function(a, b, c) {
+    // console.log('title', this);
+    console.log('a,b,c', a, b, c);
+    d3.select(this)
+      .transition(t750)
+      .attr('stroke', '#0f0')
+
+      .attr('stroke-dashoffset', pathOffset);
+  });
+
+  // const totalLength = path.node().getTotalLength();
+  //
+  // path
+  //   .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
+  //   .attr('stroke-dashoffset', totalLength)
+  // .transition()
+  // .duration(2000)
+  // .ease('linear')
+  // .attr('stroke-dashoffset', 0);
+  //
+  // svg.on('click', () => {
+  //   path
+  //     .transition()
+  //     .duration(2000)
+  //     .ease('linear')
+  //     .attr('stroke-dashoffset', totalLength);
+  // });
+    
+  const groupSelect = d3.select(`.${classes.group}`);
+  const txt = d3.selectAll(`.${classes.text}`);
+
+  // console.log('groupSelect', groupSelect);
+  txt.style('color', 'green') // make the body green
+    .transition(t750)
+    .style('color', 'red'); // then transition to red
+      
+  txt.attr('x', `${vx}`)
+    .attr('y', `${vy}`);
+};
+export const animatePath = (classes) => {
+  const w = 700;
+  const h = 300;
+
+  const svg = d3.select('#drawPath')
+    .append('svg')
+    .attr('width', w)
+    .attr('height', h)
+    .attr('id', 'visualization')
+    .attr('xmlns', 'http://www.w3.org/2000/svg');
+
+  const data = d3.range(11).map(() => Math.random() * 10);
+  const x = d3.scale.linear().domain([ 0, 10, ]).range([ 0, 700, ]);
+  const y = d3.scale.linear().domain([ 0, 10, ]).range([ 10, 290, ]);
+  const line = d3.svg.line()
+    .interpolate('cardinal')
+    .x((d, i) => x(i))
+    .y(d => y(d));
+
+  const path = svg.append('path')
+    .attr('d', line(data))
+    .attr('stroke', 'steelblue')
+    .attr('stroke-width', '2')
+    .attr('fill', 'none');
+
+  const totalLength = path.node().getTotalLength();
+
+  path
+    .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
+    .attr('stroke-dashoffset', totalLength)
+    .transition()
+    .duration(2000)
+    .ease('linear')
+    .attr('stroke-dashoffset', 0);
+
+  svg.on('click', () => {
+    path
+      .transition()
+      .duration(2000)
+      .ease('linear')
+      .attr('stroke-dashoffset', totalLength);
+  });
+};
+export const showText = (classes) => {
+  // const t750 = d3.transition()
+  //   .duration(750)
+  //   .ease(d3.easeLinear);
+  //
+  // const groupSelect = d3.select(`.${classes.group}`);
+  // const txt = d3.selectAll(`.${classes.text}`);
+  //
+  // console.log('groupSelect', groupSelect);
+  // txt.style('color', 'green') // make the body green
+  //   .transition(t750)
+  //   .style('color', 'red'); // then transition to red
+  //
+  // txt.attr('x', `${vx}`);
+  //
+  // // txt.attr('x',)
+
+  console.log('txt');
 };
