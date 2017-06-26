@@ -25,7 +25,7 @@ class Tess extends Component {
   componentDidMount() {
     viewTess(this.props.classes)(this.props.children);
 
-    showText(this.props.classes);
+    // showText(this.props.classes);
   }
 
   render() {

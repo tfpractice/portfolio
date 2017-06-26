@@ -11,35 +11,20 @@ import { Expand, Virtualize, VirtualSwipe, } from '../misc';
 import Testimonial from './testimonial';
 import Skills from './skills';
 import Reviews from './reviews';
-
+import About from './about';
+import Teaching from './teaching';
 const Overview = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>
-      <Card>
-        <CardHeader title="Welcome to My site" />
-        <CardContent>
-          <Text color="secondary" type="body1">
-           I'm a full-stack web developer and educator with a passion for functional programming and application architecture
-          </Text>
-        </CardContent>
-        <CardActions>
-          <Button >Learn More</Button>
-        </CardActions>
-      </Card>
+      <About/>
     </Grid>
     <Grid item xs={11}>
-      <Grid container justify="center" gutter={40} >
-        <Grid item xs={10} sm={6}>
+      <Grid container justify="center" >
+        <Grid item xs={11}>
           <Expand
             header={<Text color="inherit" type="display1" children="Skills" />}
             children={<Skills/>} />
         </Grid>
-        <Grid item xs={10} sm={6}>
-          <Expand
-            header={<Text color="inherit" type="display1" children="Reviews" />}
-            children={<Reviews/>} />
-        </Grid>
-       
       </Grid>
     </Grid>
   </Grid>

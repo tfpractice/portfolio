@@ -15,14 +15,17 @@ const tVals = poly => tesselate(poly).map(vertices).reduce(catBin, []).map(cVals
 export const tessScale = base => box => d3.scaleLinear()
   .domain([ -tDom(base), tDom(base), ])
   .range([ box.height * 0.1, box.height * 0.9, ]);
+
 export const polyScale = base => box => d3.scaleLinear()
   .domain([ -radius(base), radius(base), ])
   .range([ box.height * 0.1, box.height * 0.9, ]);
+
 export const getBox = sel => d3.select(sel).node().getBoundingClientRect();
+
 export const rawLine = data => d3.line()
   .x(d => d.x)
   .y(d => d.y)(data);
-  
+
 export const pathLine = (p, idx) => {
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
@@ -30,6 +33,7 @@ export const pathLine = (p, idx) => {
  
   return rawLine(lData);
 };
+
 export const hexLine = (p, idx) => {
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
@@ -37,6 +41,7 @@ export const hexLine = (p, idx) => {
  
   return rawLine(lData);
 };
+
 export const tessLine = (p, idx) => {
   let pid;
  
@@ -65,10 +70,6 @@ export const viewHex = classes => (links) => {
   const vw = 2 * radius(viewGon);
   const vh = 2 * radius(viewGon);
 
-  const hexParent = d3.select(`.${classes.hexBox}`).node().parentNode;
-
-  const parentSelect = d3.select(hexParent);
-
   const hexVG = d3.selectAll(`.${classes.hexBox}`)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.hexGroup}`)
@@ -79,8 +80,6 @@ export const viewHex = classes => (links) => {
     .classed(classes.path, true)
     .attr('d', pathLine)
     .attr('stroke', 'none');
-
-  // console.log('hexVG.node()', hexVG.node());
 };
 
 export const appendHex = classes => (links) => {
@@ -111,10 +110,7 @@ function fillBlack() {
   d3.select(this).attr('fill', '#000');
 }
 function pathLength(d, i, e) {
-  // console.log('d,i,e', d, i, e);
   const len = d3.select(this).node().getTotalLength();
-
-  console.log('len', len);
 }
 function dashArray() {
   const len = d3.select(this).node().getTotalLength();
@@ -126,6 +122,7 @@ function pathOffset() {
 
   return len;
 }
+
 export const viewTess = classes => (children) => {
   const viewGon = setNumSides(6)();
   const gons = (tesselate(viewGon));
@@ -152,116 +149,4 @@ export const viewTess = classes => (children) => {
     .attr('stroke', 'none')
     .on('mouseover', fillPink)
     .on('mouseout', fillBlack);
-    
-  const paths = d3.selectAll(`.${classes.path}`);
-
-  paths
-    .attr('stroke', 'steelblue')
-    .attr('stroke-width', '2')
-    .attr('stroke-dasharray', dashArray)
-    .attr('stroke-dashoffset', pathOffset);
-
-  // .transition(t750)
-    
-  // .attr('stroke-dashoffset', 0);
-  paths.on('mouseenter', function(a, b, c) {
-    // console.log('title', this);
-    console.log('a,b,c', a, b, c);
-    d3.select(this)
-      .transition(t750)
-      .attr('stroke', '#0f0')
-
-      .attr('stroke-dashoffset', pathOffset);
-  });
-
-  // const totalLength = path.node().getTotalLength();
-  //
-  // path
-  //   .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
-  //   .attr('stroke-dashoffset', totalLength)
-  // .transition()
-  // .duration(2000)
-  // .ease('linear')
-  // .attr('stroke-dashoffset', 0);
-  //
-  // svg.on('click', () => {
-  //   path
-  //     .transition()
-  //     .duration(2000)
-  //     .ease('linear')
-  //     .attr('stroke-dashoffset', totalLength);
-  // });
-    
-  const groupSelect = d3.select(`.${classes.group}`);
-  const txt = d3.selectAll(`.${classes.text}`);
-
-  // console.log('groupSelect', groupSelect);
-  txt.style('color', 'green') // make the body green
-    .transition(t750)
-    .style('color', 'red'); // then transition to red
-      
-  txt.attr('x', `${vx}`)
-    .attr('y', `${vy}`);
-};
-export const animatePath = (classes) => {
-  const w = 700;
-  const h = 300;
-
-  const svg = d3.select('#drawPath')
-    .append('svg')
-    .attr('width', w)
-    .attr('height', h)
-    .attr('id', 'visualization')
-    .attr('xmlns', 'http://www.w3.org/2000/svg');
-
-  const data = d3.range(11).map(() => Math.random() * 10);
-  const x = d3.scale.linear().domain([ 0, 10, ]).range([ 0, 700, ]);
-  const y = d3.scale.linear().domain([ 0, 10, ]).range([ 10, 290, ]);
-  const line = d3.svg.line()
-    .interpolate('cardinal')
-    .x((d, i) => x(i))
-    .y(d => y(d));
-
-  const path = svg.append('path')
-    .attr('d', line(data))
-    .attr('stroke', 'steelblue')
-    .attr('stroke-width', '2')
-    .attr('fill', 'none');
-
-  const totalLength = path.node().getTotalLength();
-
-  path
-    .attr('stroke-dasharray', `${totalLength} ${totalLength}`)
-    .attr('stroke-dashoffset', totalLength)
-    .transition()
-    .duration(2000)
-    .ease('linear')
-    .attr('stroke-dashoffset', 0);
-
-  svg.on('click', () => {
-    path
-      .transition()
-      .duration(2000)
-      .ease('linear')
-      .attr('stroke-dashoffset', totalLength);
-  });
-};
-export const showText = (classes) => {
-  // const t750 = d3.transition()
-  //   .duration(750)
-  //   .ease(d3.easeLinear);
-  //
-  // const groupSelect = d3.select(`.${classes.group}`);
-  // const txt = d3.selectAll(`.${classes.text}`);
-  //
-  // console.log('groupSelect', groupSelect);
-  // txt.style('color', 'green') // make the body green
-  //   .transition(t750)
-  //   .style('color', 'red'); // then transition to red
-  //
-  // txt.attr('x', `${vx}`);
-  //
-  // // txt.attr('x',)
-
-  console.log('txt');
 };

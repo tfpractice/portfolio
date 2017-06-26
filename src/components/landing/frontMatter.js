@@ -5,7 +5,7 @@ import Text from 'material-ui/Typography';
 import { NavTess, } from '../visualization';
 import { withRouter, } from 'react-router-dom';
 
-const sections = [ '#frontMatter', '#about', '#apps', '#libs', ];
+const sections = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs', ];
 
 const FrontMatter = ({ history, }) => (
   <Grid container justify="center" id="header">

@@ -32,7 +32,7 @@ const Libraries = ({ libs, }) => {
 
         <LandingList items={libs} />
       </Grid>
-      
+
     </Grid>
   );
 };

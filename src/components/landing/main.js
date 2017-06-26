@@ -15,8 +15,8 @@ import Overview from './overview';
 import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
-
-const sections = [ '#frontMatter', '#about', '#apps', '#libs', ];
+import Teaching from './teaching';
+const sections = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs', ];
 const ixMap = new Map(sections.map((k, i) => [ k, i, ]));
 const labelMap = new Map(sections.map((k, i) =>
   i ? [ k, <Text type="title">{k.slice(1).toUpperCase()}</Text>, ] : [ k, <HexSVG />, ]));
@@ -37,10 +37,11 @@ class Landing extends Component {
         <Grid item xs>
           <AppBar>
             <Toolbar>
-              <Grid container justify="space-around" align="center" >
+              <Grid container align="center" >
                 {sections.map((l, i) => (
                   <Grid item xs key={i}>
-                    <Button key={i} href={l} color="accent">{getLabel(l)}</Button>                            </Grid>
+                    <Button key={i} href={l} color="accent">{getLabel(l)}</Button>
+                  </Grid>
                 ))}
               </Grid>
             </Toolbar>
@@ -50,6 +51,7 @@ class Landing extends Component {
           <SwipeableViews enableMouseEvents className="mainSlide" index={getIndex(hash)}>
             <FrontMatter/>
             <Overview/>
+            <Teaching/>
             <Apps/>
             <Libraries/>
           </SwipeableViews>
