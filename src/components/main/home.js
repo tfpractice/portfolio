@@ -22,14 +22,14 @@ class Home extends Component {
   render() {
     return (
       <Grid container direction="column" justify="center" align="center" style={{ paddingTop: '5rem', }}>
-        <Nav />
+        {/* <Nav /> */}
         <Grid item xs={12} className="homeDiv">
           {/* <Route exact path="/" component={Landing} /> */}
 
           <Switch >
             <FadeRoute path="/projects" component={ProjectRoute} />
-            <FadeRoute path="/about" component={About} />
-            <FadeRoute path="/teaching" component={Teaching} />
+            {/* <FadeRoute path="/about" component={About} />
+            <FadeRoute path="/teaching" component={Teaching} /> */}
             <Route exact path="/" component={Landing} />
           </Switch>
 

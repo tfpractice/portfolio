@@ -141,8 +141,13 @@ export const viewTess = classes => (children) => {
 
     .selectAll(`.${classes.path}`)
     .data(gons.slice(1).reverse())
-    .attr('d', tessLine)
-    .attr('stroke', 'none');
+
+    // .attr('stroke', '3px solid #f0f')
+
+    .attr('d', tessLine);
+
+  // .attr('stroke', '#f0f')
+  // .attr('stroke-width', '1');
 };
 const t750 = d3.transition()
   .duration(1000 * 2)
