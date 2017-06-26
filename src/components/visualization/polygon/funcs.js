@@ -146,7 +146,33 @@ export const viewTess = classes => (children) => {
     .selectAll(`.${classes.path}`)
     .data(gons.slice(1))
     .attr('d', tessLine)
-    .attr('stroke', 'none')
-    .on('mouseover', fillPink)
-    .on('mouseout', fillBlack);
+    .attr('stroke', 'none');
+
+  // .on('mouseover', fillPink)
+  // .on('mouseout', fillBlack);
+};
+export const appendText = (classes) => {
+  // console.log('classes', classes);
+  // const xpos = d3.selectAll(`.${classes.container}`)
+  // .attr('x');
+
+  // console.log('xpos', xpos);
+  d3.selectAll('.tessText')
+    .attr('transform', (d, i, nodes) => {
+      console.log('d,i', d, i, nodes);
+      console.log('nodes[i].getBoundingClientRect()', nodes[i].getBoundingClientRect());
+      
+      const nHeight = nodes[i].getBoundingClientRect().height;
+
+      console.log('nHeight', nHeight);
+      return `translate(0,${i * 0.6}) scale(.04)`;
+    })
+
+    // .attr('text-decoration', 'underline solid #f0f')
+
+    // .attr('transform', 'scale(.05)')
+  ;
+
+  // .classed(classes.themeText, true)
+  // .text('tfpractice');
 };
