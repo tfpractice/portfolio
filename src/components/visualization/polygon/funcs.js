@@ -133,46 +133,35 @@ export const viewTess = classes => (children) => {
   const vh = radius(viewGon) * 4 * 3;
 
   const cont = `.${classes.wrapper}`;
-
-  const t750 = d3.transition()
-    .duration(750)
-    .ease(d3.easeLinear);
   
   const tessBox = d3.selectAll(cont)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
-    .selectAll('g')
-    .classed(classes.group, true)
+    .selectAll(`.${classes.group}`)
+    .attr('transform', 'rotate(-60)')
 
     .selectAll(`.${classes.path}`)
-    .data(gons.slice(1))
+    .data(gons.slice(1).reverse())
     .attr('d', tessLine)
     .attr('stroke', 'none');
-
-  // .on('mouseover', fillPink)
-  // .on('mouseout', fillBlack);
 };
+const t750 = d3.transition()
+  .duration(1000 * 2)
+  .ease(d3.easeLinear);
+const t1000 = d3.transition()
+  .duration((1000 * 2) + 250)
+  .ease(d3.easeLinear);
+
 export const appendText = (classes) => {
-  // console.log('classes', classes);
-  // const xpos = d3.selectAll(`.${classes.container}`)
-  // .attr('x');
-
-  // console.log('xpos', xpos);
   d3.selectAll('.tessText')
-    .attr('transform', (d, i, nodes) => {
-      console.log('d,i', d, i, nodes);
-      console.log('nodes[i].getBoundingClientRect()', nodes[i].getBoundingClientRect());
-      
-      const nHeight = nodes[i].getBoundingClientRect().height;
+    .attr('transform', (d, i,) => `translate(0,${i * 0.6}) scale(.04)`)
+    .attr('x', '1000');
+    
+  const animMain = d3.selectAll(`.${classes.mainText}`)
+    .transition(t750)
+    .attr('x', '0');
+  const animSub = d3.selectAll(`.${classes.subText}`)
+    .transition(t1000)
+    .attr('x', '0')
 
-      console.log('nHeight', nHeight);
-      return `translate(0,${i * 0.6}) scale(.04)`;
-    })
-
-    // .attr('text-decoration', 'underline solid #f0f')
-
-    // .attr('transform', 'scale(.05)')
   ;
-
-  // .classed(classes.themeText, true)
-  // .text('tfpractice');
 };

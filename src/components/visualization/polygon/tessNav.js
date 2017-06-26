@@ -1,6 +1,5 @@
 import React, { Component, } from 'react';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
-import Hex from './hex';
 import Grid from 'material-ui/Grid';
 import { NavLink, } from 'react-router-dom';
 import { withState, } from 'recompose';
@@ -56,7 +55,7 @@ class Tess extends Component {
     const showSpan = paths => paths.map((p, i) => (
       <tspan className={classes.span} key={i}>
         <tspan className={`${classes.subSpan}`}> // </tspan>
-        {p}
+        {p.toUpperCase()}
       </tspan>
       
     ));
@@ -66,32 +65,29 @@ class Tess extends Component {
         <Grid item xs={10}>
 
           <svg className={classes.wrapper} >
+            <g className={classes.textGroup}>
+              <text className={`tessText ${classes.mainText}`}>
+                tfpractice
+              </text>
+              <text className={`tessText ${classes.subText}`}>
+                {showSpan(this.props.links)}
+
+              </text>
+            </g>
             <g className={classes.group}>
 
-              <g className={classes.textGroup}>
-                <text className={`tessText ${classes.mainText}`}>
-                  tfpractice
-                </text>
-                <text className={`tessText ${classes.subText}`}>
-                  {showSpan(this.props.links)}
-
-                </text>
-              </g>
               {this.props.paths.map((c, k) => (
-                k !== 0 && <NavLink
+                k && <NavLink
+                  to={c}
+                  key={k}
+                  className={classes.pathLink}
                   onMouseOver={() => this.props.setLinks(x => [ c.slice(1), ])}
                   onMouseOut={() =>
                     setTimeout(() => {
-                      this.props.setLinks((x) => {
-                        console.log('x', x);
-                        return defPaths;
-                        return x[0] !== c.slice(1) ? defPaths : x;
-                      });
+                      this.props.setLinks(x => defPaths);
                     }, 1000)
                   }
-                  to={c}
-                  key={k}
-                  className={classes.pathLink}>
+                >
                   <path key={k} className={classes.path} />
                 </NavLink>
               ))}
