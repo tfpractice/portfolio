@@ -6,6 +6,8 @@ const {
   center, vertices, tessVector, surroundTix, tesselate, rotation, radius, setX, setY, nthTess, setRadius,
   exoRadius,
   exoFactor,
+  lacunaPathN,
+  lacunaTicks,
   tessVex,
   setRotation,
   baseAngle,
@@ -15,6 +17,7 @@ const {
   exoGons,
   exoTess,
   exoTesses,
+  lacunaPath,
 } = Polygon;
 
 const tDom = poly => (2 * radius(poly)) + (apoMag(poly) / 2);
@@ -51,6 +54,18 @@ export const hexLine = (p, idx) => {
   const lData = (idx === 0 || idx % 7 === 0) ? centralD : surData;
  
   return rawLine(lData);
+};
+
+export const backLine = (p, idx) => {
+  const centralD = centralTicks(7)(p);
+  const surData = surroundTix(7)(p);
+  const lData = (idx === 0 || idx % 7 === 0) ? centralD : surData;
+
+  // console.log('lacunaPathN(7)(p)(idx)', lacunaPathN(7)(p)(idx));
+
+  console.log('lacunaPath(7)(p))', lacunaPath(7)(p));
+  console.log('lData', lData);
+  return rawLine(lData.concat(lacunaPath(7)(p).slice(idx, idx + 6)));
 };
 
 export const tessLine = (p, idx) => {
@@ -199,8 +214,8 @@ export const viewBackDrop = (classes) => {
   const gons = (exoTesses(viewGon));
   const vx = exoRadius(viewGon) * (-3);
   const vy = exoRadius(viewGon) * (-3);
-  const vw = exoRadius(viewGon) * (3 * 4);
-  const vh = exoRadius(viewGon) * (3 * 4);
+  const vw = exoRadius(viewGon) * (3 * 1.2);
+  const vh = exoRadius(viewGon) * (3 * 1.2);
 
   // console.log('Polygon', Polygon);
   // console.log('vx,vy,vw,vh', vx, vy, vw, vh);
@@ -216,8 +231,6 @@ export const viewBackDrop = (classes) => {
     .style('position', 'fixed')
     .attr('z-index', '-10')
     .attr('fill', 'rgba(255,0,255,0.05)')
-
-    // .selectAll(`.${classes.group}`)
     .selectAll(`.${classes.path}`)
     .data(gons)
     .enter()
@@ -225,42 +238,6 @@ export const viewBackDrop = (classes) => {
     .classed(classes.path, true)
     .attr('d', hexLine);
 
-  // console.log('gons.length', gons.length);
-  const old = () => d3.selectAll(cont)
-    .attr('viewBox', `${vx},${vy},${vw},${vh}`)
-
-    .selectAll(`.${classes.group}`)
-    .data([ viewGon, ...exoGons(viewGon), ])
-
-    .enter()
-    .selectAll(`.${classes.path}`)
-    .data((d, i) => {
-      console.log('d,i', d, i);
-      const dSlice = tesselate(d).slice(1).map((p, i) =>
-        [ setX(nthTess(d)(i).x), setY(nthTess(d)(i).x), ].reduce((pl, fn) => fn(pl), p)
-      );
-      const next = tessVex(viewGon).map(m => m.add(center(d))).map((v, i) =>
-        [ setX((v.x) * 1), setY((v.y) * 1), setRotation(rotation(d) + (baseAngle(d) * i)), ]
-          .reduce((p, fn) => fn(p), d));
-
-      // tessVex(d).map()
-      // d.map(radius).map(console.log);
-
-      // retud.map(inscribed)
-      // return d;
-      console.log('tessVector(d)', tessVector(d).mag());
-      console.log('tessVector(viewGon)', tessVector(viewGon).mag());
-      return [ d, ].concat(next);
-    })
-
-    .enter()
-    .append('path')
-    .classed(classes.path, true)
-
-    // .on('mouseover', (d, i) => console.log('i', i))
-    .attr('fill', (d, i) => (!i || i % 7 === 0) ? '#f0f' : '#000')
-    .attr('d', hexLine);
-    
   const shownew = () =>
     d3.selectAll(cont)
       .attr('viewBox', `${vx},${vy},${vw},${vh}`)
@@ -278,7 +255,7 @@ export const viewBackDrop = (classes) => {
 
       // .on('mouseover', (d, i) => console.log('i', i))
       .attr('fill', (d, i) => (!i || i % 7 === 0) ? '#f0f' : '#000')
-      .attr('d', hexLine);
+      .attr('d', backLine);
       
-  shownew();
+  // shownew();
 };
