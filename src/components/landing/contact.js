@@ -10,12 +10,6 @@ import Grid from 'material-ui/Grid';
 import Icon from 'material-ui/Icon';
 import { withState, } from 'recompose';
 
-// const gitUrl = 'https://github.com/tfpractice';
-// const linkedIn = 'https://www.linkedin.com/in/tfpractice/';
-// const codePen = 'https://codepen.io/tfpractice/';
-//
-// const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
-
 const gitHub = {
   label: 'github',
   imageURL: 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png',
@@ -27,7 +21,6 @@ const codePen = {
   profileURL: 'https://codepen.io/tfpractice/',
 };
 
-// public/images/linkedinWhite.png
 const linkedIn = {
   label: 'linkedIn',
   imageURL: 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png',
@@ -40,12 +33,6 @@ const withIndex = withState('index', 'setIndex', ({ index, } = { index: 0, }) =>
 const style = { minHeight: '5rem', };
 
 class SimpleBottomNavigation extends Component {
-  // state = { index: 0, };
-
-  // handleChange = (event, index) => {
-  //   this.setState({ index, });
-  // };
-
   render() {
     const classes = this.props.classes;
     const { index, setIndex, } = this.props;
