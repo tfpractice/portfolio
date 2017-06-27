@@ -11,6 +11,7 @@ import { NavLink, } from 'react-router-dom';
 import { withState, } from 'recompose';
 
 import { HexSVG, BackDrop, } from '../visualization';
+import Contact from './contact';
 import Overview from './overview';
 import About from './about';
 import FrontMatter from './frontMatter';
@@ -49,13 +50,16 @@ class Landing extends Component {
           </AppBar>
         </Grid>
         <Grid item xs>
-          <SwipeableViews enableMouseEvents className="mainSlide" index={getIndex(hash)}>
+          <SwipeableViews style={{ overflow: 'hidden', }} enableMouseEvents className="mainSlide" index={getIndex(hash)}>
             <FrontMatter sections={sections}/>
             <About/>
             <Teaching/>
             <Apps/>
             <Libraries/>
           </SwipeableViews>
+        </Grid>
+        <Grid item xs>
+          <Contact/>
         </Grid>
       </Grid>
     );
