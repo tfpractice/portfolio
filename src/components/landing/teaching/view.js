@@ -14,7 +14,7 @@ const Teaching = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>
       <Card>
-        <CardHeader title="Educating" />
+        <CardHeader title="Autodidact and Educator" />
         <CardContent>
           <Text color="secondary" type="body2">
             <MarkdownPreview value={content}/>

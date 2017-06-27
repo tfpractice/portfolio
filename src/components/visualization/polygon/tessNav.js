@@ -6,7 +6,7 @@ import { withState, } from 'recompose';
 import { viewTess, showText, appendText, } from './funcs';
 import Text from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('Tess', (theme) => {
+const styleSheet = createStyleSheet('TessNav', (theme) => {
   console.log('theme', theme);
   
   return ({
@@ -44,15 +44,11 @@ const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR', ];
 
 const withLink = withState('links', 'setLinks', defPaths);
 
-class Tess extends Component {
+class TessNav extends Component {
   componentDidMount() {
     viewTess(this.props.classes)(this.props.children);
     appendText(this.props.classes);
   }
-
-  // shouldComponentUpdate() {
-  //   return false;
-  // }
 
   render() {
     const { classes, paths, } = this.props;
@@ -68,7 +64,6 @@ class Tess extends Component {
     return (
       <Grid container align="center" justify="center" >
         <Grid item xs={10}>
-
           <svg className={classes.wrapper} >
             <g className={classes.textGroup}>
               <text className={`tessText ${classes.mainText}`}>
@@ -76,19 +71,18 @@ class Tess extends Component {
               </text>
               <text className={`tessText ${classes.subText}`}>
                 {showSpan(this.props.links)}
-
               </text>
             </g>
             <g className={classes.group}>
-
               {this.props.paths.map((c, k) => (
-                k && <NavLink
-                  to={c}
-                  key={k}
-                  className={classes.pathLink}
-                  onMouseOver={() => this.props.setLinks(x => [ c.slice(1), ])}
+                k && <NavLink to={c} key={k} className={classes.pathLink}
+                  onMouseOver={() => {
+                    clearTimeout(this.tID);
+                    console.log('mouseover', this.tID);
+                    this.props.setLinks(x => [ c.slice(1), ]);
+                  }}
                   onMouseOut={() =>
-                    setTimeout(() => {
+                    this.tID = setTimeout(() => {
                       this.props.setLinks(x => defPaths);
                     }, 1000)
                   } >
@@ -102,4 +96,4 @@ class Tess extends Component {
     );
   }
 }
-export default withStyles(styleSheet)(withLink(Tess));
+export default withStyles(styleSheet)(withLink(TessNav));

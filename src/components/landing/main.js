@@ -12,11 +12,12 @@ import { withState, } from 'recompose';
 
 import { HexSVG, BackDrop, } from '../visualization';
 import Overview from './overview';
+import About from './about';
 import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
 import Teaching from './teaching';
-const sections = [ '#frontMatter', '#backDrop', '#about', '#teaching', '#apps', '#libs', ];
+const sections = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs', ];
 const ixMap = new Map(sections.map((k, i) => [ k, i, ]));
 const labelMap = new Map(sections.map((k, i) =>
   i ? [ k, <Text type="title">{k.slice(1).toUpperCase()}</Text>, ] : [ k, <HexSVG />, ]));
@@ -49,9 +50,8 @@ class Landing extends Component {
         </Grid>
         <Grid item xs>
           <SwipeableViews enableMouseEvents className="mainSlide" index={getIndex(hash)}>
-            <FrontMatter/>
-            <BackDrop/>
-            <Overview/>
+            <FrontMatter sections={sections}/>
+            <About/>
             <Teaching/>
             <Apps/>
             <Libraries/>

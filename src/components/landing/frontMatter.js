@@ -5,9 +5,7 @@ import Text from 'material-ui/Typography';
 import { NavTess, } from '../visualization';
 import { withRouter, } from 'react-router-dom';
 
-const sections = [ '#frontMatter', '#backDrop', '#about', '#teaching', '#apps', '#libs', ];
-
-const FrontMatter = ({ history, }) => (
+const FrontMatter = ({ history, sections, }) => (
   <Grid container justify="center" id="header">
     <Grid item xs>
       <NavTess paths={sections} />

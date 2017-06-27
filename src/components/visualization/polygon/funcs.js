@@ -1,6 +1,5 @@
 import * as d3 from 'd3';
 import * as Polygon from 'endogenesis';
-
 const {
   setNumSides, apoMag, apoFactor, centralTicks, tickPath, inscribed, numSides,
   center, vertices, tessVector, surroundTix, tesselate, rotation, radius, setX, setY, nthTess, setRadius,
@@ -19,7 +18,6 @@ const {
   exoTesses,
   lacunaPath,
 } = Polygon;
-
 const tDom = poly => (2 * radius(poly)) + (apoMag(poly) / 2);
 const pDom = poly => radius(poly);
 const catBin = (a = [], b = []) => [ ...a, ...b, ];
@@ -44,7 +42,7 @@ export const pathLine = (p, idx) => {
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
   const lData = idx === 0 ? centralD : surData;
- 
+
   return rawLine(lData);
 };
 
@@ -52,7 +50,7 @@ export const hexLine = (p, idx) => {
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
   const lData = (idx === 0 || idx % 7 === 0) ? centralD : surData;
- 
+
   return rawLine(lData);
 };
 
@@ -61,23 +59,19 @@ export const backLine = (p, idx) => {
   const surData = surroundTix(7)(p);
   const lData = (idx === 0 || idx % 7 === 0) ? centralD : surData;
 
-  // console.log('lacunaPathN(7)(p)(idx)', lacunaPathN(7)(p)(idx));
-
-  console.log('lacunaPath(7)(p))', lacunaPath(7)(p));
-  console.log('lData', lData);
-  return rawLine(lData.concat(lacunaPath(7)(p).slice(idx, idx + 6)));
+  return rawLine(lData);
 };
 
 export const tessLine = (p, idx) => {
   let pid;
- 
+
   switch (idx) {
   case 1:
     pid = 3;
     break;
   case 2:
     pid = 4;
-   
+  
     break;
   default:
     pid = 1;
@@ -85,7 +79,7 @@ export const tessLine = (p, idx) => {
   const base = vertices((p))[pid];
   const centralD = centralTicks(7)(p); const surData = surroundTix(7)(p);
   const lData = idx === 0 ? centralD : surData;
- 
+
   return rawLine(surData);
 };
 
@@ -95,7 +89,6 @@ export const viewHex = classes => (links) => {
   const vy = -1 * radius(viewGon);
   const vw = 2 * radius(viewGon);
   const vh = 2 * radius(viewGon);
-
   const hexVG = d3.selectAll(`.${classes.hexBox}`)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.hexGroup}`)
@@ -118,7 +111,6 @@ export const appendHex = classes => (links) => {
   return d3.selectAll(`.${classes.hexWrapper}`)
     .append('svg')
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
-
     .selectAll(`.${classes.hexGroup}`)
     .data([ viewGon, ])
     .append('g')
@@ -128,7 +120,6 @@ export const appendHex = classes => (links) => {
     .attr('d', pathLine)
     .attr('stroke', 'none');
 };
-
 function fillPink(d, i, nodes) {
   d3.select(this).attr('fill', '#f0f');
 }
@@ -163,17 +154,14 @@ export const viewTess = classes => (children) => {
   const vy = radius(viewGon) * (-3);
   const vw = radius(viewGon) * 4 * 3;
   const vh = radius(viewGon) * 4 * 3;
-
   const cont = `.${classes.wrapper}`;
-  
+ 
   const tessBox = d3.selectAll(cont)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.group}`)
     .attr('transform', 'rotate(-60)')
-
     .selectAll(`.${classes.path}`)
     .data(gons.slice(1).reverse())
-
     .attr('d', tessLine);
 };
 
@@ -187,25 +175,6 @@ export const appendText = (classes) => {
   const animSub = d3.selectAll(`.${classes.subText}`)
     .transition(t1000)
     .attr('x', '0')
-
-  //
-  // .attr('stroke-dasharray', (d, i, els) => {
-  //   console.log('d,i,els', d, i, els);
-  //   const plen = els[i].getTotalLength();
-  //
-  //   console.log('plen', plen);
-  //   return `${plen} ${plen}`;
-  // })
-  // .attr('stroke-dashoffset', (d, i, els) => {
-  //   console.log('d,i,els', d, i, els);
-  //   const plen = els[i].getTotalLength();
-  //
-  //   return plen;
-  //
-  // })
-  //
-  // .transition(t1000)
-
     .attr('stroke-dashoffset', 0);
 };
 
@@ -216,46 +185,39 @@ export const viewBackDrop = (classes) => {
   const vy = exoRadius(viewGon) * (-3);
   const vw = exoRadius(viewGon) * (3 * 1.2);
   const vh = exoRadius(viewGon) * (3 * 1.2);
-
-  // console.log('Polygon', Polygon);
-  // console.log('vx,vy,vw,vh', vx, vy, vw, vh);
   const cont = `.${classes.wrapper}`;
-  
+ 
   const tessBox = d3.select('#root')
-    .insert('svg')
+    .append('svg')
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .attr('width', '100%')
     .attr('height', '100%')
     .style('left', '0')
+    .style('background-color', 'rgba(239,239,239,1)')
     .style('top', '0')
     .style('position', 'fixed')
-    .attr('z-index', '-10')
-    .attr('fill', 'rgba(255,0,255,0.05)')
+    .style('z-index', '-10')
+    .attr('fill', 'rgba(255,0,255,0.08)')
+    .append('g')
+    .classed(classes.group, true)
+    .attr('transform', 'scale(1)')
     .selectAll(`.${classes.path}`)
     .data(gons)
     .enter()
     .append('path')
     .classed(classes.path, true)
     .attr('d', hexLine);
-
   const shownew = () =>
     d3.selectAll(cont)
       .attr('viewBox', `${vx},${vy},${vw},${vh}`)
-
       .selectAll(`.${classes.group}`)
-
-      // .data([ viewGon, ...exoGons(viewGon), ])
-
-      // .enter()
       .selectAll(`.${classes.path}`)
       .data(gons)
       .enter()
       .append('path')
       .classed(classes.path, true)
-
-      // .on('mouseover', (d, i) => console.log('i', i))
       .attr('fill', (d, i) => (!i || i % 7 === 0) ? '#f0f' : '#000')
       .attr('d', backLine);
-      
+     
   // shownew();
 };

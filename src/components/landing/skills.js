@@ -4,26 +4,26 @@ import Grid from 'material-ui/Grid';
 import Chip from 'material-ui/Chip';
 import Text from 'material-ui/Typography';
 import { Expand, } from '../misc';
-
+const sortSkills = arr => arr.sort((a, b) => a.length - b.length);
 const frontend = {
   category: 'frontend',
-  skills: [
+  skills: sortSkills([
     'react', 'jQuery', 'css', 'handlebars', 'redux', 'Bootstrap', 'material-ui',
-    'apollo', 'd3js', ].sort((a, b) => a.length - b.length),
+    'apollo', 'd3js', ]),
 };
 const backend = {
   category: 'backend',
-  skills: [
+  skills: sortSkills([
     'nodejs', 'express', 'redux', 'ruby', 'php', 'mongoDB', 'firebase', 'mySQL',
-    'ruby', 'graphQL', 'jest', 'rspec', 'jasmine', ],
+    'ruby', 'graphQL', 'jest', 'rspec', 'jasmine', ]),
 };
 
 const types = [ frontend, backend, ];
 
 const Skills = () => (
-  <Grid container direction="column" justify="center">
+  <Grid container align="center" justify="space-between">
     {types.map((t, i) => (
-      <Grid item xs key={i}>
+      <Grid item xs={5} key={i}>
         <Expand header={<Text children={t.category}/> }>
           <Grid container align="center" justify="center">
             {t.skills.map((s, j) => (
