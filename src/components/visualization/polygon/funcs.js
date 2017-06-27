@@ -3,7 +3,18 @@ import * as Polygon from 'endogenesis';
 
 const {
   setNumSides, apoMag, apoFactor, centralTicks, tickPath, inscribed, numSides,
-  center, vertices, surroundTix, tesselate, radius, setX, setY, setRadius,
+  center, vertices, tessVector, surroundTix, tesselate, rotation, radius, setX, setY, nthTess, setRadius,
+  exoRadius,
+  exoFactor,
+  tessVex,
+  setRotation,
+  baseAngle,
+  exoVector,
+  nthExo,
+  exoVex,
+  exoGons,
+  exoTess,
+  exoTesses,
 } = Polygon;
 
 const tDom = poly => (2 * radius(poly)) + (apoMag(poly) / 2);
@@ -37,7 +48,7 @@ export const pathLine = (p, idx) => {
 export const hexLine = (p, idx) => {
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
-  const lData = idx === 0 ? centralD : surData;
+  const lData = (idx === 0 || idx % 7 === 0) ? centralD : surData;
  
   return rawLine(lData);
 };
@@ -122,6 +133,12 @@ function pathOffset() {
 
   return len;
 }
+const t750 = d3.transition()
+  .duration(1000 * 2)
+  .ease(d3.easeLinear);
+const t1000 = d3.transition()
+  .duration((1000 * 2) + 250)
+  .ease(d3.easeLinear);
 
 export const viewTess = classes => (children) => {
   const viewGon = setNumSides(6)();
@@ -142,25 +159,13 @@ export const viewTess = classes => (children) => {
     .selectAll(`.${classes.path}`)
     .data(gons.slice(1).reverse())
 
-    // .attr('stroke', '3px solid #f0f')
-
     .attr('d', tessLine);
-
-  // .attr('stroke', '#f0f')
-  // .attr('stroke-width', '1');
 };
-const t750 = d3.transition()
-  .duration(1000 * 2)
-  .ease(d3.easeLinear);
-const t1000 = d3.transition()
-  .duration((1000 * 2) + 250)
-  .ease(d3.easeLinear);
 
 export const appendText = (classes) => {
   d3.selectAll('.tessText')
     .attr('transform', (d, i,) => `translate(0,${i * 0.6}) scale(.04)`)
-    .attr('x', '1000');
-    
+    .attr('x', 1000);
   const animMain = d3.selectAll(`.${classes.mainText}`)
     .transition(t750)
     .attr('x', '0');
@@ -168,5 +173,112 @@ export const appendText = (classes) => {
     .transition(t1000)
     .attr('x', '0')
 
-  ;
+  //
+  // .attr('stroke-dasharray', (d, i, els) => {
+  //   console.log('d,i,els', d, i, els);
+  //   const plen = els[i].getTotalLength();
+  //
+  //   console.log('plen', plen);
+  //   return `${plen} ${plen}`;
+  // })
+  // .attr('stroke-dashoffset', (d, i, els) => {
+  //   console.log('d,i,els', d, i, els);
+  //   const plen = els[i].getTotalLength();
+  //
+  //   return plen;
+  //
+  // })
+  //
+  // .transition(t1000)
+
+    .attr('stroke-dashoffset', 0);
+};
+
+export const viewBackDrop = (classes) => {
+  const viewGon = setNumSides(6)();
+  const gons = (exoTesses(viewGon));
+  const vx = exoRadius(viewGon) * (-3);
+  const vy = exoRadius(viewGon) * (-3);
+  const vw = exoRadius(viewGon) * (3 * 4);
+  const vh = exoRadius(viewGon) * (3 * 4);
+
+  // console.log('Polygon', Polygon);
+  // console.log('vx,vy,vw,vh', vx, vy, vw, vh);
+  const cont = `.${classes.wrapper}`;
+  
+  const tessBox = d3.select('#root')
+    .insert('svg')
+    .attr('viewBox', `${vx},${vy},${vw},${vh}`)
+    .attr('width', '100%')
+    .attr('height', '100%')
+    .style('left', '0')
+    .style('top', '0')
+    .style('position', 'fixed')
+    .attr('z-index', '-10')
+    .attr('fill', 'rgba(255,0,255,0.05)')
+
+    // .selectAll(`.${classes.group}`)
+    .selectAll(`.${classes.path}`)
+    .data(gons)
+    .enter()
+    .append('path')
+    .classed(classes.path, true)
+    .attr('d', hexLine);
+
+  // console.log('gons.length', gons.length);
+  const old = () => d3.selectAll(cont)
+    .attr('viewBox', `${vx},${vy},${vw},${vh}`)
+
+    .selectAll(`.${classes.group}`)
+    .data([ viewGon, ...exoGons(viewGon), ])
+
+    .enter()
+    .selectAll(`.${classes.path}`)
+    .data((d, i) => {
+      console.log('d,i', d, i);
+      const dSlice = tesselate(d).slice(1).map((p, i) =>
+        [ setX(nthTess(d)(i).x), setY(nthTess(d)(i).x), ].reduce((pl, fn) => fn(pl), p)
+      );
+      const next = tessVex(viewGon).map(m => m.add(center(d))).map((v, i) =>
+        [ setX((v.x) * 1), setY((v.y) * 1), setRotation(rotation(d) + (baseAngle(d) * i)), ]
+          .reduce((p, fn) => fn(p), d));
+
+      // tessVex(d).map()
+      // d.map(radius).map(console.log);
+
+      // retud.map(inscribed)
+      // return d;
+      console.log('tessVector(d)', tessVector(d).mag());
+      console.log('tessVector(viewGon)', tessVector(viewGon).mag());
+      return [ d, ].concat(next);
+    })
+
+    .enter()
+    .append('path')
+    .classed(classes.path, true)
+
+    // .on('mouseover', (d, i) => console.log('i', i))
+    .attr('fill', (d, i) => (!i || i % 7 === 0) ? '#f0f' : '#000')
+    .attr('d', hexLine);
+    
+  const shownew = () =>
+    d3.selectAll(cont)
+      .attr('viewBox', `${vx},${vy},${vw},${vh}`)
+
+      .selectAll(`.${classes.group}`)
+
+      // .data([ viewGon, ...exoGons(viewGon), ])
+
+      // .enter()
+      .selectAll(`.${classes.path}`)
+      .data(gons)
+      .enter()
+      .append('path')
+      .classed(classes.path, true)
+
+      // .on('mouseover', (d, i) => console.log('i', i))
+      .attr('fill', (d, i) => (!i || i % 7 === 0) ? '#f0f' : '#000')
+      .attr('d', hexLine);
+      
+  shownew();
 };

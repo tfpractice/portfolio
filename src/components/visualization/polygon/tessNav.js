@@ -15,7 +15,8 @@ const styleSheet = createStyleSheet('Tess', (theme) => {
     tessGroup: {},
     group: {},
     tessText: {},
-    path: {},
+    path: { },
+    animPath: { strokeWidth: '0.01px', stroke: '#000', },
     tessWrap: {},
     text: {},
     textGroup: {},
@@ -48,6 +49,10 @@ class Tess extends Component {
     viewTess(this.props.classes)(this.props.children);
     appendText(this.props.classes);
   }
+
+  // shouldComponentUpdate() {
+  //   return false;
+  // }
 
   render() {
     const { classes, paths, } = this.props;
@@ -86,8 +91,7 @@ class Tess extends Component {
                     setTimeout(() => {
                       this.props.setLinks(x => defPaths);
                     }, 1000)
-                  }
-                >
+                  } >
                   <path key={k} className={classes.path} />
                 </NavLink>
               ))}
