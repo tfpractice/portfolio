@@ -19,31 +19,51 @@ const imgStyle = {
 const About = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>
-      <HexCard>
-        <CardHeader title="A Passion for Programming" />
-        <CardContent>
-          <Grid container align="center">
-            <Grid item xs={3}>
-              <img style={imgStyle} src="/images/me.jpg"/>
-            </Grid>
-            <Grid item xs={8}>
-              <Text color="secondary" type="headline p">
-                <MarkdownPreview value={content}/>
-              </Text>
+      <Grid container justify="space-around">
+        <Grid item xs={12} sm={8}>
+          <HexCard>
+            <CardHeader title="A Passion for Programming" />
+            <CardContent>
+              <Grid container align="center">
+                <Grid item xs={3}>
+                  <img style={imgStyle} src="/images/me.jpg"/>
+                </Grid>
+                <Grid item xs={8}>
+                  <Text color="secondary" type="headline">
+                    <MarkdownPreview value={content}/>
+                  </Text>
+                </Grid>
+              </Grid>
+
+            </CardContent>
+            <CardActions>
+              <Button >Learn More</Button>
+            </CardActions>
+          </HexCard>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container >
+            <Grid item xs>
+              <SwipeableViews enableMouseEvents>
+                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+              </SwipeableViews>
             </Grid>
           </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
 
-        </CardContent>
-        <CardActions>
-          <Button >Learn More</Button>
-        </CardActions>
-      </HexCard>
+    <Grid item xs={10}>
+      <Skills/>
     </Grid>
     <Grid item xs={11}>
       <HexCard>
         <CardHeader title="Code as Craft" />
         <CardContent>
-          <Text color="secondary" type="subheading">
+          <Text color="secondary" type="headline">
             <MarkdownPreview value={codeStyle}/>
           </Text>
         </CardContent>
@@ -51,11 +71,6 @@ const About = () => (
           <Button >Learn More</Button>
         </CardActions>
       </HexCard>
-    </Grid>
-
-    <Grid item xs={11}>
-      <Skills/>
-
     </Grid>
   </Grid>
 );
