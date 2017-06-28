@@ -9,7 +9,8 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { MarkdownPreview, } from 'react-marked-markdown';
-import Skills from '../skills';
+
+// import Skills from '../skills';
 import { HexCard, Expand, } from '../../misc';
 import { content, codeStyle, } from './content';
 
@@ -17,12 +18,14 @@ const imgStyle = {
   width: 'calc(80% + 16px)',
   borderRadius: 'calc(50% )',
 };
+
+const cardStyle = { 'background-color': '#393939', };
 const SkillView = ({ skill, }) => {
   console.log('skill', skill);
   return (
     <Grid container justify="space-around">
       <Grid item xs={11} sm={8}>
-        <HexCard>
+        <HexCard className="SkillCard" style={cardStyle}>
           <CardHeader title={skill.headline} />
           <CardContent>
             <Text color="secondary" type="headline">

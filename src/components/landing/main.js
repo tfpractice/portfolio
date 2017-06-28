@@ -12,12 +12,12 @@ import { withState, } from 'recompose';
 
 import { HexSVG, BackDrop, } from '../visualization';
 import Contact from './contact';
-import Overview from './overview';
 import About from './about';
 import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
 import Teaching from './teaching';
+
 const sections = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs', ];
 const ixMap = new Map(sections.map((k, i) => [ k, i, ]));
 const labelMap = new Map(sections.map((k, i) =>
@@ -33,13 +33,14 @@ class Landing extends Component {
   render() {
     const { index, setIndex, match, location, history, } = this.props;
     const { hash, } = location;
-    
+
+    console.log('getIndex(hash)', getIndex(hash));
     return (
-      <Grid container direction="column" justify="center">
+      <Grid container direction="column" align="center" justify="center">
         <Grid item xs>
           <AppBar>
             <Toolbar>
-              <Grid container align="center" >
+              <Grid container justify="space-between" align="center" >
                 {sections.map((l, i) => (
                   <Grid item xs key={i}>
                     <Button key={i} href={l} color="accent">{getLabel(l)}</Button>
@@ -50,7 +51,7 @@ class Landing extends Component {
           </AppBar>
         </Grid>
         <Grid item xs>
-          <SwipeableViews style={{ overflow: 'hidden', }} enableMouseEvents className="mainSlide" index={getIndex(hash)}>
+          <SwipeableViews enableMouseEvents className="mainSlide" index={getIndex(hash)}>
             <FrontMatter sections={sections}/>
             <About/>
             <Teaching/>

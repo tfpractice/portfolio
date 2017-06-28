@@ -1,5 +1,4 @@
 import React, { Component, } from 'react';
-import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet, } from 'material-ui/styles';
 import BottomNavigation, { BottomNavigationButton, } from 'material-ui/BottomNavigation';
 
@@ -57,7 +56,5 @@ class SimpleBottomNavigation extends Component {
     );
   }
 }
-
-SimpleBottomNavigation.propTypes = { classes: PropTypes.object.isRequired, };
 
 export default withStyles(styleSheet)(withIndex(SimpleBottomNavigation));

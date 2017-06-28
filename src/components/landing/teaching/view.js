@@ -10,7 +10,7 @@ import { HexCard, } from '../../misc';
 
 import { content, } from './content';
 import { Expand, } from '../../misc';
-
+import { Wesley, } from './content';
 const Teaching = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>
@@ -22,18 +22,19 @@ const Teaching = () => (
           </Text>
         </CardContent>
         <CardActions>
+          <Text>Learn More</Text>
           <Button >Learn More</Button>
         </CardActions>
       </HexCard>
     </Grid>
-    <Grid item xs={11} >
+    <Grid item xs={11}>
       <Expand
         header={<Text color="inherit" type="display1" children="Reviews" />}
         children={
           <Grid container justify="center" align="center">
             {[ ...Array(4).keys(), ].map((t, i) => (
-              <Grid item xs key={i}>
-                <Testimonial key={i}/>
+              <Grid item xs={11} sm={6} key={i}>
+                <Testimonial student={Wesley} key={i}/>
               </Grid>
             ))}
           </Grid>} />
