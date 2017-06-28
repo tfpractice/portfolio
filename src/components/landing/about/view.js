@@ -9,8 +9,7 @@ import SwipeableViews from 'react-swipeable-views';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { MarkdownPreview, } from 'react-marked-markdown';
 import Skills from '../skills';
-import { HexCard, Expand, } from '../../misc';
-import { HexSVG, } from '../../visualization';
+import { HexCard, } from '../../misc';
 import { content, codeStyle, } from './content';
 
 const imgStyle = {
