@@ -25,10 +25,10 @@ const About = () => (
             <CardHeader title="A Passion for Programming" />
             <CardContent>
               <Grid container align="center">
-                <Grid item xs={3}>
+                <Grid item xs={11} sm={3}>
                   <img style={imgStyle} src="/images/me.jpg"/>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs={11} sm={9}>
                   <Text color="secondary" type="headline">
                     <MarkdownPreview value={content}/>
                   </Text>
@@ -41,36 +41,23 @@ const About = () => (
             </CardActions>
           </HexCard>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        {/* <Grid item xs={12} sm={4}>
           <Grid container >
             <Grid item xs>
-              <SwipeableViews enableMouseEvents>
-                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
-                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
-                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
-                <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
-              </SwipeableViews>
+          <SwipeableViews enableMouseEvents>
+          <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+          <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+          <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+          <img src="http://via.placeholder.com/300/b2dfdb/ffffff?text=_" />
+          </SwipeableViews>
             </Grid>
           </Grid>
-        </Grid>
+        </Grid> */}
       </Grid>
     </Grid>
 
-    <Grid item xs={10}>
+    <Grid item xs={12}>
       <Skills/>
-    </Grid>
-    <Grid item xs={11}>
-      <HexCard>
-        <CardHeader title="Code as Craft" />
-        <CardContent>
-          <Text color="secondary" type="headline">
-            <MarkdownPreview value={codeStyle}/>
-          </Text>
-        </CardContent>
-        <CardActions>
-          <Button >Learn More</Button>
-        </CardActions>
-      </HexCard>
     </Grid>
   </Grid>
 );
