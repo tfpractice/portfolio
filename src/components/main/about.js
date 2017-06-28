@@ -5,7 +5,7 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import ScrollableAnchor from 'react-scrollable-anchor';
-
+import Avatar from 'material-ui/Avatar';
 import { FadeIn, } from 'animate-components';
 import { Slide, } from '../misc';
 import Endo from './endo';
@@ -19,9 +19,16 @@ const About = () => (
       <Card raised>
         <CardHeader title="Welcome to My site" />
         <CardContent>
-          <Text color="secondary" type="body1">
-            I'm a full-stack web developer and educator with a passion for functional programming and application architecture
-          </Text>
+          <Grid container>
+            <Grid item>
+              <Avatar src="/images/me.jpg"/>
+            </Grid>
+            <Grid item>
+              <Text color="secondary" type="body1">
+                I'm a full-stack web developer and educator with a passion for functional programming and application architecture
+              </Text>
+            </Grid>
+          </Grid>
         </CardContent>
         <CardActions>
           <Button >Learn More</Button>
