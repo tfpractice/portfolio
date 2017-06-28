@@ -5,36 +5,43 @@ import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
+import { MarkdownPreview, } from 'react-marked-markdown';
+import { HexCard, } from '../../misc';
 
-import { appFilt, libFilt, scrFilt, } from '../../utils';
-
-import LandingList from '../projects/landingList';
-
+import { appFilt, libFilt, scrFilt, } from '../../../utils';
+import LandingList from '../../projects/landingList';
+import { content, } from './content';
 const stateToProps = ({ projects, }) => ({
   apps: appFilt(projects),
   libs: libFilt(projects),
   scripts: scrFilt(projects),
 });
-const Libraries = ({ libs, }) => {
+const Libs = ({ libs, }) => {
   const a = 0;
   
   return (
     <Grid container direction="column" align="center" justify="center" className="projects-info">
       <Grid item xs={11} >
-        <Card raised>
-          <CardHeader title="THese are my Libraries" />
+        <HexCard raised>
+          <CardHeader title="Ease through Architecture" />
+
+          <CardContent>
+            <Text color="secondary" type="body2">
+              <MarkdownPreview value={content}/>
+            </Text>
+          </CardContent>
           <CardActions>
             <Button >Learn More</Button>
           </CardActions>
-        </Card>
+        </HexCard>
       </Grid>
       <Grid item xs={11} >
 
         <LandingList items={libs} />
       </Grid>
-
+      
     </Grid>
   );
 };
 
-export default connect(stateToProps)(Libraries);
+export default connect(stateToProps)(Libs);

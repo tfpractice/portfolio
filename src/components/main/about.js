@@ -9,6 +9,7 @@ import Avatar from 'material-ui/Avatar';
 import { FadeIn, } from 'animate-components';
 import { Slide, } from '../misc';
 import Endo from './endo';
+
 const About = () => (
   <Grid container direction="column" justify="center">
     <Grid item xs>

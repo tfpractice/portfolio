@@ -23,8 +23,12 @@ const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 const { edgeNodes, } = qUtils;
 
 const stateful = withState('open', 'toggle', false);
+const typeMap = new Map([[ 'APP', '#ff00ff', ], [ 'SCRIPT', '#ff00ff', ], [ 'LIB', '#00796b', ], ]);
+const getColor = pj => pj.category ? typeMap.get(pj.category) : '#b2dfdb';
 
-const imgUrl = pj => 'http://via.placeholder.com/350/ff00ff/ffffff?text=_';
+// console.log('typeMap', typeMap);
+console.log('getColor({type:', getColor({ type: 'APP', }).slice(1));
+const imgUrl = pj => `http://via.placeholder.com/350/${getColor(pj).slice(1)}/ffffff?text=_`;
 const makeStyle = proj => ({
   backgroundImage: `url(${imgUrl(proj)})`,
   'details::after': { opacity: 0.5, },

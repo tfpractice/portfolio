@@ -9,9 +9,8 @@ import SwipeableViews from 'react-swipeable-views';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { MarkdownPreview, } from 'react-marked-markdown';
 import Skills from '../skills';
-
-import { FadeIn, } from 'animate-components';
-import { Expand, } from '../../misc';
+import { HexCard, Expand, } from '../../misc';
+import { HexSVG, } from '../../visualization';
 import { content, codeStyle, } from './content';
 
 const imgStyle = {
@@ -21,7 +20,7 @@ const imgStyle = {
 const About = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>
-      <Card>
+      <HexCard>
         <CardHeader title="A Passion for Programming" />
         <CardContent>
           <Grid container align="center">
@@ -29,7 +28,7 @@ const About = () => (
               <img style={imgStyle} src="/images/me.jpg"/>
             </Grid>
             <Grid item xs={8}>
-              <Text color="secondary" type="headline">
+              <Text color="secondary" type="headline p">
                 <MarkdownPreview value={content}/>
               </Text>
             </Grid>
@@ -39,10 +38,10 @@ const About = () => (
         <CardActions>
           <Button >Learn More</Button>
         </CardActions>
-      </Card>
+      </HexCard>
     </Grid>
     <Grid item xs={11}>
-      <Card>
+      <HexCard>
         <CardHeader title="Code as Craft" />
         <CardContent>
           <Text color="secondary" type="subheading">
@@ -52,7 +51,7 @@ const About = () => (
         <CardActions>
           <Button >Learn More</Button>
         </CardActions>
-      </Card>
+      </HexCard>
     </Grid>
 
     <Grid item xs={11}>

@@ -6,6 +6,7 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import { MarkdownPreview, } from 'react-marked-markdown';
 import Testimonial from './testimonial';
+import { HexCard, } from '../../misc';
 
 import { content, } from './content';
 import { Expand, } from '../../misc';
@@ -13,7 +14,7 @@ import { Expand, } from '../../misc';
 const Teaching = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>
-      <Card>
+      <HexCard>
         <CardHeader title="Autodidact and Educator" />
         <CardContent>
           <Text color="secondary" type="body2">
@@ -23,7 +24,7 @@ const Teaching = () => (
         <CardActions>
           <Button >Learn More</Button>
         </CardActions>
-      </Card>
+      </HexCard>
     </Grid>
     <Grid item xs={11} >
       <Expand
