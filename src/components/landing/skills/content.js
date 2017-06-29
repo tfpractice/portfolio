@@ -1,10 +1,6 @@
 import * as d3 from 'd3';
 import { teal, pink, } from 'material-ui/styles';
 
-const sortSkills = arr => arr.sort((a, b) => a.name.length - b.name.length);
-const typeSort = arr => arr.sort((a, b) =>
-  (arr.map(s => s.type)).indexOf(a.type) - (arr.map(s => s.type)).indexOf(b.type));
-
 const fTech = [
   'react',
   'jQuery',
@@ -37,8 +33,9 @@ const design = [
   { name: 'css3', type: 'DESIGN', },
   { name: 'sass', type: 'DESIGN', },
   { name: 'susy', type: 'DESIGN', },
-  { name: 'material design', type: 'DESIGN', },
   { name: 'bootstrap', type: 'DESIGN', },
+  { name: 'material design', type: 'DESIGN', },
+
 ];
 
 const markup = [
@@ -86,8 +83,19 @@ const bframe = [
   { name: 'redux', type: 'FRAMEWORK', },
 ];
 
+const sortSkills = arr => arr.sort((a, b) => (a.name.length - b.name.length));
+
 export const fSkills = [ ...sortSkills(design), ...sortSkills(markup), ...sortSkills(inter), ];
+
 export const bSkills = [ ...sortSkills(dbs), ...sortSkills(langs), ...sortSkills(tests), ...sortSkills(bframe), ];
+
+const typeSet = arr => ([ ...new Set(arr.map(s => s.type)), ]);
+const typeSort = arr => arr.sort((a, b) => {
+  const types = [ ...new Set((arr).map(s => s.type)), ];
+
+  return types.indexOf(a.type) - types.indexOf(b.type);
+});
+
 export const fTypes = new Set(fSkills.map(s => s.type));
 export const bTypes = new Set(bSkills.map(s => s.type));
 
@@ -114,7 +122,7 @@ export const frontEnd = {
   headline: 'Frontend Frustrations',
   info: fInfo,
   skills: (fTech),
-  skillSet: typeSort(fSkills),
+  skillSet: (fSkills),
 };
 
 export const backEnd = {
@@ -122,5 +130,5 @@ export const backEnd = {
   headline: 'Coding as Craft',
   info: bInfo,
   skills: (bTech),
-  skillSet: typeSort(bSkills),
+  skillSet: (bSkills),
 };

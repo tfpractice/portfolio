@@ -20,14 +20,13 @@ const styles = createStyleSheet('SkillChip', (theme) => {
     .reduce((obj, next) => ({ ...obj, ...next, }), sheet);
 
   return sheet;
-
-  // return ({ ...fStyles, ...bStyles, });
 });
 const SkillSet = ({ skill, classes, }) => {
-  console.log('skill', skill);
+  const a = 0;
+
   return (
-    <Grid container align="center" justify="space-between">
-      <Grid item xs >
+    <Grid container align="center">
+      <Grid item xs={11} >
         <Grid container align="center" justify="center">
           {skill.skillSet.map((s, j) => (
             <Grid item xs key={j}>

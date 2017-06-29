@@ -10,14 +10,17 @@ const types = [ frontEnd, backEnd, ];
 
 const Skills = () => (
   <Grid container align="center" justify="center">
-    {types.map((t, i) => (
-      <Grid item xs={11} key={i}>
-        <Divider/>
-        <Expand header={<Text type="display2" children={t.category}/> }>
-          <SkillCard skill={t}/>
-        </Expand>
+    <Grid item xs={11}>
+      <Grid container align="center" justify="space-around">
+        {types.map((t, i) => (
+          <Grid item xs={11} key={i}>
+            <Expand header={<Text type="display2" children={t.category}/> }>
+              <SkillCard skill={t}/>
+            </Expand>
+          </Grid>
+        ))}
       </Grid>
-    ))}
+    </Grid>
   </Grid>
 );
 
