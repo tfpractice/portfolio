@@ -14,9 +14,7 @@ const styles = createStyleSheet('SkillCard', (theme) => {
     Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none', },
     
   });
-})
-
-;
+});
 
 const SkillCard = ({ skill, classes, }) => {
   const a = 0;
@@ -32,7 +30,7 @@ const SkillCard = ({ skill, classes, }) => {
               </Text>
             </CardContent>
           </Expand>
-
+          
         </Card>
       </Grid>
       <Grid item xs={11} sm={5} >

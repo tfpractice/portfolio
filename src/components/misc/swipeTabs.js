@@ -20,19 +20,18 @@ const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
 const SwipeTabs = ({ children, index, setIndex, }) => (
   <Grid container direction="column" align="center">
     <Grid item xs={12}>
-      {/* <AppBar> */}
-      <Tabs centered
-        scrollButtons="on"
-        index={index}
-        onChange={(e, i) => setIndex(ixHandler(i))}
-        textColor="accent" >
-        {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
+      <Tabs centered index={index} textColor="accent"
+        onChange={(e, i) => setIndex(ixHandler(i))} >
+        {children.map((c, i) =>
+          <Tab key={i} label={c.props.tabLabel} />
+        )}
       </Tabs>
-      {/* </AppBar> */}
     </Grid>
-    <SwipeableViews enableMouseEvents index={index}>
-      {children}
-    </SwipeableViews>
+    <Grid item xs>
+      <SwipeableViews enableMouseEvents index={index}>
+        {children}
+      </SwipeableViews>
+    </Grid>
   </Grid>
 );
 

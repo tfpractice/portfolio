@@ -12,7 +12,7 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import { withState, } from 'recompose';
 
 import { containers, } from '../../store/projects';
-import { SwipeTabs, } from '../misc';
+import { SwipeTabs, Expand, } from '../misc';
 import { qUtils, } from '../../utils';
 import { ChipList, } from '../tools';
 import ProjectLink from './link';
@@ -26,8 +26,6 @@ const stateful = withState('open', 'toggle', false);
 const typeMap = new Map([[ 'APP', '#ff00ff', ], [ 'SCRIPT', '#ff00ff', ], [ 'LIB', '#00796b', ], ]);
 const getColor = pj => pj.category ? typeMap.get(pj.category) : '#b2dfdb';
 
-// console.log('typeMap', typeMap);
-console.log('getColor({type:', getColor({ type: 'APP', }).slice(1));
 const imgUrl = pj => `http://via.placeholder.com/350/${getColor(pj).slice(1)}/ffffff?text=_`;
 const makeStyle = proj => ({
   backgroundImage: `url(${imgUrl(proj)})`,
@@ -88,24 +86,25 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
 
       <CardMedia className={`details ${classes.details} ${!open && classes.closed}`}
         style={!open ? { ...makeStyle(project), ...divStyle, } : divStyle}>
+        {/* <Expand header={'details'} /> */}
         <Collapse in={!open}>
           <Text type="subheading" align="center">{project.description}</Text>
         </Collapse>
         <Collapse in={open}>
           <CardContent>
-            <Grid container align="center" justify="center">
-              <Grid item xs>
-                <SwipeTabs enableMouseEvents>
-                  <FeatureList tabLabel="tech" data={features}/>
-                  <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
-                </SwipeTabs>
-              </Grid>
-            </Grid>
+            {/* <Grid container align="center" justify="center"> */}
+            {/* <Grid item xs> */}
+            <SwipeTabs enableMouseEvents>
+              <FeatureList tabLabel="tech" data={features}/>
+              <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
+            </SwipeTabs>
+            {/* </Grid> */}
+            {/* </Grid> */}
 
           </CardContent>
         </Collapse>
       </CardMedia>
-      <Collapse in={!open}>
+      <Collapse in>
         <CardActions>
           <ChipList tools={edgeNodes(project.tools)} />
         </CardActions>
