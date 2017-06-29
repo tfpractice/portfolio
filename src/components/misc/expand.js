@@ -6,24 +6,33 @@ import Collapse from 'material-ui/transitions/Collapse';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import { withState, } from 'recompose';
-
+import { withStyles, createStyleSheet, } from 'material-ui/styles';
 const stateful = withState('open', 'toggle', ({ open = true, }) => !!open);
 
-const Expand = ({ open, children, toggle, header, }) => (
+const styles = createStyleSheet('Expand', (theme) => {
+  console.log('theme', theme);
+  return ({
+    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
+    Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
+    Divider: { backgroundColor: theme.palette.accent[500], },
+    
+  });
+});
+const Expand = ({ open, children, toggle, header, classes, }) => (
   <Grid container direction="column" >
     <Grid item xs >
       <Grid container justify="space-between" align="center">
-        <Grid item onClick={() => toggle(x => !x)} >
+        <Grid item xs onClick={() => toggle(x => !x)} >
           {header}
         </Grid>
-        <Grid item >
+        <Grid item xs={2} >
           <IconButton onClick={() => toggle(x => !x)} >
             <ExpandMoreIcon />
           </IconButton>
         </Grid>
       </Grid>
     </Grid>
-    <Divider />
+    <Divider className={classes.Divider} />
     <Grid item xs >
       <Collapse in={open}>
         {children}
@@ -32,4 +41,4 @@ const Expand = ({ open, children, toggle, header, }) => (
   </Grid>
 );
   
-export default stateful(Expand);
+export default stateful(withStyles(styles)(Expand));

@@ -10,8 +10,8 @@ import SkillSet from './skillSet';
 const styles = createStyleSheet('SkillCard', (theme) => {
   console.log('theme', theme);
   return ({
-    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', },
-    Card: { backgroundColor: 'rgba(0,0,0,0)', },
+    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
+    Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none', },
     
   });
 })
@@ -22,29 +22,26 @@ const SkillCard = ({ skill, classes, }) => {
   const a = 0;
 
   return (
-    <Grid container justify="space-around" align="center" className={classes.Grid} >
+    <Grid container justify="center" align="center" className={classes.Grid} >
       <Grid item xs={11} sm={7} >
         <Card className={classes.Card} >
-          <CardHeader title={skill.headline} />
-
-          <CardContent>
-            {/* <Expand header={skill.headline}> */}
-            <Text color="secondary" >
-              <MarkdownPreview value={skill.info}/>
-            </Text>
-            {/* </Expand> */}
-          </CardContent>
+          <Expand header={<CardHeader title={skill.headline} />}>
+            <CardContent>
+              <Text color="secondary" >
+                <MarkdownPreview value={skill.info}/>
+              </Text>
+            </CardContent>
+          </Expand>
 
         </Card>
       </Grid>
       <Grid item xs={11} sm={5} >
         <Card className={classes.Card} >
-          {/* <CardHeader title={skill.headline} /> */}
-          <CardMedia>
-            <SkillSet skill={skill}/>
-
-          </CardMedia>
-
+          <Expand header={ <CardHeader title={'Tools'} />}>
+            <CardContent>
+              <SkillSet skill={skill}/>
+            </CardContent>
+          </Expand>
         </Card>
       </Grid>
     </Grid>

@@ -25,7 +25,7 @@ const SkillSet = ({ skill, classes, }) => {
   const a = 0;
 
   return (
-    <Grid container align="center">
+    <Grid container align="center" justify="center">
       <Grid item xs={11} >
         <Grid container align="center" justify="center">
           {skill.skillSet.map((s, j) => (
