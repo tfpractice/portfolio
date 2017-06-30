@@ -11,6 +11,7 @@ import { HexCard, } from '../../misc';
 import { content, } from './content';
 import { Expand, } from '../../misc';
 import { Wesley, } from './content';
+
 const Teaching = () => (
   <Grid container justify="center" align="center">
     <Grid item xs={11}>

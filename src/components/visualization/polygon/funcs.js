@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import * as Polygon from 'endogenesis';
+
 const {
   setNumSides, apoMag, apoFactor, centralTicks, tickPath, inscribed, numSides,
   center, vertices, tessVector, surroundTix, tesselate, rotation, radius, setX, setY, nthTess, setRadius,
@@ -193,6 +194,7 @@ export const viewBackDrop = (classes) => {
     .attr('width', '100%')
     .attr('height', '100%')
     .style('left', '0')
+
     .style('background-color', 'rgba(239,239,239,1)')
     .style('top', '0')
     .style('position', 'fixed')

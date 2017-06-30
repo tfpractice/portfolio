@@ -5,22 +5,25 @@ import SvgIcon from 'material-ui/SvgIcon';
 import Text from 'material-ui/Typography';
 import List, { ListItem, ListItemText, ListItemIcon, ListSubheader, ListItemAvatar, } from 'material-ui/List';
 
-import { HexSVG, RawHex, } from '../visualization';
+import { HexSVG, RawHex, RawGroup, } from '../visualization';
 import { withStyles, createStyleSheet, } from 'material-ui/styles';
 
 const styles = createStyleSheet('Expand', (theme) => {
   console.log('theme', theme);
   return ({
     Icon: {
-      width: '24',
+      maxWidth: '8%',
+      maxHeight: '8%',
+      minWidth: '7%',
+      minHeight: '7%',
       color: ' rgba(255, 255, 255, 1)',
-      height: '24',
-      marginRight: ' 16px',
+      '&:hover': { color: 'rgba(255, 0, 255, 1)', },
+      marginRight: '4%',
     },
     Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
     Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
-    Divider: { backgroundColor: theme.palette.accent[500], },
-    
+    Divider: { backgroundColor: '#f0f', },
+
   });
 });
 

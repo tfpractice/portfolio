@@ -6,6 +6,7 @@ import { Expand, } from '../../misc';
 import { frontEnd, backEnd, } from './content';
 import SkillCard from './skillCard';
 import Divider from 'material-ui/Divider';
+
 const types = [ frontEnd, backEnd, ];
 
 const Skills = () => (
@@ -14,7 +15,7 @@ const Skills = () => (
       <Grid container align="center" justify="space-around">
         {types.map((t, i) => (
           <Grid item xs={11} key={i}>
-            <Expand header={<Text color="accent" type="display2" children={t.category}/> }>
+            <Expand header={<Text color="inherit" type="display2" children={t.category}/> }>
               <SkillCard skill={t}/>
             </Expand>
           </Grid>

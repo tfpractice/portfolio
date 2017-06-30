@@ -7,6 +7,7 @@ import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
 import { withState, } from 'recompose';
 import { withStyles, createStyleSheet, } from 'material-ui/styles';
+
 const stateful = withState('open', 'toggle', ({ open = true, }) => !!open);
 
 const styles = createStyleSheet('Expand', (theme) => {
@@ -14,7 +15,7 @@ const styles = createStyleSheet('Expand', (theme) => {
   return ({
     Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
     Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
-    Divider: { backgroundColor: theme.palette.accent[500], },
+    Divider: { backgroundColor: '#f0f', },
     
   });
 });

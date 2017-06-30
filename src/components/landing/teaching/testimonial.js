@@ -20,7 +20,7 @@ const Testimonial = ({ student, }) => (
         <Grid container justify="center">
           <Grid item xs={11}>
             <CardContent>
-              <Expand open={false} header={<Text color="secondary" type="title" >{student.caption}</Text>}>
+              <Expand open={false} header={<Text color="inherit" type="title" >{student.caption}</Text>}>
                 <Text color="secondary" type="body1">
                   {student.content}
                 </Text>

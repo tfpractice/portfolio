@@ -1,5 +1,8 @@
 import React from 'react';
 import Card from 'material-ui/Card';
+import Grid from 'material-ui/Grid';
+import Divider from 'material-ui/Divider';
+
 const hexPath = `
   <svg>
     
@@ -7,20 +10,68 @@ const hexPath = `
 
   </svg>
 `;
-const cardStyle = ({
+
+const lRatios = [[ 0, 0, ], [ 1, 0, ], [ 1, 1, ], [ 2 / 9, 1, ], [ 0, 0, ], ];
+const rRatios = [[ 0, 0, ], [ 7 / 9, 0, ], [ 1, 1, ], [ 0, 1, ], [ 0, 0, ], ];
+const dRatios = [[ 7 / 9, 0, ], [ 1, 1, ], [ 2 / 9, 1, ], [ 0, 0, ], ];
+const makePath = pts => pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(' ')).join(',');
+
+const cardStyle = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'left',
+  backgroundColor: 'rgba(66,66,66,0.8)',
   backgroundSize: '200% 200%',
   backgroundRepeat: 'no-repeat',
+};
 
-  // clipPath: 'url(/images/hex05.svg.hexPathD)',
-
-  // clipPath: 'circle(50px at 0 100px)',
-
+const right = ({
+  backgroundImage: 'url(/images/hex05.svg)',
+  backgroundPosition: 'top left ',
+  backgroundSize: '200% 200%',
+  backgroundRepeat: 'no-repeat',
+  paddingRight: '16%',
+  clipPath: `polygon(${makePath(rRatios)})`,
 });
 
-const HexCard = props => (
-  <Card {...props} style={cardStyle} />
+const left = ({
+  backgroundImage: 'url(/images/hex05.svg)',
+  backgroundPosition: 'top left ',
+  backgroundSize: '200% 200%',
+  backgroundRepeat: 'no-repeat',
+  paddingLeft: '16%',
+  clipPath: `polygon(${makePath(lRatios)})`,
+});
+const double = ({
+  backgroundImage: 'url(/images/hex05.svg)',
+  backgroundPosition: 'top left ',
+  backgroundSize: '200% 200%',
+  backgroundRepeat: 'no-repeat',
+  paddingRight: '16%',
+  paddingLeft: '16%',
+  clipPath: `polygon(${makePath(dRatios)})`,
+});
+
+export const HexCard = props => (
+  
+  <Card {...props} style={cardStyle}/>
+
+);
+export const LeftHex = props => (
+  
+  <Card {...props} style={left}/>
+
 );
 
-export default HexCard;
+export const RightHex = props => (
+  
+  <Card {...props} style={right}/>
+
+);
+
+export const DoubleHex = props => (
+  
+  <Card {...props} style={double}/>
+
+);
+
+export default RightHex;

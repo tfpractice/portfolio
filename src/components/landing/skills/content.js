@@ -99,10 +99,10 @@ const typeSort = arr => arr.sort((a, b) => {
 export const fTypes = new Set(fSkills.map(s => s.type));
 export const bTypes = new Set(bSkills.map(s => s.type));
 
-export const fScale = d3.scaleOrdinal([ '#00796b', '#212121', '#E91E63', '#757575', ])
+export const fScale = d3.scaleOrdinal([ '#00796b', '#212121', '#D81B60', '#757575', ])
   .domain(fTypes);
   
-export const bScale = d3.scaleOrdinal([ '#00796b', '#212121', '#757575', '#E91E63', ])
+export const bScale = d3.scaleOrdinal([ '#00796b', '#212121', '#757575', '#D81B60', ])
   .domain(bTypes);
   
 const fInfo = `

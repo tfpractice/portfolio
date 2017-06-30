@@ -6,7 +6,8 @@ import { createStyleManager, } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';
 import jssGlobal from 'jss-global';
 import { syntaxStyles, } from './syntax';
-const palette = createPalette({ primary: grey, accent: pink, type: 'dark', });
+
+const palette = createPalette({ primary: grey, accent: pink, type: 'dark', fuchsia: '#f0f', });
 
 const myTheme = createMuiTheme({ palette, });
 const myManager = createStyleManager({
