@@ -2,7 +2,6 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
-
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 

@@ -19,9 +19,11 @@ const styles = createStyleSheet('Expand', (theme) => {
     
   });
 });
+
+// ff4081
 const Expand = ({ open, children, toggle, header, classes, }) => (
-  <Grid container direction="column" >
-    <Grid item xs >
+  <Grid container direction="column" justify="center" >
+    <Grid item xs={11} >
       <Grid container justify="space-between" align="center">
         <Grid item xs onClick={() => toggle(x => !x)} >
           {header}
@@ -34,7 +36,7 @@ const Expand = ({ open, children, toggle, header, classes, }) => (
       </Grid>
     </Grid>
     <Divider className={classes.Divider} />
-    <Grid item xs >
+    <Grid item xs={11} >
       <Collapse in={open}>
         {children}
       </Collapse>
