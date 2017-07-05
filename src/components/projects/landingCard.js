@@ -70,9 +70,14 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
         title={
           <Grid container justify="space-between" align="center">
             <Grid item>
-              <ProjectLink project={project} >
+              <a target="_blank" href={project.url}>
+                <Text type="body1">
+                  <Text type="subheading">{project.title}</Text>
+                </Text>
+              </a>
+              {/* <ProjectLink project={project} >
                 <Text type="subheading">{project.title}</Text>
-              </ProjectLink>
+              </ProjectLink> */}
             </Grid>
             <Grid item>
               <IconButton onClick={() => toggle(x => !x)} >
@@ -81,6 +86,7 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
             </Grid>
           </Grid>
         }
+
       />
 
       <CardMedia className={`details ${classes.details} ${!open && classes.closed}`}
@@ -91,14 +97,11 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
         </Collapse>
         <Collapse in={open}>
           <CardContent>
-            {/* <Grid container align="center" justify="center"> */}
-            {/* <Grid item xs> */}
+
             <SwipeTabs enableMouseEvents>
               <FeatureList tabLabel="tech" data={features}/>
               <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
             </SwipeTabs>
-            {/* </Grid> */}
-            {/* </Grid> */}
 
           </CardContent>
         </Collapse>
