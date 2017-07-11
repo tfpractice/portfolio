@@ -11,10 +11,10 @@ export const getEdges = ({ edges, }) => spread(edges);
 export const getNode = ({ node, }) => node;
 
 export const viewEdges = qRes =>
-   [ getViewer, getColl, getEdges, ].reduce(binVoke, qRes);
+  [ getViewer, getColl, getEdges, ].reduce(binVoke, qRes);
 
 export const viewNodes = qRes =>
-   viewEdges(qRes).map(getNode);
+  viewEdges(qRes).map(getNode);
    
 export const edgeNodes = connection =>
   getEdges(connection).map(getNode);

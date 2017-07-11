@@ -1,6 +1,16 @@
 export const content = `
-## Ease Through Architecture 
-For me, an application should involve as little logic on the front end as possible. My applications are mostly an accumulation of separate libraries with a database and a rendering engine. This allows me to focus on more interesting architectural concerns. Not to mention the savings brought on my static deployment and server rendering.
+When designing business logic I focus on writing small code is flexible and extensible. This facilitates grouping related functionality and organically gives rise to new libraries.
 
-When it comes to writing in Javascript, React with redux + MongoDB have been the most fruitful for me. Redux has allowed my functional stuyle to flourish using thunks and reducers
-`;
+This quality is exemplified in my work with graph algorithms which has been the basis for things ranging from connect four to gin rummy.`;
+
+const details = [
+  { caption: 'leverages firebase and redux for integrated state management', },
+  { caption: 'encapsulates separate game state between clients', },
+  { caption: 'foolproof updates with zero intermediate state', },
+];
+
+const C4details = [
+  { caption: 'integrates redux and firebase authentication with redux store', },
+  { caption: 'integrates react rendering with d3 visualization', },
+  { caption: 'foolproof updates with zero intermediate state', },
+];

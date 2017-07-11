@@ -24,8 +24,7 @@ const Apps = ({ apps, }) => {
     <Grid container direction="column" align="center" justify="center" className="projects-info">
       <Grid item xs={11} >
         <HexCard raised>
-          <CardHeader title="Ease through Architecture" />
-
+          <CardHeader title="Architecture and Experimentation" />
           <CardContent>
             <Text color="secondary" type="body2">
               <MarkdownPreview value={content}/>
@@ -37,7 +36,6 @@ const Apps = ({ apps, }) => {
         </HexCard>
       </Grid>
       <Grid item xs={11} >
-
         <LandingList items={apps} />
       </Grid>
       

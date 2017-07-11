@@ -11,11 +11,13 @@ import { HexCard, } from '../../misc';
 import { appFilt, libFilt, scrFilt, } from '../../../utils';
 import LandingList from '../../projects/landingList';
 import { content, } from './content';
+
 const stateToProps = ({ projects, }) => ({
   apps: appFilt(projects),
   libs: libFilt(projects),
   scripts: scrFilt(projects),
 });
+
 const Libs = ({ libs, }) => {
   const a = 0;
   
@@ -23,8 +25,7 @@ const Libs = ({ libs, }) => {
     <Grid container direction="column" align="center" justify="center" className="projects-info">
       <Grid item xs={11} >
         <HexCard raised>
-          <CardHeader title="Ease through Architecture" />
-
+          <CardHeader title="Testable and Flexible"/>
           <CardContent>
             <Text color="secondary" type="body2">
               <MarkdownPreview value={content}/>

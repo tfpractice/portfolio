@@ -5,12 +5,10 @@ import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import { MarkdownPreview, } from 'react-marked-markdown';
-import Testimonial from './testimonial';
-import { HexCard, } from '../../misc';
 
-import { content, } from './content';
-import { Expand, } from '../../misc';
-import { Wesley, } from './content';
+import { Expand, HexCard, } from '../../misc';
+import { content, Wesley, } from './content';
+import Testimonial from './testimonial';
 
 const Teaching = () => (
   <Grid container justify="center" align="center">
