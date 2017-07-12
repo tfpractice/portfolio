@@ -16,7 +16,7 @@ const Teaching = () => (
       <HexCard>
         <CardHeader title="Autodidact and Educator" />
         <CardContent>
-          <Text color="secondary" type="body2">
+          <Text component="div" color="secondary" type="body2">
             <MarkdownPreview value={content}/>
           </Text>
         </CardContent>

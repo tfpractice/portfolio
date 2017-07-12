@@ -29,7 +29,7 @@ const About = () => (
                   <img style={imgStyle} src="/images/me.jpg"/>
                 </Grid>
                 <Grid item xs={11} sm={9}>
-                  <Text color="secondary" type="headline">
+                  <Text component="div" color="secondary" type="headline">
                     <MarkdownPreview value={content}/>
                   </Text>
                 </Grid>

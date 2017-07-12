@@ -25,16 +25,13 @@ const SkillSet = ({ skill, classes, }) => {
   const a = 0;
 
   return (
+    
     <Grid container align="center" justify="center">
-      <Grid item xs={11} >
-        <Grid container align="center" justify="center">
-          {skill.skillSet.map((s, j) => (
-            <Grid item xs key={j}>
-              <Chip className={classes[s.type]} label={s.name} />
-            </Grid>
-          ))}
+      {skill.skillSet.map((s, j) => (
+        <Grid item xs key={j}>
+          <Chip className={classes[s.type]} label={s.name} />
         </Grid>
-      </Grid>
+      ))}
     </Grid>
 
   );

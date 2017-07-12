@@ -7,6 +7,7 @@ import Text from 'material-ui/Typography';
 import Card, { CardContent, CardHeader, CardMedia, } from 'material-ui/Card';
 import { MarkdownPreview, } from 'react-marked-markdown';
 import { Expand, } from '../../misc';
+
 const styles = {
   slide: {
     // padding: 15,
@@ -25,7 +26,7 @@ const Slide = ({ slide, project, ...props }) => {
   const a = 0;
 
   return (
-    <Text type="body2">
+    <Text component="div" type="body2">
       <MarkdownPreview value={slide.content}/>
     </Text>
   );
@@ -36,7 +37,7 @@ const Slide = ({ slide, project, ...props }) => {
       } />
       <Expand>
         <CardContent>
-          <Text type="body2">
+          <Text component="div" type="body2">
             <MarkdownPreview value={slide.content}/>
           </Text>
         </CardContent>

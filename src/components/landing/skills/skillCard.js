@@ -7,9 +7,9 @@ import { withStyles, createStyleSheet, } from 'material-ui/styles';
 import { HexCard, Expand, } from '../../misc';
 import SkillSet from './skillSet';
 
-const styles = createStyleSheet('SkillCard', (theme) => {
-  console.log('theme', theme);
-  return ({
+const styles = createStyleSheet('SkillCard', theme =>
+  // console.log('theme', theme);
+  ({
     Grid: {
       backgroundColor: 'rgba(66,66,66,0.85)',
       backgroundImage: 'url(/images/hex05.svg)',
@@ -21,32 +21,34 @@ const styles = createStyleSheet('SkillCard', (theme) => {
     },
     Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none', },
     
-  });
-});
+  })
+);
 
 const SkillCard = ({ skill, classes, }) => {
   const a = 0;
 
   return (
-    <Grid container justify="center" align="center" className={classes.Grid} >
-      <Grid item xs={11} sm={7} >
+    <Grid container justify="center" className={classes.Grid} >
+      <Grid item xs={11} md >
         <Card className={classes.Card} >
-          <Expand header={<CardHeader title={skill.headline} />}>
+          <Expand header={<CardHeader subheader={skill.headline} />}>
             <CardContent>
-              <Text color="secondary" >
+              <Text component="div" color="secondary" >
                 <MarkdownPreview value={skill.info}/>
               </Text>
             </CardContent>
           </Expand>
-          
+
         </Card>
       </Grid>
-      <Grid item xs={11} sm={5} >
+      <Grid item xs={11} md={5} >
         <Card className={classes.Card} >
-          <Expand header={ <CardHeader title={'Tools'} />}>
-            <CardContent>
+          <Expand header={ <CardHeader subheader={'Tools'} />}>
+            <CardMedia>
+
               <SkillSet skill={skill}/>
-            </CardContent>
+
+            </CardMedia>
           </Expand>
         </Card>
       </Grid>

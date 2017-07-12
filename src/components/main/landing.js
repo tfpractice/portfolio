@@ -4,13 +4,10 @@ import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
-import { FadeIn, } from 'animate-components';
 import { Link, } from 'react-router-dom';
-import { getBox, linkGons, polyGrid, showCircles, showPolys, } from '../visualization';
-import SwipeableViews from 'react-swipeable-views';
-import About from './about';
+import { linkGons, polyGrid, showPolys, } from '../visualization';
+
 import Teaching from './teaching';
-import Endo from './endo';
 
 const linkArray = [ 'about', 'teaching', 'projects', ];
 const selectLinks = () =>

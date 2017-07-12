@@ -71,7 +71,7 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
           <Grid container justify="space-between" align="center">
             <Grid item>
               <a target="_blank" href={project.url}>
-                <Text type="body1">
+                <Text component="div" type="body1">
                   <Text type="subheading">{project.title}</Text>
                 </Text>
               </a>

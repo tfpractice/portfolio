@@ -26,7 +26,7 @@ const Apps = ({ apps, }) => {
         <HexCard raised>
           <CardHeader title="Architecture and Experimentation" />
           <CardContent>
-            <Text color="secondary" type="body2">
+            <Text component="div" color="secondary" type="body2">
               <MarkdownPreview value={content}/>
             </Text>
           </CardContent>

@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
-import { teal, pink, } from 'material-ui/styles';
+
+// import { teal, pink, } from 'material-ui/styles';
 
 const fTech = [
   'react',
@@ -132,3 +133,5 @@ export const backEnd = {
   skills: (bTech),
   skillSet: (bSkills),
 };
+
+export const skillTypes = [ frontEnd, backEnd, ];

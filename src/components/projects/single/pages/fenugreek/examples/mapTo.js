@@ -121,7 +121,7 @@ class MapEx extends Component {
         <CardContent>
           <Grid container justify="center">
             <Grid item xs={11}>
-              <Text type="body2">
+              <Text component="div" type="body2">
                 <MarkdownPreview value={main}/>
               </Text>
             </Grid>
@@ -130,13 +130,13 @@ class MapEx extends Component {
             <Grid item xs={11}>
               <SwipeableViews enableMouseEvents>
 
-                <Text type="body2">
+                <Text component="div" type="body2">
                   <MarkdownPreview value={dubstring}/>
                 </Text>
-                <Text type="body2">
+                <Text component="div" type="body2">
                   <MarkdownPreview value={halfStr}/>
                 </Text>
-                <Text type="body2">
+                <Text component="div" type="body2">
                   <MarkdownPreview value={resStr}/>
                 </Text>
 

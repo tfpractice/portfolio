@@ -6,40 +6,36 @@ import { withState, } from 'recompose';
 import { viewTess, showText, appendText, } from './funcs';
 import Text from 'material-ui/Typography';
 
-const styleSheet = createStyleSheet('TessNav', (theme) => {
-  console.log('theme', theme);
-  
-  return ({
-    container: {},
-    wrapper: {},
-    tessGroup: {},
-    group: {},
-    tessText: {},
-    path: { },
-    animPath: { strokeWidth: '0.01px', stroke: '#000', },
-    tessWrap: {},
-    text: {},
-    textGroup: {},
-    pathLink: { '&:hover': { fill: '#f0f', }, },
-    mainText: {
-      ...theme.typography.title,
-      'font-weight': '400',
+const styleSheet = createStyleSheet('TessNav', theme => ({
+  container: {},
+  wrapper: {},
+  tessGroup: {},
+  group: {},
+  tessText: {},
+  path: { },
+  animPath: { strokeWidth: '0.01px', stroke: '#000', },
+  tessWrap: {},
+  text: {},
+  textGroup: {},
+  pathLink: { '&:hover': { fill: '#f0f', }, },
+  mainText: {
+    ...theme.typography.title,
+    'font-weight': '400',
       
-      textDecoration: '#f0f',
-      textDecorationColor: '#f0f',
+    textDecoration: '#f0f',
+    textDecorationColor: '#f0f',
       
-    },
-    subText: {
-      ...theme.typography.subheading,
-      fontSize: theme.typography.title.fontSize / 2,
-    },
-    span: { textDecoration: 'none', },
-    subSpan: { fill: '#f0f', },
+  },
+  subText: {
+    ...theme.typography.subheading,
+    fontSize: theme.typography.title.fontSize / 2,
+  },
+  span: { textDecoration: 'none', },
+  subSpan: { fill: '#f0f', },
     
-    tessPath: {},
-    tessPath: {},
-  });
-});
+  tessPath: {},
+  tessPath: {},
+}));
 const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR', ];
 
 const withLink = withState('links', 'setLinks', defPaths);

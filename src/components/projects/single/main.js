@@ -75,7 +75,7 @@ const Project = (props) => {
           <Text color="inherit" type="title">
             In-Depth
           </Text>}>
-          <Text color="inherit" component="div" type="body1">
+          <Text component="div" color="inherit" type="body1">
             <MarkdownPreview value={content} />
           </Text>
         </Expand>

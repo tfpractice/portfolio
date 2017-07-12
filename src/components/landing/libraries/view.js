@@ -27,7 +27,7 @@ const Libs = ({ libs, }) => {
         <HexCard raised>
           <CardHeader title="Testable and Flexible"/>
           <CardContent>
-            <Text color="secondary" type="body2">
+            <Text component="div" color="secondary" type="body2">
               <MarkdownPreview value={content}/>
             </Text>
           </CardContent>

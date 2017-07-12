@@ -15,6 +15,7 @@ import { Graph, Show, } from 'graph-curry';
 import { mapTo, spreadK, } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
+
 const { addEdges, nodes, graph, adj, neighbors, } = Graph;
 const { graphString, } = Show;
 
@@ -132,23 +133,23 @@ class MapEx extends Component {
         <CardContent>
           <Grid container justify="center">
             <Grid item xs={11}>
-              <Text type="body2">
+              <Text component="div" type="body2">
                 <MarkdownPreview value={main}/>
               </Text>
             </Grid>
             <Text > {graphString(fizzGraph(localNums)).split('}', 3)} </Text>
             {/* <Text align="center" type="display1"> {this.state.numbers.join()} </Text> */}
-            
+
             <Grid item xs={11}>
               <SwipeableViews enableMouseEvents>
 
-                <Text type="body2">
+                <Text component="div" type="body2">
                   <MarkdownPreview value={dubstring}/>
                 </Text>
-                <Text type="body2">
+                <Text component="div" type="body2">
                   <MarkdownPreview value={halfStr}/>
                 </Text>
-                <Text type="body2">
+                <Text component="div" type="body2">
                   <MarkdownPreview value={resStr}/>
                 </Text>
 

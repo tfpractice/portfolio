@@ -10,26 +10,23 @@ import { withStyles, createStyleSheet, } from 'material-ui/styles';
 
 const stateful = withState('open', 'toggle', ({ open = true, }) => !!open);
 
-const styles = createStyleSheet('Expand', (theme) => {
-  console.log('theme', theme);
-  return ({
-    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
-    Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
-    Divider: { backgroundColor: '#f0f', },
+const styles = createStyleSheet('Expand', theme => ({
+  Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
+  Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
+  Divider: { backgroundColor: '#f0f', },
     
-  });
-});
+}));
 
 // ff4081
 const Expand = ({ open, children, toggle, header, classes, }) => (
-  <Grid container justify="center" >
+  <Grid container justify="center" align="center">
     <Grid item xs={11} >
-      <Grid container justify="space-between" align="center">
+      <Grid container align="center">
         <Grid item xs onClick={() => toggle(x => !x)} >
           {header}
         </Grid>
         <Grid item xs={2} >
-          <IconButton onClick={() => toggle(x => !x)} >
+          <IconButton color="contrast" onClick={() => toggle(x => !x)} >
             <ExpandMoreIcon />
           </IconButton>
         </Grid>
@@ -43,7 +40,9 @@ const Expand = ({ open, children, toggle, header, classes, }) => (
       <Collapse in={open}>
         {children}
       </Collapse>
+
     </Grid>
+
   </Grid>
 );
   
