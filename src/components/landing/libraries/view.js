@@ -22,7 +22,7 @@ const Libs = ({ libs, }) => {
   const a = 0;
   
   return (
-    <Grid container direction="column" align="center" justify="center" className="projects-info">
+    <Grid container justify="center" className="libraries-info">
       <Grid item xs={11} >
         <HexCard raised>
           <CardHeader title="Testable and Flexible"/>

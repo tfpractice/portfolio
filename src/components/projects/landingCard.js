@@ -11,7 +11,7 @@ import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import { withState, } from 'recompose';
 
 import { containers, } from '../../store/projects';
-import { SwipeTabs, Expand, } from '../misc';
+import { SwipeTabs, Expand, HexCard, } from '../misc';
 import { qUtils, } from '../../utils';
 import { ChipList, } from '../tools';
 import ProjectLink from './link';
@@ -61,7 +61,7 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
   ];
   
   return (
-    <Card raised>
+    <HexCard raised>
       <CardHeader
         avatar={
           <a target="_blank" href={project.repo}>
@@ -111,7 +111,7 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
           <ChipList tools={edgeNodes(project.tools)} />
         </CardActions>
       </Collapse>
-    </Card>
+    </HexCard>
   );
 };
 

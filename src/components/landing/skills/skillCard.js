@@ -10,7 +10,15 @@ import SkillSet from './skillSet';
 const styles = createStyleSheet('SkillCard', (theme) => {
   console.log('theme', theme);
   return ({
-    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
+    Grid: {
+      backgroundColor: 'rgba(66,66,66,0.85)',
+      backgroundImage: 'url(/images/hex05.svg)',
+      backgroundPosition: 'left',
+      backgroundColor: 'rgba(66,66,66,0.85)',
+      backgroundSize: '200% 200%',
+      backgroundRepeat: 'no-repeat',
+      paddingBottom: '5%',
+    },
     Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none', },
     
   });

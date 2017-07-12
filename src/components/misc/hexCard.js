@@ -19,7 +19,7 @@ const makePath = pts => pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(
 const cardStyle = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'left',
-  backgroundColor: 'rgba(66,66,66,0.8)',
+  backgroundColor: 'rgba(66,66,66,0.85)',
   backgroundSize: '200% 200%',
   backgroundRepeat: 'no-repeat',
 };

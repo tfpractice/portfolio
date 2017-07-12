@@ -21,7 +21,7 @@ const Apps = ({ apps, }) => {
   const a = 0;
   
   return (
-    <Grid container direction="column" align="center" justify="center" className="projects-info">
+    <Grid container justify="center" className="apps-info">
       <Grid item xs={11} >
         <HexCard raised>
           <CardHeader title="Architecture and Experimentation" />
