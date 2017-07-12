@@ -1,6 +1,8 @@
 import createPalette from 'material-ui/styles/palette';
 import { createMuiTheme, MuiThemeProvider, } from 'material-ui/styles';
-import { grey, pink, teal, } from 'material-ui/styles/colors';
+import grey from 'material-ui/colors/grey';
+import pink from 'material-ui/colors/pink';
+import teal from 'material-ui/colors/teal';
 import { create, } from 'jss';
 import { createStyleManager, } from 'jss-theme-reactor/styleManager';
 import jssPreset from 'jss-preset-default';

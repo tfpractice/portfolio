@@ -10,7 +10,7 @@ import Tabs, { Tab, } from 'material-ui/Tabs';
 import { NavLink, } from 'react-router-dom';
 import { withState, } from 'recompose';
 
-import { HexSVG, BackDrop, } from '../visualization';
+import { HexSVG, BackDrop, RawGroup, } from '../visualization';
 import Contact from './contact';
 import About from './about';
 import FrontMatter from './frontMatter';
@@ -21,8 +21,12 @@ import Teaching from './teaching';
 const sections = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs', ];
 const ixMap = new Map(sections.map((k, i) => [ k, i, ]));
 
+// const labelMap = new Map(sections.map((k, i) =>
+//   i ? [ k, <Text align="center" noWrap type="subheading">{k.slice(1).toUpperCase()}</Text>, ] : [ k, <HexSVG />, ]));
+
+//   
 const labelMap = new Map(sections.map((k, i) =>
-  i ? [ k, <Text align="center" type="title">{k.slice(1).toUpperCase()}</Text>, ] : [ k, <HexSVG />, ]));
+  i ? [ k, k.slice(1).toUpperCase(), ] : [ k, <HexSVG />, ]));
 
 const getIndex = (key = '#frontMatter') => ixMap.has(key) ? ixMap.get(key) : 0;
 const getLabel = (key = '#frontMatter') => labelMap.has(key) ? labelMap.get(key) : '';
@@ -34,34 +38,16 @@ class Landing extends Component {
   render() {
     const { index, setIndex, match, location, history, } = this.props;
     const { hash, } = location;
-    
+
     return (
       <Grid container align="center" justify="center">
-        <Grid item xs={11}>
+        <Grid item xs={12}>
           <AppBar>
-            <Toolbar>
-              <Grid container align="center" >
-                {/* {sections.map((l, i) => (
-                  <Grid item xs key={i}>
-                  <Button key={i} href={l} color="accent">{getLabel(l)}</Button>
-                  </Grid>
-                ))} */}
-
-                <Grid item xs={2}>
-                  <Button href={'#frontMatter'} color="accent">{getLabel('#frontMatter')}</Button>
-                </Grid>
-                <Grid item xs={10}>
-
-                  <Tabs fullWidth scrollable centered onChange={() => null} index={index} >
-
-                    {sections.slice(1).map((l, i) => (
-                      <Tab key={i} label={getLabel(l)} href={l}/>
-                    ))}
-
-                  </Tabs>
-                </Grid>
-              </Grid>
-            </Toolbar>
+            <Tabs fullWidth scrollable scrollButtons="on" textColor="accent" index={getIndex(hash)} onChange={() => null}>
+              {sections.slice(0).map((l, i) => (
+                <Tab key={i} label={getLabel(l)} onClick={() => history.replace({ hash: l, })} />
+              ))}
+            </Tabs>
           </AppBar>
         </Grid>
         <Grid item xs={11}>

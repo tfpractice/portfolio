@@ -24,10 +24,10 @@ const styleSheet = createStyleSheet('TessNav', (theme) => {
     mainText: {
       ...theme.typography.title,
       'font-weight': '400',
-
+      
       textDecoration: '#f0f',
       textDecorationColor: '#f0f',
-    
+      
     },
     subText: {
       ...theme.typography.subheading,
@@ -35,7 +35,7 @@ const styleSheet = createStyleSheet('TessNav', (theme) => {
     },
     span: { textDecoration: 'none', },
     subSpan: { fill: '#f0f', },
-
+    
     tessPath: {},
     tessPath: {},
   });
@@ -49,10 +49,10 @@ class TessNav extends Component {
     viewTess(this.props.classes)(this.props.children);
     appendText(this.props.classes);
   }
-
+  
   render() {
     const { classes, paths, } = this.props;
-
+    
     const showSpan = paths => paths.map((p, i) => (
       <tspan className={classes.span} key={i}>
         <tspan className={`${classes.subSpan}`}> // </tspan>
@@ -60,7 +60,7 @@ class TessNav extends Component {
       </tspan>
       
     ));
-
+    
     return (
       <Grid container align="center" justify="center" >
         <Grid item xs={10}>
@@ -78,14 +78,15 @@ class TessNav extends Component {
                 k && <NavLink to={c} key={k} className={classes.pathLink}
                   onMouseOver={() => {
                     clearTimeout(this.tID);
-                    console.log('mouseover', this.tID);
                     this.props.setLinks(x => [ c.slice(1), ]);
                   }}
+
                   onMouseOut={() =>
                     this.tID = setTimeout(() => {
                       this.props.setLinks(x => defPaths);
                     }, 1000)
-                  } >
+                  }
+                >
                   <path key={k} className={classes.path} />
                 </NavLink>
               ))}

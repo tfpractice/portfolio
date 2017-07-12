@@ -4,7 +4,7 @@ import List, { ListItem, } from 'material-ui/List';
 import { createStyleSheet, withStyles, } from 'material-ui/styles';
 import Avatar from 'material-ui/Avatar';
 import FaceIcon from 'material-ui-icons/Face';
-import { grey, } from 'material-ui/styles/colors';
+import grey from 'material-ui/colors/grey';
 import Paper from 'material-ui/Paper';
 import ToolChip from './chip';
 
