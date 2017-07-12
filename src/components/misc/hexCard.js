@@ -17,7 +17,7 @@ const dRatios = [[ 7 / 9, 0, ], [ 1, 1, ], [ 2 / 9, 1, ], [ 0, 0, ], ];
 const makePath = pts => pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(' ')).join(',');
 
 const cardStyle = {
-  backgroundImage: 'url(/images/hex05.svg)',
+  backgroundImage: 'url(/images/whiteHex50.svg)',
   backgroundPosition: 'left',
   backgroundColor: 'rgba(66,66,66,0.85)',
   backgroundSize: '200% 200%',

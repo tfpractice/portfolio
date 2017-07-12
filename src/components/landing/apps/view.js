@@ -36,7 +36,7 @@ const Apps = ({ apps, }) => {
         </HexCard>
       </Grid>
       <Grid item xs={11} >
-        <LandingList items={apps} />
+        <LandingList items={apps} style={{ backgroundImage: 'url(/images/blueHex50.svg)', }} />
       </Grid>
       
     </Grid>
