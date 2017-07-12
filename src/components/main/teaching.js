@@ -20,6 +20,6 @@ const Teaching = () => (
       </Card>
     </Grid>
   </Grid>
-    );
+);
 
 export default (Teaching);
