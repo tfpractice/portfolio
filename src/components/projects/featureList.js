@@ -5,7 +5,7 @@ import SvgIcon from 'material-ui/SvgIcon';
 import Text from 'material-ui/Typography';
 import List, { ListItem, ListItemText, ListItemIcon, ListSubheader, ListItemAvatar, } from 'material-ui/List';
 
-import { HexSVG, RawHex, RawGroup, } from '../visualization';
+import { HexSVG, RawHex, RawPath, RawGroup, } from '../visualization';
 import { withStyles, createStyleSheet, } from 'material-ui/styles';
 
 const styles = createStyleSheet('Expand', theme => ({
@@ -16,7 +16,7 @@ const styles = createStyleSheet('Expand', theme => ({
     minHeight: '7%',
     color: ' rgba(255, 255, 255, 1)',
     '&:hover': { color: 'rgba(255, 0, 255, 1)', },
-    marginRight: '4%',
+
   },
   Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
   Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
@@ -24,26 +24,17 @@ const styles = createStyleSheet('Expand', theme => ({
 
 }));
 
-// width: 24px;
-// color: rgba(255, 255, 255, 1);
-// height: 24px;
-// margin-right: 16px;
 const FeatureList = ({ header, data, classes, }) => (
 
-  <List >
-    { header && <ListSubheader>
-      {header}
-    </ListSubheader>}
+  <List dense subheader={header || ''}>
     {data.map((f, i) => (
-      <ListItem divider key={i}>
+      <ListItem dense divider key={i}>
         <ListItemIcon className={classes.Icon}>
-          <SvgIcon >
-            {/* <ListItemAvatar> */}
-            <RawHex/>
-            {/* </ListItemAvatar> */}
+          <SvgIcon viewBox="-1,-1,2,2" >
+            <RawPath/>
           </SvgIcon>
         </ListItemIcon>
-        <ListItemText primary={<Text type="body2">{f}</Text>} />
+        <ListItemText primary={f} />
       </ListItem>
     ))}
   </List>

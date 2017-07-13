@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
 
-const defProps = { fill: '#000', stroke: '#000', };
+const defProps = { fill: 'inherit', stroke: 'inherit', };
 
 export const RawPath = (props = defProps) => (
   <path

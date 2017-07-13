@@ -72,11 +72,11 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
         title={
           <Grid container justify="space-between" align="center">
             <Grid item>
-              <a target="_blank" href={project.url}>
-                <Text component="div" type="body1">
-                  <Text type="subheading">{project.title}</Text>
-                </Text>
-              </a>
+              <a target="_blank" href={project.url}
+
+                children={ <Text type="title" children={project.title}/>
+                }/>
+
               {/* <ProjectLink project={project} >
                 <Text type="subheading">{project.title}</Text>
               </ProjectLink> */}
@@ -93,24 +93,23 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
 
       <CardMedia className={`details ${classes.details} ${!open && classes.closed}`}
         style={!open ? { ...makeStyle(project), ...divStyle, } : divStyle}>
-        {/* <Expand header={'details'} /> */}
         <Collapse in={!open}>
           <Text type="subheading" align="center">{project.description}</Text>
         </Collapse>
         <Collapse in={open}>
-          <CardContent>
+          <CardMedia>
 
-            <SwipeTabs enableMouseEvents>
+            <SwipeTabs >
               <FeatureList tabLabel="tech" data={features}/>
               <FeatureList tabLabel="highlights" data={project.details.map(d => d.caption)}/>
             </SwipeTabs>
 
-          </CardContent>
+          </CardMedia>
         </Collapse>
       </CardMedia>
       <Collapse in>
         <CardActions>
-          <ChipList tools={edgeNodes(project.tools)} />
+          <ChipList tools={edgeNodes(project.skills).concat(edgeNodes(project.tools))} />
         </CardActions>
       </Collapse>
     </HexCard>

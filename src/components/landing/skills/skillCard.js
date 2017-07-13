@@ -29,7 +29,8 @@ const SkillCard = ({ skill, classes, }) => {
     <Grid container justify="center" className={classes.Grid} >
       <Grid item xs={11} md >
         <Card className={classes.Card} >
-          <Expand header={<CardHeader subheader={skill.headline} />}>
+          <Expand header={<CardHeader title={
+            <Text children={skill.headline}/>}/> }>
             <CardContent>
               <Text component="div" color="secondary" >
                 <MarkdownPreview value={skill.info}/>
@@ -41,7 +42,7 @@ const SkillCard = ({ skill, classes, }) => {
       </Grid>
       <Grid item xs={11} md={5} >
         <Card className={classes.Card} >
-          <Expand header={ <CardHeader subheader={'Tools'} />}>
+          <Expand header={ <CardHeader title={<Text children="Tools"/>}/>}>
             <CardMedia>
               <SkillSet skill={skill}/>
             </CardMedia>

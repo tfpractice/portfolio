@@ -20,12 +20,12 @@ const styles = createStyleSheet('Expand', theme => ({
 const Expand = ({ open, children, toggle, header, classes, }) => (
   <Grid container justify="center" align="center">
     <Grid item xs={11} >
-      <Grid container align="center">
-        <Grid item xs onClick={() => toggle(x => !x)} >
+      <Grid container justify="space-between" align="center">
+        <Grid item onClick={() => toggle(x => !x)} >
           {header}
         </Grid>
-        <Grid item xs={2} >
-          <IconButton color="contrast" onClick={() => toggle(x => !x)} >
+        <Grid item >
+          <IconButton color="inherit" onClick={() => toggle(x => !x)} >
             <ExpandMoreIcon />
           </IconButton>
         </Grid>

@@ -1,10 +1,10 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
 
-const defProps = { fill: '#000', stroke: '#000', };
+const defProps = { fill: 'inherit', stroke: 'inherit', };
 
 const HexVG = (props = defProps) => (
-  <Grid container align="center">
+  <Grid container justify="center" align="center">
     <Grid item xs>
       <svg className="hexSVG" preserveAspectRatio="xMidYMid" viewBox="-1,-1,2,2">
         <g className="hexSVG-group">
