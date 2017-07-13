@@ -6,9 +6,6 @@ import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import SwipeableViews from 'react-swipeable-views';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import Avatar from 'material-ui/Avatar';
-import { FadeIn, } from 'animate-components';
-import { Slide, } from '../misc';
-import Endo from './endo';
 
 const About = () => (
   <Grid container direction="column" justify="center">

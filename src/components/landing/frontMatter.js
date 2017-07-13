@@ -1,11 +1,8 @@
-import React, { Component, } from 'react';
-import d3 from 'd3';
+import React from 'react';
 import Grid from 'material-ui/Grid';
-import Text from 'material-ui/Typography';
 import { NavTess, } from '../visualization';
-import { withRouter, } from 'react-router-dom';
 
-const FrontMatter = ({ history, sections, }) => (
+const FrontMatter = ({ sections, }) => (
   <Grid container justify="center" align="center" id="header" >
     <Grid item xs={12}>
       <NavTess paths={sections} />
@@ -13,4 +10,4 @@ const FrontMatter = ({ history, sections, }) => (
   </Grid>
 );
 
-export default withRouter(FrontMatter);
+export default (FrontMatter);
