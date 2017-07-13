@@ -1,5 +1,6 @@
 import { SET_PROJECTS, } from './constants';
-import fs from 'fs';
+
+const fs = require('fs');
 
 const set = projects => state => projects;
 
@@ -11,7 +12,7 @@ export const staticPJ = projects => (dispatch) => {
     .then(dispatch)
     .then(() => {
       console.log('successsfully set');
-      console.log(fs);
+      console.log('fs, fs', fs);
       console.log('fs.writeFile', fs.writeFile);
     })
     .catch(console.error);
