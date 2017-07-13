@@ -27,7 +27,7 @@ const links = [ gitHub, codePen, linkedIn, ];
 const styleSheet = createStyleSheet('SimpleBottomNavigation', { root: { width: 500, }, });
 
 const withIndex = withState('index', 'setIndex', ({ index, } = { index: 0, }) => index);
-const style = { minHeight: '5rem', };
+const style = { minHeight: '5rem', backgroundColor: 'rgba(158,158,158,0.9)', };
 
 class SimpleBottomNavigation extends Component {
   render() {

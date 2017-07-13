@@ -17,7 +17,6 @@ const styles = createStyleSheet('Expand', theme => ({
     
 }));
 
-// ff4081
 const Expand = ({ open, children, toggle, header, classes, }) => (
   <Grid container justify="center" align="center">
     <Grid item xs={11} >

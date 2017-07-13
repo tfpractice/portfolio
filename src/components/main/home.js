@@ -14,11 +14,8 @@ import { BackDrop, } from '../visualization';
 
 const { containers: { WithAll, }, actions: pActions, } = Projects;
 
-// console.log('fs', fs.write);
-// console.log('fs.writeFile', fs.writeFile);
 class Home extends Component {
   componentWillReceiveProps({ setProjects, staticPJ, projectsArray, projectsData, }) {
-    console.log('this.props', this.props);
     !projectsData.loading && staticPJ(projectsArray);
   }
  

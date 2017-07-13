@@ -21,7 +21,6 @@ const { graphString, } = Show;
 
 const localNums = spreadK(Array(20));
 
-// console.log('localNums', localNums);
 const isFizz = n => n % 3 === 0;
 const isBuzz = n => n % 3 === 0;
 const fizzables = nums => nums.filter(isFizz);

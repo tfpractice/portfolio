@@ -60,6 +60,8 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
     'full documentation deployed on surge',
   ];
   
+  console.log(project.skills);
+  
   return (
     <HexCard raised>
       <CardHeader

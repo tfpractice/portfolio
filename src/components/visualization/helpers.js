@@ -1,5 +1,6 @@
 import * as d3 from 'd3';
 import * as Polygon from 'endogenesis';
+
 const {
   polygon, range, setNumSides, centralTicks, center, vertices, surroundTix, triangulate, tesselate,
   closedInterval, path, nthTick, inscribed, tickPath, setX, setY, setRadius, tickPathInt, tickPoints,
@@ -70,9 +71,6 @@ export const tessGons = (links) => {
   const tessBox = getBox('#tess');
   const tessheight = (getBox('#tess').height) / 3;
 
-  // console.log('tessBox.height', tessBox.height);
-  // console.log('tessBox', tessBox);
-  // console.log('tessheight', tessheight);
   const baseGon = setNumSides(links.length * 2)(setRadius(70)());
   const gons = [ baseGon, ].concat(tesselate(baseGon));
   const allV = gons.map(vertices).reduce((a, b) => a.concat(b), []);
@@ -83,9 +81,6 @@ export const tessGons = (links) => {
     .reduce((pl, fn) => fn(pl), g);
   const scaledGons = gons.map(scaleGon);
 
-  console.log('allV', allV);
-  console.log('gons', gons);
-  console.log('scaledGons', scaledGons);
   return d3.select('#tess')
     .append('svg')
     .classed('myTess', true)
@@ -97,7 +92,6 @@ export const tessGons = (links) => {
     .data(scaledGons, (g, i) => {
       const a = 0;
 
-      console.log('g', g);
       return g;
     })
     .enter()
@@ -127,7 +121,7 @@ export const createImage = links =>
     .attr('href', d => `/${d}`)
     .selectAll('path')
     .data(tesselate(setNumSides(links.length)(setRadius(1)())).concat(setNumSides(links.length)(setRadius(1)())), (g, i) => {
-      const a = 0;// console.log('g', g);
+      const a = 0;// //consolelog('g', g);
 
       return g;
     })

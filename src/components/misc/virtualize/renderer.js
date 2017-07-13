@@ -21,12 +21,8 @@ const styles = {
 };
 
 export const getStyle = ix => styles[`slide${1 + (ix % 3)}`];
-export const renderer = ({ index, key, ...props }) => {
-  console.log('props', props);
-  
-  return (
-    <div style={{ ...styles.slide, ...getStyle(index), }} key={key}>
-      {`slide n°${index + 1}`}
-    </div>
-  );
-};
+export const renderer = ({ index, key, ...props }) => (
+  <div style={{ ...styles.slide, ...getStyle(index), }} key={key}>
+    {`slide n°${index + 1}`}
+  </div>
+);

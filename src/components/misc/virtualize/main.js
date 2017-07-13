@@ -12,28 +12,30 @@ import { renderer as dRender, VirtualSwipe, } from './renderer';
 
 import { ixHandler, stateful, } from './stateful';
 
-const Carousel = ({ index, setIndex, children, renderer = dRender, ...props }) => {
-  console.log('children', children);
-  return (
-    <div>
-      <VirtualSwipe
-        index={index}
-        enableMouseEvents
-        onChangeIndex={cix => setIndex(ixHandler(index))}
-        slideRenderer={({ index: ix, key, }) =>
-          <SwipeableViews index={ix}>{children}</SwipeableViews>
-        }
-      />
+const Carousel = ({ index, setIndex, children, renderer = dRender, ...props }) =>
 
-      <br />
-      {children.map((el, i) =>
-        (<Button key={i} onClick={() => setIndex(ixHandler(i))}>
-          {`go to slide n°${i}`}
-        </Button>)
-      ) }
+  // console.log('children', children);
+  (
+  <div>
+    <VirtualSwipe
+      index={index}
+      enableMouseEvents
+      onChangeIndex={cix => setIndex(ixHandler(index))}
+      slideRenderer={({ index: ix, key, }) =>
+        <SwipeableViews index={ix}>{children}</SwipeableViews>
+      }
+    />
 
-    </div>
-  );
-};
+    <br />
+    {children.map((el, i) =>
+      (<Button key={i} onClick={() => setIndex(ixHandler(i))}>
+        {`go to slide n°${i}`}
+      </Button>)
+    ) }
+
+  </div>
+  )
+
+;
 
 export default stateful((Carousel));

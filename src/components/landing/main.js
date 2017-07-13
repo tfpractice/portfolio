@@ -5,7 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab, } from 'material-ui/Tabs';
 import { withState, } from 'recompose';
 
-import { HexSVG, BackDrop, RawGroup, } from '../visualization';
+import { HexSVG, } from '../visualization';
 import Contact from './contact';
 import About from './about';
 import FrontMatter from './frontMatter';
@@ -35,9 +35,9 @@ class Landing extends Component {
     const { hash, } = location;
     
     return (
-      <Grid container align="center" justify="center">
+      <Grid container justify="center">
         <Grid item xs={12}>
-          <AppBar>
+          <AppBar style={{ backgroundColor: 'rgba(158,158,158,0.9)', }}>
             <Tabs fullWidth scrollable scrollButtons="on" textColor="accent" index={getIndex(hash)} onChange={(e, i) => setIndex(x => i)}>
               {sections.map((l, i) => (
                 <Tab key={i} label={getLabel(l)} onClick={() => history.replace({ hash: l, })} />
@@ -45,7 +45,7 @@ class Landing extends Component {
             </Tabs>
           </AppBar>
         </Grid>
-        <Grid item xs={11}>
+        <Grid item xs={12}>
           <SwipeableViews enableMouseEvents className="mainSlide" index={getIndex(hash)}>
             <FrontMatter sections={sections}/>
             <About/>

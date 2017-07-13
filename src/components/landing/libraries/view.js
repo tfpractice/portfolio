@@ -1,8 +1,6 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
 import { connect, } from 'react-redux';
 import { MarkdownPreview, } from 'react-marked-markdown';
@@ -31,16 +29,11 @@ const Libs = ({ libs, }) => {
               <MarkdownPreview value={content}/>
             </Text>
           </CardContent>
-          <CardActions>
-            <Button >Learn More</Button>
-          </CardActions>
         </HexCard>
       </Grid>
-      <Grid item xs={11} >
-
+      <Grid item xs={11}>
         <LandingList items={libs} />
       </Grid>
-      
     </Grid>
   );
 };

@@ -8,24 +8,21 @@ import List, { ListItem, ListItemText, ListItemIcon, ListSubheader, ListItemAvat
 import { HexSVG, RawHex, RawGroup, } from '../visualization';
 import { withStyles, createStyleSheet, } from 'material-ui/styles';
 
-const styles = createStyleSheet('Expand', (theme) => {
-  console.log('theme', theme);
-  return ({
-    Icon: {
-      maxWidth: '8%',
-      maxHeight: '8%',
-      minWidth: '7%',
-      minHeight: '7%',
-      color: ' rgba(255, 255, 255, 1)',
-      '&:hover': { color: 'rgba(255, 0, 255, 1)', },
-      marginRight: '4%',
-    },
-    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
-    Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
-    Divider: { backgroundColor: '#f0f', },
+const styles = createStyleSheet('Expand', theme => ({
+  Icon: {
+    maxWidth: '8%',
+    maxHeight: '8%',
+    minWidth: '7%',
+    minHeight: '7%',
+    color: ' rgba(255, 255, 255, 1)',
+    '&:hover': { color: 'rgba(255, 0, 255, 1)', },
+    marginRight: '4%',
+  },
+  Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
+  Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
+  Divider: { backgroundColor: '#f0f', },
 
-  });
-});
+}));
 
 // width: 24px;
 // color: rgba(255, 255, 255, 1);
