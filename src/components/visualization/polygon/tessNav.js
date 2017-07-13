@@ -71,7 +71,8 @@ class TessNav extends Component {
             </g>
             <g className={classes.group}>
               {this.props.paths.map((c, k) => (
-                k && <NavLink to={c} key={k} className={classes.pathLink}
+                k && <NavLink to={c} key={k}
+                  className={classes.pathLink}
                   onMouseOver={() => {
                     clearTimeout(this.tID);
                     this.props.setLinks(x => [ c.slice(1), ]);

@@ -60,8 +60,6 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
     'full documentation deployed on surge',
   ];
   
-  console.log(project.skills);
-  
   return (
     <HexCard raised>
       <CardHeader
@@ -107,9 +105,13 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
           </CardMedia>
         </Collapse>
       </CardMedia>
-      <Collapse in>
-        <CardActions>
-          <ChipList tools={edgeNodes(project.skills).concat(edgeNodes(project.tools))} />
+      <Collapse in={!open}>
+        <CardActions style={{ overflowX: 'auto', overflowY: 'hidden', }}>
+          <Grid container>
+            <Grid item xs={11}>
+              <ChipList tools={edgeNodes(project.skills).concat(edgeNodes(project.tools))} />
+            </Grid>
+          </Grid>
         </CardActions>
       </Collapse>
     </HexCard>

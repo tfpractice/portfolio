@@ -6,8 +6,8 @@ import { NavTess, } from '../visualization';
 import { withRouter, } from 'react-router-dom';
 
 const FrontMatter = ({ history, sections, }) => (
-  <Grid container justify="center" align="center" id="header">
-    <Grid item xs>
+  <Grid container justify="center" align="center" id="header" >
+    <Grid item xs={12}>
       <NavTess paths={sections} />
     </Grid>
   </Grid>

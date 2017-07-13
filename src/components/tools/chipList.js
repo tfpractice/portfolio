@@ -18,14 +18,16 @@ const styleSheet = createStyleSheet('ToolChipList', theme => ({
 }));
 
 const ChipList = ({ tools, }) => (
-  <ListItem >
+  <Grid container wrap="nowrap" >
 
     {/* <Paper> */}
     {tools.sort((a, b) => a.name.length - b.name.length).map(t => (
-      <ToolChip tool={t} key={t.id} />
+      <Grid item xs key={t.id}>
+        <ToolChip tool={t} key={t.id} />
+      </Grid>
     ))}
     {/* </Paper> */}
-  </ListItem>
+  </Grid>
 );
 
 export default ChipList;
