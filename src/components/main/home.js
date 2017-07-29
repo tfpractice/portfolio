@@ -1,27 +1,29 @@
-import React, { Component, } from 'react';
+import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
-import { Route, Switch, } from 'react-router-dom';
-import { connect, } from 'react-redux';
-import { Projects, } from '../../store';
-import { FadeRoute, } from '../../utils';
-import ProjectRoute from '../projects';
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+
 import Landing from '../landing';
 import Contact from '../landing/contact';
-import { BackDrop, } from '../visualization';
+import ProjectRoute from '../projects';
+import { Projects } from '../../store';
+import { FadeRoute } from '../../utils';
+import { BackDrop } from '../visualization';
 
-const { containers: { WithAll, }, actions: pActions, } = Projects;
+const { containers: { WithAll }, actions: pActions } = Projects;
 
 class Home extends Component {
-  componentWillReceiveProps({ setProjects, projectsArray, projectsData, }) {
+  componentWillReceiveProps({ setProjects, projectsArray, projectsData }) {
     !projectsData.loading && setProjects(projectsArray);
   }
+
   render() {
     return (
       <Grid
         container
         justify="center"
         align="center"
-        style={{ paddingTop: '5rem', }}
+        style={{ paddingTop: '5rem' }}
       >
         <Grid item xs={12} className="homeDiv">
           <Switch>
