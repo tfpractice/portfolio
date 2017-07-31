@@ -9,6 +9,9 @@ import Card, {
   CardHeader,
   CardMedia,
 } from 'material-ui/Card';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import { Link } from 'react-router-dom';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import { connect } from 'react-redux';
 import { FadeIn } from 'animate-components';
@@ -16,6 +19,8 @@ import kramed from 'kramed';
 import { MarkdownPreview } from 'react-marked-markdown';
 import Divider from 'material-ui/Divider';
 import { autoplay } from 'react-swipeable-views-utils';
+
+import TabNav from '../../landing/tabNav';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand } from '../../misc';
@@ -24,7 +29,7 @@ import { markdown as mCont } from './pages/fenugreek/markdown';
 
 import Slides from './slides';
 
-const { WithSkills } = containers;
+const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
 const stateToProps = (
   { projects, ...state },
@@ -45,9 +50,14 @@ const Project = (props) => {
   const tech = getTech(slug);
   const content = getContent(slug);
 
-  console.log('slug', slug);
   return (
-    <Grid container align="center" justify="center">
+    <Grid
+      container
+      align="center"
+      justify="center"
+      style={{ backgroundColor: 'rgba(158,158,158,0.5)' }}
+    >
+      <TabNav index={0} />
       <Grid item xs={11}>
         <Card>
           <CardHeader title={project && project.title} />
@@ -69,7 +79,7 @@ const Project = (props) => {
           <Expand
             header={
               <Text color="inherit" type="title">
-                {'Project Highlights'}
+                Project Highlights
               </Text>
             }
           >

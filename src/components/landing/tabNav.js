@@ -9,7 +9,9 @@ import { compose, withHandlers, withState } from 'recompose';
 
 import { RawPath } from '../visualization';
 
-const ixMap = sects => new Map(sects.map((k, i) => [ k, i ]));
+const init = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs' ];
+
+const ixMap = (sects = init) => new Map(sects.map((k, i) => [ k, i ]));
 
 const hexIcon = (
   <SvgIcon transform="scale(1.3)" viewBox="-1,-1,2,2">
@@ -17,15 +19,15 @@ const hexIcon = (
   </SvgIcon>
 );
 
-const lMap = sects =>
+const lMap = (sects = init) =>
   new Map(
     sects.map((k, i) => (i ? [ k, k.slice(1).toUpperCase() ] : [ k, hexIcon ]))
   );
 
-const getIx = sects => (key = '#frontMatter') =>
+const getIx = (sects = init) => (key = '#frontMatter') =>
   ixMap(sects).has(key) ? ixMap(sects).get(key) : 0;
 
-const getLabel = sects => (key = '#frontMatter') =>
+const getLabel = (sects = init) => (key = '#frontMatter') =>
   lMap(sects).has(key) ? lMap(sects).get(key) : '';
 
 const withIndex = compose(
@@ -37,11 +39,12 @@ const withIndex = compose(
   withHandlers({
     set: ({ setIndex }) => (e, i) => setIndex(i),
     changeSet: ({ setIndex }) => i => setIndex(i),
-    hPush: ({ history }) => hash => () => history.replace({ hash }),
+    hPush: ({ history }) => hash => () =>
+      history.replace({ pathname: '/', hash }),
   })
 );
 
-const TabNav = ({ index, hPush, set, sections }) =>
+const TabNav = ({ index, hPush, set, sections = init } = { sections: init }) =>
   (<AppBar>
     <Toolbar>
       <Grid container justify="center" align="center">
