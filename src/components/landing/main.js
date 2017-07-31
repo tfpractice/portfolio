@@ -3,7 +3,7 @@ import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
 import AppBar from 'material-ui/AppBar';
 import SvgIcon from 'material-ui/SvgIcon';
-import { withState } from 'recompose';
+import { compose, withHandlers, withState } from 'recompose';
 
 import { RawPath } from '../visualization';
 import About from './about';
@@ -30,25 +30,31 @@ const lMap = new Map(
 
 const getIndex = (key = '#frontMatter') =>
   ixMap.has(key) ? ixMap.get(key) : 0;
-
 const getLabel = (key = '#frontMatter') => (lMap.has(key) ? lMap.get(key) : '');
 
-const withIndex = withState('index', 'setIndex', ({ location: { hash }}) =>
-  getIndex(hash)
+const withIndex = compose(
+  withState('index', 'setIndex', ({ location: { hash }}) => getIndex(hash)),
+  withHandlers({
+    set: ({ setIndex }) => (e, i) => setIndex(i),
+    changeSet: ({ setIndex }) => i => setIndex(i),
+    hPush: ({ history }) => hash => () => history.replace({ hash }),
+  })
 );
 
-const PureLanding = ({ index, setIndex, location, history }) => {
+const PureLanding = ({ index, set, changeSet, hPush, location, history }) => {
   const { hash } = location;
 
   return (
     <Grid container align="center" justify="center">
-      <TabNav sections={sections} />
+      <Grid item xs={12}>
+        <TabNav index={getIndex(hash)} sections={sections} />
+      </Grid>
       <Grid item xs={12}>
         <SwipeableViews
           enableMouseEvents
           index={getIndex(hash)}
           slideStyle={style}
-          onChangeIndex={i => setIndex(i)}
+          onChangeIndex={changeSet}
         >
           <FrontMatter sections={sections} />
           <About />

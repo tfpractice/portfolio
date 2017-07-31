@@ -1,23 +1,15 @@
 import React from 'react';
-import SwipeableViews from 'react-swipeable-views';
-import Grid from 'material-ui/Grid';
 import AppBar from 'material-ui/AppBar';
+import Grid from 'material-ui/Grid';
 import SvgIcon from 'material-ui/SvgIcon';
 import Toolbar from 'material-ui/Toolbar';
+import { withRouter } from 'react-router-dom';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import { withState } from 'recompose';
-import { withRouter } from 'react-router';
+import { compose, withHandlers, withState } from 'recompose';
+
 import { RawPath } from '../visualization';
-import About from './about';
-import FrontMatter from './frontMatter';
-import Apps from './apps';
-import Libraries from './libraries';
-import Teaching from './teaching';
 
-const style = { overflowX: 'hidden' };
-
-const sections = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs' ];
-const ixMap = new Map(sections.map((k, i) => [ k, i ]));
+const ixMap = sects => new Map(sects.map((k, i) => [ k, i ]));
 
 const hexIcon = (
   <SvgIcon transform="scale(1.3)" viewBox="-1,-1,2,2">
@@ -25,38 +17,46 @@ const hexIcon = (
   </SvgIcon>
 );
 
-const lMap = new Map(
-  sections.map((k, i) => (i ? [ k, k.slice(1).toUpperCase() ] : [ k, hexIcon ]))
+const lMap = sects =>
+  new Map(
+    sects.map((k, i) => (i ? [ k, k.slice(1).toUpperCase() ] : [ k, hexIcon ]))
+  );
+
+const getIx = sects => (key = '#frontMatter') =>
+  ixMap(sects).has(key) ? ixMap(sects).get(key) : 0;
+
+const getLabel = sects => (key = '#frontMatter') =>
+  lMap(sects).has(key) ? lMap(sects).get(key) : '';
+
+const withIndex = compose(
+  withState(
+    'index',
+    'setIndex',
+    ({ index, sections, location }) => index || getIx(sections)(location.hash)
+  ),
+  withHandlers({
+    set: ({ setIndex }) => (e, i) => setIndex(i),
+    changeSet: ({ setIndex }) => i => setIndex(i),
+    hPush: ({ history }) => hash => () => history.replace({ hash }),
+  })
 );
 
-const getIndex = (key = '#frontMatter') =>
-  ixMap.has(key) ? ixMap.get(key) : 0;
-const getLabel = (key = '#frontMatter') => (lMap.has(key) ? lMap.get(key) : '');
-
-const withIndex = withState('index', 'setIndex', ({ location }) =>
-  getIndex(location.hash)
-);
-
-const TabNav = ({ index, setIndex, location, history, sections }) =>
+const TabNav = ({ index, hPush, set, sections }) =>
   (<AppBar>
     <Toolbar>
       <Grid container justify="center" align="center">
         <Grid item>
           <Tabs
-            index={index}
             centered
             scrollable
+            index={index}
             scrollButtons="on"
             textColor="#fff"
             indicatorColor="#f0f"
-            onChange={(e, i) => setIndex(i)}
+            onChange={set}
           >
-            {sections.map((hash, i) =>
-              (<Tab
-                key={i}
-                label={getLabel(hash)}
-                onClick={() => history.replace({ hash })}
-              />)
+            {sections.map((l, i) =>
+              <Tab key={i} label={getLabel(sections)(l)} onClick={hPush(l)} />
             )}
           </Tabs>
         </Grid>
