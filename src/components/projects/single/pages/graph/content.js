@@ -66,8 +66,7 @@ export const tech = [
 //   'built with es6, bundled with Rollup',
 //   '90% code-coverage, tested with Jest',
 // ];
-export const techniques = [
-  'functional programming', ];
+export const techniques = [ 'functional programming' ];
 
 // export const highlights = slides;
 

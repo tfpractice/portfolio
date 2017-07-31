@@ -1,23 +1,23 @@
-import React, { Component, } from 'react';
-import { connect, } from 'react-redux';
-import { Route, Switch, } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import { FadeIn, } from 'animate-components';
+import { FadeIn } from 'animate-components';
 import Button from 'material-ui/Button';
-import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
-import { MarkdownPreview, } from 'react-marked-markdown';
-import { Graph, Show, } from 'graph-curry';
+import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
+import { MarkdownPreview } from 'react-marked-markdown';
+import { Graph, Show } from 'graph-curry';
 
 // import { byAdj, colAdj, negAdj, posAdj, rowAdj, } from './filter';
 
-import { mapTo, spreadK, } from 'fenugreek-collections';
+import { mapTo, spreadK } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
 
-const { addEdges, nodes, graph, adj, neighbors, } = Graph;
-const { graphString, } = Show;
+const { addEdges, nodes, graph, adj, neighbors } = Graph;
+const { graphString } = Show;
 
 const localNums = spreadK(Array(20));
 
@@ -93,7 +93,8 @@ const main = `
   
 `;
 
-{ }
+{
+}
 
 const double = x => x * 2;
 const halve = x => x / 2;
@@ -102,30 +103,30 @@ class MapEx extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numbers: [ 1, 2, 3, 4, ],
-      names: [ 'tom', 'dick', 'harry', ],
+      numbers: [ 1, 2, 3, 4 ],
+      names: [ 'tom', 'dick', 'harry' ],
     };
   }
-  
+
   doubleNums() {
-    const { numbers, } = this.state;
-    
-    this.setState({ numbers: mapTo(double)(numbers), });
+    const { numbers } = this.state;
+
+    this.setState({ numbers: mapTo(double)(numbers) });
   }
-  
+
   halveNums() {
-    const { numbers, } = this.state;
-    
-    this.setState({ numbers: mapTo(halve)(numbers), });
+    const { numbers } = this.state;
+
+    this.setState({ numbers: mapTo(halve)(numbers) });
   }
-  
+
   resetNums() {
-    this.setState({ numbers: [ 1, 2, 3, 4, ], });
+    this.setState({ numbers: [ 1, 2, 3, 4 ]});
   }
-  
-  render () {
+
+  render() {
     const props = this.props;
-    
+
     return (
       <Card>
         <CardHeader title="mapTo(fn)(coll)" />
@@ -133,41 +134,45 @@ class MapEx extends Component {
           <Grid container justify="center">
             <Grid item xs={11}>
               <Text component="div" type="body2">
-                <MarkdownPreview value={main}/>
+                <MarkdownPreview value={main} />
               </Text>
             </Grid>
-            <Text > {graphString(fizzGraph(localNums)).split('}', 3)} </Text>
+            <Text>
+              {' '}{graphString(fizzGraph(localNums)).split('}', 3)}{' '}
+            </Text>
             {/* <Text align="center" type="display1"> {this.state.numbers.join()} </Text> */}
 
             <Grid item xs={11}>
               <SwipeableViews enableMouseEvents>
-
                 <Text component="div" type="body2">
-                  <MarkdownPreview value={dubstring}/>
+                  <MarkdownPreview value={dubstring} />
                 </Text>
                 <Text component="div" type="body2">
-                  <MarkdownPreview value={halfStr}/>
+                  <MarkdownPreview value={halfStr} />
                 </Text>
                 <Text component="div" type="body2">
-                  <MarkdownPreview value={resStr}/>
+                  <MarkdownPreview value={resStr} />
                 </Text>
-
               </SwipeableViews>
             </Grid>
           </Grid>
-
         </CardContent>
 
         <CardActions>
           <Grid container align="center" justify="center">
-            <Grid item ><Button onClick={() => this.doubleNums()}>Double</Button></Grid>
-            <Grid item ><Button onClick={() => this.halveNums()}>Halve</Button></Grid>
-            <Grid item ><Button onClick={() => this.resetNums()}>Reset</Button></Grid>
+            <Grid item>
+              <Button onClick={() => this.doubleNums()}>Double</Button>
+            </Grid>
+            <Grid item>
+              <Button onClick={() => this.halveNums()}>Halve</Button>
+            </Grid>
+            <Grid item>
+              <Button onClick={() => this.resetNums()}>Reset</Button>
+            </Grid>
           </Grid>
         </CardActions>
       </Card>
-    
     );
   }
 }
-export default (MapEx);
+export default MapEx;

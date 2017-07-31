@@ -1,8 +1,9 @@
+export const slides = [
+  {
+    caption:
+      'allows a high degree of interoperability between Javascript collections',
 
-export const slides = [{
-  caption: 'allows a high degree of interoperability between Javascript collections',
-  
-  content: `
+    content: `
   ## allows a high degree of interoperability between Javascript collections 
     
   ~~~javascript
@@ -20,10 +21,11 @@ export const slides = [{
   
   ~~~
 `,
-},
-{
-  caption: 'recasts native variadic functions as partially applied/curried unary functions',
-  content: `
+  },
+  {
+    caption:
+      'recasts native variadic functions as partially applied/curried unary functions',
+    content: `
   ## recasts native variadic functions as partially applied/curried unary functions
   
   ~~~js
@@ -46,10 +48,10 @@ export const map = coll => fn => spread(coll).map(fn);
 export const mapTo = fn => coll => map(coll)(fn);
 ~~~
 `,
-},
-{
-  caption: 'implements mathematical set functions',
-  content: `
+  },
+  {
+    caption: 'implements mathematical set functions',
+    content: `
   ## implements mathematical set functions
   
   ~~~js
@@ -66,5 +68,5 @@ export const diff = c0 => c1 => spread(c0).filter(xhasK(c1));
 export const union = c0 => c1 => spread(c0).concat(diff(c1)(c0));
 ~~~
 `,
-},
+  },
 ];

@@ -20,6 +20,7 @@ import { MarkdownPreview } from 'react-marked-markdown';
 import Divider from 'material-ui/Divider';
 import { autoplay } from 'react-swipeable-views-utils';
 
+import { HexCard } from '../../misc';
 import TabNav from '../../landing/tabNav';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
@@ -59,7 +60,7 @@ const Project = (props) => {
     >
       <TabNav index={0} />
       <Grid item xs={11}>
-        <Card>
+        <HexCard>
           <CardHeader title={project && project.title} />
           <CardContent>
             <Text type="title">
@@ -72,7 +73,7 @@ const Project = (props) => {
               </ListItem>)
             )}
           </CardContent>
-        </Card>
+        </HexCard>
       </Grid>
       <Grid item xs={11}>
         <Grid container direction="column" justify="center" align="center">

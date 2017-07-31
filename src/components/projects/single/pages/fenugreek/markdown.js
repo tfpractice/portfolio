@@ -1,4 +1,3 @@
-
 export const markdown = `
 ## Fenugreek Collections
 This is one of the projects I've been most proud of, and marks the moment in my development experience at which my interests moved from programming solutions to programming about programming. Having developed a certain comfort with the complicated things I could do _with_ code, I became interested in what the code _itself_ could do. And as I was moving toward a more collection-based functional style, I decided to fully investigate the Array.
