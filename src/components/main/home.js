@@ -30,7 +30,7 @@ class Home extends Component {
       >
         <Grid item xs={12} className="homeDiv">
           <Switch>
-            <Route exact path="/" render={props => <Landing {...props} />} />
+            <Route exact path="/" component={Landing} />
             <Route path={`/:slug`} component={Single} />
           </Switch>
         </Grid>

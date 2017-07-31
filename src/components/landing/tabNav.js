@@ -3,15 +3,16 @@ import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
 import AppBar from 'material-ui/AppBar';
 import SvgIcon from 'material-ui/SvgIcon';
+import Toolbar from 'material-ui/Toolbar';
+import Tabs, { Tab } from 'material-ui/Tabs';
 import { withState } from 'recompose';
-
+import { withRouter } from 'react-router';
 import { RawPath } from '../visualization';
 import About from './about';
 import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
 import Teaching from './teaching';
-import TabNav from './tabNav';
 
 const style = { overflowX: 'hidden' };
 
@@ -30,35 +31,37 @@ const lMap = new Map(
 
 const getIndex = (key = '#frontMatter') =>
   ixMap.has(key) ? ixMap.get(key) : 0;
-
 const getLabel = (key = '#frontMatter') => (lMap.has(key) ? lMap.get(key) : '');
 
-const withIndex = withState('index', 'setIndex', ({ location: { hash }}) =>
-  getIndex(hash)
+const withIndex = withState('index', 'setIndex', ({ location }) =>
+  getIndex(location.hash)
 );
 
-const PureLanding = ({ index, setIndex, location, history }) => {
-  const { hash } = location;
-
-  return (
-    <Grid container align="center" justify="center">
-      <TabNav sections={sections} />
-      <Grid item xs={12}>
-        <SwipeableViews
-          enableMouseEvents
-          index={getIndex(hash)}
-          slideStyle={style}
-          onChangeIndex={i => setIndex(i)}
-        >
-          <FrontMatter sections={sections} />
-          <About />
-          <Teaching />
-          <Apps />
-          <Libraries />
-        </SwipeableViews>
+const TabNav = ({ index, setIndex, location, history, sections }) =>
+  (<AppBar>
+    <Toolbar>
+      <Grid container justify="center" align="center">
+        <Grid item>
+          <Tabs
+            index={index}
+            centered
+            scrollable
+            scrollButtons="on"
+            textColor="#fff"
+            indicatorColor="#f0f"
+            onChange={(e, i) => setIndex(i)}
+          >
+            {sections.map((hash, i) =>
+              (<Tab
+                key={i}
+                label={getLabel(hash)}
+                onClick={() => history.replace({ hash })}
+              />)
+            )}
+          </Tabs>
+        </Grid>
       </Grid>
-    </Grid>
-  );
-};
+    </Toolbar>
+  </AppBar>);
 
-export default withIndex(PureLanding);
+export default withRouter(withIndex(TabNav));
