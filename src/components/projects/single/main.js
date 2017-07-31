@@ -2,6 +2,10 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
+import AppBar from 'material-ui/AppBar';
+import Toolbar from 'material-ui/Toolbar';
+import kramed from 'kramed';
+import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Card, {
   CardActions,
@@ -9,55 +13,45 @@ import Card, {
   CardHeader,
   CardMedia,
 } from 'material-ui/Card';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import { Link } from 'react-router-dom';
 import List, { ListItem, ListItemText } from 'material-ui/List';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { FadeIn } from 'animate-components';
-import kramed from 'kramed';
 import { MarkdownPreview } from 'react-marked-markdown';
-import Divider from 'material-ui/Divider';
 import { autoplay } from 'react-swipeable-views-utils';
+import { FadeIn } from 'animate-components';
 
-import { HexCard } from '../../misc';
 import TabNav from '../../landing/tabNav';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
-import { Expand } from '../../misc';
+import { Expand, HexCard } from '../../misc';
 import { getContent, getDemos, getProject, getSlides, getTech } from './pages';
 import { markdown as mCont } from './pages/fenugreek/markdown';
-
 import Slides from './slides';
 
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
-const stateToProps = (
-  { projects, ...state },
-  { match: { params: { slug }}}
-) => ({
+const stateToProps = ({ projects }, { match: { params: { slug }}}) => ({
+  slug,
   project: findMatch(slug)(projects),
   lSlides: getSlides(slug),
   localP: getProject(slug),
-  slug,
 });
+const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 const Project = (props) => {
   const { project, slug, localP, slides, lSlides } = props;
+
   const isMissing = ({ id: toolId }) =>
     !new Set(edgeNodes(project.tools).map(({ id }) => id)).has(toolId);
+
   const xSkill = ({ id: skillId }) =>
     !new Set(edgeNodes(project.skills).map(({ id }) => id)).has(skillId);
+
   const Demo = getDemos(slug);
   const tech = getTech(slug);
   const content = getContent(slug);
 
   return (
-    <Grid
-      container
-      align="center"
-      justify="center"
-      style={{ backgroundColor: 'rgba(158,158,158,0.5)' }}
-    >
+    <Grid container align="center" justify="center" style={mainStyle}>
       <TabNav index={0} />
       <Grid item xs={11}>
         <HexCard>
