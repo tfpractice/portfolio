@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Landing, { Contact } from '../landing';
-import ProjectRoute, { Single } from '../projects';
+import { Single } from '../projects';
 import { Projects } from '../../store';
 import { FadeRoute } from '../../utils';
 import { BackDrop } from '../visualization';
