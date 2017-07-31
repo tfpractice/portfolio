@@ -3,8 +3,7 @@ import Grid from 'material-ui/Grid';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Landing from '../landing';
-import Contact from '../landing/contact';
+import Landing, { Contact } from '../landing';
 import ProjectRoute, { Single } from '../projects';
 import { Projects } from '../../store';
 import { FadeRoute } from '../../utils';
@@ -14,7 +13,11 @@ const { containers: { WithAll }, actions: pActions } = Projects;
 
 class Home extends Component {
   componentWillReceiveProps({ setProjects, projectsArray, projectsData }) {
-    !projectsData.loading && setProjects(projectsArray);
+    const newInfo =
+      !projectsData.loading &&
+      projectsArray.length !== this.props.projectsArray.length;
+
+    newInfo && setProjects(projectsArray);
   }
 
   render() {
@@ -27,9 +30,8 @@ class Home extends Component {
       >
         <Grid item xs={12} className="homeDiv">
           <Switch>
-            <Route path={`/:slug`} component={Single} />
-
             <Route exact path="/" render={props => <Landing {...props} />} />
+            <Route path={`/:slug`} component={Single} />
           </Switch>
         </Grid>
         <Grid item xs={12}>
