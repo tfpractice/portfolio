@@ -1,14 +1,14 @@
-import React, { Component, } from 'react';
-import { connect, } from 'react-redux';
-import { Route, Switch, } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
 import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import { FadeIn, } from 'animate-components';
+import { FadeIn } from 'animate-components';
 import Button from 'material-ui/Button';
-import Card, { CardActions, CardContent, CardHeader, } from 'material-ui/Card';
+import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 
-import { mapTo, } from 'fenugreek-collections';
+import { mapTo } from 'fenugreek-collections';
 
 import SwipeableViews from 'react-swipeable-views';
 
@@ -44,39 +44,45 @@ const resStr = `resetNums() {
 // export const filtBy = fn => coll => filter(coll)(fn);
 const double = x => x * 2;
 const halve = x => x / 2;
-const stateToProps = ({ projects, }) => ({ projects, });
+const stateToProps = ({ projects }) => ({ projects });
 
 class Examples extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      numbers: [ 1, 2, 3, 4, ],
-      names: [ 'tom', 'dick', 'harry', ],
+      numbers: [ 1, 2, 3, 4 ],
+      names: [ 'tom', 'dick', 'harry' ],
     };
   }
-  
+
   doubleNums() {
-    const { numbers, } = this.state;
-    
-    this.setState({ numbers: mapTo(double)(numbers), });
+    const { numbers } = this.state;
+
+    this.setState({ numbers: mapTo(double)(numbers) });
   }
-  
+
   halveNums() {
-    const { numbers, } = this.state;
-    
-    this.setState({ numbers: mapTo(halve)(numbers), });
+    const { numbers } = this.state;
+
+    this.setState({ numbers: mapTo(halve)(numbers) });
   }
-  
+
   resetNums() {
-    this.setState({ numbers: [ 1, 2, 3, 4, ], });
+    this.setState({ numbers: [ 1, 2, 3, 4 ]});
   }
-  
-  render () {
+
+  render() {
     const props = this.props;
 
     return (
-      <Grid container justify="center" align="center" direction="column" className="Fenugreek-main">
-        <Grid item xs={11} sm={10} >
+      <Grid
+        container
+        justify="center"
+        align="center"
+        direction="column"
+        className="Fenugreek-main"
+      >
+        <Grid item xs={11} sm={10}>
           <Card>
             <CardHeader title="mapTo(fn)(coll)" />
             <CardContent>
@@ -99,11 +105,12 @@ class Examples extends Component {
                     </Text>
                   </Grid>
                 </Grid>
-                <Text align="center" type="display1"> {this.state.numbers.join()} </Text>
+                <Text align="center" type="display1">
+                  {' '}{this.state.numbers.join()}{' '}
+                </Text>
 
                 <Grid item xs={11}>
                   <SwipeableViews enableMouseEvents>
-
                     <Text type="body2">
                       <pre>
                         {`${dubstring}`}
@@ -121,18 +128,22 @@ class Examples extends Component {
                         {`${resStr}`}
                       </pre>
                     </Text>
-
                   </SwipeableViews>
                 </Grid>
               </Grid>
-
             </CardContent>
 
             <CardActions>
               <Grid container align="center" justify="center">
-                <Grid item ><Button onClick={() => this.doubleNums()}>Double</Button></Grid>
-                <Grid item ><Button onClick={() => this.halveNums()}>Halve</Button></Grid>
-                <Grid item ><Button onClick={() => this.resetNums()}>Reset</Button></Grid>
+                <Grid item>
+                  <Button onClick={() => this.doubleNums()}>Double</Button>
+                </Grid>
+                <Grid item>
+                  <Button onClick={() => this.halveNums()}>Halve</Button>
+                </Grid>
+                <Grid item>
+                  <Button onClick={() => this.resetNums()}>Reset</Button>
+                </Grid>
               </Grid>
             </CardActions>
           </Card>

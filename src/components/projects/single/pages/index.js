@@ -1,5 +1,6 @@
 import Fenugreek, * as FenData from './fenugreek';
 import * as Graph from './graph';
+
 const xData = () => null;
 
 export const slugMap = {
@@ -9,11 +10,9 @@ export const slugMap = {
 export const getProject = slug =>
   new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
 
-export const getDemos = slug =>
-  getProject(slug).Demo || xData;
+export const getDemos = slug => getProject(slug).Demo || xData;
 
-export const getSlides = slug =>
-  getProject(slug).slides || [];
+export const getSlides = slug => getProject(slug).slides || [];
 export const getTech = slug =>
   getProject(slug).tech || [
     'built with es6, bundled with Rollup',
@@ -21,5 +20,4 @@ export const getTech = slug =>
     'full documentation deployed on surge',
   ];
 
-export const getContent = slug =>
-  getProject(slug).content || '';
+export const getContent = slug => getProject(slug).content || '';
