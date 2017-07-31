@@ -11,7 +11,7 @@ const ProjectLink = ({ project, children, ...props }) => {
   const a = 0;
 
   return (
-    <Link to={`/projects/${slug(project)}`}>
+    <Link to={`/${slug(project)}`}>
       {children || project.title}
     </Link>
   );

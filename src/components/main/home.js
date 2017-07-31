@@ -27,12 +27,7 @@ class Home extends Component {
       >
         <Grid item xs={12} className="homeDiv">
           <Switch>
-            <FadeRoute path="/projects" component={ProjectRoute} />
-            <Route
-              exact
-              path={`${this.props.match.url}/:slug`}
-              component={Single}
-            />
+            <Route path={`/:slug`} component={Single} />
 
             <Route exact path="/" render={props => <Landing {...props} />} />
           </Switch>

@@ -47,8 +47,8 @@ const Project = (props) => {
 
   console.log('slug', slug);
   return (
-    <Grid container direction="column" justify="center">
-      <Grid item xs>
+    <Grid container align="center" justify="center">
+      <Grid item xs={11}>
         <Card>
           <CardHeader title={project && project.title} />
           <CardContent>
@@ -64,7 +64,7 @@ const Project = (props) => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs>
+      <Grid item xs={11}>
         <Grid container direction="column" justify="center" align="center">
           <Expand
             header={
@@ -80,7 +80,7 @@ const Project = (props) => {
         </Grid>
       </Grid>
 
-      <Grid item xs>
+      <Grid item xs={11}>
         <Expand
           open
           header={
@@ -95,7 +95,7 @@ const Project = (props) => {
         </Expand>
       </Grid>
 
-      <Grid item xs>
+      <Grid item xs={11}>
         <Expand
           header={
             <Text color="inherit" type="title">
@@ -107,7 +107,7 @@ const Project = (props) => {
         </Expand>
       </Grid>
 
-      <Grid item xs>
+      <Grid item xs={11}>
         <Expand
           header={
             <Text color="inherit" type="title">
