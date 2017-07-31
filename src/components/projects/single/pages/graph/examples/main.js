@@ -10,7 +10,8 @@ import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 
 import { mapTo } from 'fenugreek-collections';
 
-import SwipeableViews from 'react-swipeable-views'; import MapEx from './fizzbuzz';
+import SwipeableViews from 'react-swipeable-views';
+import MapEx from './fizzbuzz';
 
 const Demo = () =>
   (<Grid container align="center">

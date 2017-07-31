@@ -20,14 +20,18 @@ const codePen = {
 };
 const linkedIn = {
   label: 'linkedIn',
-  imageURL: 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png',
+  imageURL: '/images/In-White-128px-R.png',
   profileURL: 'https://www.linkedin.com/in/tfpractice/',
 };
-const links = [ gitHub, codePen, linkedIn ];
+const links = [ gitHub, linkedIn, codePen ];
 
 const styleSheet = createStyleSheet('SimpleBottomNavigation', { root: { width: 500 }});
 const Styled = withStyles(
-  createStyleSheet('SimpleBottomNavigation', { root: { width: 500 }})
+  createStyleSheet('SimpleBottomNavigation', {
+    root: { width: 500 },
+    span: { objectFit: 'cover' },
+    nav: { minHeight: '5rem', backgroundColor: 'rgba(158,158,158,0.9)' },
+  })
 );
 
 const withIndex = withState(
@@ -36,29 +40,24 @@ const withIndex = withState(
   ({ index } = { index: 0 }) => index
 );
 const Indexed = compose(
-  withState('index', 'setIndex', ({ index } = { index: 0 }) => index),
+  withState('index', 'setIndex', ({ index } = { index: 2 }) => index),
   withHandlers({
     set: ({ setIndex }) => i => () => setIndex(i),
     setChange: ({ setIndex }) => (e, i) => setIndex(i),
   })
 );
-const style = { minHeight: '5rem', backgroundColor: 'rgba(158,158,158,0.9)' };
 
-const Contact = ({ index, setIndex, setChange, set }) =>
-  (<Grid container>
-    <Grid item xs>
-      <BottomNavigation
-        showLabels
-        style={style}
-        value={index}
-        onChange={setChange}
-      >
+const Contact = ({ index, setIndex, setChange, classes, set }) =>
+  (<Grid container justify="center" align="center">
+    <Grid item xs={12}>
+      <BottomNavigation className={classes.nav} onChange={setChange}>
         {links.map(l =>
           (<BottomNavigationButton
             key={l.label}
             target="_blank"
             href={l.profileURL}
             label={l.label}
+            showLabel
             icon={
               <span>
                 <Avatar src={l.imageURL} aria-label={l.label} />
