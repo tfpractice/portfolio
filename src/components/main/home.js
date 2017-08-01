@@ -3,6 +3,7 @@ import Grid from 'material-ui/Grid';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { CircularProgress } from 'material-ui/Progress';
 
 import Landing, { Contact, TabNav } from '../landing';
 import { Single } from '../projects';
@@ -25,7 +26,7 @@ class Home extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, projectsData: { loading }} = this.props;
 
     return (
       <Grid container justify="center" align="center" className={classes.main}>

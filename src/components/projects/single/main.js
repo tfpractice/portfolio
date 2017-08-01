@@ -30,32 +30,26 @@ import Slides from './slides';
 
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
-const stateToProps = (
-  { projects, ...state },
-  { match: { params: { slug }}}
-) => {
-  console.log('state', state);
-  console.log('project', projects);
-  return {
-    slug,
-    empty: !!projects.length,
-    project: findMatch(slug)(projects),
-    lSlides: getSlides(slug),
-    localP: getProject(slug),
-  };
-};
+const stateToProps = ({ projects }, { match: { params: { slug }}}) => ({
+  slug,
+  project: findMatch(slug)(projects),
+  lSlides: getSlides(slug),
+  localP: getProject(slug),
+});
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 const Project = (props) => {
-  const { project, empty, slug, localP, slides, lSlides } = props;
+  const { project, slug, localP, slides, lSlides } = props;
   let view;
 
-  if (empty) {
+  if (!project) {
     view = (
       <Grid container align="center" justify="center" style={mainStyle}>
-        <CircularProgress color="accent" />
+        <Grid item xs>
+          <CircularProgress color="accent" />
+        </Grid>
       </Grid>
     );
-  } else if (!empty) {
+  } else {
     const isMissing = ({ id: toolId }) =>
       !new Set(edgeNodes(project.tools).map(({ id }) => id)).has(toolId);
 
