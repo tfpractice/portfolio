@@ -24,13 +24,12 @@ const withIndex = compose(
   withState(
     'index',
     'setIndex',
-    ({ index, location } = defProps) => index || getIx(location.hash)
+    ({ index, location } = defProps) => index || getIx(location.hash) || false
   ),
   withHandlers({
     set: ({ setIndex }) => (e, i) => setIndex(i),
     changeSet: ({ setIndex }) => i => setIndex(i),
-    hPush: ({ history }) => hash => () =>
-      history.replace({ pathname: '/', hash }),
+    hPush: ({ history }) => hash => () => history.push({ pathname: '/', hash }),
   })
 );
 

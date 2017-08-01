@@ -1,11 +1,9 @@
 import React from 'react';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
-import BottomNavigation, {
-  BottomNavigationButton,
-} from 'material-ui/BottomNavigation';
 import Avatar from 'material-ui/Avatar';
 import Grid from 'material-ui/Grid';
-import IconButton from 'material-ui/IconButton';
+import Text from 'material-ui/Typography';
+import BNav, { BottomNavigationButton } from 'material-ui/BottomNavigation';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 
 const gitHub = {
@@ -13,32 +11,29 @@ const gitHub = {
   imageURL: 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png',
   profileURL: 'https://github.com/tfpractice',
 };
+
 const codePen = {
   label: 'codepen',
   imageURL: '/images/codepenWhite.png',
   profileURL: 'https://codepen.io/tfpractice/',
 };
+
 const linkedIn = {
   label: 'linkedIn',
   imageURL: '/images/In-White-128px-R.png',
   profileURL: 'https://www.linkedin.com/in/tfpractice/',
 };
+
 const links = [ gitHub, linkedIn, codePen ];
 
-const styleSheet = createStyleSheet('SimpleBottomNavigation', { root: { width: 500 }});
 const Styled = withStyles(
-  createStyleSheet('SimpleBottomNavigation', {
-    root: { width: 500 },
-    span: { objectFit: 'cover' },
+  createStyleSheet('Contact', {
+    avatar: { borderRadius: 0 },
+    label: { marginTop: '0.5rem' },
     nav: { minHeight: '5rem', backgroundColor: 'rgba(158,158,158,0.9)' },
   })
 );
 
-const withIndex = withState(
-  'index',
-  'setIndex',
-  ({ index } = { index: 0 }) => index
-);
 const Indexed = compose(
   withState('index', 'setIndex', ({ index } = { index: 2 }) => index),
   withHandlers({
@@ -47,25 +42,31 @@ const Indexed = compose(
   })
 );
 
-const Contact = ({ index, setIndex, setChange, classes, set }) =>
+const Contact = ({ setChange, classes }) =>
   (<Grid container justify="center" align="center">
     <Grid item xs={12}>
-      <BottomNavigation className={classes.nav} onChange={setChange}>
+      <BNav className={classes.nav} onChange={setChange}>
         {links.map(l =>
           (<BottomNavigationButton
-            key={l.label}
-            target="_blank"
-            href={l.profileURL}
-            label={l.label}
             showLabel
+            target="_blank"
+            key={l.label}
+            href={l.profileURL}
+            label={
+              <Text align="center" type="caption" className={classes.label}>
+                {l.label}
+              </Text>
+            }
             icon={
-              <span>
-                <Avatar src={l.imageURL} aria-label={l.label} />
-              </span>
+              <Avatar
+                className={classes.avatar}
+                src={l.imageURL}
+                aria-label={l.label}
+              />
             }
           />)
         )}
-      </BottomNavigation>
+      </BNav>
     </Grid>
   </Grid>);
 

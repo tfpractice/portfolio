@@ -29,7 +29,7 @@ export const getIndex = (key = '#frontMatter') =>
 
 export const getLabel = (key = '#frontMatter') =>
   lMap.has(key)
-    ? <NavLink to={`/${key}`}>
+    ? <NavLink to={`/${key}`} style={{ color: '#fff', textDecoration: 'none' }}>
       {lMap.get(key)}
     </NavLink>
     : '';

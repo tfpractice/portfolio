@@ -7,7 +7,7 @@ import { MarkdownPreview } from 'react-marked-markdown';
 
 import { HexCard } from '../../misc';
 import { libFilt } from '../../../utils';
-import LandingList from '../../projects/landingList';
+import { CardList } from '../../projects';
 import { content } from './content';
 
 const stateToProps = ({ projects }) => ({ libs: libFilt(projects) });
@@ -25,7 +25,7 @@ const Libs = ({ libs }) =>
       </HexCard>
     </Grid>
     <Grid item xs={11}>
-      <LandingList items={libs} />
+      <CardList items={libs} />
     </Grid>
   </Grid>);
 

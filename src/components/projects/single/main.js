@@ -20,7 +20,7 @@ import { MarkdownPreview } from 'react-marked-markdown';
 import { autoplay } from 'react-swipeable-views-utils';
 import { FadeIn } from 'animate-components';
 
-// import TabNav from '../../landing/tabNav';
+import { CircularProgress } from 'material-ui/Progress';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
@@ -30,110 +30,128 @@ import Slides from './slides';
 
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
-const stateToProps = ({ projects }, { match: { params: { slug }}}) => ({
-  slug,
-  project: findMatch(slug)(projects),
-  lSlides: getSlides(slug),
-  localP: getProject(slug),
-});
+const stateToProps = (
+  { projects, ...state },
+  { match: { params: { slug }}}
+) => {
+  console.log('state', state);
+  console.log('project', projects);
+  return {
+    slug,
+    empty: !!projects.length,
+    project: findMatch(slug)(projects),
+    lSlides: getSlides(slug),
+    localP: getProject(slug),
+  };
+};
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 const Project = (props) => {
-  const { project, slug, localP, slides, lSlides } = props;
+  const { project, empty, slug, localP, slides, lSlides } = props;
+  let view;
 
-  const isMissing = ({ id: toolId }) =>
-    !new Set(edgeNodes(project.tools).map(({ id }) => id)).has(toolId);
-
-  const xSkill = ({ id: skillId }) =>
-    !new Set(edgeNodes(project.skills).map(({ id }) => id)).has(skillId);
-
-  const Demo = getDemos(slug);
-  const tech = getTech(slug);
-  const content = getContent(slug);
-
-  return (
-    <Grid container align="center" justify="center" style={mainStyle}>
-      {/* <TabNav index={0} /> */}
-      <Grid item xs={11}>
-        <HexCard>
-          <CardHeader title={project && project.title} />
-          <CardContent>
-            <Text type="title">
-              {project && project.description}
-            </Text>
-            <List />
-            {tech.map((t, i) =>
-              (<ListItem key={i}>
-                <ListItemText primary={t} key={i} />
-              </ListItem>)
-            )}
-          </CardContent>
-        </HexCard>
+  if (empty) {
+    view = (
+      <Grid container align="center" justify="center" style={mainStyle}>
+        <CircularProgress color="accent" />
       </Grid>
-      <Grid item xs={11}>
-        <Grid container direction="column" justify="center" align="center">
+    );
+  } else if (!empty) {
+    const isMissing = ({ id: toolId }) =>
+      !new Set(edgeNodes(project.tools).map(({ id }) => id)).has(toolId);
+
+    const xSkill = ({ id: skillId }) =>
+      !new Set(edgeNodes(project.skills).map(({ id }) => id)).has(skillId);
+
+    const Demo = getDemos(slug);
+    const tech = getTech(slug);
+    const content = getContent(slug);
+
+    view = (
+      <Grid container align="center" justify="center" style={mainStyle}>
+        <Grid item xs={11}>
+          <HexCard>
+            <CardHeader title={project && project.title} />
+            <CardContent>
+              <Text type="title">
+                {project && project.description}
+              </Text>
+              <List />
+              {tech.map((t, i) =>
+                (<ListItem key={i}>
+                  <ListItemText primary={t} key={i} />
+                </ListItem>)
+              )}
+            </CardContent>
+          </HexCard>
+        </Grid>
+        <Grid item xs={11}>
+          <Grid container direction="column" justify="center" align="center">
+            <Expand
+              header={
+                <Text color="inherit" type="title">
+                  Project Highlights
+                </Text>
+              }
+            >
+              <Grid item>
+                <Slides project={project} data={lSlides} />
+              </Grid>
+            </Expand>
+          </Grid>
+        </Grid>
+
+        <Grid item xs={11}>
           <Expand
+            open
             header={
               <Text color="inherit" type="title">
-                Project Highlights
+                In-Depth
               </Text>
             }
           >
-            <Grid item>
-              <Slides project={project} data={lSlides} />
+            <Text component="div" color="inherit" type="body1">
+              <MarkdownPreview value={content} />
+            </Text>
+          </Expand>
+        </Grid>
+
+        <Grid item xs={11}>
+          <Expand
+            header={
+              <Text color="inherit" type="title">
+                Demos
+              </Text>
+            }
+          >
+            <Demo />
+          </Expand>
+        </Grid>
+
+        <Grid item xs={11}>
+          <Expand
+            header={
+              <Text color="inherit" type="title">
+                Skills
+              </Text>
+            }
+          >
+            <Grid container>
+              {props.skillArray &&
+                props.skillArray.filter(xSkill).map(t =>
+                  (<Grid item key={t.id}>
+                    <Button color="primary" onClick={e => props.addSkill(t)}>
+                      {t.name}
+                    </Button>
+                  </Grid>)
+                )}
             </Grid>
           </Expand>
         </Grid>
       </Grid>
+    );
+  }
 
-      <Grid item xs={11}>
-        <Expand
-          open
-          header={
-            <Text color="inherit" type="title">
-              In-Depth
-            </Text>
-          }
-        >
-          <Text component="div" color="inherit" type="body1">
-            <MarkdownPreview value={content} />
-          </Text>
-        </Expand>
-      </Grid>
-
-      <Grid item xs={11}>
-        <Expand
-          header={
-            <Text color="inherit" type="title">
-              Demos
-            </Text>
-          }
-        >
-          <Demo />
-        </Expand>
-      </Grid>
-
-      <Grid item xs={11}>
-        <Expand
-          header={
-            <Text color="inherit" type="title">
-              Skills
-            </Text>
-          }
-        >
-          <Grid container>
-            {props.skillArray &&
-              props.skillArray.filter(xSkill).map(t =>
-                (<Grid item key={t.id}>
-                  <Button color="primary" onClick={e => props.addSkill(t)}>
-                    {t.name}
-                  </Button>
-                </Grid>)
-              )}
-          </Grid>
-        </Expand>
-      </Grid>
-    </Grid>
-  );
+  return view;
 };
 
 export default connect(stateToProps)(WithSkills(Project));

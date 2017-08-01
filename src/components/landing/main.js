@@ -34,10 +34,6 @@ const PureLanding = ({ index, set, changeSet, hPush, location, history }) => {
   return (
     <Grid container align="center" justify="center">
       <Grid item xs={12}>
-        <TabNav index={getIndex(hash)} sections={sections} />
-      </Grid>
-
-      <Grid item xs={12}>
         <SwipeableViews
           enableMouseEvents
           index={getIndex(hash)}

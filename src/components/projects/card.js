@@ -65,8 +65,10 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
 
 const divStyle = { minHeight: '80px' };
 
-const LandingCard = ({ project, classes, toggle, open, ...props }) => {
+const ProjectCard = ({ project, classes, toggle, open, ...props }) => {
   const a = 0;
+
+  console.log('props', props);
   const features = project.features || [
     'built with es6, bundled with Rollup',
     '90% code-coverage, tested with Jest',
@@ -87,7 +89,7 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
               <a
                 target="_blank"
                 href={project.url}
-                children={<Text type="body" children={project.title} />}
+                children={<Text type="subheading" children={project.title} />}
               />
             </Grid>
             <Grid item>
@@ -154,4 +156,4 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
   );
 };
 
-export default withStyles(styleSheet)(stateful(WithProject(LandingCard)));
+export default withStyles(styleSheet)(stateful(WithProject(ProjectCard)));
