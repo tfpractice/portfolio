@@ -19,8 +19,8 @@ import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
 import { autoplay } from 'react-swipeable-views-utils';
 import { FadeIn } from 'animate-components';
-
 import { CircularProgress } from 'material-ui/Progress';
+
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
@@ -30,13 +30,19 @@ import Slides from './slides';
 
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
-const stateToProps = ({ projects }, { match: { params: { slug }}}) => ({
-  slug,
-  project: findMatch(slug)(projects),
-  lSlides: getSlides(slug),
-  localP: getProject(slug),
-});
+
+const mapState = ({ projects }, { match: { params: { slug }}}) => {
+  console.log('findMatch(slug)(projects)', findMatch(slug)(projects));
+
+  return {
+    slug,
+    project: findMatch(slug)(projects),
+    lSlides: getSlides(slug),
+    localP: getProject(slug),
+  };
+};
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
+
 const Project = (props) => {
   const { project, slug, localP, slides, lSlides } = props;
   let view;
@@ -148,4 +154,4 @@ const Project = (props) => {
   return view;
 };
 
-export default connect(stateToProps)(WithSkills(Project));
+export default connect(mapState)(WithSkills(Project));

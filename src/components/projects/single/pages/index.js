@@ -21,3 +21,5 @@ export const getTech = slug =>
   ];
 
 export const getContent = slug => getProject(slug).content || '';
+
+// export const getID =(slug)=>

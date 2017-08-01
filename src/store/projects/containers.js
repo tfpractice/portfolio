@@ -1,4 +1,5 @@
 import { graphql } from 'react-apollo';
+
 import { qUtils } from '../../utils';
 import { ADD_SKILL, ADD_TOOL, ALL_PROJECTS, GET_PROJECT } from './queries';
 
@@ -20,7 +21,7 @@ export const WithAll = component =>
 
 export const WithProject = component =>
   graphql(GET_PROJECT, {
-    skip: ({ project, ...rest }) => !(project && project.id),
+    skip: ({ project }) => project != true,
     options: ({ project }) => ({ variables: { id: project.id }}),
     props: ({ data, ownProps: { project }}) => ({
       projectQuery: data,
