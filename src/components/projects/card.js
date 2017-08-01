@@ -36,6 +36,7 @@ const getColor = pj => (pj.category ? typeMap.get(pj.category) : '#b2dfdb');
 
 const imgUrl = pj =>
   `http://via.placeholder.com/350/${getColor(pj).slice(1)}/ffffff?text=_`;
+
 const makeStyle = proj => ({
   backgroundImage: `url(${imgUrl(proj)})`,
   'details::after': { opacity: 0.5 },
@@ -59,7 +60,9 @@ const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
   },
   expandOpen: { transform: 'rotate(90deg)' },
   flexGrow: { flex: '1 1 auto' },
+  actions: { overflowX: 'auto', overflowY: 'hidden' },
 }));
+
 const divStyle = { minHeight: '80px' };
 
 const LandingCard = ({ project, classes, toggle, open, ...props }) => {
@@ -118,7 +121,7 @@ const LandingCard = ({ project, classes, toggle, open, ...props }) => {
         </Collapse>
       </CardMedia>
       <Collapse in={open}>
-        <CardActions style={{ overflowX: 'auto', overflowY: 'hidden' }}>
+        <CardActions className={classes.actions}>
           <Grid container justify="center" align="center">
             <Grid item xs>
               <ProjectLink project={project}>

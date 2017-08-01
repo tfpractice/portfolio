@@ -29,9 +29,11 @@ class Home extends Component {
         style={{ paddingTop: '5rem' }}
       >
         <Grid item xs={12} className="homeDiv">
+          {/* <Route component={Landing} /> */}
+
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route path={`/:slug`} component={Single} />
+            <Route exact path={`/:slug`} component={Single} />
           </Switch>
         </Grid>
         <Grid item xs={12}>

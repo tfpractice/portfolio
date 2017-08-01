@@ -8,33 +8,23 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import { compose, withHandlers, withState } from 'recompose';
 
 import { RawPath } from '../visualization';
+import {
+  getIndex as getIx,
+  getLabel,
+  hexIcon,
+  ixMap,
+  lMap,
+  sections,
+} from './sections';
 
 const init = [ '#frontMatter', '#about', '#teaching', '#apps', '#libs' ];
-
-const ixMap = (sects = init) => new Map(sects.map((k, i) => [ k, i ]));
-
-const hexIcon = (
-  <SvgIcon transform="scale(1.3)" viewBox="-1,-1,2,2">
-    <RawPath />
-  </SvgIcon>
-);
-
-const lMap = (sects = init) =>
-  new Map(
-    sects.map((k, i) => (i ? [ k, k.slice(1).toUpperCase() ] : [ k, hexIcon ]))
-  );
-
-const getIx = (sects = init) => (key = '#frontMatter') =>
-  ixMap(sects).has(key) ? ixMap(sects).get(key) : 0;
-
-const getLabel = (sects = init) => (key = '#frontMatter') =>
-  lMap(sects).has(key) ? lMap(sects).get(key) : '';
+const defProps = { sections: init };
 
 const withIndex = compose(
   withState(
     'index',
     'setIndex',
-    ({ index, sections, location }) => index || getIx(sections)(location.hash)
+    ({ index, location } = defProps) => index || getIx(sections)(location.hash)
   ),
   withHandlers({
     set: ({ setIndex }) => (e, i) => setIndex(i),
@@ -44,7 +34,7 @@ const withIndex = compose(
   })
 );
 
-const TabNav = ({ index, hPush, set, sections = init } = { sections: init }) =>
+const TabNav = ({ index, hPush, set } = defProps) =>
   (<AppBar>
     <Toolbar>
       <Grid container justify="center" align="center">
@@ -59,7 +49,7 @@ const TabNav = ({ index, hPush, set, sections = init } = { sections: init }) =>
             onChange={set}
           >
             {sections.map((l, i) =>
-              <Tab key={i} label={getLabel(sections)(l)} onClick={hPush(l)} />
+              <Tab key={i} label={getLabel(l)} onClick={hPush(l)} />
             )}
           </Tabs>
         </Grid>

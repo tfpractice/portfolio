@@ -20,7 +20,7 @@ import { MarkdownPreview } from 'react-marked-markdown';
 import { autoplay } from 'react-swipeable-views-utils';
 import { FadeIn } from 'animate-components';
 
-import TabNav from '../../landing/tabNav';
+// import TabNav from '../../landing/tabNav';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
@@ -52,7 +52,7 @@ const Project = (props) => {
 
   return (
     <Grid container align="center" justify="center" style={mainStyle}>
-      <TabNav index={0} />
+      {/* <TabNav index={0} /> */}
       <Grid item xs={11}>
         <HexCard>
           <CardHeader title={project && project.title} />
