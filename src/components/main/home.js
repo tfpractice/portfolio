@@ -21,6 +21,7 @@ class Home extends Component {
   }
 
   render() {
+    console.log('this.props', this.props);
     return (
       <Grid
         container
@@ -33,7 +34,7 @@ class Home extends Component {
 
           <Switch>
             <Route exact path="/" component={Landing} />
-            <Route exact path={`/:slug`} component={Single} />
+            {/* <Route exact path={`/:slug`} component={Single} /> */}
           </Switch>
         </Grid>
         <Grid item xs={12}>

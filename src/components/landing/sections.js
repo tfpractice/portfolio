@@ -1,6 +1,6 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
-
+import { Link, NavLink } from 'react-router-dom';
 import { RawPath } from '../visualization';
 
 export const style = { overflowX: 'hidden' };
@@ -28,4 +28,8 @@ export const getIndex = (key = '#frontMatter') =>
   ixMap.has(key) ? ixMap.get(key) : 0;
 
 export const getLabel = (key = '#frontMatter') =>
-  lMap.has(key) ? lMap.get(key) : '';
+  lMap.has(key)
+    ? <NavLink to={`/${key}`}>
+      {lMap.get(key)}
+    </NavLink>
+    : '';
