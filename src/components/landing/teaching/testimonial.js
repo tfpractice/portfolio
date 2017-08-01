@@ -15,12 +15,11 @@ import Card, {
   CardHeader,
   CardMedia,
 } from 'material-ui/Card';
+import { MarkdownPreview } from 'react-marked-markdown';
 
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { Expand, HexCard } from '../../misc';
-
-// import { containers } from '../../store/projects';
 
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
@@ -34,10 +33,10 @@ const withSwitch = compose(
 const Styled = withStyles(
   createStyleSheet('Testimonial', theme => ({
     content: {
-      transition: 'background 0.15s linear',
-      '&:hover': { backgroundColor: 'rgba(255,255,255,0.5)' },
+      transition: 'background 0.1s linear',
+      '&:hover': { backgroundColor: 'rgba(0,0,0,0.5)' },
     },
-
+    pic: { height: '3rem', width: '3rem' },
     div: {
       margin: '0.5rem',
       backgroundColor: '#f0f',
@@ -46,41 +45,37 @@ const Styled = withStyles(
 );
 
 const Testimonial = ({ student, open, classes, toggle, show }) =>
-  (<Grid container align="center" justify="center">
-    <Grid item xs>
-      <HexCard raised>
-        <CardHeader
-          avatar={<Avatar src={student.imgUrl} />}
-          title={
-            <Text type="title">
-              {student.name}
-            </Text>
-          }
-          subheader={
-            <Text type="subheading">
-              {student.position}
-            </Text>
-          }
-        />
+  (<HexCard raised>
+    <CardHeader
+      avatar={<Avatar className={classes.pic} src={student.imgUrl} />}
+      title={
+        <Text type="display1" align="right">
+          {student.name}
+        </Text>
+      }
+      subheader={
+        <Text type="subheading" align="right" color="inherit">
+          {student.position}
+        </Text>
+      }
+    />
 
-        <CardContent onClick={toggle} className={classes.content}>
-          <Divider className={classes.div} />
-          <Collapse in={!open}>
-            <Text type="headline" align="center">
-              {student.caption}
-            </Text>
-          </Collapse>
-          <Collapse in={open}>
-            <CardContent>
-              <Text color="secondary" type="body1">
-                {student.content}
-              </Text>
-            </CardContent>
-          </Collapse>
-          <Divider className={classes.div} />
+    <CardContent onClick={toggle} className={classes.content}>
+      <Divider className={classes.div} />
+      <Collapse in={!open}>
+        <Text type="headline" align="center">
+          "{student.caption}..."
+        </Text>
+      </Collapse>
+      <Collapse in={open}>
+        <CardContent>
+          <Text component="div" color="secondary" type="body2">
+            <MarkdownPreview value={student.content} />
+          </Text>
         </CardContent>
-      </HexCard>
-    </Grid>
-  </Grid>);
+      </Collapse>
+      <Divider className={classes.div} />
+    </CardContent>
+  </HexCard>);
 
 export default withSwitch(Styled(Testimonial));

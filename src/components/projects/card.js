@@ -48,7 +48,7 @@ const imgUrl = pj =>
 
 const makeStyle = proj => ({
   backgroundImage: `url(${imgUrl(proj)})`,
-  'details::after': { opacity: 0.5 },
+  'details::after': { opacity: 0.5, content: 'hover content' },
   'details:hover': {
     opacity: 0.5,
     content: `${proj.description}`,
@@ -62,7 +62,7 @@ const Styled = withStyles(
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
     },
-    closed: { '&:hover': { opacity: 0.5 }},
+    closed: { '&:hover': { ':&after': { content: 'abcd' }, opacity: 0.5 }},
     content: { flex: '1 0 auto' },
     expand: {
       transform: 'rotate(0deg)',

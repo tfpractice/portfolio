@@ -4,7 +4,7 @@ import Text from 'material-ui/Typography';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
 import { Expand, HexCard } from '../../misc';
-import { Chiara, content, Wesley } from './content';
+import { Chiara, content, students, Wesley } from './content';
 import Testimonial from './testimonial';
 
 const Teaching = () =>
@@ -24,9 +24,9 @@ const Teaching = () =>
         header={<Text color="inherit" type="display1" children="Reviews" />}
       >
         <Grid container justify="center">
-          {[ Wesley, Chiara ].map((t, i) =>
-            (<Grid item xs={11} sm={6} key={i}>
-              <Testimonial student={t} key={i} />
+          {students.map((t, i) =>
+            (<Grid item xs={11} sm={6} key={t.name}>
+              <Testimonial student={t} />
             </Grid>)
           )}
         </Grid>
