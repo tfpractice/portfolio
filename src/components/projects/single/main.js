@@ -17,8 +17,6 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
-import { autoplay } from 'react-swipeable-views-utils';
-import { FadeIn } from 'animate-components';
 import { CircularProgress } from 'material-ui/Progress';
 
 import { containers } from '../../../store/projects';
