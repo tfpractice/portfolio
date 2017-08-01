@@ -51,7 +51,7 @@
     "pluralize": "^6.0.0",
     "qs": "^6.5.0",
     "react": "^15.6.1",
-    "react-apollo": "^1.4.8",
+    "react-apollo": "^1.4.9",
     "react-dom": "^15.6.1",
     "react-marked-markdown": "^1.4.2",
     "react-redux": "^5.0.5",

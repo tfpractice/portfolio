@@ -16,11 +16,11 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 7,
 
-    // ecmaFeatures: {
-    //     experimentalObjectRestSpread: true,
-    //     jsx: true,
-    //     modules: true,
-    //   },
+    ecmaFeatures: {
+      experimentalObjectRestSpread: true,
+      jsx: true,
+      modules: true,
+    },
     sourceType: 'module',
   },
 
@@ -185,9 +185,13 @@ module.exports = {
       },
     ],
 
+    // jsx hef workaround
+    'jsx-a11y/href-no-hash': 0,
+    'jsx-a11y/anchor-is-valid': ['warn', { aspects: ['invalidHref'] }],
+
     //  Plugin rules
     'jsx-quotes': 1,
-    'jsx-a11y/href-no-hash': 0,
+    // 'jsx-a11y/href-no-hash': 0,
     'react/jsx-href-no-hash': 0,
     'react/jsx-no-undef': 'off',
     'react/jsx-uses-react': 1,
@@ -231,7 +235,6 @@ module.exports = {
         groups: [
           ['builtin', 'external'],
           ['internal', 'index', 'parent', 'sibling'],
-          // ['parent', 'sibling'],
         ],
       },
     ],

@@ -20,8 +20,8 @@ export const WithAll = component =>
 
 export const WithProject = component =>
   graphql(GET_PROJECT, {
-    skip: ({ project, ...rest }) => project != true,
-    options: ({ project: { id }}) => ({ variables: { id }}),
+    skip: ({ project, ...rest }) => !(project && project.id),
+    options: ({ project }) => ({ variables: { id: project.id }}),
     props: ({ data, ownProps: { project }}) => ({
       projectQuery: data,
       project: data.loading ? project : data.project,
