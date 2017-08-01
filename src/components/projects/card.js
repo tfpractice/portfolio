@@ -5,7 +5,8 @@ import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import ExpandMore from 'material-ui-icons/ExpandMore';
+import ExpandLess from 'material-ui-icons/ExpandLess';
 import Card, {
   CardActions,
   CardContent,
@@ -13,7 +14,7 @@ import Card, {
   CardMedia,
 } from 'material-ui/Card';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
-import { withState } from 'recompose';
+import { compose, withHandlers, withState } from 'recompose';
 
 import { containers } from '../../store/projects';
 import { Expand, HexCard, SwipeTabs } from '../misc';
@@ -27,6 +28,14 @@ const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 const { edgeNodes } = qUtils;
 
 const stateful = withState('open', 'toggle', false);
+const withSwitch = compose(
+  withState('open', 'flip', ({ open }) => !!open),
+  withHandlers({
+    toggle: ({ flip }) => () => flip(x => !x),
+    show: ({ flip }) => () => flip(true),
+    hide: ({ flip }) => () => flip(false),
+  })
+);
 const typeMap = new Map([
   [ 'APP', '#ff00ff' ],
   [ 'SCRIPT', '#ff00ff' ],
@@ -46,29 +55,28 @@ const makeStyle = proj => ({
   },
 });
 
-const styleSheet = createStyleSheet('RecipeReviewCard', theme => ({
-  details: {
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
-    backgroundRepeat: 'no-repeat',
-  },
-  closed: { '&:hover': { opacity: 0.5 }},
-  content: { flex: '1 0 auto' },
-  expand: {
-    transform: 'rotate(0deg)',
-    transition: theme.transitions.create('transform', { duration: theme.transitions.duration.shortest }),
-  },
-  expandOpen: { transform: 'rotate(90deg)' },
-  flexGrow: { flex: '1 1 auto' },
-  actions: { overflowX: 'auto', overflowY: 'hidden' },
-}));
+const Styled = withStyles(
+  createStyleSheet('RecipeReviewCard', theme => ({
+    details: {
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+    },
+    closed: { '&:hover': { opacity: 0.5 }},
+    content: { flex: '1 0 auto' },
+    expand: {
+      transform: 'rotate(0deg)',
+      transition: theme.transitions.create('transform', { duration: theme.transitions.duration.shortest }),
+    },
+    expandOpen: { transform: 'rotate(90deg)' },
+    flexGrow: { flex: '1 1 auto' },
+    actions: { overflowX: 'auto', overflowY: 'hidden' },
+  }))
+);
 
 const divStyle = { minHeight: '80px' };
 
-const ProjectCard = ({ project, classes, toggle, open, ...props }) => {
-  const a = 0;
-
-  console.log('props', props);
+const ProjectCard = ({ project, show, classes, toggle, open }) => {
   const features = project.features || [
     'built with es6, bundled with Rollup',
     '90% code-coverage, tested with Jest',
@@ -77,83 +85,81 @@ const ProjectCard = ({ project, classes, toggle, open, ...props }) => {
 
   return (
     <HexCard raised>
-      <CardHeader
-        avatar={
-          <a target="_blank" href={project.repo}>
-            <Avatar src={gitLogo} aria-label={`${project.title}`} />
-          </a>
-        }
-        title={
-          <Grid container justify="space-between" align="center">
-            <Grid item>
+      <Expand
+        color="default"
+        open={true}
+        header={
+          <CardHeader
+            avatar={
+              <a target="_blank" href={project.repo}>
+                <Avatar src={gitLogo} aria-label={`${project.title}`} />
+              </a>
+            }
+            title={
               <a
                 target="_blank"
                 href={project.url}
                 children={<Text type="subheading" children={project.title} />}
               />
-            </Grid>
-            <Grid item>
-              <IconButton onClick={() => toggle(x => !x)}>
-                <ExpandMoreIcon />
-              </IconButton>
-            </Grid>
-          </Grid>
+            }
+          />
         }
-      />
-
-      <CardMedia
-        className={`details ${classes.details} ${!open && classes.closed}`}
-        style={!open ? { ...makeStyle(project), ...divStyle } : divStyle}
       >
-        <Collapse in={!open}>
-          <Text type="subheading" align="center">
-            {project.description}
-          </Text>
-        </Collapse>
-        <Collapse in={open}>
-          <CardMedia>
-            <SwipeTabs>
-              <FeatureList tabLabel="tech" data={features} />
-              <FeatureList
-                tabLabel="highlights"
-                data={project.details.map(d => d.caption)}
-              />
-            </SwipeTabs>
-          </CardMedia>
-        </Collapse>
-      </CardMedia>
-      <Collapse in={open}>
-        <CardActions className={classes.actions}>
-          <Grid container justify="center" align="center">
-            <Grid item xs>
-              <ProjectLink project={project}>
-                <Button>learn more</Button>
-              </ProjectLink>
-            </Grid>
-            <Grid item xs>
-              <Button target="_blank" href={project.url}>
-                view online
-              </Button>
-            </Grid>
-          </Grid>
-        </CardActions>
-      </Collapse>
+        <CardMedia
+          onClick={show}
+          className={`details ${classes.details} ${!open && classes.closed}`}
+          style={!open ? { ...makeStyle(project), ...divStyle } : divStyle}
+        >
+          <Collapse in={!open}>
+            <Text type="subheading" align="center">
+              {project.description}
+            </Text>
+          </Collapse>
+          <Collapse in={open}>
+            <CardMedia>
+              <SwipeTabs>
+                <FeatureList tabLabel="tech" data={features} />
+                <FeatureList
+                  tabLabel="highlights"
+                  data={project.details.map(d => d.caption)}
+                />
+              </SwipeTabs>
+            </CardMedia>
+          </Collapse>
+        </CardMedia>
 
-      <Collapse in={!open}>
-        <CardActions style={{ overflowX: 'auto', overflowY: 'hidden' }}>
-          <Grid container>
-            <Grid item xs={11}>
-              <ChipList
-                tools={edgeNodes(project.skills).concat(
-                  edgeNodes(project.tools)
-                )}
-              />
+        <Collapse in={open}>
+          <CardActions className={classes.actions}>
+            <ProjectLink project={project}>
+              <Button>learn more</Button>
+            </ProjectLink>
+
+            <Button target="_blank" href={project.url}>
+              view online
+            </Button>
+
+            <IconButton onClick={toggle}>
+              <ExpandLess />
+            </IconButton>
+          </CardActions>
+        </Collapse>
+
+        <Collapse in={!open}>
+          <CardActions style={{ overflowX: 'auto', overflowY: 'hidden' }}>
+            <Grid container>
+              <Grid item xs={11}>
+                <ChipList
+                  tools={edgeNodes(project.skills).concat(
+                    edgeNodes(project.tools)
+                  )}
+                />
+              </Grid>
             </Grid>
-          </Grid>
-        </CardActions>
-      </Collapse>
+          </CardActions>
+        </Collapse>
+      </Expand>
     </HexCard>
   );
 };
 
-export default withStyles(styleSheet)(stateful(WithProject(ProjectCard)));
+export default WithProject(withSwitch(Styled(ProjectCard)));

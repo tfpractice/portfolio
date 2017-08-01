@@ -1,32 +1,45 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
-import ExpandMoreIcon from 'material-ui-icons/ExpandMore';
+import ExpandMore from 'material-ui-icons/ExpandMore';
+import ExpandLess from 'material-ui-icons/ExpandLess';
+
 import Grid from 'material-ui/Grid';
 import Collapse from 'material-ui/transitions/Collapse';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
-import { withState, } from 'recompose';
-import { withStyles, createStyleSheet, } from 'material-ui/styles';
+import { compose, withHandlers, withState } from 'recompose';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-const stateful = withState('open', 'toggle', ({ open = true, }) => !!open);
+const withSwitch = compose(
+  withState('open', 'flip', ({ open = true }) => !!open),
+  withHandlers({ toggle: ({ flip }) => () => flip(x => !x) })
+);
 
-const styles = createStyleSheet('Expand', theme => ({
-  Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%', },
-  Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none', },
-  Divider: { backgroundColor: '#f0f', },
-    
-}));
+const Styled = withStyles(
+  createStyleSheet('Expand', theme => ({
+    Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%' },
+    Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none' },
+    Divider: { backgroundColor: '#f0f' },
+  }))
+);
 
-const Expand = ({ open, children, toggle, header, classes, }) => (
-  <Grid container justify="center" align="center">
-    <Grid item xs={11} >
+const Expand = ({
+  open,
+  children,
+  toggle,
+  color = 'inherit',
+  header,
+  classes,
+}) =>
+  (<Grid container justify="center" align="center">
+    <Grid item xs={11}>
       <Grid container justify="space-between" align="center">
-        <Grid item onClick={() => toggle(x => !x)} >
+        <Grid item xs={9} onClick={toggle}>
           {header}
         </Grid>
-        <Grid item >
-          <IconButton color="inherit" onClick={() => toggle(x => !x)} >
-            <ExpandMoreIcon />
+        <Grid item xs={2}>
+          <IconButton color={color} onClick={toggle}>
+            {open ? <ExpandLess /> : <ExpandMore />}
           </IconButton>
         </Grid>
       </Grid>
@@ -35,14 +48,11 @@ const Expand = ({ open, children, toggle, header, classes, }) => (
       <Divider className={classes.Divider} />
     </Grid>
 
-    <Grid item xs={11} >
+    <Grid item xs={11}>
       <Collapse in={open}>
         {children}
       </Collapse>
-
     </Grid>
+  </Grid>);
 
-  </Grid>
-);
-  
-export default stateful(withStyles(styles)(Expand));
+export default withSwitch(Styled(Expand));

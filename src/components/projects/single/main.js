@@ -31,16 +31,12 @@ import Slides from './slides';
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
 
-const mapState = ({ projects }, { match: { params: { slug }}}) => {
-  console.log('findMatch(slug)(projects)', findMatch(slug)(projects));
-
-  return {
-    slug,
-    project: findMatch(slug)(projects),
-    lSlides: getSlides(slug),
-    localP: getProject(slug),
-  };
-};
+const mapState = ({ projects }, { match: { params: { slug }}}) => ({
+  slug,
+  project: findMatch(slug)(projects),
+  lSlides: getSlides(slug),
+  localP: getProject(slug),
+});
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 
 const Project = (props) => {
