@@ -7,8 +7,8 @@ import List, {
   ListItemText,
   ListSubheader,
 } from 'material-ui/List';
-
 import { createStyleSheet, withStyles } from 'material-ui/styles';
+
 import { RawPath } from '../visualization';
 
 const Styled = withStyles(

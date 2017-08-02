@@ -10,8 +10,8 @@ import Single from './single';
 
 const stateToProps = ({ projects }) => ({ projects });
 
-const Projects = props => (
-  <Grid container justify="center" align="center" className="projects-main">
+const Projects = props =>
+  (<Grid container justify="center" align="center" className="projects-main">
     <Grid item xs={11} sm={10}>
       <FadeIn duration="200ms" timingFunction="ease-in">
         <Switch>
@@ -20,7 +20,6 @@ const Projects = props => (
         </Switch>
       </FadeIn>
     </Grid>
-  </Grid>
-);
+  </Grid>);
 
 export default connect(stateToProps)(Projects);

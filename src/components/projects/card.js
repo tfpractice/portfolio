@@ -5,7 +5,6 @@ import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
-import ExpandMore from 'material-ui-icons/ExpandMore';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import Card, {
   CardActions,
@@ -96,11 +95,9 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
               </a>
             }
             title={
-              <a
-                target="_blank"
-                href={project.url}
-                children={<Text type="subheading" children={project.title} />}
-              />
+              <a target="_blank" href={project.url}>
+                <Text type="subheading" children={project.title} />
+              </a>
             }
           />
         }
