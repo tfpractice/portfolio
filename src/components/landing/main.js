@@ -1,21 +1,14 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
-import AppBar from 'material-ui/AppBar';
-import SvgIcon from 'material-ui/SvgIcon';
 import { compose, withHandlers, withState } from 'recompose';
-import { Route, Switch } from 'react-router-dom';
 
-import { Single } from '../projects';
-import { RawPath } from '../visualization';
 import About from './about';
 import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
 import Teaching from './teaching';
-import TabNav from './tabNav';
-import Views from './view';
-import { getIndex, getLabel, hexIcon, ixMap, lMap, sections } from './sections';
+import { getIndex, hexIcon, sections } from './sections';
 
 const style = { overflowX: 'hidden' };
 

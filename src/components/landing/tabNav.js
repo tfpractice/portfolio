@@ -1,22 +1,12 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import Grid from 'material-ui/Grid';
-import SvgIcon from 'material-ui/SvgIcon';
 import Toolbar from 'material-ui/Toolbar';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import { compose, withHandlers, withState } from 'recompose';
 
-// import { Link } from 'module';
-import { RawPath } from '../visualization';
-import {
-  getIndex as getIx,
-  getLabel,
-  hexIcon,
-  sections as init,
-  ixMap,
-  lMap,
-} from './sections';
+import { getIndex as getIx, getLabel, sections as init } from './sections';
 
 const defProps = { sections: init };
 

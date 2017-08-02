@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import { qUtils } from '../../utils';
 import { ADD_SKILL, ADD_TOOL, ALL_PROJECTS, GET_PROJECT } from './queries';
 
-const { viewNodes, edgeNodes } = qUtils;
+const { viewNodes } = qUtils;
 
 const variables = {
   where: { category: { in: [ 'APP', 'LIB', 'SCRIPT' ]}},

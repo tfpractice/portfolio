@@ -47,7 +47,7 @@ const Expand = ({
     <Grid item xs={11}>
       <Divider className={classes.Divider} />
     </Grid>
-
+    
     <Grid item xs={11}>
       <Collapse in={open}>
         {children}

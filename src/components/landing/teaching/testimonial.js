@@ -1,13 +1,7 @@
 import React from 'react';
-import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
-
 import Collapse from 'material-ui/transitions/Collapse';
-import IconButton from 'material-ui/IconButton';
-import Button from 'material-ui/Button';
-import ExpandMore from 'material-ui-icons/ExpandMore';
-import ExpandLess from 'material-ui-icons/ExpandLess';
 import Divider from 'material-ui/Divider';
 import Card, {
   CardActions,
@@ -16,10 +10,10 @@ import Card, {
   CardMedia,
 } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
-
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
-import { Expand, HexCard } from '../../misc';
+
+import { HexCard } from '../../misc';
 
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),

@@ -1,20 +1,19 @@
-import React, { Component, } from 'react';
-import { createStyleSheet, withStyles, } from 'material-ui/styles';
-import { viewBackDrop, } from './funcs';
-import Text from 'material-ui/Typography';
+import React, { Component } from 'react';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { viewBackDrop } from './funcs';
 
 const styleSheet = createStyleSheet('BackDrop', theme => ({
   container: {},
-  wrapper: { },
+  wrapper: {},
   tessGroup: {},
   group: {},
   tessText: {},
-  path: { },
-  animPath: { strokeWidth: '0.01px', stroke: '#000', },
+  path: {},
+  animPath: { strokeWidth: '0.01px', stroke: '#000' },
   tessWrap: {},
   text: {},
   textGroup: {},
-  pathLink: { '&:hover': { fill: '#f0f', }, },
+  pathLink: { '&:hover': { fill: '#f0f' }},
   mainText: {
     ...theme.typography.title,
     'font-weight': '400',
@@ -25,9 +24,8 @@ const styleSheet = createStyleSheet('BackDrop', theme => ({
     ...theme.typography.subheading,
     fontSize: theme.typography.title.fontSize / 2,
   },
-  span: { textDecoration: 'none', },
-  subSpan: { fill: '#f0f', },
-  tessPath: {},
+  span: { textDecoration: 'none' },
+  subSpan: { fill: '#f0f' },
   tessPath: {},
 }));
 
@@ -35,19 +33,19 @@ class BackDrop extends Component {
   componentDidMount() {
     viewBackDrop(this.props.classes);
   }
-  
+
   shouldComponentUpdate() {
     return false;
   }
-  
+
   render() {
-    const { classes, paths, } = this.props;
-    
+    const { classes } = this.props;
+
     return (
-      <svg className={classes.wrapper} >
+      <svg className={classes.wrapper}>
         <g className={classes.group} />
       </svg>
     );
   }
 }
-export default withStyles(styleSheet)((BackDrop));
+export default withStyles(styleSheet)(BackDrop);

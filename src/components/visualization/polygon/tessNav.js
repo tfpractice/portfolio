@@ -1,40 +1,41 @@
 import React, { Component } from 'react';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 import { NavLink } from 'react-router-dom';
 import { withState } from 'recompose';
-import Text from 'material-ui/Typography';
-import { appendText, showText, viewTess } from './funcs';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-const styleSheet = createStyleSheet('TessNav', theme => ({
-  container: {},
-  wrapper: {},
-  tessGroup: {},
-  group: {},
-  tessText: {},
-  path: {},
-  animPath: { strokeWidth: '0.01px', stroke: '#000' },
-  tessWrap: {},
-  text: {},
-  textGroup: {},
-  pathLink: { '&:hover': { fill: '#f0f' }},
-  mainText: {
-    ...theme.typography.title,
-    'font-weight': '400',
+import { appendText, viewTess } from './funcs';
 
-    textDecoration: '#f0f',
-    textDecorationColor: '#f0f',
-  },
-  subText: {
-    ...theme.typography.subheading,
-    fontSize: theme.typography.title.fontSize / 2,
-  },
-  span: { textDecoration: 'none' },
-  subSpan: { fill: '#f0f' },
+const Styled = withStyles(
+  createStyleSheet('TessNav', theme => ({
+    container: {},
+    wrapper: {},
+    tessGroup: {},
+    group: {},
+    tessText: {},
+    path: {},
+    animPath: { strokeWidth: '0.01px', stroke: '#000' },
+    tessWrap: {},
+    text: {},
+    textGroup: {},
+    pathLink: { '&:hover': { fill: '#f0f' }},
+    mainText: {
+      ...theme.typography.title,
+      'font-weight': '400',
 
-  tessPath: {},
-  tessPath: {},
-}));
+      textDecoration: '#f0f',
+      textDecorationColor: '#f0f',
+    },
+    subText: {
+      ...theme.typography.subheading,
+      fontSize: theme.typography.title.fontSize / 2,
+    },
+    span: { textDecoration: 'none' },
+    subSpan: { fill: '#f0f' },
+
+    tessPath: {},
+  }))
+);
 const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR' ];
 
 const withLink = withState('links', 'setLinks', defPaths);
@@ -93,4 +94,4 @@ class TessNav extends Component {
     );
   }
 }
-export default withStyles(styleSheet)(withLink(TessNav));
+export default Styled(withLink(TessNav));

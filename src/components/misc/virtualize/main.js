@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Button from 'material-ui/Button';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SwipeableViews from 'react-swipeable-views';
-import { bindKeyboard, virtualize } from 'react-swipeable-views-utils';
-import { mod } from 'react-swipeable-views-core';
-import { withState } from 'recompose';
+import { virtualize } from 'react-swipeable-views-utils';
 import { renderer as dRender, VirtualSwipe } from './renderer';
 
 // import { mod, } from 'react-swipeable-views-core';

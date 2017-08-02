@@ -1,4 +1,4 @@
-import Fenugreek, * as FenData from './fenugreek';
+import * as FenData from './fenugreek';
 import * as Graph from './graph';
 
 const xData = () => null;

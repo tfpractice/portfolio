@@ -27,6 +27,7 @@ module.exports = {
   plugins: ['react', 'jsx-a11y', 'import', 'prettier', 'import-order-autofix'],
   rules: {
     // Ignore Rules
+    eqeqeq: ['off'],
     'space-infix-ops': 2,
     strict: 1,
     'space-before-function-paren': 0,
@@ -186,14 +187,15 @@ module.exports = {
     ],
 
     // jsx hef workaround
-    'jsx-a11y/href-no-hash': 0,
-    'jsx-a11y/anchor-is-valid': ['warn', { aspects: ['invalidHref'] }],
+    'jsx-a11y/href-no-hash': [0],
+    // 'react/jsx-a11y/href-no-hash': 'off',
+    'jsx-a11y/anchor-is-valid': [0, { aspects: ['invalidHref'] }],
 
     //  Plugin rules
     'jsx-quotes': 1,
     // 'jsx-a11y/href-no-hash': 0,
-    'react/jsx-href-no-hash': 0,
-    'react/jsx-no-undef': 'off',
+    'react/jsx-href-no-hash': [0],
+    'react/jsx-no-undef': ['off'],
     'react/jsx-uses-react': 1,
     'react/jsx-uses-vars': 1,
     'react/no-did-mount-set-state': 1,

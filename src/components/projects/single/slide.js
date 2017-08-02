@@ -1,12 +1,7 @@
 import React from 'react';
-import SwipeableViews from 'react-swipeable-views';
 
-import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import Card, { CardContent, CardHeader, CardMedia } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
-import { Expand } from '../../misc';
 
 const styles = {
   slide: {
@@ -22,14 +17,9 @@ const styles = {
 const getStyle = data => ix =>
   Object.assign({}, styles.slide, styles[`slide${(ix + 1) % data.length}`]);
 
-const Slide = ({ slide, project, ...props }) => {
-  const a = 0;
-
-  return (
-    <Text component="div" color="inherit" type="body2">
-      <MarkdownPreview value={slide.content} />
-    </Text>
-  );
-};
+const Slide = ({ slide, project, ...props }) =>
+  (<Text component="div" color="inherit" type="body2">
+    <MarkdownPreview value={slide.content} />
+  </Text>);
 
 export default Slide;

@@ -2,25 +2,22 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
 import SwipeableViews from 'react-swipeable-views';
-import { withState, } from 'recompose';
 import AppBar from 'material-ui/AppBar';
-import BottomNavigation, { BottomNavigationButton, } from 'material-ui/BottomNavigation';
-
 import Toolbar from 'material-ui/Toolbar';
+import { withState } from 'recompose';
 
-const withIndex = withState('index', 'setIndex', ({ index, }) => index || 0);
+const withIndex = withState('index', 'setIndex', ({ index }) => index || 0);
 
-const NavSlide = ({ labels, index, setIndex, children, ...sprops }) => (
-  <Grid container align="center" justify="center" >
+const NavSlide = ({ labels, index, setIndex, children, ...sprops }) =>
+  (<Grid container align="center" justify="center">
     <AppBar>
       <Toolbar>
-        <Grid container align="center" >
-
-          {labels.map((l, i) => (
-            <Grid item xs key={i}>
+        <Grid container align="center">
+          {labels.map((l, i) =>
+            (<Grid item xs key={i}>
               <Button key={i} onClick={() => setIndex(() => i)} children={l} />
-            </Grid>
-          ))}
+            </Grid>)
+          )}
         </Grid>
       </Toolbar>
     </AppBar>
@@ -29,7 +26,6 @@ const NavSlide = ({ labels, index, setIndex, children, ...sprops }) => (
         {children}
       </SwipeableViews>
     </Grid>
-  </Grid>
-);
+  </Grid>);
 
 export default withIndex(NavSlide);

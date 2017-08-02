@@ -3,8 +3,9 @@ import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
+
 import { Expand, HexCard } from '../../misc';
-import { Chiara, content, students, Wesley } from './content';
+import { content, students } from './content';
 import Testimonial from './testimonial';
 
 const Teaching = () =>

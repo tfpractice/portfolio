@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
+import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import { FadeIn } from 'animate-components';
 import Button from 'material-ui/Button';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
 import { Graph, Show } from 'graph-curry';
-
-// import { byAdj, colAdj, negAdj, posAdj, rowAdj, } from './filter';
-
 import { mapTo, spreadK } from 'fenugreek-collections';
 
-import SwipeableViews from 'react-swipeable-views';
-
-const { addEdges, nodes, graph, adj, neighbors } = Graph;
+const { addEdges, nodes, graph } = Graph;
 const { graphString } = Show;
 
 const localNums = spreadK(Array(20));
@@ -92,9 +84,6 @@ const main = `
   should return an array containing all those numbers doubled
   
 `;
-
-{
-}
 
 const double = x => x * 2;
 const halve = x => x / 2;
