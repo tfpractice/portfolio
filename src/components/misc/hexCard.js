@@ -11,10 +11,11 @@ const hexPath = `
   </svg>
 `;
 
-const lRatios = [[ 0, 0, ], [ 1, 0, ], [ 1, 1, ], [ 2 / 9, 1, ], [ 0, 0, ], ];
-const rRatios = [[ 0, 0, ], [ 7 / 9, 0, ], [ 1, 1, ], [ 0, 1, ], [ 0, 0, ], ];
-const dRatios = [[ 7 / 9, 0, ], [ 1, 1, ], [ 2 / 9, 1, ], [ 0, 0, ], ];
-const makePath = pts => pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(' ')).join(',');
+const lRatios = [[ 0, 0 ], [ 1, 0 ], [ 1, 1 ], [ 2 / 9, 1 ], [ 0, 0 ]];
+const rRatios = [[ 0, 0 ], [ 7 / 9, 0 ], [ 1, 1 ], [ 0, 1 ], [ 0, 0 ]];
+const dRatios = [[ 7 / 9, 0 ], [ 1, 1 ], [ 2 / 9, 1 ], [ 0, 0 ]];
+const makePath = pts =>
+  pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(' ')).join(',');
 
 const cardStyle = {
   backgroundImage: 'url(/images/whiteHex50.svg)',
@@ -24,24 +25,24 @@ const cardStyle = {
   backgroundRepeat: 'no-repeat',
 };
 
-const right = ({
+const right = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'top left ',
   backgroundSize: '200% 200%',
   backgroundRepeat: 'no-repeat',
   paddingRight: '16%',
   clipPath: `polygon(${makePath(rRatios)})`,
-});
+};
 
-const left = ({
+const left = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'top left ',
   backgroundSize: '200% 200%',
   backgroundRepeat: 'no-repeat',
   paddingLeft: '16%',
   clipPath: `polygon(${makePath(lRatios)})`,
-});
-const double = ({
+};
+const double = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'top left ',
   backgroundSize: '200% 200%',
@@ -49,29 +50,13 @@ const double = ({
   paddingRight: '16%',
   paddingLeft: '16%',
   clipPath: `polygon(${makePath(dRatios)})`,
-});
+};
 
-export const HexCard = props => (
-  
-  <Card {...props} style={cardStyle}/>
+export const HexCard = props => <Card {...props} style={cardStyle} />;
+export const LeftHex = props => <Card {...props} style={left} />;
 
-);
-export const LeftHex = props => (
-  
-  <Card {...props} style={left}/>
+export const RightHex = props => <Card {...props} style={right} />;
 
-);
-
-export const RightHex = props => (
-  
-  <Card {...props} style={right}/>
-
-);
-
-export const DoubleHex = props => (
-  
-  <Card {...props} style={double}/>
-
-);
+export const DoubleHex = props => <Card {...props} style={double} />;
 
 export default RightHex;

@@ -1,4 +1,4 @@
-## Game Graph
+## Game Grid
 
 I've scripted many classical algorithms and data strucutres in a number of languages and found the process to be both exhausting and illuminating, none of them has excited me more than graphs. Particularly because of the freedom to demonstrate relationships logically. This particular collection based iteration in Javascipt has been my most fruitful, as the freedom of first-class functions allowed the flexibility to add functionality without the particularities of Java Interfaces, Ruby Modules, and the prototype chain.
 

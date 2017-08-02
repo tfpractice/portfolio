@@ -25,6 +25,7 @@ import { Expand, HexCard } from '../../misc';
 import { getContent, getDemos, getProject, getSlides, getTech } from './pages';
 import { markdown as mCont } from './pages/fenugreek/markdown';
 import Slides from './slides';
+import DemoView from './demoview';
 
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
@@ -57,8 +58,21 @@ const Project = (props) => {
       !new Set(edgeNodes(project.skills).map(({ id }) => id)).has(skillId);
 
     const Demo = getDemos(slug);
+
+    console.log('Demo', Demo);
     const tech = getTech(slug);
     const content = getContent(slug);
+    const demo =
+      !!Demo &&
+      <Grid item xs={11}>
+        <DemoView comp={Demo} />
+      </Grid>;
+
+    const highlights =
+      !!lSlides.length &&
+      <Grid item xs={11}>
+        <Slides project={project} data={lSlides} />
+      </Grid>;
 
     view = (
       <Grid container align="center" justify="center" style={mainStyle}>
@@ -78,21 +92,7 @@ const Project = (props) => {
             </CardContent>
           </HexCard>
         </Grid>
-        <Grid item xs={11}>
-          <Grid container direction="column" justify="center" align="center">
-            <Expand
-              header={
-                <Text color="inherit" type="title">
-                  Project Highlights
-                </Text>
-              }
-            >
-              <Grid item>
-                <Slides project={project} data={lSlides} />
-              </Grid>
-            </Expand>
-          </Grid>
-        </Grid>
+        {highlights}
 
         <Grid item xs={11}>
           <Expand
@@ -109,17 +109,7 @@ const Project = (props) => {
           </Expand>
         </Grid>
 
-        <Grid item xs={11}>
-          <Expand
-            header={
-              <Text color="inherit" type="title">
-                Demos
-              </Text>
-            }
-          >
-            <Demo />
-          </Expand>
-        </Grid>
+        {demo}
 
         <Grid item xs={11}>
           <Expand
