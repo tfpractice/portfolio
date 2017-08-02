@@ -17,7 +17,7 @@ const imgUrl = pj =>
 const Styled = withStyles(
   createStyleSheet('PJMedia', theme => ({
     media: {
-      minHeight: '6rem',
+      minHeight: '8rem',
       backgroundSize: 'cover',
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
@@ -37,16 +37,14 @@ const withMedia = compose(
 const PJMedia = ({ pic, project, classes, showText, showPic }) =>
   (<Grid
     container
+    align="center"
     justify="center"
     onMouseEnter={showText}
     onMouseLeave={showPic}
-   >
-    <Grid
-      item
-      xs={12}
-      className={classes.media}
-      style={{ backgroundImage: `url(/images/fenugreek.svg)` }}
-    >
+    className={classes.media}
+    style={pic ? { backgroundImage: `url(/images/libs/rummy.svg)` } : {}}
+  >
+    <Grid item xs={12}>
       {!pic &&
         <Text type="headline" align="center">
           {project.description}
