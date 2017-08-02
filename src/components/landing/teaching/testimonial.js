@@ -43,12 +43,12 @@ const Testimonial = ({ student, open, classes, toggle, show }) =>
     <CardHeader
       avatar={<Avatar className={classes.pic} src={student.imgUrl} />}
       title={
-        <Text type="display1" align="right">
+        <Text type="display1" align="center">
           {student.name}
         </Text>
       }
       subheader={
-        <Text type="subheading" align="right" color="inherit">
+        <Text type="subheading" align="center" color="inherit">
           {student.position}
         </Text>
       }

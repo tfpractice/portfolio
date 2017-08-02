@@ -14,7 +14,7 @@ const Teaching = () =>
       <HexCard>
         <CardHeader title="Autodidact and Educator" />
         <CardContent>
-          <Text component="div" color="secondary" type="body2">
+          <Text component="div" color="secondary" type="subheading">
             <MarkdownPreview value={content} />
           </Text>
         </CardContent>
@@ -25,7 +25,7 @@ const Teaching = () =>
         header={<Text color="inherit" type="display1" children="Reviews" />}
       >
         <Grid container justify="center">
-          {students.map((t, i) =>
+          {students.map(t =>
             (<Grid item xs={11} sm={6} key={t.name}>
               <Testimonial student={t} />
             </Grid>)
