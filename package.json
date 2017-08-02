@@ -52,7 +52,7 @@
     "prettier-eslint-cli": "^4.1.1",
     "qs": "^6.5.0",
     "react": "^15.6.1",
-    "react-apollo": "^1.4.9",
+    "react-apollo": "^1.4.10",
     "react-dom": "^15.6.1",
     "react-marked-markdown": "^1.4.2",
     "react-redux": "^5.0.5",
