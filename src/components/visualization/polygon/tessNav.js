@@ -59,7 +59,7 @@ class TessNav extends Component {
 
     return (
       <Grid container align="center" justify="center">
-        <Grid item xs={10}>
+        <Grid item xs>
           <svg className={classes.wrapper}>
             <g className={classes.textGroup}>
               <text className={`tessText ${classes.mainText}`}>tfpractice</text>

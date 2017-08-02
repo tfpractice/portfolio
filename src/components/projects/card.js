@@ -21,12 +21,12 @@ import { qUtils } from '../../utils';
 import { ChipList } from '../tools';
 import ProjectLink from './link';
 import FeatureList from './featureList';
+import PJMedia from './pjMedia';
 
 const { WithProject } = containers;
 const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 const { edgeNodes } = qUtils;
 
-const stateful = withState('open', 'toggle', false);
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
   withHandlers({
@@ -35,6 +35,7 @@ const withSwitch = compose(
     hide: ({ flip }) => () => flip(false),
   })
 );
+
 const typeMap = new Map([
   [ 'APP', '#ff00ff' ],
   [ 'SCRIPT', '#ff00ff' ],
@@ -45,35 +46,15 @@ const getColor = pj => (pj.category ? typeMap.get(pj.category) : '#b2dfdb');
 const imgUrl = pj =>
   `http://via.placeholder.com/350/${getColor(pj).slice(1)}/ffffff?text=_`;
 
-const makeStyle = proj => ({
-  backgroundImage: `url(${imgUrl(proj)})`,
-  'details::after': { opacity: 0.5, content: 'hover content' },
-  'details:hover': {
-    opacity: 0.5,
-    content: `${proj.description}`,
-  },
-});
-
 const Styled = withStyles(
-  createStyleSheet('RecipeReviewCard', theme => ({
-    details: {
-      backgroundPosition: 'center',
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-    },
-    closed: { '&:hover': { ':&after': { content: 'abcd' }, opacity: 0.5 }},
-    content: { flex: '1 0 auto' },
-    expand: {
-      transform: 'rotate(0deg)',
-      transition: theme.transitions.create('transform', { duration: theme.transitions.duration.shortest }),
-    },
-    expandOpen: { transform: 'rotate(90deg)' },
-    flexGrow: { flex: '1 1 auto' },
+  createStyleSheet('ProjectCard', theme => ({
+    APP: { backgroundColor: 'rgba(255,0,255,0.6)' },
+    LIB: { backgroundColor: 'rgba(0,121,107,0.6)' },
+    SCRIPT: { backgroundColor: '#00796b' },
+
     actions: { overflowX: 'auto', overflowY: 'hidden' },
   }))
 );
-
-const divStyle = { minHeight: '80px' };
 
 const ProjectCard = ({ project, show, classes, toggle, open }) => {
   const features = project.features || [
@@ -104,24 +85,19 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
       >
         <CardMedia
           onClick={show}
-          className={`details ${classes.details} ${!open && classes.closed}`}
-          style={!open ? { ...makeStyle(project), ...divStyle } : divStyle}
+          className={!open ? classes[project.category] : ''}
         >
           <Collapse in={!open}>
-            <Text type="subheading" align="center">
-              {project.description}
-            </Text>
+            <PJMedia project={project} />
           </Collapse>
           <Collapse in={open}>
-            <CardMedia>
-              <SwipeTabs>
-                <FeatureList tabLabel="tech" data={features} />
-                <FeatureList
-                  tabLabel="highlights"
-                  data={project.details.map(d => d.caption)}
-                />
-              </SwipeTabs>
-            </CardMedia>
+            <SwipeTabs>
+              <FeatureList tabLabel="tech" data={features} />
+              <FeatureList
+                tabLabel="highlights"
+                data={project.details.map(d => d.caption)}
+              />
+            </SwipeTabs>
           </Collapse>
         </CardMedia>
 
