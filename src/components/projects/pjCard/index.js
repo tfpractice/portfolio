@@ -1,4 +1,5 @@
 export { default as Features } from './features';
+export { default } from './card';
 
 export const colors = {
   APP: 'rgba(255,0,255,1)',

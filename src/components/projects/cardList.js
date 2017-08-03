@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import { CircularProgress } from 'material-ui/Progress';
 
-import ProjectCard from './card';
+import ProjectCard from './pjCard';
 
 const CardList = ({ items }) =>
   (<Grid container justify="center">
