@@ -9,7 +9,9 @@ import {
   fScale,
   fTypes,
   stackScale,
+  stackSort,
   stackTypes,
+  tSort,
 } from '../landing/skills/content';
 import ToolChip from './chip';
 
@@ -28,18 +30,6 @@ const Styled = withStyles(
   })
 );
 
-//
-// const Styled = withStyles(
-//   createStyleSheet('ToolChipList', theme => ({
-//     svgIcon: { color: grey[800] },
-//     row: {
-//       display: 'flex',
-//       justifyContent: 'center',
-//       flexWrap: 'wrap',
-//     },
-//   }))
-// );
-// const styles = ;
 const ChipList = ({ tools, classes }) => {
   console.log('tools', tools);
   return (
@@ -47,11 +37,10 @@ const ChipList = ({ tools, classes }) => {
       container
       justify="center"
       align="center"
-
-      // wrap="nowrap"
+      wrap="nowrap"
       className={classes.list}
     >
-      {[ ...tools ].sort((a, b) => a.name.length - b.name.length).map(t =>
+      {tSort(tools).reverse().map(t =>
         (<Grid item xs key={t.id}>
           <ToolChip className={classes[t.stack]} tool={t} key={t.id} />
         </Grid>)

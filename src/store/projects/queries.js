@@ -1,5 +1,5 @@
 import gql from 'graphql-tag';
-import { PROJECT_INFO, } from './fragments';
+import { PROJECT_INFO } from './fragments';
 
 export const ALL_PROJECTS = gql`
   query GetProjects($where:ProjectWhereArgs, $orderBy:[ProjectOrderByArgs]){ 
@@ -60,9 +60,9 @@ export const GET_PROJECT = gql`
             id
             name
             logo
-       }
-     }
-     }
+        }
+      }
+    }
      allSkills {
         edges {
           node {
@@ -76,37 +76,35 @@ export const GET_PROJECT = gql`
 ${PROJECT_INFO}`;
 
 export const ADD_TOOL = gql`
-  mutation AddTool($input: AddToToolsConnectionInput!){
-    addToToolsConnection(input:$input){
-      changedTools{
-        tool{
+  mutation AddTool($input: AddToToolsConnectionInput!) {
+    addToToolsConnection(input: $input) {
+      changedTools {
+        tool {
           id
           name
-          
-      }
-    project{
-      id
-      title
-    }
-  }
-}
-}
-`;
-
-export const ADD_SKILL = gql`
-    mutation AddSkill($input: AddToProjectSkillsConnectionInput!){
-      addToProjectSkillsConnection(input:$input){
-      changedProjectSkills{
-        skill{
-          id
-          name
-          
         }
-        project{
+        project {
           id
           title
         }
       }
-}
-}
+    }
+  }
+`;
+
+export const ADD_SKILL = gql`
+  mutation AddSkill($input: AddToProjectSkillsConnectionInput!) {
+    addToProjectSkillsConnection(input: $input) {
+      changedProjectSkills {
+        skill {
+          id
+          name
+        }
+        project {
+          id
+          title
+        }
+      }
+    }
+  }
 `;

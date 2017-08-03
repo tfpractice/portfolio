@@ -107,9 +107,30 @@ const typeSort = arr =>
     return types.indexOf(a.type) - types.indexOf(b.type);
   });
 
+const defStack = { stack: 'BACK' };
+
+export const stackTypes = [ 'BACK', 'FRONT', 'BOTH', '' ];
+export const getStack = ({ stack } = defStack) => stack;
+export const stackSort = (a, b) => getStack(b) - getStack(a);
+
+const sExtent = tools => d3.extent(tools.map(getStack));
+const sIdx = tools => t => sExtent(tools).indexOf(getStack(t));
+const compareIDX = tools => (a, b) => sIdx(tools)(a) - sIdx(tools)(b);
+
+export const tSort = tools => [ ...tools ].sort(compareIDX(tools));
+
+//
+// export const tColorDomain = tools =>
+//   d3.scaleOrdinal().domain([ null, ...d3.extent(stackTypes) ]);
+//
+// // export const stackScales = d3.scaleOrdinal().domain(stackTypes).range()
+//
+// // [ '#00796b', '#212121', '#D81B60', '#757575' ]
+// export const tColorRange = tools => (range = [ '#fff', '#ff0000', '#000000' ]) =>
+//   tColorDomain(tools).range(range);
+
 export const fTypes = new Set(fSkills.map(s => s.type));
 export const bTypes = new Set(bSkills.map(s => s.type));
-export const stackTypes = [ 'BACK', 'FRONT', 'BOTH', '' ];
 export const fScale = d3
   .scaleOrdinal([ '#00796b', '#212121', '#D81B60', '#757575' ])
   .domain(fTypes);

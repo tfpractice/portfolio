@@ -13,15 +13,18 @@ const variables = {
 export const WithAll = component =>
   graphql(ALL_PROJECTS, {
     options: () => ({ variables }),
-    props: ({ data }) => ({
-      projectsData: data,
-      projectsArray: data.loading ? [] : viewNodes(data),
-    }),
+    props: ({ data }) => {
+      console.log('data', data);
+      return {
+        projectsData: data,
+        projectsArray: data.loading ? [] : viewNodes(data),
+      };
+    },
   })(component);
 
 export const WithProject = component =>
   graphql(GET_PROJECT, {
-    skip: ({ project }) => project != true,
+    skip: ({ project }) => !project,
     options: ({ project }) => ({ variables: { id: project.id }}),
     props: ({ data, ownProps: { project }}) => ({
       projectQuery: data,
@@ -39,7 +42,10 @@ export const WithProject = component =>
 export const WithTools = component =>
   WithProject(
     graphql(ADD_TOOL, {
-      skip: ({ project }) => project != true,
+      skip: ({ project }) => {
+        console.log('skippingwithtool', !project);
+        return !project;
+      },
       options: ({ project: { id }}) => ({ refetechQueries: { query: GET_PROJECT, variables: { id }}}),
       props: ({ mutate, ownProps: { project }}) => ({
         addTool: ({ id: toolId }) =>
@@ -51,11 +57,14 @@ export const WithTools = component =>
 export const WithSkills = component =>
   WithTools(
     graphql(ADD_SKILL, {
-      skip: ({ project }) => project != true,
+      skip: ({ project }) => !project,
       options: ({ project: { id }}) => ({ refetechQueries: { query: GET_PROJECT, variables: { id }}}),
-      props: ({ mutate, ownProps: { project }}) => ({
-        addSkill: ({ id: skillId }) =>
-          mutate({ variables: { input: { projectId: project.id, skillId }}}),
-      }),
+      props: ({ mutate, ownProps }) => {
+        console.log('ownProps', ownProps);
+        return {
+          addSkill: ({ id: skillId }) =>
+            mutate({ variables: { input: { projectId: ownProps.project.id, skillId }}}),
+        };
+      },
     })(component)
   );

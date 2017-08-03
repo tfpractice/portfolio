@@ -49,8 +49,7 @@ export const PROJECT_INFO = gql`
     skills  {
       edges {
         node {
-        ...skillInfo
-          
+        ...skillInfo      
      }
     }
     }

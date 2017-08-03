@@ -24,7 +24,7 @@ import ProjectLink from './link';
 import FeatureList from './featureList';
 import PJMedia from './pjMedia';
 
-const { WithProject } = containers;
+const { WithProject, WithSkills } = containers;
 const { edgeNodes } = qUtils;
 const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 
@@ -56,7 +56,7 @@ const Styled = withStyles(
   }))
 );
 
-const ProjectCard = ({ project, show, classes, toggle, open }) => {
+const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
   const features = project.features || [
     'built with es6, bundled with Rollup',
     '90% code-coverage, tested with Jest',
@@ -64,7 +64,7 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
   ];
 
   console.log('project', project);
-
+  console.log('props', props);
   return (
     <HexCard raised>
       <Expand
@@ -130,4 +130,4 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
   );
 };
 
-export default WithProject(withSwitch(Styled(ProjectCard)));
+export default WithSkills(withSwitch(Styled(ProjectCard)));

@@ -59,7 +59,7 @@ const Project = (props) => {
 
     const Demo = getDemos(slug);
 
-    console.log('Demo', Demo);
+    console.log('props', props);
     const tech = getTech(slug);
     const content = getContent(slug);
     const demo =
