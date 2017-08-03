@@ -20,15 +20,10 @@ const variables = {
 export const WithAll = component =>
   graphql(ALL_PROJECTS, {
     options: () => ({ variables }),
-    props: (props) => {
-      const { data } = props;
-
-      console.log('WITH ALL PROPS', props);
-      return {
-        projectsData: data,
-        projectsArray: data.loading ? [] : viewNodes(data),
-      };
-    },
+    props: ({ data }) => ({
+      projectsData: data,
+      projectsArray: data.loading ? [] : viewNodes(data),
+    }),
   })(component);
 
 export const WithProject = component =>

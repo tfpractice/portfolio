@@ -19,6 +19,7 @@ import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
 import { CircularProgress } from 'material-ui/Progress';
 
+import ProjectCard from '../card';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
@@ -39,7 +40,7 @@ const mapState = ({ projects }, { match: { params: { slug }}}) => ({
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 
 const Project = (props) => {
-  const { project, slug } = props;
+  const { project } = props;
   let view;
 
   if (!project) {
@@ -51,31 +52,20 @@ const Project = (props) => {
       </Grid>
     );
   } else {
-    const tech = getTech(slug);
-    const content = getContent(slug);
-
     view = (
       <Grid container align="center" justify="center" style={mainStyle}>
-        <Grid item xs={11}>
-          <HexCard>
-            <CardHeader title={project && project.title} />
-            <CardContent>
-              <Text type="title">
-                {project && project.description}
-              </Text>
-              <List />
-              {tech.map((t, i) =>
-                (<ListItem key={i}>
-                  <ListItemText primary={t} key={i} />
-                </ListItem>)
-              )}
-            </CardContent>
-          </HexCard>
+        <Grid item xs={12}>
+          <ProjectCard project={project} />
         </Grid>
-        <Slides project={project} />
-        <PJContent project={project} />
-
-        <DemoView project={project} />
+        <Grid item xs={11}>
+          <Slides project={project} />
+        </Grid>
+        <Grid item xs={11}>
+          <PJContent project={project} />
+        </Grid>
+        <Grid item xs={11}>
+          <DemoView project={project} />
+        </Grid>
         <Grid item xs={11}>
           <SkillsAndTools project={project} />
         </Grid>

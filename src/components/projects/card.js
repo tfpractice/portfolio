@@ -15,6 +15,7 @@ import Card, {
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { connect } from 'react-redux';
+
 import { containers } from '../../store/projects';
 import { Expand, HexCard, SwipeTabs } from '../misc';
 import { qUtils } from '../../utils';
@@ -27,13 +28,7 @@ import PJMedia from './pjMedia';
 const { WithProject, WithSkills, DropTool } = containers;
 const { edgeNodes } = qUtils;
 const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
-const mapState = (state, own) => {
-  // console.log('state', state);
-  // console.log('own', own);
-  const q = state.data;
 
-  return { q };
-};
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
   withHandlers({
@@ -69,7 +64,6 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
     'full documentation deployed on surge',
   ];
 
-  console.log('props', props);
   return (
     <HexCard raised>
       <Expand
@@ -135,4 +129,4 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
   );
 };
 
-export default DropTool(connect(mapState)(withSwitch(Styled(ProjectCard))));
+export default DropTool(withSwitch(Styled(ProjectCard)));

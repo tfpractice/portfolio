@@ -13,7 +13,7 @@ export const getProject = slug =>
   new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
 
 export const hasDemos = slug => !!getProject(slug).Demo;
-export const getDemos = slug => getProject(slug).Demo || xData;
+export const getDemos = slug => getProject(slug).Demo || '';
 
 export const hasSlides = slug => !!getProject(slug).slides;
 export const getSlides = slug => getProject(slug).slides || [];
