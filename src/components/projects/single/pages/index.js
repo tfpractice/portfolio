@@ -15,6 +15,7 @@ export const getProject = slug =>
 export const hasDemos = slug => !!getProject(slug).Demo;
 export const getDemos = slug => getProject(slug).Demo || xData;
 
+export const hasSlides = slug => !!getProject(slug).slides;
 export const getSlides = slug => getProject(slug).slides || [];
 export const getTech = slug =>
   getProject(slug).tech || [

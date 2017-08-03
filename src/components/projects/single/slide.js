@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Text from 'material-ui/Typography';
 import { MarkdownPreview } from 'react-marked-markdown';
 

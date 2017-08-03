@@ -5,19 +5,19 @@ import Grid from 'material-ui/Grid';
 import MSlide from 'material-ui/transitions/Slide';
 import Divider from 'material-ui/Divider';
 import Paper from 'material-ui/Paper';
-import { withState, } from 'recompose';
+import { withState } from 'recompose';
 
 const stateful = withState('open', 'toggle', false);
 
-const Slide = ({ open, children, toggle, header, }) => (
-  <Grid container direction="column" >
-    <Grid item >
+const Slide = ({ open, children, toggle, header }) =>
+  (<Grid container direction="column">
+    <Grid item>
       <Grid container justify="space-between" align="center">
-        <Grid item onClick={() => toggle(x => !x)} >
+        <Grid item onClick={() => toggle(x => !x)}>
           {header}
         </Grid>
-        <Grid item >
-          <IconButton onClick={() => toggle(x => !x)} >
+        <Grid item>
+          <IconButton onClick={() => toggle(x => !x)}>
             <ExpandMoreIcon />
           </IconButton>
         </Grid>
@@ -29,7 +29,6 @@ const Slide = ({ open, children, toggle, header, }) => (
         {children}
       </MSlide>
     </Grid>
-  </Grid>
-);
+  </Grid>);
 
 export default stateful(Slide);

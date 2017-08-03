@@ -4,16 +4,18 @@ import Grid from 'material-ui/Grid';
 import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import Card, { CardContent } from 'material-ui/Card';
+import { connect } from 'react-redux';
 
+import { slug } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
 import Slide from './slide';
+import { getSlides, hasSlides } from './pages';
 
-// import hexPath from '../../../../public/images/';
+const mapState = (state, { project }) => ({ slides: hasSlides(slug(project)) && getSlides(slug(project)) });
 const slideStyle = {
   backgroundImage: 'url(/images/pinkHex50.svg)',
   backgroundPosition: 'left',
 
-  // backgroundColor: 'rgba(66,66,66,0.85)',
   backgroundSize: '200% 200%',
   backgroundRepeat: 'no-repeat',
 };
@@ -31,8 +33,9 @@ const styles = {
 const getStyle = data => ix =>
   Object.assign({}, styles.slide, styles[`slide${(ix + 1) % data.length}`]);
 
-const Slides = ({ data, project, ...props }) =>
-  (<Grid container justify="center" align="center">
+const Slides = ({ data, project, slides, ...props }) =>
+  slides &&
+  <Grid container justify="center" align="center">
     <Grid item xs>
       <Expand
         header={
@@ -42,21 +45,10 @@ const Slides = ({ data, project, ...props }) =>
         }
       >
         <SwipeableViews slideStyle={slideStyle} enableMouseEvents>
-          {data.map((h, i) => <Slide key={i} slide={h} />)}
+          {slides.map((h, i) => <Slide key={i} slide={h} />)}
         </SwipeableViews>
       </Expand>
     </Grid>
-  </Grid>);
+  </Grid>;
 
-//
-// <Grid item xs={11}>
-//   <Grid container direction="column" justify="center" align="center">
-//
-//       <Grid item>
-//         <Slides project={project} data={lSlides} />
-//       </Grid>
-//     </Expand>
-//   </Grid>
-// </Grid>
-
-export default Slides;
+export default connect(mapState)(Slides);
