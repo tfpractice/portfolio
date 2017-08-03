@@ -19,7 +19,10 @@ const Styled = withStyles(
       minWidth: '7%',
       minHeight: '7%',
       color: ' rgba(255, 255, 255, 1)',
-      '&:hover': { color: 'rgba(255, 0, 255, 1)' },
+
+      // color: ' rgba(255, 255, 255, 1)',
+      // '&:hover': { color: 'rgba(255, 0, 255, 1)' },
+      '&:hover': { color: 'inherit' },
     },
     Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%' },
     Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none' },

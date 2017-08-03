@@ -19,8 +19,9 @@ import { containers } from '../../store/projects';
 import { Expand, HexCard, SwipeTabs } from '../misc';
 import { qUtils } from '../../utils';
 import { ChipList } from '../tools';
+import { Features } from './pjCard';
 import ProjectLink from './link';
-import Features from './featureList';
+import FeatureList from './featureList';
 import PJMedia from './pjMedia';
 
 const { WithProject } = containers;
@@ -35,6 +36,9 @@ const withSwitch = compose(
     hide: ({ flip }) => () => flip(false),
   })
 );
+
+const getChips = p =>
+  p.category === 'APP' ? edgeNodes(p.tools) : edgeNodes(p.skills);
 const colors = {
   APP: 'rgba(255,0,255,1)',
   LIB: 'rgba(0,255,255,1)',
@@ -58,6 +62,8 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
     '90% code-coverage, tested with Jest',
     'full documentation deployed on surge',
   ];
+
+  console.log('project', project);
 
   return (
     <HexCard raised>
@@ -89,11 +95,11 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
           </Collapse>
           <Collapse in={open}>
             <SwipeTabs iHue={colors[project.category]}>
-              <Features tabLabel="tech" data={features} />
-              <Features
+              <FeatureList
                 tabLabel="highlights"
                 data={project.details.map(d => d.caption)}
               />
+              <FeatureList tabLabel="tech" data={features} />
             </SwipeTabs>
           </Collapse>
         </CardMedia>
@@ -115,16 +121,8 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
         </Collapse>
 
         <Collapse in={!open}>
-          <CardActions className={classes.actions}>
-            <Grid container>
-              <Grid item xs={11}>
-                <ChipList
-                  tools={edgeNodes(project.skills).concat(
-                    edgeNodes(project.tools)
-                  )}
-                />
-              </Grid>
-            </Grid>
+          <CardActions>
+            <ChipList tools={getChips(project)} />
           </CardActions>
         </Collapse>
       </Expand>

@@ -15,9 +15,9 @@ const Styled = withStyles(
     },
   }))
 );
-
+const styles = { overflowX: 'auto', overflowY: 'hidden' };
 const ChipList = ({ tools }) =>
-  (<Grid container wrap="nowrap">
+  (<Grid container justify="center" align="center" wrap="nowrap" style={styles}>
     {/* <Paper> */}
     {tools.sort((a, b) => a.name.length - b.name.length).map(t =>
       (<Grid item xs key={t.id}>
