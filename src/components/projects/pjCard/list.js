@@ -7,7 +7,7 @@ import ProjectCard from './card';
 const CardList = ({ items }) =>
   (<Grid container justify="center">
     {!items.length
-      ? <Grid itrem xs={11}>
+      ? <Grid item xs={11}>
         <CircularProgress color="accent" />
       </Grid>
       : items.map(p =>
