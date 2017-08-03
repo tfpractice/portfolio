@@ -7,14 +7,10 @@ import { slug } from '../../utils';
 
 const { WithProject } = containers;
 
-const ProjectLink = ({ project, children, ...props }) => {
-  const a = 0;
-
-  return (
-    <Link to={`/${slug(project)}`}>
-      {children || project.title}
-    </Link>
-  );
-};
+const ProjectLink = ({ project, children, ...props }) => (
+  <Link to={`/${slug(project)}`}>
+    {children || project.title}
+  </Link>
+);
 
 export default WithProject(ProjectLink);

@@ -26,10 +26,7 @@ const Styled = withStyles(
   })
 );
 
-const ToolChip = ({ tool, classes, ...rest }) => {
-  console.log('classes, tool', classes, tool, rest);
-
-  return <Chip className={classes[tool.stack]} label={tool.name} />;
-};
+const ToolChip = ({ tool, classes, ...rest }) =>
+  <Chip className={classes[tool.stack]} label={tool.name} />;
 
 export default Styled(ToolChip);

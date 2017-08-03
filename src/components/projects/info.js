@@ -6,7 +6,7 @@ import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import { connect } from 'react-redux';
 
 import { appFilt, libFilt, scrFilt } from '../../utils';
-import CardList from './cardList';
+import { CardList } from './pjCard';
 
 const stateToProps = ({ projects }) => ({
   apps: appFilt(projects),

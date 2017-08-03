@@ -16,37 +16,22 @@ import {
 import ToolChip from './chip';
 
 const Styled = withStyles(
-  createStyleSheet('SkillChip', (theme) => {
-    let sheet = { list: { overflowX: 'auto', overflowY: 'hidden' }};
-
-    sheet = stackTypes
-      .map(t => ({ [t]: { backgroundColor: stackScale(t) }}))
-      .reduce((obj, next) => ({ ...obj, ...next }), sheet);
-    sheet = [ ...bTypes ]
-      .map(t => ({ [t]: { backgroundColor: bScale(t) }}))
-      .reduce((obj, next) => ({ ...obj, ...next }), sheet);
-
-    return sheet;
-  })
+  createStyleSheet('SkillChip', theme => ({ list: { overflowX: 'auto', overflowY: 'hidden' }}))
 );
 
-const ChipList = ({ tools, classes }) => {
-  console.log('tools', tools);
-  return (
-    <Grid
-      container
-      justify="center"
-      align="center"
-      wrap="nowrap"
-      className={classes.list}
-    >
-      {tSort(tools).reverse().map(t =>
-        (<Grid item xs key={t.id}>
-          <ToolChip className={classes[t.stack]} tool={t} key={t.id} />
-        </Grid>)
-      )}
-    </Grid>
-  );
-};
+const ChipList = ({ tools, classes }) =>
+  (<Grid
+    container
+    justify="center"
+    align="center"
+    wrap="nowrap"
+    className={classes.list}
+  >
+    {tSort(tools).reverse().map(t =>
+      (<Grid item xs key={t.id}>
+        <ToolChip tool={t} key={t.id} />
+      </Grid>)
+    )}
+  </Grid>);
 
 export default Styled(ChipList);

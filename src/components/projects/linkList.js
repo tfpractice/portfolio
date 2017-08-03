@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import Text from 'material-ui/Typography';
-
-import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
 
 import ProjectLink from './link';
 
