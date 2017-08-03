@@ -26,6 +26,7 @@ import { getContent, getDemos, getProject, getSlides, getTech } from './pages';
 import { markdown as mCont } from './pages/fenugreek/markdown';
 import Slides from './slides';
 import DemoView from './demoview';
+import SkillsAndTools from './skillsAndTools';
 
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
@@ -56,6 +57,7 @@ const Project = (props) => {
 
     const xSkill = ({ id: skillId }) =>
       !new Set(edgeNodes(project.skills).map(({ id }) => id)).has(skillId);
+    const hasSkill = skill => !xSkill(skill);
 
     const Demo = getDemos(slug);
 
@@ -65,7 +67,7 @@ const Project = (props) => {
     const demo =
       !!Demo &&
       <Grid item xs={11}>
-        <DemoView comp={Demo} />
+        <DemoView project={project} />
       </Grid>;
 
     const highlights =
@@ -109,27 +111,9 @@ const Project = (props) => {
           </Expand>
         </Grid>
 
-        {demo}
-
+        <DemoView project={project} />
         <Grid item xs={11}>
-          <Expand
-            header={
-              <Text color="inherit" type="title">
-                Skills
-              </Text>
-            }
-          >
-            <Grid container>
-              {props.skillArray &&
-                props.skillArray.filter(xSkill).map(t =>
-                  (<Grid item key={t.id}>
-                    <Button color="primary" onClick={e => props.addSkill(t)}>
-                      {t.name}
-                    </Button>
-                  </Grid>)
-                )}
-            </Grid>
-          </Expand>
+          <SkillsAndTools project={project} />
         </Grid>
       </Grid>
     );
