@@ -109,7 +109,7 @@ const typeSort = arr =>
 
 export const fTypes = new Set(fSkills.map(s => s.type));
 export const bTypes = new Set(bSkills.map(s => s.type));
-
+export const stackTypes = [ 'BACK', 'FRONT', 'BOTH', '' ];
 export const fScale = d3
   .scaleOrdinal([ '#00796b', '#212121', '#D81B60', '#757575' ])
   .domain(fTypes);
@@ -117,6 +117,10 @@ export const fScale = d3
 export const bScale = d3
   .scaleOrdinal([ '#00796b', '#212121', '#757575', '#D81B60' ])
   .domain(bTypes);
+
+export const stackScale = d3
+  .scaleOrdinal([ '#00796b', '#212121', '#757575', '#D81B60' ])
+  .domain(stackTypes);
 
 const fInfo = `
 My time in the wilderness of front end development has been key to my versatility as a developer. I've chased changing standards, cobbled fussy solutions, and frequently cycled through frameworks hoping to find a system that would work consistently. Though frustrating, this process has given me a breadth of knowledge, and a set of auxilliary skill, and made me a particularly quick study.

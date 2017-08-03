@@ -5,6 +5,7 @@ export const TOOL_INFO = gql`
     id
     name
     logo
+    stack
   }
 `;
 
