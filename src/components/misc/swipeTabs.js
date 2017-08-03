@@ -20,13 +20,13 @@ const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
   appBar: { backgroundColor: theme.palette.background.appBar },
 }));
 
-const SwipeTabs = ({ children, index, setIndex }) =>
+const SwipeTabs = ({ children, iHue = '#f0f', index, setIndex }) =>
   (<Grid container justify="center" align="center">
     <Grid item xs={11}>
       <Tabs
         centered
         index={index}
-        indicatorColor="#f0f"
+        indicatorColor={iHue}
         textColor="#fff"
         onChange={(e, i) => setIndex(p => i)}
       >

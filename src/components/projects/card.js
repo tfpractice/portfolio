@@ -35,9 +35,13 @@ const withSwitch = compose(
     hide: ({ flip }) => () => flip(false),
   })
 );
+const colors = {
+  APP: 'rgba(255,0,255,1)',
+  LIB: 'rgba(0,255,255,1)',
+};
 const dStyles = {
-  APP: { backgroundColor: 'rgba(255,0,255,1)' },
-  LIB: { backgroundColor: 'rgba(0,255,255,1)' },
+  APP: { backgroundColor: colors.APP },
+  LIB: { backgroundColor: colors.LIB },
 };
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
@@ -84,7 +88,7 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
             <PJMedia project={project} />
           </Collapse>
           <Collapse in={open}>
-            <SwipeTabs>
+            <SwipeTabs iHue={colors[project.category]}>
               <Features tabLabel="tech" data={features} />
               <Features
                 tabLabel="highlights"
