@@ -35,11 +35,14 @@ const withSwitch = compose(
     hide: ({ flip }) => () => flip(false),
   })
 );
-
+const dStyles = {
+  APP: { backgroundColor: 'rgba(255,0,255,1)' },
+  LIB: { backgroundColor: 'rgba(0,255,255,1)' },
+};
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
-    APP: { backgroundColor: 'rgba(255,0,255,0.4)' },
-    LIB: { backgroundColor: 'rgba(0,121,107,0.4)' },
+    APP: { backgroundColor: 'rgba(255,0,255,0.3)' },
+    LIB: { backgroundColor: 'rgba(0,255 ,255,0.3)' },
     SCRIPT: { backgroundColor: '#00796b' },
     actions: { overflowX: 'auto', overflowY: 'hidden' },
   }))
@@ -55,6 +58,7 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
   return (
     <HexCard raised>
       <Expand
+        dStyle={dStyles[project.category]}
         color="default"
         open={true}
         header={

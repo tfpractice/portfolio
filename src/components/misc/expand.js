@@ -24,7 +24,7 @@ const Styled = withStyles(
   }))
 );
 
-const Expand = ({ open, children, toggle, color, header, classes }) =>
+const Expand = ({ open, children, dStyle, toggle, color, header, classes }) =>
   (<Grid container justify="center" align="center">
     <Grid item xs={11}>
       <Grid container justify="space-between" align="center">
@@ -39,7 +39,7 @@ const Expand = ({ open, children, toggle, color, header, classes }) =>
       </Grid>
     </Grid>
     <Grid item xs={11}>
-      <Divider className={classes.Divider} />
+      <Divider className={classes.Divider} style={{ ...dStyle }} />
     </Grid>
 
     <Grid item xs={11}>
