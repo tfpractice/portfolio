@@ -1,28 +1,31 @@
 import gql from 'graphql-tag';
 
 export const TOOL_INFO = gql`
-fragment toolInfo on Tool {
+  fragment toolInfo on Tool {
     id
     name
     logo
-}`;
+  }
+`;
 
 export const SKILL_INFO = gql`
-fragment skillInfo on Skill {
-  id
-  name  
-}`;
+  fragment skillInfo on Skill {
+    id
+    name
+  }
+`;
 
 export const FILE_INFO = gql`
-fragment fileInfo on File  {
-  id
-  details
-  name
-  blobUrl
-  project{
+  fragment fileInfo on File {
     id
+    details
+    name
+    blobUrl
+    project {
+      id
+    }
   }
-}`;
+`;
 export const PROJECT_INFO = gql`
   fragment projectInfo on Project {
     id
@@ -34,6 +37,7 @@ export const PROJECT_INFO = gql`
     category  
     details  
     thoughts
+    headerURL
     tools  {
       edges {
         node {

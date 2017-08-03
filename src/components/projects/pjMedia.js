@@ -23,6 +23,14 @@ const Styled = withStyles(
       backgroundPosition: 'center',
       '&:hover': { background: 'none' },
     },
+
+    default: {
+      minHeight: '8rem',
+      backgroundSize: 'contain',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      '&:hover': { background: 'none' },
+    },
   }))
 );
 
@@ -33,7 +41,12 @@ const withMedia = compose(
     showText: ({ turn }) => () => turn(false),
   })
 );
+const isDefault = ({ headerURL }) => headerURL.endsWith('default.svg');
+const getHeader = bool => ({ headerURL }) => {
+  console.log('headerURL', headerURL);
 
+  return bool ? { backgroundImage: `url(${headerURL})` } : {};
+};
 const PJMedia = ({ pic, project, classes, showText, showPic }) =>
   (<Grid
     container
@@ -41,8 +54,8 @@ const PJMedia = ({ pic, project, classes, showText, showPic }) =>
     justify="center"
     onMouseEnter={showText}
     onMouseLeave={showPic}
-    className={classes.media}
-    style={pic ? { backgroundImage: `url(/images/libs/rummy.svg)` } : {}}
+    className={isDefault(project) ? classes.default : classes.media}
+    style={getHeader(pic)(project)}
   >
     <Grid item xs={12}>
       {!pic &&
