@@ -19,10 +19,9 @@ import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
 import { CircularProgress } from 'material-ui/Progress';
 
-import ProjectCard from '../card';
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
-import { Expand, HexCard } from '../../misc';
+import { Expand, HexCard } from '../../misc'; import ProjectCard from './header/pageCard';
 import { getContent, getProject, getSlides, getTech } from './pages';
 import { markdown as mCont } from './pages/fenugreek/markdown';
 import Slides from './slides';
