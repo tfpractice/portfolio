@@ -20,12 +20,12 @@ import { Expand, HexCard, SwipeTabs } from '../misc';
 import { qUtils } from '../../utils';
 import { ChipList } from '../tools';
 import ProjectLink from './link';
-import FeatureList from './featureList';
+import Features from './featureList';
 import PJMedia from './pjMedia';
 
 const { WithProject } = containers;
-const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 const { edgeNodes } = qUtils;
+const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
@@ -36,22 +36,11 @@ const withSwitch = compose(
   })
 );
 
-const typeMap = new Map([
-  [ 'APP', '#ff00ff' ],
-  [ 'SCRIPT', '#ff00ff' ],
-  [ 'LIB', '#00796b' ],
-]);
-const getColor = pj => (pj.category ? typeMap.get(pj.category) : '#b2dfdb');
-
-const imgUrl = pj =>
-  `http://via.placeholder.com/350/${getColor(pj).slice(1)}/ffffff?text=_`;
-
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
-    APP: { backgroundColor: 'rgba(255,0,255,0.6)' },
-    LIB: { backgroundColor: 'rgba(0,121,107,0.6)' },
+    APP: { backgroundColor: 'rgba(255,0,255,0.4)' },
+    LIB: { backgroundColor: 'rgba(0,121,107,0.4)' },
     SCRIPT: { backgroundColor: '#00796b' },
-
     actions: { overflowX: 'auto', overflowY: 'hidden' },
   }))
 );
@@ -92,8 +81,8 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
           </Collapse>
           <Collapse in={open}>
             <SwipeTabs>
-              <FeatureList tabLabel="tech" data={features} />
-              <FeatureList
+              <Features tabLabel="tech" data={features} />
+              <Features
                 tabLabel="highlights"
                 data={project.details.map(d => d.caption)}
               />
@@ -118,7 +107,7 @@ const ProjectCard = ({ project, show, classes, toggle, open }) => {
         </Collapse>
 
         <Collapse in={!open}>
-          <CardActions style={{ overflowX: 'auto', overflowY: 'hidden' }}>
+          <CardActions className={classes.actions}>
             <Grid container>
               <Grid item xs={11}>
                 <ChipList
