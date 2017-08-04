@@ -30,13 +30,10 @@ const withMedia = compose(
 
 const PJMedia = ({ pic, project, classes, showText, showPic }) =>
   (<Grid container align="center" justify="center">
-    <Grid item xs={11} sm>
-      <Text type="headline" align="center">
-        {project.title}
-      </Text>
+    <Grid item xs={10} sm={5}>
       <img src={project.headerURL} style={{ maxWidth: '100%' }} />
     </Grid>
-    <Grid item xs={11} sm>
+    <Grid item xs={10} sm>
       <SwipeTabs iHue={colors[project.category]}>
         <FeatureList
           tabLabel="highlights"

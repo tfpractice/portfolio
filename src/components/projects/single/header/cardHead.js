@@ -6,7 +6,6 @@ import { CardHeader } from 'material-ui/Card';
 
 const gitSrc = '/images/github.png';
 const covSource = `https://coveralls.io/repos/github/tfpractice/fenugreek-collections/badge.svg?branch=master`;
-
 const buildSrc = `https://travis-ci.org/tfpractice/fenugreek-collections.svg?branch=master`;
 
 const Header = ({ project }) =>
@@ -17,20 +16,15 @@ const Header = ({ project }) =>
       </a>
     }
     title={
-      <Grid container>
-        <Grid item xs>
-          <a target="_blank" href={project.url}>
-            <Text type="display1" children={project.title} />
-          </a>
-        </Grid>
-        <Grid item xs={4}>
-          <img src={covSource} />
-        </Grid>
-
-        <Grid item xs={4}>
-          <img src={buildSrc} />
-        </Grid>
-      </Grid>
+      <a target="_blank" href={project.url}>
+        <Text type="display1" align="center" children={project.title} />
+      </a>
+    }
+    subheader={
+      <Text type="display1" align="center">
+        <img src={covSource} />
+        <img src={buildSrc} />
+      </Text>
     }
   />);
 

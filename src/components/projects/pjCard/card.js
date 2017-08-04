@@ -6,6 +6,7 @@ import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
 import ExpandLess from 'material-ui-icons/ExpandLess';
+import Language from 'material-ui-icons/Language';
 import Card, {
   CardActions,
   CardContent,
@@ -78,9 +79,9 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
               </a>
             }
             title={
-              <a target="_blank" href={project.url}>
+              <ProjectLink project={project}>
                 <Text type="subheading" children={project.title} />
-              </a>
+              </ProjectLink>
             }
           />
         }
@@ -104,14 +105,14 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
         </CardMedia>
 
         <Collapse in={open}>
-          <CardActions className={classes.actions}>
+          <CardActions>
             <ProjectLink project={project}>
               <Button>learn more</Button>
             </ProjectLink>
 
-            <Button target="_blank" href={project.url}>
-              view online
-            </Button>
+            <IconButton href={project.url} target="_blank">
+              <Language />
+            </IconButton>
 
             <IconButton onClick={toggle}>
               <ExpandLess />
@@ -122,6 +123,9 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
         <Collapse in={!open}>
           <CardActions>
             <ChipList tools={getChips(project)} />
+            <IconButton href={project.url} target="_blank">
+              <Language />
+            </IconButton>
           </CardActions>
         </Collapse>
       </Expand>

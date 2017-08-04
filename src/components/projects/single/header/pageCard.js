@@ -19,12 +19,12 @@ import { connect } from 'react-redux';
 
 import { containers } from '../../../../store/projects';
 import { Expand, HexCard, SwipeTabs } from '../../../misc';
-import { qUtils } from '../../../../utils';
+import { qUtils, slug } from '../../../../utils';
 import { ChipList } from '../../../tools';
 import ProjectLink from '../../link';
 import FeatureList from '../../featureList';
 import { Features, PJMedia } from '../../pjCard';
-
+import { hasSlides } from '../pages';
 import Slides, { SwipeSlides } from '../slides';
 import Header from './cardHead';
 import PageMedia from './media';
@@ -70,37 +70,18 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
   console.log('props', props);
   return (
     <HexCard raised>
-      <Grid container justify="center">
+      <Grid container justify="center" align="center">
         <Grid item xs={11}>
-          <CardHeader
-            avatar={
-              <a target="_blank" href={project.repo}>
-                <Avatar src={gitSrc} aria-label={project.title} />
-              </a>
-            }
-            title={
-              <Grid container justify="space-between" align="center">
-                <Grid item xs>
-                  <a target="_blank" href={project.url}>
-                    <Text type="display1" children={project.title} />
-                  </a>
-                </Grid>
-                <Grid item xs={2}>
-                  <img src={covSource} />
-                </Grid>
-
-                <Grid item xs={2}>
-                  <img src={buildSrc} />
-                </Grid>
-                <Grid item xs>
-                  <IconButton onClick={toggle}>
-                    {open ? <ExpandLess /> : <ExpandMore />}
-                  </IconButton>
-                </Grid>
-              </Grid>
-            }
-            subheader={<img src={covSource} />}
-          />
+          <Grid container justify="center" align="center">
+            <Grid item xs>
+              <Header project={project} />
+            </Grid>
+            <Grid item>
+              <IconButton onClick={toggle}>
+                {open ? <ExpandLess /> : <ExpandMore />}
+              </IconButton>
+            </Grid>
+          </Grid>
         </Grid>
       </Grid>
       <CardMedia className={!open ? classes[project.category] : ''}>
@@ -110,8 +91,9 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
         <Collapse in={open}>
           <Grid container justify="center" align="center">
             <Grid item xs={11}>
-              {<SwipeSlides project={project} /> ||
-                <SwipeTabs iHue={colors[project.category]}>
+              {hasSlides(slug(project))
+                ? <SwipeSlides project={project} />
+                : <SwipeTabs iHue={colors[project.category]}>
                   <FeatureList
                     tabLabel="highlights"
                     data={project.details.map(d => d.caption)}
@@ -122,7 +104,6 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
           </Grid>
         </Collapse>
       </CardMedia>
-      {/* </Expand> */}
       <Grid container justify="center" align="center">
         <Grid item xs={11} className={classes.actions}>
           <CardActions>
@@ -130,15 +111,10 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
               <Grid item xs>
                 <ChipList tools={getChips(project)} />
               </Grid>
-              <Grid item xs>
+              <Grid item>
                 <Button target="_blank" href={project.url}>
                   view online
                 </Button>
-              </Grid>
-              <Grid item xs>
-                <IconButton onClick={toggle}>
-                  {open ? <ExpandLess /> : <ExpandMore />}
-                </IconButton>
               </Grid>
             </Grid>
           </CardActions>
