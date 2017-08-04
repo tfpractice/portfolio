@@ -109,7 +109,6 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
             <ProjectLink project={project}>
               <Button>learn more</Button>
             </ProjectLink>
-
             <IconButton href={project.url} target="_blank">
               <Language />
             </IconButton>
