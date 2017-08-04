@@ -21,7 +21,8 @@ import { CircularProgress } from 'material-ui/Progress';
 
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
-import { Expand, HexCard } from '../../misc'; import ProjectCard from './header/pageCard';
+import { Expand, HexCard } from '../../misc';
+import ProjectCard from './header/pageCard';
 import { getContent, getProject, getSlides, getTech } from './pages';
 import { markdown as mCont } from './pages/fenugreek/markdown';
 import Slides from './slides';
@@ -56,9 +57,7 @@ const Project = (props) => {
         <Grid item xs={12}>
           <ProjectCard project={project} />
         </Grid>
-        <Grid item xs={11}>
-          <Slides project={project} />
-        </Grid>
+
         <Grid item xs={11}>
           <PJContent project={project} />
         </Grid>

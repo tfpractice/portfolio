@@ -3,8 +3,11 @@ import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
+import { Expand, HexCard, SwipeTabs } from '../../../misc';
 
-import Slides from '../slides';
+import FeatureList from '../../featureList';
+import { colors } from '../../pjCard';
+import Slides, { SwipeSlides } from '../slides';
 
 const getBG = bool => ({ headerURL }) =>
   bool ? { backgroundImage: `url(${headerURL})` } : {};
@@ -12,22 +15,8 @@ const getBG = bool => ({ headerURL }) =>
 const isDef = ({ headerURL }) => headerURL.endsWith('default.svg');
 const Styled = withStyles(
   createStyleSheet('PJMedia', theme => ({
-    media: {
-      minHeight: '8rem',
-
-      // backgroundSize: 'contain',
-      // backgroundRepeat: 'no-repeat',
-      // backgroundPosition: 'center',
-      // '&:hover': { background: 'none' },
-    },
-    def: {
-      minHeight: '8rem',
-
-      // backgroundSize: 'contain',
-      // backgroundRepeat: 'no-repeat',
-      // backgroundPosition: 'center',
-      // '&:hover': { background: 'none' },
-    },
+    media: { minHeight: '8rem' },
+    def: { minHeight: '8rem' },
   }))
 );
 
@@ -40,18 +29,21 @@ const withMedia = compose(
 );
 
 const PJMedia = ({ pic, project, classes, showText, showPic }) =>
-  (<Grid
-    container
-    align="center"
-    justify="center"
-    onMouseEnter={showText}
-    onMouseLeave={showPic}
-
-    // className={isDef(project) ? classes.def : classes.media}
-    // style={getBG(pic)(project)}
-  >
-    <Grid item xs={12}>
-      <img src={project.headerURL} />
+  (<Grid container align="center" justify="center">
+    <Grid item xs={11} sm>
+      <Text type="headline" align="center">
+        {project.title}
+      </Text>
+      <img src={project.headerURL} style={{ maxWidth: '100%' }} />
+    </Grid>
+    <Grid item xs={11} sm>
+      <SwipeTabs iHue={colors[project.category]}>
+        <FeatureList
+          tabLabel="highlights"
+          data={project.details.map(d => d.caption)}
+        />
+        <FeatureList tabLabel="tech" data={project.features} />
+      </SwipeTabs>
     </Grid>
   </Grid>);
 

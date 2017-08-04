@@ -33,6 +33,12 @@ const styles = {
 const getStyle = data => ix =>
   Object.assign({}, styles.slide, styles[`slide${(ix + 1) % data.length}`]);
 
+const justSlides = ({ data, project, slides, ...props }) =>
+  slides &&
+  <SwipeableViews slideStyle={slideStyle} enableMouseEvents>
+    {slides.map((h, i) => <Slide key={i} slide={h} />)}
+  </SwipeableViews>;
+
 const Slides = ({ data, project, slides, ...props }) =>
   slides &&
   <Grid container justify="center" align="center">
@@ -50,5 +56,7 @@ const Slides = ({ data, project, slides, ...props }) =>
       </Expand>
     </Grid>
   </Grid>;
+
+export const SwipeSlides = connect(mapState)(justSlides);
 
 export default connect(mapState)(Slides);
