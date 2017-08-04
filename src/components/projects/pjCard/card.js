@@ -104,6 +104,15 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
           </Collapse>
         </CardMedia>
 
+        <Collapse in={!open}>
+          <CardActions>
+            <ChipList tools={getChips(project)} />
+            <IconButton href={project.url} target="_blank">
+              <Language />
+            </IconButton>
+          </CardActions>
+        </Collapse>
+
         <Collapse in={open}>
           <CardActions>
             <ProjectLink project={project}>
@@ -115,15 +124,6 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
 
             <IconButton onClick={toggle}>
               <ExpandLess />
-            </IconButton>
-          </CardActions>
-        </Collapse>
-
-        <Collapse in={!open}>
-          <CardActions>
-            <ChipList tools={getChips(project)} />
-            <IconButton href={project.url} target="_blank">
-              <Language />
             </IconButton>
           </CardActions>
         </Collapse>
