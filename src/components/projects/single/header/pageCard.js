@@ -7,7 +7,12 @@ import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
-import Card, { CardActions, CardContent, CardMedia } from 'material-ui/Card';
+import Card, {
+  CardActions,
+  CardContent,
+  CardHeader,
+  CardMedia,
+} from 'material-ui/Card';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { connect } from 'react-redux';
@@ -26,6 +31,11 @@ import PageMedia from './media';
 
 const { WithProject, WithSkills, DropTool } = containers;
 const { edgeNodes } = qUtils;
+
+const gitSrc = '/images/github.png';
+const covSource = `https://coveralls.io/repos/github/tfpractice/fenugreek-collections/badge.svg?branch=master`;
+
+const buildSrc = `https://travis-ci.org/tfpractice/fenugreek-collections.svg?branch=master`;
 
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
@@ -60,28 +70,59 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
   console.log('props', props);
   return (
     <HexCard raised>
-      <Expand
-        dStyle={dStyles[project.category]}
-        color="default"
-        open={true}
-        header={<Header project={project} />}
-      >
-        <CardMedia className={!open ? classes[project.category] : ''}>
-          <Collapse in={!open}>
-            <PageMedia project={project} />
-          </Collapse>
-          <Collapse in={open}>
-            {<SwipeSlides project={project} /> ||
-              <SwipeTabs iHue={colors[project.category]}>
-                <FeatureList
-                  tabLabel="highlights"
-                  data={project.details.map(d => d.caption)}
-                />
-                <FeatureList tabLabel="tech" data={project.features} />
-              </SwipeTabs>}
-          </Collapse>
-        </CardMedia>
-      </Expand>
+      <Grid container justify="center">
+        <Grid item xs={11}>
+          <CardHeader
+            avatar={
+              <a target="_blank" href={project.repo}>
+                <Avatar src={gitSrc} aria-label={project.title} />
+              </a>
+            }
+            title={
+              <Grid container justify="space-between" align="center">
+                <Grid item xs>
+                  <a target="_blank" href={project.url}>
+                    <Text type="display1" children={project.title} />
+                  </a>
+                </Grid>
+                <Grid item xs={2}>
+                  <img src={covSource} />
+                </Grid>
+
+                <Grid item xs={2}>
+                  <img src={buildSrc} />
+                </Grid>
+                <Grid item xs>
+                  <IconButton onClick={toggle}>
+                    {open ? <ExpandLess /> : <ExpandMore />}
+                  </IconButton>
+                </Grid>
+              </Grid>
+            }
+            subheader={<img src={covSource} />}
+          />
+        </Grid>
+      </Grid>
+      <CardMedia className={!open ? classes[project.category] : ''}>
+        <Collapse in={!open}>
+          <PageMedia project={project} />
+        </Collapse>
+        <Collapse in={open}>
+          <Grid container justify="center" align="center">
+            <Grid item xs={11}>
+              {<SwipeSlides project={project} /> ||
+                <SwipeTabs iHue={colors[project.category]}>
+                  <FeatureList
+                    tabLabel="highlights"
+                    data={project.details.map(d => d.caption)}
+                  />
+                  <FeatureList tabLabel="tech" data={project.features} />
+                </SwipeTabs>}
+            </Grid>
+          </Grid>
+        </Collapse>
+      </CardMedia>
+      {/* </Expand> */}
       <Grid container justify="center" align="center">
         <Grid item xs={11} className={classes.actions}>
           <CardActions>

@@ -20,7 +20,7 @@ const Header = ({ project }) =>
       <Grid container>
         <Grid item xs>
           <a target="_blank" href={project.url}>
-            <Text type="subheading" children={project.title} />
+            <Text type="display1" children={project.title} />
           </a>
         </Grid>
         <Grid item xs={4}>
