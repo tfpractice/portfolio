@@ -3,15 +3,16 @@ import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
 
-import { slug } from '../../../utils';
+import { dStyles, slug } from '../../../utils';
 import { Expand } from '../../misc';
 import { getContent } from './pages';
 
 const mapState = (state, { project }) => ({ content: getContent(slug(project)) });
 
-const PJContent = ({ content }) =>
+const PJContent = ({ content, project }) =>
   !!content &&
   <Expand
+    dStyle={dStyles[project.category]}
     open
     header={
       <Text color="inherit" type="title">

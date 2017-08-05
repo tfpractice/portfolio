@@ -7,6 +7,7 @@ import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import ExpandMore from 'material-ui-icons/ExpandMore';
+import Language from 'material-ui-icons/Language';
 import Card, {
   CardActions,
   CardContent,
@@ -112,9 +113,9 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
                 <ChipList tools={getChips(project)} />
               </Grid>
               <Grid item>
-                <Button target="_blank" href={project.url}>
-                  view online
-                </Button>
+                <IconButton target="_blank" href={project.url}>
+                  <Language />{' '}
+                </IconButton>
               </Grid>
             </Grid>
           </CardActions>

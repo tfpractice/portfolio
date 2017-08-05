@@ -6,7 +6,7 @@ import Text from 'material-ui/Typography';
 import Card, { CardContent } from 'material-ui/Card';
 import { connect } from 'react-redux';
 
-import { slug } from '../../../utils';
+import { dStyles, slug } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
 import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
@@ -44,6 +44,7 @@ const Slides = ({ data, project, slides, ...props }) =>
   <Grid container justify="center" align="center">
     <Grid item xs>
       <Expand
+        dStyle={dStyles[project.category]}
         header={
           <Text color="inherit" type="title">
             Project Highlights

@@ -3,6 +3,7 @@ import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import { CircularProgress } from 'material-ui/Progress';
+import { dStyles, slug } from '../../../utils';
 
 import { containers } from '../../../store/projects';
 import { Expand } from '../../misc';
@@ -26,6 +27,7 @@ const SkillsAndTools = (props) => {
       <Grid container align="center" justify="center">
         <Grid item xs={6}>
           <Expand
+            dStyle={dStyles[project.category]}
             header={
               <Text color="inherit" type="title">
                 Skills
@@ -64,6 +66,7 @@ const SkillsAndTools = (props) => {
         </Grid>
         <Grid item xs={6}>
           <Expand
+            dStyle={dStyles[project.category]}
             header={
               <Text color="inherit" type="title">
                 tools
@@ -83,6 +86,7 @@ const SkillsAndTools = (props) => {
         </Grid>
         <Grid item xs={6}>
           <Expand
+            dStyle={dStyles[project.category]}
             header={
               <Text color="inherit" type="title">
                 XTOOLS

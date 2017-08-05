@@ -11,3 +11,12 @@ export const isScr = ({ category }) => category === 'SCRIPT';
 export const appFilt = projects => filter(projects)(isApp);
 export const libFilt = projects => filter(projects)(isLib);
 export const scrFilt = projects => filter(projects)(isScr);
+
+export const pColors = {
+  APP: 'rgba(255,0,255,1)',
+  LIB: 'rgba(0,255,255,1)',
+};
+export const dStyles = {
+  APP: { backgroundColor: pColors.APP },
+  LIB: { backgroundColor: pColors.LIB },
+};
