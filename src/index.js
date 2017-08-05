@@ -14,18 +14,17 @@ import Main from './components';
 injectTapEventPlugin();
 
 const { initClient } = qUtils;
-
 const client = initClient();
-
-render(
+const app = (
   <ApolloProvider client={client} store={getStore(client)}>
     <MuiThemeProvider theme={theme} styleManager={styleManager}>
       <BrowserRouter>
         <Route component={Main} />
       </BrowserRouter>
     </MuiThemeProvider>
-  </ApolloProvider>,
-  document.getElementById('root')
+  </ApolloProvider>
 );
+
+render(app, document.getElementById('root'));
 
 registerServiceWorker();

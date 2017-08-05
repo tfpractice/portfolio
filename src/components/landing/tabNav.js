@@ -37,12 +37,7 @@ const TabNav = ({ index, hPush, set } = defProps) =>
             onChange={set}
           >
             {init.map((l, i) =>
-              (<Tab
-                key={i}
-                label={getLabel(l)}
-
-                // onClick={hPush(l)}
-              />)
+              <Tab key={i} label={getLabel(l)} onClick={hPush(l)} />
             )}
           </Tabs>
         </Grid>
