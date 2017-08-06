@@ -122,14 +122,14 @@ export const negGrid = grid => nodes(grid).reduce(joinNVectors, grid);
 
 
 ## Connect Four Functional
-With the work of recognizing and establishing connections handled in [game grid](/game-grid) made the work of developing this application a elegant exercise in extensibility. 
+With the work of recognizing and establishing connections handled in [game grid](/game-grid), all i had to do for this library was add a player type, and check for its presence on a node. Developing this library a elegant exercise in extending this simple function. 
 
-The simplest and most important modifier is the established if a player referenced onto the mode objects. And the associated wires anger commands. Isfree and claim. Ifa node has no prayer reference it is free. If a node kids free claiming it will return a new node with an updated referenced. If it is not nothing happens. 
+#Extension
+The player type is a simple object with name, and id properties, with getter/setter functions. Along with the name properties from Game Grid, the Node type here contains a player property, along with getter/setter functions ~claim~ and ~unclaim~ to set this property. On top of the all important query function, ~isFree~ checks if the player property is null.
 
+This simple query easily extends to a collection of nodes, and forms there basis of the column API. Since connect four over can only choose a particular column, ~hasFree~ checks if any of these nodes in a given collection are unclaimed; ~nextFree~ returns the first unclaimed 
 
- This simple qty command pattern easily extends to a collection of nodes, and formd there basis of these column API. Since connect four over can only choose a particular column, there has free function checks if any of these nodes in a given collection are; next free returned the first few node. 
-
-This extended further into there game API which exposes a next and claimNext functions. 
+This extends further into there game API which exposes a ~Next~ and claimNext functions. The Game object contains both an array of node objects and a reference to the currently selected column. 
 Next returns the next free node in the current column send claim assigned that node to the active player. 
 
 This bubbling effect wherein a relatively minor operation grows to characterize an entire system facilitates ironclad, elegant API that with foolproof composition. appears throughout this and many of my projects
