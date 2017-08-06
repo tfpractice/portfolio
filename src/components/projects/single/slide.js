@@ -17,7 +17,7 @@ const getStyle = data => ix =>
   Object.assign({}, styles.slide, styles[`slide${(ix + 1) % data.length}`]);
 
 const Slide = ({ slide, project, ...props }) =>
-  (<Text component="div" color="inherit" type="body2">
+  (<Text component="div" type="body2">
     <MarkdownPreview value={slide.content} />
   </Text>);
 

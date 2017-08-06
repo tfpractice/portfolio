@@ -61,9 +61,9 @@ const Project = (props) => {
         <Grid item xs={11}>
           <PJContent project={project} />
         </Grid>
-        <Grid item xs={11}>
+        {/* <Grid item xs={11}>
           <DemoView project={project} />
-        </Grid>
+        </Grid> */}
         <Grid item xs={11}>
           <SkillsAndTools project={project} />
         </Grid>

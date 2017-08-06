@@ -11,17 +11,19 @@ const mapState = (state, { project }) => ({ Comp: getDemos(slug(project)) });
 
 const DemoView = ({ Comp, project }) =>
   !!Comp &&
-  <Grid item xs={11}>
-    <Expand
-      dStyle={dStyles[project.category]}
-      header={
-        <Text color="inherit" type="title">
-          Demos
-        </Text>
-      }
-    >
-      <Comp />
-    </Expand>
+  <Grid container justify="center" align="center">
+    <Grid item xs={11}>
+      <Expand
+        dStyle={dStyles[project.category]}
+        header={
+          <Text color="inherit" type="title">
+            Demos
+          </Text>
+        }
+      >
+        <Comp />
+      </Expand>
+    </Grid>
   </Grid>;
 
 export default connect(mapState)(DemoView);

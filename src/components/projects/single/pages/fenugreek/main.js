@@ -75,13 +75,7 @@ class Examples extends Component {
     const props = this.props;
 
     return (
-      <Grid
-        container
-        justify="center"
-        align="center"
-        direction="column"
-        className="Fenugreek-main"
-      >
+      <Grid container justify="center" align="center">
         <Grid item xs={11} sm={10}>
           <Card>
             <CardHeader title="mapTo(fn)(coll)" />

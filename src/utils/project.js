@@ -20,3 +20,8 @@ export const dStyles = {
   APP: { backgroundColor: pColors.APP },
   LIB: { backgroundColor: pColors.LIB },
 };
+
+export const lightStyles = {
+  APP: { backgroundColor: 'rgba(255,0,255,0.3)' },
+  LIB: { backgroundColor: 'rgba(0,255,255,0.3)' },
+};

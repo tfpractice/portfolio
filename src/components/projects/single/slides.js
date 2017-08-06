@@ -6,7 +6,7 @@ import Text from 'material-ui/Typography';
 import Card, { CardContent } from 'material-ui/Card';
 import { connect } from 'react-redux';
 
-import { dStyles, slug } from '../../../utils';
+import { dStyles, lightStyles, slug } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
 import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
@@ -19,6 +19,7 @@ const slideStyle = {
   backgroundSize: '200% 200%',
   backgroundRepeat: 'no-repeat',
 };
+const getBG = pj => lightStyles[pj.category];
 const styles = {
   slide: {
     padding: 15,
@@ -35,7 +36,7 @@ const getStyle = data => ix =>
 
 const justSlides = ({ data, project, slides, ...props }) =>
   slides &&
-  <SwipeableViews slideStyle={slideStyle} enableMouseEvents>
+  <SwipeableViews slideStyle={getBG(project)} enableMouseEvents>
     {slides.map((h, i) => <Slide key={i} slide={h} />)}
   </SwipeableViews>;
 
@@ -51,7 +52,7 @@ const Slides = ({ data, project, slides, ...props }) =>
           </Text>
         }
       >
-        <SwipeableViews slideStyle={slideStyle} enableMouseEvents>
+        <SwipeableViews slideStyle={getBG(project)} enableMouseEvents>
           {slides.map((h, i) => <Slide key={i} slide={h} />)}
         </SwipeableViews>
       </Expand>

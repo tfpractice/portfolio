@@ -22,5 +22,4 @@ const styleManager = createStyleManager({
   jss: create(jssPreset(), jssGlobal()),
 });
 
-// styleManager.render(syntaxStyles);
 export { styleManager, theme };
