@@ -117,4 +117,6 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
     </Expand>
   </HexCard>);
 
-export default DropTool(withSwitch(Styled(ProjectCard)));
+export default withSwitch(Styled(ProjectCard));
+
+// export default DropTool(withSwitch(Styled(ProjectCard)));
