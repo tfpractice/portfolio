@@ -100,3 +100,7 @@ export const tech = [
   '90% code-coverage, tested with Jest',
   'full documentation deployed on surge',
 ];
+const iterability = {
+  headline: 'iterability',
+  content: ``,
+};
