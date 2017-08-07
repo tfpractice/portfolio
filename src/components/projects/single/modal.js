@@ -114,4 +114,6 @@ const Project = (props) => {
   return view;
 };
 
-export default connect(mapState)(WithSkills(withModal(Styled(Project))));
+export default connect(mapState)(withModal(Styled(Project)));
+
+// export default connect(mapState)(WithSkills(withModal(Styled(Project))));

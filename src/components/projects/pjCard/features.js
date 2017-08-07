@@ -1,6 +1,6 @@
 import React from 'react';
 import { SwipeTabs } from '../../misc';
-import { colors } from './';
+import { pColors } from '../../../utils';
 
 const def = {
   category: 'LIB',
@@ -16,7 +16,7 @@ const def = {
   ],
 };
 const Features = ({ features, details, category } = def) =>
-  (<SwipeTabs iHue={colors[category]}>
+  (<SwipeTabs iHue={pColors[category]}>
     <Features tabLabel="tech" data={features} />
     <Features tabLabel="highlights" data={[ ...details ].map(d => d.caption)} />
   </SwipeTabs>);

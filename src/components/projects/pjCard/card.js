@@ -19,7 +19,7 @@ import { connect } from 'react-redux';
 
 import { containers } from '../../../store/projects';
 import { Expand, HexCard, SwipeTabs } from '../../misc';
-import { qUtils } from '../../../utils';
+import { dStyles, lightStyles, pColors, qUtils } from '../../../utils';
 import { ChipList } from '../../tools';
 import ProjectLink from '../link';
 import FeatureList from '../featureList';
@@ -42,18 +42,10 @@ const withSwitch = compose(
 
 const getChips = p =>
   p.category === 'APP' ? edgeNodes(p.tools) : edgeNodes(p.skills);
-const colors = {
-  APP: 'rgba(255,0,255,1)',
-  LIB: 'rgba(0,255,255,1)',
-};
-const dStyles = {
-  APP: { backgroundColor: colors.APP },
-  LIB: { backgroundColor: colors.LIB },
-};
+
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
-    APP: { backgroundColor: 'rgba(255,0,255,0.3)' },
-    LIB: { backgroundColor: 'rgba(0,255 ,255,0.3)' },
+    ...lightStyles,
     SCRIPT: { backgroundColor: '#00796b' },
     actions: { overflowX: 'auto', overflowY: 'hidden' },
   }))
@@ -84,7 +76,7 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
           <PJMedia project={project} />
         </Collapse>
         <Collapse in={open}>
-          <SwipeTabs iHue={colors[project.category]}>
+          <SwipeTabs iHue={pColors[project.category]}>
             <FeatureList
               tabLabel="highlights"
               data={project.details.map(d => d.caption)}
