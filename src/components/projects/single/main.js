@@ -19,6 +19,20 @@ import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
 import { CircularProgress } from 'material-ui/Progress';
 
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  withResponsiveFullScreen,
+} from 'material-ui/Dialog';
+
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from 'material-ui-icons/Close';
+import Slide from 'material-ui/transitions/Slide';
+
+import { compose, withHandlers, withState } from 'recompose';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
+
 import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
@@ -33,6 +47,13 @@ import PJContent from './content';
 const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
 
+const Styled = withStyles(
+  createStyleSheet('PJModal', theme => ({ paper: { width: 'inherit', maxWidth: 'inherit' }}))
+);
+const withModal = compose(
+  withState('open', 'turn', true),
+  withHandlers({ toggle: ({ turn }) => () => turn(x => !x) })
+);
 const mapState = ({ projects }, { match: { params: { slug }}}) => ({
   slug,
   project: findMatch(slug)(projects),
@@ -40,7 +61,7 @@ const mapState = ({ projects }, { match: { params: { slug }}}) => ({
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 
 const Project = (props) => {
-  const { project } = props;
+  const { project, classes, open, toggle } = props;
   let view;
 
   if (!project) {
@@ -53,25 +74,34 @@ const Project = (props) => {
     );
   } else {
     view = (
-      <Grid container align="center" justify="center" style={mainStyle}>
-        <Grid item xs={12}>
-          <ProjectCard project={project} />
-        </Grid>
+      <Dialog
+        classes={classes}
+        open={open}
+        onRequestClose={toggle}
+        transition={<Slide direction="up" />}
+      >
+        <DialogContent>
+          <Grid container align="center" justify="center" style={mainStyle}>
+            <Grid item xs={11}>
+              <ProjectCard project={project} />
+            </Grid>
 
-        <Grid item xs={11}>
-          <PJContent project={project} />
-        </Grid>
-        {/* <Grid item xs={11}>
-          <DemoView project={project} />
-        </Grid> */}
-        <Grid item xs={11}>
-          <SkillsAndTools project={project} />
-        </Grid>
-      </Grid>
+            <Grid item xs={11}>
+              <PJContent project={project} />
+            </Grid>
+            {/* <Grid item xs={11}>
+              <DemoView project={project} />
+            </Grid> */}
+            <Grid item xs={11}>
+              <SkillsAndTools project={project} />
+            </Grid>
+          </Grid>
+        </DialogContent>
+      </Dialog>
     );
   }
 
   return view;
 };
 
-export default connect(mapState)(WithSkills(Project));
+export default connect(mapState)(WithSkills(withModal(Styled(Project))));
