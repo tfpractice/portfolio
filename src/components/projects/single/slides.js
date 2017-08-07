@@ -6,8 +6,8 @@ import Text from 'material-ui/Typography';
 import Card, { CardContent } from 'material-ui/Card';
 import { connect } from 'react-redux';
 
-import { dStyles, lightStyles, slug } from '../../../utils';
-import { Expand, HexCard } from '../../misc';
+import { dStyles, lightStyles, pColors, slug } from '../../../utils';
+import { Expand, HexCard, SwipeTabs } from '../../misc';
 import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
 
@@ -31,14 +31,11 @@ const styles = {
   slide3: { background: '#6AC0FF' },
 };
 
-const getStyle = data => ix =>
-  Object.assign({}, styles.slide, styles[`slide${(ix + 1) % data.length}`]);
-
-const justSlides = ({ data, project, slides, ...props }) =>
+const JustSlides = ({ project, slides }) =>
   slides &&
-  <SwipeableViews slideStyle={getBG(project)} enableMouseEvents>
-    {slides.map((h, i) => <Slide key={i} slide={h} />)}
-  </SwipeableViews>;
+  <SwipeTabs iHue={pColors[project.category]}>
+    {slides.map((h, i) => <Slide tabLabel="." key={i} slide={h} />)}
+  </SwipeTabs>;
 
 const Slides = ({ data, project, slides, ...props }) =>
   slides &&
@@ -52,13 +49,11 @@ const Slides = ({ data, project, slides, ...props }) =>
           </Text>
         }
       >
-        <SwipeableViews slideStyle={getBG(project)} enableMouseEvents>
-          {slides.map((h, i) => <Slide key={i} slide={h} />)}
-        </SwipeableViews>
+        <JustSlides project={project} slides={slides} />
       </Expand>
     </Grid>
   </Grid>;
 
-export const SwipeSlides = connect(mapState)(justSlides);
+export const SwipeSlides = connect(mapState)(JustSlides);
 
 export default connect(mapState)(Slides);
