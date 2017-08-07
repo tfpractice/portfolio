@@ -8,7 +8,7 @@ import FrontMatter from './frontMatter';
 import Apps from './apps';
 import Libraries from './libraries';
 import Teaching from './teaching';
-import { getIndex, hexIcon, sections } from './sections';
+import { getIndex, sections } from './sections';
 
 const style = { overflowX: 'hidden' };
 
@@ -21,7 +21,7 @@ const withIndex = compose(
   })
 );
 
-const PureLanding = ({ index, set, changeSet, hPush, location, history }) => {
+const PureLanding = ({ index, changeSet, location }) => {
   const { hash } = location;
 
   return (
@@ -29,9 +29,9 @@ const PureLanding = ({ index, set, changeSet, hPush, location, history }) => {
       <Grid item xs={12}>
         <SwipeableViews
           enableMouseEvents
-          index={getIndex(hash)}
           slideStyle={style}
           onChangeIndex={changeSet}
+          index={getIndex(hash)}
         >
           <FrontMatter sections={sections} />
           <About />
