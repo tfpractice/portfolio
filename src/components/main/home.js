@@ -6,12 +6,10 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 
 import Landing, { Contact, TabNav } from '../landing';
-import { Single } from '../projects';
 import { Projects } from '../../store';
-import { FadeRoute } from '../../utils';
 import { BackDrop } from '../visualization';
 
-const { containers: { WithAll }, actions: pActions } = Projects;
+const { containers: { WithAll }, actions } = Projects;
 const Styled = withStyles(
   createStyleSheet('Home', theme => ({ main: { marginTop: '5rem' }}))
 );
@@ -26,7 +24,7 @@ class Home extends Component {
   }
 
   render() {
-    const { classes, projectsData: { loading }} = this.props;
+    const { classes } = this.props;
 
     return (
       <Grid container justify="center" align="center" className={classes.main}>
@@ -40,4 +38,4 @@ class Home extends Component {
     );
   }
 }
-export default connect(null, pActions)(WithAll(Styled(Home)));
+export default connect(null, actions)(WithAll(Styled(Home)));

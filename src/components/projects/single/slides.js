@@ -8,28 +8,11 @@ import { connect } from 'react-redux';
 
 import { dStyles, lightStyles, pColors, slug } from '../../../utils';
 import { Expand, HexCard, SwipeTabs } from '../../misc';
+
 import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
 
 const mapState = (state, { project }) => ({ slides: hasSlides(slug(project)) && getSlides(slug(project)) });
-const slideStyle = {
-  backgroundImage: 'url(/images/pinkHex50.svg)',
-  backgroundPosition: 'left',
-
-  backgroundSize: '200% 200%',
-  backgroundRepeat: 'no-repeat',
-};
-const getBG = pj => lightStyles[pj.category];
-const styles = {
-  slide: {
-    padding: 15,
-    minHeight: '100',
-    color: '#fff',
-  },
-  slide1: { background: '#FEA900' },
-  slide2: { background: '#B3DC4A' },
-  slide3: { background: '#6AC0FF' },
-};
 
 const JustSlides = ({ project, slides }) =>
   slides &&
