@@ -32,10 +32,7 @@ class Home extends Component {
       <Grid container justify="center" align="center" className={classes.main}>
         <TabNav />
         <Grid item xs={12} className="homeDiv">
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route exact path={`/:slug`} component={Single} />
-          </Switch>
+          <Route component={Landing} />
         </Grid>
         <Contact />
         <BackDrop />
