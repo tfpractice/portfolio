@@ -18,15 +18,15 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { connect } from 'react-redux';
 
-import { containers } from '../../../../store/projects';
-import { Expand, HexCard, SwipeTabs } from '../../../misc';
-import { qUtils, slug } from '../../../../utils';
-import { ChipList } from '../../../tools';
 import ProjectLink from '../../link';
 import FeatureList from '../../featureList';
-import { Features, PJMedia } from '../../pjCard';
+import { ChipList } from '../../../tools';
 import { hasSlides } from '../pages';
-import Slides, { SwipeSlides } from '../slides';
+import { containers } from '../../../../store/projects';
+import { Expand, HexCard } from '../../../misc';
+import { dStyles, lightStyles, qUtils, slug } from '../../../../utils';
+import { Features, PJMedia } from '../../pjCard';
+import { SwipeSlides } from '../slides';
 import Header from './cardHead';
 import PageMedia from './media';
 
@@ -35,7 +35,6 @@ const { edgeNodes } = qUtils;
 
 const gitSrc = '/images/github.png';
 const covSource = `https://coveralls.io/repos/github/tfpractice/fenugreek-collections/badge.svg?branch=master`;
-
 const buildSrc = `https://travis-ci.org/tfpractice/fenugreek-collections.svg?branch=master`;
 
 const withSwitch = compose(
@@ -49,80 +48,58 @@ const withSwitch = compose(
 
 const getChips = p =>
   p.category === 'APP' ? edgeNodes(p.tools) : edgeNodes(p.skills);
-const colors = {
-  APP: 'rgba(255,0,255,1)',
-  LIB: 'rgba(0,255,255,1)',
-};
-const dStyles = {
-  APP: { backgroundColor: colors.APP },
-  LIB: { backgroundColor: colors.LIB },
-};
+
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
-    APP: { backgroundColor: 'rgba(255,0,255,0.3)' },
-    LIB: { backgroundColor: 'rgba(0,255 ,255,0.3)' },
-    SCRIPT: { backgroundColor: '#00796b' },
+    ...lightStyles,
     actions: { overflowX: 'auto', overflowY: 'hidden' },
   }))
 );
 
-const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
-  console.log('project', project);
-  console.log('props', props);
-  return (
-    <HexCard raised>
-      <Grid container justify="center" align="center">
-        <Grid item xs={11}>
-          <Grid container justify="center" align="center">
-            <Grid item xs>
-              <Header project={project} />
-            </Grid>
-            <Grid item>
-              <IconButton onClick={toggle}>
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </IconButton>
-            </Grid>
+const PageCard = ({ project, show, classes, toggle, open }) =>
+  (<HexCard raised>
+    <Expand
+      dStyle={dStyles[project.category]}
+      color="default"
+      header={
+        <Grid container justify="center" align="center">
+          <Grid item xs>
+            <Header project={project} />
+          </Grid>
+          <Grid item xs>
+            <img src={buildSrc} />
+            <img src={covSource} />
           </Grid>
         </Grid>
-      </Grid>
+      }
+    >
       <CardMedia className={!open ? classes[project.category] : ''}>
         <Collapse in={!open}>
           <PageMedia project={project} />
         </Collapse>
-        <Collapse in={open}>
-          <Grid container justify="center" align="center">
-            <Grid item xs={11}>
-              {hasSlides(slug(project))
-                ? <SwipeSlides project={project} />
-                : <SwipeTabs iHue={colors[project.category]}>
-                  <FeatureList
-                    tabLabel="highlights"
-                    data={project.details.map(d => d.caption)}
-                  />
-                  <FeatureList tabLabel="tech" data={project.features} />
-                </SwipeTabs>}
-            </Grid>
-          </Grid>
-        </Collapse>
+        {hasSlides(slug(project)) &&
+          <Collapse in={open}>
+            <CardContent>
+              <SwipeSlides project={project} />
+            </CardContent>
+          </Collapse>}
       </CardMedia>
-      <Grid container justify="center" align="center">
-        <Grid item xs={11} className={classes.actions}>
-          <CardActions>
-            <Grid container justify="center" align="center">
-              <Grid item xs>
-                <ChipList tools={getChips(project)} />
-              </Grid>
-              <Grid item>
-                <IconButton target="_blank" href={project.url}>
-                  <Language />{' '}
-                </IconButton>
-              </Grid>
-            </Grid>
-          </CardActions>
+      <CardActions>
+        <Grid container justify="center" align="center">
+          <Grid item>
+            <Button onClick={toggle}>slides</Button>
+          </Grid>
+          <Grid item>
+            <IconButton target="_blank" href={project.url}>
+              <Language />
+            </IconButton>
+          </Grid>
         </Grid>
-      </Grid>
-    </HexCard>
-  );
-};
+      </CardActions>
+    </Expand>
+    <CardActions>
+      <ChipList tools={getChips(project)} />
+    </CardActions>
+  </HexCard>);
 
 export default DropTool(withSwitch(Styled(PageCard)));

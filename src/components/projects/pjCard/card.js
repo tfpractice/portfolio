@@ -23,6 +23,7 @@ import { qUtils } from '../../../utils';
 import { ChipList } from '../../tools';
 import ProjectLink from '../link';
 import FeatureList from '../featureList';
+import PJModal from '../single/modal';
 import PJMedia from './media';
 import { Features } from './features';
 
@@ -58,78 +59,62 @@ const Styled = withStyles(
   }))
 );
 
-const ProjectCard = ({ project, show, classes, toggle, open, ...props }) => {
-  const features = project.features || [
-    'built with es6, bundled with Rollup',
-    '90% code-coverage, tested with Jest',
-    'full documentation deployed on surge',
-  ];
-
-  return (
-    <HexCard raised>
-      <Expand
-        dStyle={dStyles[project.category]}
-        color="default"
-        open={true}
-        header={
-          <CardHeader
-            avatar={
-              <a target="_blank" href={project.repo}>
-                <Avatar src={gitLogo} aria-label={`${project.title}`} />
-              </a>
-            }
-            title={
-              <ProjectLink project={project}>
-                <Text type="subheading" children={project.title} />
-              </ProjectLink>
-            }
-          />
-        }
+const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
+  (<HexCard raised>
+    <Expand
+      dStyle={dStyles[project.category]}
+      color="default"
+      open={true}
+      header={
+        <CardHeader
+          title={<PJModal project={project} open={false} />}
+          avatar={
+            <a target="_blank" href={project.repo}>
+              <Avatar src={gitLogo} aria-label={`${project.title}`} />
+            </a>
+          }
+        />
+      }
+    >
+      <CardMedia
+        onClick={show}
+        className={!open ? classes[project.category] : ''}
       >
-        <CardMedia
-          onClick={show}
-          className={!open ? classes[project.category] : ''}
-        >
-          <Collapse in={!open}>
-            <PJMedia project={project} />
-          </Collapse>
-          <Collapse in={open}>
-            <SwipeTabs iHue={colors[project.category]}>
-              <FeatureList
-                tabLabel="highlights"
-                data={project.details.map(d => d.caption)}
-              />
-              <FeatureList tabLabel="tech" data={features} />
-            </SwipeTabs>
-          </Collapse>
-        </CardMedia>
-
         <Collapse in={!open}>
-          <CardActions>
-            <ChipList tools={getChips(project)} />
-            <IconButton href={project.url} target="_blank">
-              <Language />
-            </IconButton>
-          </CardActions>
+          <PJMedia project={project} />
         </Collapse>
-
         <Collapse in={open}>
-          <CardActions>
-            <ProjectLink project={project}>
-              <Button>learn more</Button>
-            </ProjectLink>
-            <IconButton href={project.url} target="_blank">
-              <Language />
-            </IconButton>
-
-            <IconButton onClick={toggle}>
-              <ExpandLess />
-            </IconButton>
-          </CardActions>
+          <SwipeTabs iHue={colors[project.category]}>
+            <FeatureList
+              tabLabel="highlights"
+              data={project.details.map(d => d.caption)}
+            />
+            <FeatureList tabLabel="tech" data={project.features} />
+          </SwipeTabs>
         </Collapse>
-      </Expand>
-    </HexCard>
-  );
-};
+      </CardMedia>
+
+      <Collapse in={!open}>
+        <CardActions>
+          <ChipList tools={getChips(project)} />
+          <IconButton href={project.url} target="_blank">
+            <Language />
+          </IconButton>
+        </CardActions>
+      </Collapse>
+
+      <Collapse in={open}>
+        <CardActions>
+          <IconButton href={project.url} target="_blank">
+            <Language />
+          </IconButton>
+
+          <IconButton onClick={toggle}>
+            <ExpandLess />
+          </IconButton>
+        </CardActions>
+      </Collapse>
+    </Expand>
+  </HexCard>);
 
 export default DropTool(withSwitch(Styled(ProjectCard)));

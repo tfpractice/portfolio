@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
-import { CardHeader } from 'material-ui/Card';
+import { CardActions, CardHeader } from 'material-ui/Card';
 
 const gitSrc = '/images/github.png';
 const covSource = `https://coveralls.io/repos/github/tfpractice/fenugreek-collections/badge.svg?branch=master`;
@@ -17,14 +17,8 @@ const Header = ({ project }) =>
     }
     title={
       <a target="_blank" href={project.url}>
-        <Text type="display1" align="center" children={project.title} />
+        <Text type="title" align="center" children={project.title} />
       </a>
-    }
-    subheader={
-      <Text type="display1" align="center">
-        <img src={covSource} />
-        <img src={buildSrc} />
-      </Text>
     }
   />);
 
