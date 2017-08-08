@@ -46,7 +46,18 @@ import PJContent from './content';
 const { edgeNodes } = qUtils;
 
 const Styled = withStyles(
-  createStyleSheet('PJModal', theme => ({ paper: { width: 'inherit', maxWidth: 'inherit' }}))
+  createStyleSheet('PJModal', (theme) => {
+    console.log('theme', theme);
+    return {
+      paper: {
+        backgroundColor: 'rgba(238,238,238,0.8)',
+
+        width: 'inherit',
+
+        maxWidth: 'inherit',
+      },
+    };
+  })
 );
 const withModal = compose(
   withState('open', 'turn', false),
@@ -56,7 +67,6 @@ const mapState = ({ projects }, { project }) => ({
   slug: pSlug(project),
   project,
 });
-const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 
 const Project = (props) => {
   const { project, classes, open, toggle, trigger } = props;
@@ -66,7 +76,7 @@ const Project = (props) => {
 
   if (!project) {
     view = (
-      <Grid container align="center" justify="center" style={mainStyle}>
+      <Grid container align="center" justify="center">
         <Grid item xs>
           <CircularProgress color="accent" />
         </Grid>
@@ -87,7 +97,7 @@ const Project = (props) => {
             transition={<Slide direction="up" />}
           >
             <DialogContent>
-              <Grid container align="center" justify="center" style={mainStyle}>
+              <Grid container align="center" justify="center">
                 <Grid item xs={11}>
                   <PageCard project={project} />
                 </Grid>

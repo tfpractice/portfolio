@@ -11,16 +11,9 @@ export const withIndex = withState(
   ({ index = 0 }) => index
 );
 export const ixHandler = i => prv => i;
-const slideStyle = {
-  display: 'block',
-  flex: ' 0 0 auto',
-  margin: '0',
-  alignItems: 'center',
-  maxWidth: '100%',
-  flexBasis: '100%',
-};
+const sStyle = { overflow: 'none' };
 
-const cStyle = { maxHeight: '20rem', display: 'flex' };
+const cStyle = { maxHeight: '20rem', overflow: 'none' };
 const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
   root: {
     flexGrow: 1,
@@ -43,10 +36,10 @@ const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
           {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
         </Tabs>
       </Grid>}
-    <Grid item xs={11}>
+    <Grid item xs={12}>
       <SwipeableViews
         containerStyle={cStyle}
-        slideStyle={slideStyle}
+        slideStyle={sStyle}
         enableMouseEvents
         index={index}
       >
@@ -67,4 +60,4 @@ const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
       </Grid>}
   </Grid>);
 
-export default withStyles(styleSheet)(withIndex(SwipeTabs));
+export default withIndex(SwipeTabs);

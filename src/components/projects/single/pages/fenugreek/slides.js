@@ -1,6 +1,6 @@
 export const slides = [
   {
-    caption: `## allows a high degree of interoperability between Javascript collections`,
+    caption: `### allows a high degree of interoperability between Javascript collections`,
 
     content: `      
 ~~~js 

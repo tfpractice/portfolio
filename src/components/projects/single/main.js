@@ -33,7 +33,7 @@ import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-import { findMatch, qUtils } from '../../../utils';
+import { findMatch, qUtils, slug } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
 import ProjectCard from './header/pageCard';
 import { getContent, getProject, getSlides, getTech } from './pages';
@@ -52,9 +52,9 @@ const withModal = compose(
   withState('open', 'turn', true),
   withHandlers({ toggle: ({ turn }) => () => turn(x => !x) })
 );
-const mapState = ({ projects }, { match: { params: { slug }}}) => ({
-  slug,
-  project: findMatch(slug)(projects),
+const mapState = ({ projects }, { project }) => ({
+  slug: slug(project),
+  project,
 });
 const mainStyle = { backgroundColor: 'rgba(158,158,158,0.5)' };
 
@@ -72,30 +72,21 @@ const Project = (props) => {
     );
   } else {
     view = (
-      <Dialog
-        classes={classes}
-        open={open}
-        onRequestClose={toggle}
-        transition={<Slide direction="up" />}
-      >
-        <DialogContent>
-          <Grid container align="center" justify="center" style={mainStyle}>
-            <Grid item xs={11}>
-              <ProjectCard project={project} />
-            </Grid>
+      <Grid container align="center" justify="center" style={mainStyle}>
+        <Grid item xs={11}>
+          <PageCard project={project} />
+        </Grid>
 
-            <Grid item xs={11}>
-              <PJContent project={project} />
-            </Grid>
-            {/* <Grid item xs={11}>
-              <DemoView project={project} />
-            </Grid> */}
-            <Grid item xs={11}>
-              <SkillsAndTools project={project} />
-            </Grid>
-          </Grid>
-        </DialogContent>
-      </Dialog>
+        <Grid item xs={11}>
+          <PJContent project={project} />
+        </Grid>
+        {/* <Grid item xs={11}>
+          <DemoView project={project} />
+        </Grid> */}
+        <Grid item xs={11}>
+          <SkillsAndTools project={project} />
+        </Grid>
+      </Grid>
     );
   }
 

@@ -68,7 +68,6 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
             <ListItem>
               <img src={buildSrc} />
               <img src={covSource} />
-
               <IconButton target="_blank" href={project.url}>
                 <Language />
               </IconButton>
