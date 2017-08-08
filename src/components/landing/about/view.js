@@ -5,6 +5,7 @@ import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
 
 import Skills from '../skills';
+import Teaching from '../teaching';
 import { HexCard } from '../../misc';
 import { content } from './content';
 

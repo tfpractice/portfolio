@@ -15,6 +15,9 @@ const Styled = withStyles(
 );
 
 class Home extends Component {
+  // componentWillMount() {
+  //   console.log('componentWillMount his.props', this.props);
+  // }
   componentWillReceiveProps({ setProjects, projectsArray, projectsData }) {
     const newInfo =
       !projectsData.loading &&
