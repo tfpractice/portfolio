@@ -1,13 +1,8 @@
-import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import React from 'react';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
-import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
-import Button from 'material-ui/Button';
-import ExpandLess from 'material-ui-icons/ExpandLess';
-import ExpandMore from 'material-ui-icons/ExpandMore';
 import Language from 'material-ui-icons/Language';
 import Card, {
   CardActions,
@@ -15,6 +10,7 @@ import Card, {
   CardHeader,
   CardMedia,
 } from 'material-ui/Card';
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { connect } from 'react-redux';
