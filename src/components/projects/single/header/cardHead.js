@@ -8,16 +8,16 @@ const gitSrc = '/images/github.png';
 const covSource = `https://coveralls.io/repos/github/tfpractice/fenugreek-collections/badge.svg?branch=master`;
 const buildSrc = `https://travis-ci.org/tfpractice/fenugreek-collections.svg?branch=master`;
 
-const Header = ({ project }) =>
+const Header = ({ project, repo, url, title }) =>
   (<CardHeader
     avatar={
-      <a target="_blank" href={project.repo}>
-        <Avatar src={gitSrc} aria-label={project.title} />
+      <a target="_blank" href={repo}>
+        <Avatar src={gitSrc} aria-label={title} />
       </a>
     }
     title={
-      <a target="_blank" href={project.url}>
-        <Text type="title" align="center" children={project.title} />
+      <a target="_blank" href={url}>
+        <Text type="title" align="center" children={title} />
       </a>
     }
   />);

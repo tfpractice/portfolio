@@ -33,7 +33,6 @@ import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-import { containers } from '../../../store/projects';
 import { findMatch, qUtils } from '../../../utils';
 import { Expand, HexCard } from '../../misc';
 import ProjectCard from './header/pageCard';
@@ -44,7 +43,6 @@ import DemoView from './demoview';
 import SkillsAndTools from './skillsAndTools';
 import PJContent from './content';
 
-const { WithSkills, WithProject } = containers;
 const { edgeNodes } = qUtils;
 
 const Styled = withStyles(
@@ -104,4 +102,6 @@ const Project = (props) => {
   return view;
 };
 
-export default connect(mapState)(WithSkills(withModal(Styled(Project))));
+export default connect(mapState)(withModal(Styled(Project)));
+
+// export default connect(mapState)(WithSkills(withModal(Styled(Project))));

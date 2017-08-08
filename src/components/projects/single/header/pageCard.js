@@ -18,11 +18,9 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { connect } from 'react-redux';
 
-import ProjectLink from '../../link';
 import FeatureList from '../../featureList';
 import { ChipList } from '../../../tools';
 import { hasSlides } from '../pages';
-import { containers } from '../../../../store/projects';
 import { Expand, HexCard } from '../../../misc';
 import { dStyles, lightStyles, qUtils, slug } from '../../../../utils';
 import { Features, PJMedia } from '../../pjCard';
@@ -30,7 +28,6 @@ import { SwipeSlides } from '../slides';
 import Header from './cardHead';
 import PageMedia from './media';
 
-const { WithProject, WithSkills, DropTool } = containers;
 const { edgeNodes } = qUtils;
 
 const gitSrc = '/images/github.png';
@@ -64,7 +61,7 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
       header={
         <Grid container justify="center" align="center">
           <Grid item xs>
-            <Header project={project} />
+            <Header {...project} />
           </Grid>
           <Grid item xs>
             <img src={buildSrc} />
@@ -75,7 +72,7 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
     >
       <CardMedia className={!open ? classes[project.category] : ''}>
         <Collapse in={!open}>
-          <PageMedia project={project} />
+          <PageMedia {...project} />
         </Collapse>
         {hasSlides(slug(project)) &&
           <Collapse in={open}>
@@ -102,4 +99,4 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
     </CardActions>
   </HexCard>);
 
-export default DropTool(withSwitch(Styled(PageCard)));
+export default withSwitch(Styled(PageCard));

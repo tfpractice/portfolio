@@ -17,17 +17,15 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 import { connect } from 'react-redux';
 
-import { containers } from '../../../store/projects';
 import { Expand, HexCard, SwipeTabs } from '../../misc';
 import { dStyles, lightStyles, pColors, qUtils } from '../../../utils';
 import { ChipList } from '../../tools';
-import ProjectLink from '../link';
+
 import FeatureList from '../featureList';
 import PJModal from '../single/modal';
 import PJMedia from './media';
 import { Features } from './features';
 
-const { WithProject, WithSkills, DropTool } = containers;
 const { edgeNodes } = qUtils;
 const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
 

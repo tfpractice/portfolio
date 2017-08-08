@@ -9,9 +9,6 @@ import FeatureList from '../../featureList';
 import { colors } from '../../pjCard';
 import Slides, { SwipeSlides } from '../slides';
 
-const getBG = bool => ({ headerURL }) =>
-  bool ? { backgroundImage: `url(${headerURL})` } : {};
-
 const isDef = ({ headerURL }) => headerURL.endsWith('default.svg');
 const Styled = withStyles(
   createStyleSheet('PJMedia', theme => ({
@@ -28,18 +25,15 @@ const withMedia = compose(
   })
 );
 
-const PJMedia = ({ pic, project, classes, showText, showPic }) =>
+const PJMedia = ({ headerURL, category, details, features, classes }) =>
   (<Grid container align="center" justify="center">
     <Grid item xs={10} sm={5}>
-      <img src={project.headerURL} style={{ maxWidth: '100%' }} />
+      <img src={headerURL} style={{ maxWidth: '100%' }} />
     </Grid>
     <Grid item xs={10} sm>
-      <SwipeTabs iHue={colors[project.category]}>
-        <FeatureList
-          tabLabel="highlights"
-          data={project.details.map(d => d.caption)}
-        />
-        <FeatureList tabLabel="tech" data={project.features} />
+      <SwipeTabs iHue={colors[category]}>
+        <FeatureList tabLabel="highlights" data={details.map(d => d.caption)} />
+        <FeatureList tabLabel="tech" data={features} />
       </SwipeTabs>
     </Grid>
   </Grid>);
