@@ -10,12 +10,13 @@ body {
   /*flex: 1 2;*/
 
   /*flex-flow: row wrap;*/
-  overflow-x: auto;
+  /*overflow-x: auto;*/
   margin: 0.5em;
   background: rgba(255, 255, 255, 0.3);
   /*flex: 0 0 auto;*/
   /*margin: 0;*/
   /*align-items: flex-start;*/
+  /*max-width: 100%;*/
 
   /*flex-basis: 91.6667%;*/
   /*box-sizing: border-box;*/

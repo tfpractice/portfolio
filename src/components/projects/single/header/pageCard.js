@@ -1,3 +1,4 @@
+import { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import React from 'react';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
@@ -64,8 +65,14 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
             <Header {...project} />
           </Grid>
           <Grid item xs>
-            <img src={buildSrc} />
-            <img src={covSource} />
+            <ListItem>
+              <img src={buildSrc} />
+              <img src={covSource} />
+
+              <IconButton target="_blank" href={project.url}>
+                <Language />
+              </IconButton>
+            </ListItem>
           </Grid>
         </Grid>
       }
@@ -74,25 +81,7 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
         <Collapse in={!open}>
           <PageMedia project={project} {...project} />
         </Collapse>
-        {hasSlides(slug(project)) &&
-          <Collapse in={open}>
-            <CardContent>
-              <SwipeSlides project={project} />
-            </CardContent>
-          </Collapse>}
       </CardMedia>
-      <CardActions>
-        <Grid container justify="center" align="center">
-          <Grid item>
-            <Button onClick={toggle}>slides</Button>
-          </Grid>
-          <Grid item>
-            <IconButton target="_blank" href={project.url}>
-              <Language />
-            </IconButton>
-          </Grid>
-        </Grid>
-      </CardActions>
     </Expand>
     <CardActions>
       <ChipList tools={getChips(project)} />
