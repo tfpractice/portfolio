@@ -33,7 +33,7 @@ const Styled = withStyles(
 const FeatureList = ({ header, data, classes }) =>
   (<List dense subheader={header || ''}>
     {data.map((f, i) =>
-      (<ListItem dense divider key={i}>
+      (<ListItem disableGutters dense divider key={i}>
         <ListItemIcon className={classes.Icon}>
           <SvgIcon viewBox="-1,-1,2,2">
             <RawPath />
