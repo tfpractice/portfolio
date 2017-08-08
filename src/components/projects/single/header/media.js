@@ -25,16 +25,22 @@ const withMedia = compose(
   })
 );
 
-const PJMedia = ({ headerURL, category, details, features, classes }) =>
+const PJMedia = ({
+  headerURL,
+  project,
+  category,
+  details,
+  features,
+  classes,
+}) =>
   (<Grid container align="center" justify="center">
-    <Grid item xs={10} sm={5}>
-      <img src={headerURL} style={{ maxWidth: '100%' }} />
-    </Grid>
     <Grid item xs={10} sm>
-      <SwipeTabs iHue={colors[category]}>
-        <FeatureList tabLabel="highlights" data={details.map(d => d.caption)} />
+      <Expand header={<img src={headerURL} style={{ maxWidth: '100%' }} />}>
         <FeatureList tabLabel="tech" data={features} />
-      </SwipeTabs>
+      </Expand>
+    </Grid>
+    <Grid item xs={12} sm={9}>
+      <SwipeSlides project={project} />
     </Grid>
   </Grid>);
 

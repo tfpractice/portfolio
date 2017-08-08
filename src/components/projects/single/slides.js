@@ -16,7 +16,7 @@ const mapState = (state, { project }) => ({ slides: hasSlides(slug(project)) && 
 
 const JustSlides = ({ project, slides }) =>
   slides &&
-  <SwipeTabs iHue={pColors[project.category]}>
+  <SwipeTabs top={false} iHue={pColors[project.category]}>
     {slides.map((h, i) => <Slide tabLabel="." key={i} slide={h} />)}
   </SwipeTabs>;
 

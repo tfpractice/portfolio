@@ -72,7 +72,7 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
     >
       <CardMedia className={!open ? classes[project.category] : ''}>
         <Collapse in={!open}>
-          <PageMedia {...project} />
+          <PageMedia project={project} {...project} />
         </Collapse>
         {hasSlides(slug(project)) &&
           <Collapse in={open}>

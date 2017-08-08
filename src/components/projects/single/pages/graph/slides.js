@@ -6,7 +6,9 @@ export const slides = [
   ~~~javascript
   // **isIterable** :: obj -> bool   
   // checks if an object is iterable
-  export const isIterable = o => !!o[Symbol.iterator];
+  isIterable({name:john, age:12})// false
+  isIterable([1,2,3])// true
+  isIterable(new Set([1,2,3])) // true
 
   // **iterify** :: obj -> iterable   
   // returns the object or an Iterable<a> containging the object

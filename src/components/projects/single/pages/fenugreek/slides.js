@@ -1,111 +1,102 @@
 export const slides = [
   {
-    caption:
-      'allows a high degree of interoperability between Javascript collections',
+    caption: `## allows a high degree of interoperability between Javascript collections`,
 
-    content: `
-  ## allows a high degree of interoperability between Javascript collections 
-    
-  ~~~javascript
-  // **isIterable** :: obj -> bool   
-  // checks if an object is iterable
-  export const isIterable = o => !!o[Symbol.iterator];
+    content: `      
+~~~js 
+const myObj = {name:john, age:12};
+const myArr = [1,2,3];
+const mySet =  new Set([1,2,3]);
 
-  // **iterify** :: obj -> iterable   
-  // returns the object or an Iterable<a> containging the object
-  export const iterify = o => isIterable(o) ? o : [ o, ];
-  
-  // **spread** :: Iterable<a> -> Iterable<a> 
-  // returns an Iterable<a> of the collections default iterator
-  export const spread = (coll = []) => [ ...iterify(coll), ];
-  
-  ~~~
+
+isIterable(myObj);    // false
+isIterable(myArr);    // true
+isIterable(mySet);    // true
+
+iterify(myObj);    // [{name:john, age:12}]
+iterify(myArr);    // [1,2,3]
+iterify(mySet);    //  Set{1,2,3}
+
+spread(myObj);    // [{name:john, age:12}];
+spread(myArr);    // [1,2,3];
+spread(mySet);    // [1,2,3];
+      
+~~~
 `,
   },
   {
     caption:
       'recasts native variadic functions as partially applied/curried unary functions',
     content: `
-  ## recasts native variadic functions as partially applied/curried unary functions
+~~~js
+const myArr = [1,2,3];
+const mySet =  new Set([3,4,5]);
+const double= x=> x*2
   
-  ~~~js
-// **first** :: Iterable<a> -> a ~ 
-// returns the first element of an iterable
-export const first = (c = []) => spread(c).shift();
+first(myArr) //  1
+first(mySet) //  3
 
-// **last** :: Iterable<a> -> a~  
-// returns the last element of an iterable
-export const last = (c = []) => spread(c).pop();
-  
-// **map** :: Iterable<a>  -> (a->b) -> [b]
-// returns an Iterable<a> of the return values of a
-// function called on each element of an iterable
-export const map = coll => fn => spread(coll).map(fn);
+last(myArr) //  3
+last(mySet) //  5
 
-// **mapTo** :: (a->b) -> Iterable<a>  -> [b]
-// returns an Iterable<a> of the return values of a
-// function called on each element of an iterable
-export const mapTo = fn => coll => map(coll)(fn);
+mapTo(double)(myArr) //  [2,4,6]
+mapTo(double)(mySet) //  [6,8,10]
 ~~~
+
 `,
   },
   {
     caption: 'implements mathematical set functions',
     content: `
-  ## implements mathematical set functions
+~~~js
+const myArr = [1,2,3];
+const mySet =  new Set([3,4,5]);
+const yourSet =  new Set([3,6,9]);
+const double= x=> x*2
   
-  ~~~js
-  // **inter** :: Iterable<a> -> Iterable<a> -> [a ]  
-  // returns elements shared between two iterables;
-  export const inter = c0 => c1 => spread(c0).filter(hasK(c1));
+inter(mySet)(yourSet) //  [3]
+union(yourSet)(mySet) //  [3,4,5,6,9]
 
-// **diff** :: Iterable<a> -> Iterable<a> -> [a ]  
-// returns elements of the first iterable absent from the second iterable
-export const diff = c0 => c1 => spread(c0).filter(xhasK(c1));
-
-// **union** :: Iterable<a> -> Iterable<a> -> [a ]  
-// returns elements of both iterables
-export const union = c0 => c1 => spread(c0).concat(diff(c1)(c0));
+diff(mySet)(yourSet) //  [4,5]
+diff(yourSet)(mySet) //  [6,9]
 ~~~
 `,
   },
 ];
 
-const rummy = [
+export const slides2 = [
   {
-    caption:
-      'composes sets based on identity of rank across suits andidentity of suit through a sequence of ranks',
+    data: `functionally implements classical graph 
+  data structures`,
   },
-  { caption: ' leverages graph theory to determine potential successive plays' },
-  { caption: 'functionally implements complex game logic over simple objects ' },
-];
-
-const c4 = [
   {
-    caption:
-      'Leverages the Game Grid API to apply complex graph calculations to nodes occupied by a particular player',
+    data: `makes pure uses of JS collections, 
+  for an agnostic API`,
   },
-  { caption: 'masks complex internal logic with minimal top-level API' },
   {
-    caption:
-      'self-sufficient game logic can be pluged into any aplication framework framework form the command-line to React ',
+    data: `implements basic serach and traversals as well as cuts,
+components, and shortest paths`,
   },
 ];
 
-const bee52 = [
-  { caption: 'Leverages graph theory to build relationships via suit and rank' },
-  { caption: 'functional API identicaly applies to single cards and decks ' },
-  {
-    caption:
-      'game agnostic comparisons ensure that cards operate identically no matter the rules applied',
-  },
-];
-
-const gameGrid = [
-  {
-    caption:
-      'implements direction-based node relationships via polar coordinates',
-  },
-  { caption: 'produces multiple traversable graphs given any set of nodes' },
-  { caption: 'encourages extension via a minimal API' },
-];
+//
+//
+// ~~~javascript
+// // **isIterable** :: obj -> bool
+// // checks if an object is iterable
+// isIterable({name:john, age:12})// false
+// isIterable([1,2,3])// true
+// isIterable(new Set([1,2,3])) // true
+// ~~~
+//
+// ~~~javascript
+//
+// // **iterify** :: obj -> iterable
+// // returns the object or an Iterable<a> containging the object
+// export const iterify = o => isIterable(o) ? o : [ o, ];
+//
+// // **spread** :: Iterable<a> -> Iterable<a>
+// // returns an Iterable<a> of the collections default iterator
+// export const spread = (coll = []) => [ ...iterify(coll), ];
+//
+// ~~~

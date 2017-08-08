@@ -20,24 +20,42 @@ const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
   appBar: { backgroundColor: theme.palette.background.appBar },
 }));
 
-const SwipeTabs = ({ children, iHue = '#f0f', index, setIndex }) =>
+const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
   (<Grid container justify="center" align="center">
+    {top &&
+      <Grid item xs={11}>
+        <Tabs
+          centered
+          index={index}
+          indicatorColor={iHue}
+          textColor="#fff"
+          onChange={(e, i) => setIndex(p => i)}
+        >
+          {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
+        </Tabs>
+      </Grid>}
     <Grid item xs={11}>
-      <Tabs
-        centered
+      <SwipeableViews
+        containerStyle={{ maxHeight: '20rem' }}
+        slideStyle={{ display: 'flex' }}
+        enableMouseEvents
         index={index}
-        indicatorColor={iHue}
-        textColor="#fff"
-        onChange={(e, i) => setIndex(p => i)}
       >
-        {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
-      </Tabs>
-    </Grid>
-    <Grid item xs={11}>
-      <SwipeableViews enableMouseEvents index={index}>
         {children}
       </SwipeableViews>
     </Grid>
+    {!top &&
+      <Grid item xs={11}>
+        <Tabs
+          centered
+          index={index}
+          indicatorColor={iHue}
+          textColor="#fff"
+          onChange={(e, i) => setIndex(p => i)}
+        >
+          {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
+        </Tabs>
+      </Grid>}
   </Grid>);
 
 export default withStyles(styleSheet)(withIndex(SwipeTabs));
