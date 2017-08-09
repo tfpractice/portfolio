@@ -63,12 +63,15 @@ const withModal = compose(
 );
 const mapState = ({ projects }, { project }) => ({
   slug: pSlug(project),
+
   project,
 });
 
 const Project = (props) => {
   const { project, classes, open, toggle, trigger } = props;
   let view;
+
+  console.log('pSlug(project)', pSlug(project));
 
   const label = props.label || project.title;
 

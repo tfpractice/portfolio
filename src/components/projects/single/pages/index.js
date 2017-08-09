@@ -1,4 +1,5 @@
 import * as FenData from './fenugreek';
+import * as Bee from './bee';
 import * as Graph from './graph';
 import * as Game from './game';
 import * as C4 from './connect';
@@ -10,6 +11,7 @@ export const slugMap = {
   'graph-curry': Graph,
   'game-grid': Game,
   'connect-four': C4,
+  bee52: Bee,
 };
 export const getProject = slug =>
   new Set(Object.keys(slugMap)).has(slug) ? slugMap[slug] : xData;
