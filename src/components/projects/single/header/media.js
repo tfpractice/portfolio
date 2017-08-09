@@ -25,11 +25,12 @@ const Styled = withStyles(
     slides: { overflow: 'none', maxHeight: '25rem' },
   }))
 );
+const dStyle = { backgroundColor: '#fff' };
 
 const PJMedia = ({ headerURL, classes, project, features }) =>
   (<Grid container align="center" justify="center">
     <Grid item xs={12} sm>
-      <Expand header={<Text type="title">Technical details</Text>}>
+      <Expand dStyle={dStyle} header={<Text type="title">Tech</Text>}>
         <FeatureList tabLabel="tech" data={features} />
       </Expand>
     </Grid>
