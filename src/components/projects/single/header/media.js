@@ -19,7 +19,7 @@ const Styled = withStyles(
       backgroundRepeat: 'no-repeat',
       backgroundPosition: 'center',
     },
-
+    padded: { padding: '2rem' },
     pic: { maxWidth: '80%' },
     slides: { overflow: 'none', maxHeight: '25rem' },
   }))
@@ -27,7 +27,13 @@ const Styled = withStyles(
 const dStyle = { backgroundColor: '#fff' };
 
 const PJMedia = ({ headerURL, classes, project, features }) =>
-  (<Grid container align="center" justify="space-around" spacing={24}>
+  (<Grid
+    container
+    align="center"
+    justify="space-around"
+    spacing={24}
+    className={classes.padded}
+  >
     <Grid item xs={12} sm>
       <Expand dStyle={dStyle} header={<Text type="title">Tech</Text>}>
         <FeatureList tabLabel="tech" data={features} />
