@@ -82,10 +82,10 @@ const AS = card('a', 'SPADES');
 const KS = card('K', 'SPADES');
 const 2D = card('2','DIAMONDS');
 
-ranksHigher(KS)(AS) //  true
-ranksLower(AS)(KS) // true
-hasAdjRank('a')(2D) //  true
-adjRanks(2D) // [ 'a', '3', ];
+ranksHigher(KS)(AS) ........  true
+ranksLower(AS)(KS) ........ true
+hasAdjRank('a')(2D) ........  true
+adjRanks(2D) ........ [ 'a', '3', ];
 
 ~~~`,
 };
@@ -96,11 +96,11 @@ const cycles = {
     
   ~~~js
   
-  next(K) // A
-  prev(K) // Q
+  next(K) ..... A
+  prev(K) ..... Q
   
-  minDist('A')('2') 1
-  maxDist('A')('2') 12
+  minDist('A')('2') ..... 1
+  maxDist('A')('2') ..... 12
 
   ~~~
 `,

@@ -20,7 +20,6 @@ const Styled = withStyles(
       backgroundPosition: 'center',
     },
 
-    // exp: { backgroundColor: 'rgba(128,128,128,0.8)' },
     pic: { maxWidth: '80%' },
     slides: { overflow: 'none', maxHeight: '25rem' },
   }))
@@ -28,7 +27,7 @@ const Styled = withStyles(
 const dStyle = { backgroundColor: '#fff' };
 
 const PJMedia = ({ headerURL, classes, project, features }) =>
-  (<Grid container align="center" justify="center">
+  (<Grid container align="center" justify="space-around" spacing={24}>
     <Grid item xs={12} sm>
       <Expand dStyle={dStyle} header={<Text type="title">Tech</Text>}>
         <FeatureList tabLabel="tech" data={features} />

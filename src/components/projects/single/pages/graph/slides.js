@@ -1,7 +1,7 @@
 export const slides = [
   {
-    caption: `## allows a high degree of interoperability between Javascript collections`,
-
+    caption: `functionally implements classical graph algortihms `,
+    
     content: `    
   ~~~javascript
   // **isIterable** :: obj -> bool   
@@ -22,10 +22,8 @@ export const slides = [
 `,
   },
   {
-    caption:
-      'recasts native variadic functions as partially applied/curried unary functions',
+    caption: `retains an error-proof API via immutability and partial application`,
     content: `
-  ## recasts native variadic functions as partially applied/curried unary functions
   
   ~~~js
 // **first** :: Iterable<a> -> a ~ 
@@ -49,9 +47,8 @@ export const mapTo = fn => coll => map(coll)(fn);
 `,
   },
   {
-    caption: 'implements mathematical set functions',
+    caption: `enables keyless, node-agnostic graphs`,
     content: `
-  ## implements mathematical set functions
   
   ~~~js
   // **inter** :: Iterable<a> -> Iterable<a> -> [a ]  
@@ -84,3 +81,15 @@ export const slides2 = [
 components, and shortest paths`,
   },
 ];
+
+//
+//
+// {
+//       "caption": "functionally implements classical graph algortihms"
+//     },
+//     {
+//       "caption": "enables keyless, node-agnostic graphs"
+//     },
+//     {
+//       "caption": "retains an error-proof API via immutability and partial application"
+//     }
