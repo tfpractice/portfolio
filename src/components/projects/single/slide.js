@@ -7,7 +7,7 @@ const Slide = ({ slide, project, ...props }) =>
   (<Grid container justify="center">
     <Grid item xs>
       <Text type="subheading">
-        <MarkdownPreview value={slide.content} />
+        <MarkdownPreview className="pjSlide" value={slide.content} />
       </Text>
     </Grid>
   </Grid>);

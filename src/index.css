@@ -9,7 +9,10 @@ body {
   padding: 1em;
   background: rgba(40, 44, 52, 0.8);
 }
-/*
-pre,
-code {
-}*/
+.pjSlide img {
+  max-width: 60%;
+}
+
+.pjSlide {
+  /*object-fit: contain;*/
+}
