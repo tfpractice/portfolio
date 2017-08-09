@@ -1,7 +1,6 @@
 import React from 'react';
 import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
-import Card, { CardContent, CardHeader, CardMedia } from 'material-ui/Card';
 import { MarkdownPreview } from 'react-marked-markdown';
 
 const Slide = ({ slide, project, ...props }) =>

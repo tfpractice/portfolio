@@ -1,30 +1,19 @@
 import React from 'react';
-import Grid from 'material-ui/Grid';
-import Text from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
-import Button from 'material-ui/Button';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import Language from 'material-ui-icons/Language';
-import Card, {
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-} from 'material-ui/Card';
+import { CardActions, CardHeader, CardMedia } from 'material-ui/Card';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
-import { connect } from 'react-redux';
 
 import { Expand, HexCard, SwipeTabs } from '../../misc';
 import { dStyles, lightStyles, pColors, qUtils } from '../../../utils';
 import { ChipList } from '../../tools';
-
 import FeatureList from '../featureList';
 import PJModal from '../single/modal';
 import PJMedia from './media';
-import { Features } from './features';
 
 const { edgeNodes } = qUtils;
 const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';

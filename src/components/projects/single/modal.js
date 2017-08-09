@@ -1,49 +1,24 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
-import Text from 'material-ui/Typography';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import kramed from 'kramed';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
-import Card, {
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-} from 'material-ui/Card';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { MarkdownPreview } from 'react-marked-markdown';
 import { CircularProgress } from 'material-ui/Progress';
-
 import Dialog, {
   DialogActions,
   DialogContent,
   DialogTitle,
-  withResponsiveFullScreen,
 } from 'material-ui/Dialog';
-
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
-
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-import { findMatch, slug as pSlug, qUtils } from '../../../utils';
-import { Expand, HexCard } from '../../misc';
+import { slug as pSlug } from '../../../utils';
 import PageCard from './header/pageCard';
-import { getContent, getProject, getSlides, getTech } from './pages';
-import { markdown as mCont } from './pages/fenugreek/markdown';
-import Slides from './slides';
-import DemoView from './demoview';
 import SkillsAndTools from './skillsAndTools';
 import PJContent from './content';
-
-const { edgeNodes } = qUtils;
 
 const Styled = withStyles(
   createStyleSheet('PJModal', (theme) => {
@@ -70,8 +45,6 @@ const mapState = ({ projects }, { project }) => ({
 const Project = (props) => {
   const { project, classes, open, toggle, trigger } = props;
   let view;
-
-  console.log('pSlug(project)', pSlug(project));
 
   const label = props.label || project.title;
 

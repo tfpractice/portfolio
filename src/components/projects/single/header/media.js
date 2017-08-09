@@ -2,14 +2,9 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Text from 'material-ui/Typography';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
-import { compose, withHandlers, withState } from 'recompose';
-import { Expand, HexCard, SwipeTabs } from '../../../misc';
-
+import { Expand } from '../../../misc';
 import FeatureList from '../../featureList';
-import { colors } from '../../pjCard';
-import Slides, { SwipeSlides } from '../slides';
-
-const isDef = ({ headerURL }) => headerURL.endsWith('default.svg');
+import { SwipeSlides } from '../slides';
 
 const Styled = withStyles(
   createStyleSheet('PJMedia', theme => ({

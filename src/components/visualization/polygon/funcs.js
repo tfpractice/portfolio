@@ -4,47 +4,15 @@ import * as Polygon from 'endogenesis';
 const {
   setNumSides,
   apoMag,
-  apoFactor,
   centralTicks,
-  tickPath,
-  inscribed,
-  numSides,
-  center,
   vertices,
-  tessVector,
   surroundTix,
   tesselate,
-  rotation,
   radius,
-  setX,
-  setY,
-  nthTess,
-  setRadius,
   exoRadius,
-  exoFactor,
-  lacunaPathN,
-  lacunaTicks,
-  tessVex,
-  setRotation,
-  baseAngle,
-  exoVector,
-  nthExo,
-  exoVex,
-  exoGons,
-  exoTess,
   exoTesses,
-  lacunaPath,
 } = Polygon;
 const tDom = poly => 2 * radius(poly) + apoMag(poly) / 2;
-const pDom = poly => radius(poly);
-const catBin = (a = [], b = []) => [ ...a, ...b ];
-const cVals = v => [ v.x, v.y ];
-const tVals = poly =>
-  tesselate(poly)
-    .map(vertices)
-    .reduce(catBin, [])
-    .map(cVals)
-    .reduce(catBin, []);
 
 export const tessScale = base => box =>
   d3
@@ -100,10 +68,9 @@ export const tessLine = (p, idx) => {
   default:
     pid = 1;
   }
-  const base = vertices(p)[pid];
+
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
-  const lData = idx === 0 ? centralD : surData;
 
   return rawLine(surData);
 };
@@ -247,6 +214,4 @@ export const viewBackDrop = (classes) => {
       .classed(classes.path, true)
       .attr('fill', (d, i) => (!i || i % 7 === 0 ? '#f0f' : '#000'))
       .attr('d', backLine);
-
-  // shownew();
 };

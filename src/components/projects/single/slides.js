@@ -1,14 +1,10 @@
 import React from 'react';
-import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
-import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
-import Card, { CardContent } from 'material-ui/Card';
 import { connect } from 'react-redux';
 
-import { dStyles, lightStyles, pColors, slug } from '../../../utils';
-import { Expand, HexCard, SwipeTabs } from '../../misc';
-
+import { dStyles, pColors, slug } from '../../../utils';
+import { Expand, SwipeTabs } from '../../misc';
 import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
 

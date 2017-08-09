@@ -1,32 +1,16 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Text from 'material-ui/Typography';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import Language from 'material-ui-icons/Language';
-import Card, {
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardMedia,
-} from 'material-ui/Card';
-import {
-  ListItem,
-  ListItemIcon,
-  ListItemSecondaryAction,
-  ListItemText,
-} from 'material-ui/List';
+import { CardActions, CardMedia } from 'material-ui/Card';
+import { ListItem } from 'material-ui/List';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
-import { connect } from 'react-redux';
 
-import FeatureList from '../../featureList';
 import { ChipList } from '../../../tools';
-import { hasSlides } from '../pages';
-import { cardStyle, Expand, HexCard, PJCard } from '../../../misc';
-import { dStyles, lightStyles, qUtils, slug } from '../../../../utils';
-import { Features, PJMedia } from '../../pjCard';
-import { SwipeSlides } from '../slides';
+import { Expand, PJCard } from '../../../misc';
+import { dStyles, lightStyles, qUtils } from '../../../../utils';
 import Header from './cardHead';
 import PageMedia from './media';
 
@@ -73,8 +57,8 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
               </Grid>
               <Grid item xs>
                 <ListItem>
-                  <img src={buildSrc} />
-                  <img src={covSource} />
+                  <img src={buildSrc} alt="" />
+                  <img src={covSource} alt="" />
                   <IconButton target="_blank" href={project.url}>
                     <Language />
                   </IconButton>
