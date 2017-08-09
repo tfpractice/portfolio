@@ -5,9 +5,9 @@ import { MarkdownPreview } from 'react-marked-markdown';
 
 const Slide = ({ slide, project, ...props }) =>
   (<Grid container justify="center">
-    <Grid item xs>
+    <Grid item xs className="pjSlide">
       <Text type="subheading">
-        <MarkdownPreview className="pjSlide" value={slide.content} />
+        <MarkdownPreview value={slide.content} />
       </Text>
     </Grid>
   </Grid>);

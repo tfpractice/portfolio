@@ -25,11 +25,7 @@ const async = {
   [definitions]: /images/apps/venery/definitions.png
   [related]: /images/apps/venery/related.png
   
-  ![related and definitions][related]
-  ![related and definitions][definitions]
-  
-
-
+  ![related and definitions][rnd]
   `,
 };
 

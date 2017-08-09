@@ -10,7 +10,8 @@ body {
   background: rgba(40, 44, 52, 0.8);
 }
 .pjSlide img {
-  max-width: 60%;
+  max-width: 90%;
+  image-resolution: from-image;
 }
 
 .pjSlide {
