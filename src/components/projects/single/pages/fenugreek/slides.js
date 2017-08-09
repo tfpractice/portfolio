@@ -1,7 +1,7 @@
 export const slides = [
   {
     caption: `enables cross-collection interoperability`,
-    content: `      
+    content: `### enables cross-collection interoperability
 ~~~js 
 const myObj = {name:john, age:12};
 const myArr = [1,2,3];
@@ -25,7 +25,7 @@ spread(mySet); .......... [1,2,3];
   },
   {
     caption: 'recasts native variadic methods as curried unary functions',
-    content: `
+    content: `### recasts native variadic methods as curried unary functions
 ~~~js
 const myArr = [1,2,3];
 const mySet =  new Set([3,4,5]);
@@ -46,7 +46,7 @@ mapTo(double)(mySet) .........  [6,8,10]
   {
     caption:
       'provides mathematical set functions absent in native JS implementation',
-    content: `
+    content: `### provides mathematical set functions absent in native JS implementation
 ~~~js
 const myArr = [1,2,3];
 const mySet =  new Set([3,4,5]);

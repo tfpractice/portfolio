@@ -1,6 +1,6 @@
 const rules = {
   caption: `builds a highly complex rules set onto simple two property objects`,
-  content: `
+  content: `### builds a highly complex rules set onto simple two property objects
 ~~~js
 const AH = card('a', 'HEARTS');
 const AS = card('a', 'SPADES');
@@ -17,9 +17,7 @@ adjRanks(2D)  [ 'a', '3', ];
 
 const strategy = {
   caption: `Leverages graph theory to properly determine successive gestures `,
-  content: `
-
-    
+  content: `### Leverages graph theory to properly determine successive gestures     
 ~~~js
 const AH = card('a', 'HEARTS');
 const AS = card('a', 'SPADES');
@@ -35,7 +33,7 @@ adjRanks(2D) ......... [ 'a', '3', ];
 };
 const sets = {
   caption: `composes sets based on identity of rank across suites and identity of suit through a sequence of ranks `,
-  content: `  
+  content: `### composes sets based on identity of rank across suits and identity of suit through a sequence of ranks 
   ~~~js
   const myDeck = deck();
   const D2 = card('2', 'DIAMONDS');

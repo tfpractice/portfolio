@@ -1,8 +1,8 @@
 export const slides = [
   {
     caption: `functionally implements classical graph algortihms `,
-    
-    content: `    
+
+    content: `### functionally implements classical graph algortihms
   ~~~javascript
   // **isIterable** :: obj -> bool   
   // checks if an object is iterable
@@ -23,7 +23,7 @@ export const slides = [
   },
   {
     caption: `retains an error-proof API via immutability and partial application`,
-    content: `
+    content: `### retains an error-proof API via immutability and partial application
   
   ~~~js
 // **first** :: Iterable<a> -> a ~ 
@@ -48,7 +48,7 @@ export const mapTo = fn => coll => map(coll)(fn);
   },
   {
     caption: `enables keyless, node-agnostic graphs`,
-    content: `
+    content: `### enables keyless, node-agnostic graphs
   
   ~~~js
   // **inter** :: Iterable<a> -> Iterable<a> -> [a ]  

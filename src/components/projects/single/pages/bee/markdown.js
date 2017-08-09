@@ -75,7 +75,7 @@ export const content = full;
 
 const graphs = {
   caption: 'builds suit- and rank-based relationships via graph theory',
-  content: `
+  content: `### builds suit- and rank-based relationships via graph theory
 ~~~js
 const AH = card('a', 'HEARTS');
 const AS = card('a', 'SPADES');
@@ -92,7 +92,7 @@ adjRanks(2D) ........ [ 'a', '3', ];
 
 const cycles = {
   caption: 'employs modular aritmetic to manage rank comparisons',
-  content: `
+  content: `### employs modular aritmetic to manage rank comparisons
     
   ~~~js
   
@@ -107,7 +107,7 @@ const cycles = {
 };
 const decks = {
   caption: 'provides methods for dealing, sorting, drawing imuutable decks',
-  content: `
+  content: `### provides methods for dealing, sorting, drawing imuutable decks
   ~~~js
   suitSort(deck())
     [ { rank: '2', suit: 'CLUBS', id: '2_CLUBS' },

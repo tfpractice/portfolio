@@ -25,7 +25,7 @@ And hoping against any edge cases. On top of this, all functions that manipulate
 
 const states = {
   caption: `Accommodates games of various win states`,
-  content: `
+  content: `## Accommodates games of various win states
 ~~~js
 const C4 = setMin(3)(game());
 const C5 = setMin(4)(game());
@@ -53,7 +53,7 @@ C5 {
 
 const objects = {
   caption: `implements the entire game logic without any custom classes`,
-  content: `
+  content: `### implements the entire game logic without any custom classes
   ~~~js
   
 // players
@@ -85,7 +85,7 @@ const jane = player('Jane', 0, 1); ...... { name: 'Dick', score: 0, id: 0 }
 
 const monad = {
   caption: `Maintains Immutable game state with a monadic API`,
-  content: `
+  content: `### Maintains Immutable game state with a monadic API
 ~~~js
   
 const dick = player('Dick', 0, 0);
