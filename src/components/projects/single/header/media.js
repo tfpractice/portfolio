@@ -6,7 +6,6 @@ import { compose, withHandlers, withState } from 'recompose';
 import { Expand, HexCard, SwipeTabs } from '../../../misc';
 
 import FeatureList from '../../featureList';
-import Details from '../../detailList';
 import { colors } from '../../pjCard';
 import Slides, { SwipeSlides } from '../slides';
 
