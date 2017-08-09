@@ -1,8 +1,8 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
-import Tabs, { Tab } from 'material-ui/Tabs';
 import { withState } from 'recompose';
+import Tabs, { Tab } from 'material-ui/Tabs';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
 export const withIndex = withState(
@@ -12,15 +12,7 @@ export const withIndex = withState(
 );
 export const ixHandler = i => prv => i;
 const sStyle = { overflow: 'none' };
-
 const cStyle = { maxHeight: '20rem', overflow: 'none' };
-const styleSheet = createStyleSheet('FullWidthTabs', theme => ({
-  root: {
-    flexGrow: 1,
-    marginTop: 30,
-  },
-  appBar: { backgroundColor: theme.palette.background.appBar },
-}));
 
 const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
   (<Grid container justify="center" align="center">
@@ -39,6 +31,7 @@ const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
     <Grid item xs={12}>
       <SwipeableViews
         containerStyle={cStyle}
+        style={sStyle}
         slideStyle={sStyle}
         enableMouseEvents
         index={index}

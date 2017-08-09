@@ -9,7 +9,7 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 
 import { Expand, HexCard, SwipeTabs } from '../../misc';
-import { dStyles, lightStyles, pColors, qUtils } from '../../../utils';
+import { dStyles, lightStyles, pColors, qUtils, slug } from '../../../utils';
 import { ChipList } from '../../tools';
 import FeatureList from '../featureList';
 import PJModal from '../single/modal';
@@ -47,6 +47,7 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
       header={
         <CardHeader
           title={<PJModal project={project} open={false} />}
+          subheader={slug(project)}
           avatar={
             <a target="_blank" href={project.repo}>
               <Avatar src={gitLogo} aria-label={`${project.title}`} />
