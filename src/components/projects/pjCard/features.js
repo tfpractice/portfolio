@@ -1,6 +1,8 @@
 import React from 'react';
 import { SwipeTabs } from '../../misc';
-import { pColors } from '../../../utils';
+import { pColors, slug } from '../../../utils';
+
+import { getSlides } from '../single/';
 
 const def = {
   category: 'LIB',

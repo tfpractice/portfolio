@@ -50,10 +50,8 @@ const Styled = withStyles(
     console.log('theme', theme);
     return {
       paper: {
-        backgroundColor: 'rgba(238,238,238,0.8)',
-
+        backgroundColor: 'rgba(238,238,238,0.85)',
         width: 'inherit',
-
         maxWidth: 'inherit',
       },
     };

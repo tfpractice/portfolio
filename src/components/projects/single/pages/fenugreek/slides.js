@@ -1,6 +1,6 @@
 export const slides = [
   {
-    caption: `### allows a high degree of interoperability between Javascript collections`,
+    caption: `enables cross-collection interoperability`,
 
     content: `      
 ~~~js 
@@ -25,8 +25,7 @@ spread(mySet);    // [1,2,3];
 `,
   },
   {
-    caption:
-      'recasts native variadic functions as partially applied/curried unary functions',
+    caption: 'recasts native variadic methods as curried unary functions',
     content: `
 ~~~js
 const myArr = [1,2,3];
@@ -46,7 +45,8 @@ mapTo(double)(mySet) //  [6,8,10]
 `,
   },
   {
-    caption: 'implements mathematical set functions',
+    caption:
+      'provides mathematical set functions absent in native JS implementation',
     content: `
 ~~~js
 const myArr = [1,2,3];
@@ -78,6 +78,8 @@ export const slides2 = [
 components, and shortest paths`,
   },
 ];
+
+// const str= "~~~js  const myObj = {name:john, age:12}; const myArr = [1,2,3]; const mySet =  new Set([1,2,3]); isIterable(myObj);    // false isIterable(myArr);    // true isIterable(mySet);    // true iterify(myObj);    // [{name:john, age:12}] iterify(myArr);    // [1,2,3] iterify(mySet);    //  Set{1,2,3} spread(myObj);    // [{name:john, age:12}]; spread(myArr);    // [1,2,3]; spread(mySet);    // [1,2,3];    ~~~"
 
 //
 //

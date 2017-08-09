@@ -16,8 +16,15 @@ const rRatios = [[ 0, 0 ], [ 7 / 9, 0 ], [ 1, 1 ], [ 0, 1 ], [ 0, 0 ]];
 const dRatios = [[ 7 / 9, 0 ], [ 1, 1 ], [ 2 / 9, 1 ], [ 0, 0 ]];
 const makePath = pts =>
   pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(' ')).join(',');
+const baseStyles = {
+  backgroundPosition: 'center',
 
-const cardStyle = {
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  paddingLeft: '16%',
+};
+
+export const cardStyle = {
   backgroundImage: 'url(/images/whiteHex50.svg)',
   backgroundPosition: 'left',
   backgroundColor: 'rgba(66,66,66,0.85)',
@@ -25,7 +32,7 @@ const cardStyle = {
   backgroundRepeat: 'no-repeat',
 };
 
-const right = {
+export const right = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'top left ',
   backgroundSize: '200% 200%',
@@ -34,7 +41,7 @@ const right = {
   clipPath: `polygon(${makePath(rRatios)})`,
 };
 
-const left = {
+export const left = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'top left ',
   backgroundSize: '200% 200%',
@@ -42,7 +49,7 @@ const left = {
   paddingLeft: '16%',
   clipPath: `polygon(${makePath(lRatios)})`,
 };
-const double = {
+export const double = {
   backgroundImage: 'url(/images/hex05.svg)',
   backgroundPosition: 'top left ',
   backgroundSize: '200% 200%',
@@ -52,11 +59,21 @@ const double = {
   clipPath: `polygon(${makePath(dRatios)})`,
 };
 
+export const pjStyle = url => ({
+  backgroundPosition: 'center',
+  backgroundImage: `url(${url})`,
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  backgroundColor: 'rgba(64,64,64,0.2)',
+});
+
 export const HexCard = props => <Card {...props} style={cardStyle} />;
 export const LeftHex = props => <Card {...props} style={left} />;
 
 export const RightHex = props => <Card {...props} style={right} />;
 
 export const DoubleHex = props => <Card {...props} style={double} />;
+export const PJCard = ({ headerURL, ...props }) =>
+  <Card {...props} style={pjStyle(headerURL)} />;
 
 export default RightHex;

@@ -6,24 +6,30 @@ import { compose, withHandlers, withState } from 'recompose';
 import { Expand, HexCard, SwipeTabs } from '../../../misc';
 
 import FeatureList from '../../featureList';
+import Details from '../../detailList';
 import { colors } from '../../pjCard';
 import Slides, { SwipeSlides } from '../slides';
 
 const isDef = ({ headerURL }) => headerURL.endsWith('default.svg');
+
 const Styled = withStyles(
   createStyleSheet('PJMedia', theme => ({
-    media: { minHeight: '8rem' },
-    def: { minHeight: '8rem' },
-    pic: { maxWidth: '100%' },
+    grid: {
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+    },
+
+    // exp: { backgroundColor: 'rgba(128,128,128,0.8)' },
+    pic: { maxWidth: '80%' },
     slides: { overflow: 'none', maxHeight: '25rem' },
   }))
 );
 
 const PJMedia = ({ headerURL, classes, project, features }) =>
   (<Grid container align="center" justify="center">
-    <Grid item xs={10} sm>
-      <Expand header={'Technical details'}>
-        <img src={headerURL} className={classes.pic} />
+    <Grid item xs={12} sm>
+      <Expand header={<Text type="title">Technical details</Text>}>
         <FeatureList tabLabel="tech" data={features} />
       </Expand>
     </Grid>

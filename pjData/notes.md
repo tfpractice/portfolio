@@ -213,3 +213,52 @@ Server renewing never again
 Static deployment p just popping 
 MongoDB aggregation s
 Maximum normalization s LITTLE OD
+Gabe grids 
+Trigonometrically assigned node relativities based on column and row positions 
+(Grid radians )
+
+Nodes
+Cadj radj
+
+Performs separate graphs horizontal vertical and birth diagonal connections from given sry nodes 
+(4grids
+
+
+Provided a minimal expressive API for maximum extensibility 
+SelectxsetColumn
+
+
+Connect 4
+ 
+
+Maintains Immutable game state with an expressive monadic API
+
+
+ 
+Accommodates games of various win states
+ 
+implements the entire game logic without as any custom classes
+
+Function all programming test driven development gamer design
+
+Bee52
+Leverages graph algorithms to build relationship based on suit and rank 
+(2spades--->3spades--->4spades)
+
+
+Collection based functional approach allowed fort a fluent API that treated a single card and a deck identically 
+(Addhand--->2s--->[as,3h,]--->[as,2s,3h])
+
+Value agnostic comparisons ensures consistent results no matter which game these a ply 
+(AdjRanks--->4H->[3,5])
+
+
+Rummy 
+builds a highly complex rules set onto simple two property objects
+
+Leverages graph theory to properly determine successive gestures 
+CanDraw
+
+Composes sets based on identity of rank across suites and identity of suit through a sequence of ranks 
+RankAdj
+SuutAdj

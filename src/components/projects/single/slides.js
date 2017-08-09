@@ -12,12 +12,16 @@ import { Expand, HexCard, SwipeTabs } from '../../misc';
 import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
 
-const mapState = (state, { project }) => ({ slides: hasSlides(slug(project)) && getSlides(slug(project)) });
+const mergeMarkdown = sArr => (slide, i) => ({ ...sArr[i], ...slide });
+const mapState = (state, { project }) => ({
+  slides: hasSlides(slug(project)) && getSlides(slug(project)),
+  dslides: project.details.map(mergeMarkdown(getSlides(slug(project)))),
+});
 
-const JustSlides = ({ project, slides }) =>
+const JustSlides = ({ project, slides, dslides }) =>
   slides &&
   <SwipeTabs top={false} iHue={pColors[project.category]}>
-    {slides.map((h, i) => <Slide tabLabel="." key={i} slide={h} />)}
+    {dslides.map((h, i) => <Slide tabLabel="." key={i} slide={h} />)}
   </SwipeTabs>;
 
 const Slides = ({ data, project, slides, ...props }) =>
