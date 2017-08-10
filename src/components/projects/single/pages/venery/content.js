@@ -33,19 +33,26 @@ const language = {
   caption:
     'employs Natural Lamguage Processing to avoid definitions with the answers',
   content: `### employs Natural Lamguage Processing to avoid definitions with the answers
-    
 ~~~js
-export const hasWord = word => def => nlp(def).normalize().match(forms(word)).found;
-export const defLacksWord = word => ({ text, }) => !hasWord(word)(text);
+const hasWord = word => def => 
+  nlp(def).normalize().match(forms(word)).found;
 
+const colony = 'colony';
+const sing = 'there was a colony of ant';
+const plur = 'there were many colonies on other continents';
+
+hasWord(colony)(sing) .... true
+hasWord(colony)(plur) .... true
 
 export const requestDef = word =>
   axios.get(WORDNIK_BASE/word/definitions)
-    .then(getData)
+  // retrieve the definitions
+    ....
+  // exclude those definitions which include
+  // either the singular or plural versions of the word
     .then(filtBy(defLacksWord(word)))
-    .then(mapTo(defData));
-    
-    ~~~
+    ...
+~~~
   `,
 };
 

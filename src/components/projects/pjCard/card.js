@@ -47,7 +47,6 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
       header={
         <CardHeader
           title={<PJModal project={project} open={false} />}
-          subheader={slug(project)}
           avatar={
             <a target="_blank" href={project.repo}>
               <Avatar src={gitLogo} aria-label={`${project.title}`} />
