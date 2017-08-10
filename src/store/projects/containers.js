@@ -104,8 +104,8 @@ export const DropTool = component =>
       skip: ({ project }) => !project,
       options: ({ project: { id }}) => ({ refetechQueries: { query: GET_PROJECT, variables: { id }}}),
       props: ({ mutate, ownProps }) => ({
-        dropTool: ({ id: skillId }) =>
-          mutate({ variables: { input: { projectId: ownProps.project.id, skillId }}}),
+        dropTool: ({ id: toolId }) =>
+          mutate({ variables: { input: { projectId: ownProps.project.id, toolId }}}),
       }),
     })(component)
   );

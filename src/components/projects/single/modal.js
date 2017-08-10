@@ -21,16 +21,13 @@ import SkillsAndTools from './skillsAndTools';
 import PJContent from './content';
 
 const Styled = withStyles(
-  createStyleSheet('PJModal', (theme) => {
-    console.log('theme', theme);
-    return {
-      paper: {
-        backgroundColor: 'rgba(238,238,238,0.85)',
-        width: 'inherit',
-        maxWidth: 'inherit',
-      },
-    };
-  })
+  createStyleSheet('PJModal', theme => ({
+    paper: {
+      backgroundColor: 'rgba(238,238,238,0.85)',
+      width: 'inherit',
+      maxWidth: 'inherit',
+    },
+  }))
 );
 const withModal = compose(
   withState('open', 'turn', false),
@@ -78,12 +75,6 @@ const Project = (props) => {
 
                 <Grid item xs={11}>
                   <PJContent project={project} />
-                </Grid>
-                {/* <Grid item xs={11}>
-                  <DemoView project={project} />
-                </Grid> */}
-                <Grid item xs={11}>
-                  <SkillsAndTools project={project} />
                 </Grid>
               </Grid>
             </DialogContent>

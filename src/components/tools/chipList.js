@@ -34,4 +34,14 @@ const ChipList = ({ tools, classes }) =>
     )}
   </Grid>);
 
+const Chips = ({ tools, classes }) =>
+  (<Grid container align="center" className={classes.list}>
+    {tSort(tools).reverse().map(t =>
+      (<Grid item xs key={t.id}>
+        <ToolChip tool={t} key={t.id} />
+      </Grid>)
+    )}
+  </Grid>);
+
+export const JustChips = Styled(Chips);
 export default Styled(ChipList);

@@ -10,7 +10,7 @@ import { compose, withHandlers, withState } from 'recompose';
 
 import { Expand, HexCard, SwipeTabs } from '../../misc';
 import { dStyles, lightStyles, pColors, qUtils, slug } from '../../../utils';
-import { ChipList } from '../../tools';
+import { ChipList, JustChips } from '../../tools';
 import FeatureList from '../featureList';
 import PJModal from '../single/modal';
 import PJMedia from './media';
@@ -27,8 +27,10 @@ const withSwitch = compose(
   })
 );
 
-const getChips = p =>
-  p.category === 'APP' ? edgeNodes(p.tools) : edgeNodes(p.skills);
+const isApp = p => p.category === 'APP';
+
+const getChips = p => (isApp(p) ? edgeNodes(p.tools) : edgeNodes(p.skills));
+const getTech = p => (isApp(p) ? edgeNodes(p.tools) : edgeNodes(p.skills));
 
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
@@ -97,5 +99,3 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
   </HexCard>);
 
 export default withSwitch(Styled(ProjectCard));
-
-// export default DropTool(withSwitch(Styled(ProjectCard)));
