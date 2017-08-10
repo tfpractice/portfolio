@@ -42,6 +42,7 @@ const multi = {
   content: `### multi-client multi-player mode
   [player1]: /images/apps/rummy-redux/player1.png
   [player2]: /images/apps/rummy-redux/player2.png
+  
 <div class='images'>
   ![player1][player1]
   ![player2][player2]
