@@ -22,17 +22,20 @@ const async = {
   caption: 'provides synonyms and definitions for guessed words',
   content: `### provides synonyms and definitions for guessed words
   [rnd]: /images/apps/venery/rnd.jpg
-  [definitions]: /images/apps/venery/definitions.png
-  [related]: /images/apps/venery/related.png
+  [definitions]: /images/apps/venery/definitions.jpg
+  [related]: /images/apps/venery/related.jpg
+  <div class='images'>
+    ![related and definitions][definitions]
+    ![related and definitions][related]
   
-  ![related and definitions][rnd]
+  </div>
   `,
 };
 
 const language = {
   caption:
     'employs Natural Lamguage Processing to avoid definitions with the answers',
-  content: `### employs Natural Lamguage Processing to avoid definitions with the answers
+  content: `### employs Natural Language Processing to avoid definitions with the answers
 ~~~js
 const hasWord = word => def => 
   nlp(def).normalize().match(forms(word)).found;
