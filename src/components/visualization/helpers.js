@@ -5,22 +5,17 @@ const {
   polygon,
   range,
   setNumSides,
-  centralTicks,
-  center,
+
   vertices,
   surroundTix,
-  triangulate,
+
   tesselate,
-  closedInterval,
+
   path,
-  nthTick,
-  inscribed,
-  tickPath,
+
   setX,
   setY,
   setRadius,
-  tickPathInt,
-  tickPoints,
 } = Polygon;
 
 export const colorScale = data =>
@@ -60,42 +55,18 @@ export const lineFunc = sel => data =>
 
 export const landLineF = sel => data => d3.line().x(d => d.x).y(d => d.y)(data);
 
-export const polyLine = selector => (p, idx) => {
-  let lSrc, lData;
+export const polyLine = selector => (p, idx) => lineFunc(selector)(path(p));
 
-  lSrc = vertices(inscribed(p))[0];
-  const tickLocal = tickPathInt(3)(lSrc)(7)(p);
-  const triLocal = triangulate(lSrc)(tickPoints(3)(p));
-  const cloLocal = closedInterval(5)(lSrc)(tickPoints(9)(p));
-  const patLocal = path(p);
-
-  lData = patLocal;
-  return lineFunc(selector)(lData);
-};
-
-export const landingLine = selector => (p, idx) => {
-  let lSrc, lData;
-
-  lSrc = vertices(inscribed(p))[0];
-  const tickLocal = tickPathInt(3)(lSrc)(7)(p);
-  const triLocal = triangulate(lSrc)(tickPoints(3)(p));
-  const cloLocal = closedInterval(5)(lSrc)(tickPoints(9)(p));
-  const patLocal = path(p);
-
-  lData = surroundTix(7)(p);
-  return landLineF(selector)(lData);
-};
+export const landingLine = selector => (p, idx) =>
+  landLineF(selector)(surroundTix(7)(path(p)));
 
 export const tessGons = (links) => {
-  const tessBox = getBox('#tess');
-  const tessheight = getBox('#tess').height / 3;
-
   const baseGon = setNumSides(links.length * 2)(setRadius(70)());
   const gons = [ baseGon ].concat(tesselate(baseGon));
   const allV = gons.map(vertices).reduce((a, b) => a.concat(b), []);
   const xScale = xBox(allV)(getBox('#tess'));
   const yScale = yBox(allV)(getBox('#tess'));
-  const rScale = rBox(gons)(getBox('#tess'));
+
   const scaleGon = g =>
     [ setX(xScale(g.x)), setY(yScale(g.y)) ].reduce((pl, fn) => fn(pl), g);
   const scaledGons = gons.map(scaleGon);
@@ -109,11 +80,7 @@ export const tessGons = (links) => {
     .style('background-color', 'rgba(200,0,200,0.2)')
     .style('overflow', 'visible')
     .selectAll('path')
-    .data(scaledGons, (g, i) => {
-      const a = 0;
-
-      return g;
-    })
+    .data(scaledGons, (g, i) => g)
     .enter()
     .append('path')
     .attr('x', d => d.x)
@@ -140,21 +107,13 @@ export const createImage = links =>
       tesselate(setNumSides(links.length)(setRadius(1)())).concat(
         setNumSides(links.length)(setRadius(1)())
       ),
-      (g, i) => {
-        const a = 0; // //consolelog('g', g);
-
-        return g;
-      }
+      (g, i) => g
     )
     .enter()
     .append('g')
     .append('path')
     .attr('id', (d, i) => `linkPath${i}`)
-    .attr('d', (d, i) => {
-      const a = 0;
-
-      return polyLine('.myHex')(d);
-    })
+    .attr('d', (d, i) => polyLine('.myHex')(d))
     .attr('stroke', '#0f0')
     .attr('stroke-width', '0.5')
     .attr('fill', 'none');
@@ -166,11 +125,7 @@ export const selectLinks = links =>
     .data(links)
     .data(tesselate(setNumSides(links.length)()))
     .append('svg')
-    .attr('id', (d, i) => {
-      const a = 0;
-
-      return `linkSVG${i}`;
-    })
+    .attr('id', (d, i) => `linkSVG${i}`)
     .append('path')
     .attr('id', (d, i) => `linkPath${i}`)
     .attr('d', (d, i) => polyLine(`#linkSVG${i}`)(d))
@@ -195,11 +150,7 @@ export const linkGons = links =>
     .data(links)
     .data(polyGrid(links.length)(6))
     .append('svg')
-    .attr('id', (d, i) => {
-      const a = 0;
-
-      return `linkSVG${i}`;
-    })
+    .attr('id', (d, i) => `linkSVG${i}`)
     .append('path')
     .attr('id', (d, i) => `linkPath${i}`)
     .attr('d', (d, i) => polyLine(`#linkSVG${i}`)(d))
@@ -207,30 +158,15 @@ export const linkGons = links =>
     .attr('stroke-width', '0.5')
     .attr('fill', 'none');
 
-export const showCircles = (data) => {
-  const endoBox = getBox('.endovis');
-
-  return d3
+export const showCircles = data =>
+  d3
     .select('.visBox')
     .select('.endovis')
     .selectAll('.polygon')
     .data(data)
     .append('circle')
-    .attr('cx', (d, i) => {
-      const sx = xBox(data)(endoBox)(d.x);
-
-      return `${5 * i}%`;
-    })
-    .attr('cy', (d, i) => {
-      const rs = yBox(data)(endoBox)(d.y);
-
-      return `${5 * i}%`;
-    })
-    .attr('r', (d) => {
-      const rs = rBox(data)(endoBox)(d.radius);
-
-      return '5%';
-    })
+    .attr('cx', (d, i) => `${5 * i}%`)
+    .attr('cy', (d, i) => `${5 * i}%`)
+    .attr('r', d => '5%')
     .attr('stroke', '#f0f')
     .attr('fill', 'none');
-};

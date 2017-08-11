@@ -4,7 +4,6 @@ import Paper from 'material-ui/Paper';
 import Text from 'material-ui/Typography';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import kramed from 'kramed';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Card, {
