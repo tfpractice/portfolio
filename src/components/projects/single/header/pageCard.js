@@ -74,7 +74,11 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
           </CardMedia>
         </Expand>
         <CardActions>
-          <ChipList tools={getChips(project)} />
+          <Grid container align="center" justify="center">
+            <Grid item xs={10}>
+              <ChipList tools={getChips(project)} />
+            </Grid>
+          </Grid>
         </CardActions>
       </Grid>
     </Grid>

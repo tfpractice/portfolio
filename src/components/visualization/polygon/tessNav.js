@@ -13,12 +13,15 @@ const Styled = withStyles(
     tessGroup: {},
     group: {},
     tessText: {},
-    path: {},
+    path: { backgroundColor: 'rgba(0,0,0,0.51)' },
     animPath: { strokeWidth: '0.01px', stroke: '#000' },
     tessWrap: {},
     text: {},
     textGroup: {},
-    pathLink: { '&:hover': { fill: '#f0f' }},
+    pathLink: {
+      backgroundColor: 'rgba(0,0,0,0.51)',
+      '&:hover': { fill: '#f0f' },
+    },
     mainText: {
       ...theme.typography.title,
       'font-weight': '400',
