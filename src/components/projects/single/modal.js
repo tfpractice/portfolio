@@ -24,8 +24,10 @@ const Styled = withStyles(
   createStyleSheet('PJModal', theme => ({
     paper: {
       backgroundColor: 'rgba(238,238,238,0.85)',
-      width: 'inherit',
-      maxWidth: 'inherit',
+
+      // width: 'inherit',
+
+      maxWidth: '99%',
     },
   }))
 );

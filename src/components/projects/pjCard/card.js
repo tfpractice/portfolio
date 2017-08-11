@@ -48,7 +48,7 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
       open={true}
       header={
         <CardHeader
-          title={<PJModal project={project} open={false} />}
+          title={project.title}
           avatar={
             <a target="_blank" href={project.repo}>
               <Avatar src={gitLogo} aria-label={`${project.title}`} />
@@ -86,6 +86,7 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
 
       <Collapse in={open}>
         <CardActions>
+          <PJModal project={project} label="learn more" open={false} />
           <IconButton href={project.url} target="_blank">
             <Language />
           </IconButton>
