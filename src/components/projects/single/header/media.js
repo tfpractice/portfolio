@@ -21,13 +21,20 @@ const Styled = withStyles(
 const dStyle = { backgroundColor: '#fff' };
 
 const PJMedia = ({ headerURL, classes, project, features }) =>
-  (<Grid container align="center" justify="space-around">
-    <Grid item hidden={{ mdDown: true }} xs={12} md>
+  (<Grid
+    container
+    align="center"
+    justify="space-around"
+    spacing={24}
+    
+    // className={classes.padded}
+  >
+    <Grid item xs={12} sm>
       <Expand dStyle={dStyle} header={<Text type="title">Tech</Text>}>
         <FeatureList tabLabel="tech" data={features} />
       </Expand>
     </Grid>
-    <Grid item xs={12} md={9} className={classes.slides}>
+    <Grid item xs={12} sm={9} className={classes.slides}>
       <SwipeSlides project={project} />
     </Grid>
   </Grid>);

@@ -1,5 +1,7 @@
 export const content = `
-I am a self-taught full-stack web developer with a passion for programming. Ive spent the past five years teaching myself how to program in a number of languages, paradigms, frameworks. My current interest is in writing functional javascript libraries, extended for use in apps rendered with react and redux. Here you will find samples of my applications, my libraries, and information on my work as an educator.
+I am a self-taught full-stack web developer with a passion for programming. Ive spent the past five years teaching myself how to program in a number of languages, paradigms, and frameworks.
+
+My current interest is in writing functional javascript libraries, and building apps with react and redux. Here you will find samples of my applications, my libraries, and information on my work as an educator.
 `;
 
 export const codeStyle = `
