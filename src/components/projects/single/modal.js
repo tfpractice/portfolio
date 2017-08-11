@@ -26,8 +26,8 @@ const Styled = withStyles(
       backgroundColor: 'rgba(238,238,238,0.85)',
 
       // width: 'inherit',
-
-      maxWidth: '99%',
+      //
+      // maxWidth: '99%',
     },
   }))
 );
@@ -64,6 +64,7 @@ const Project = (props) => {
           </Button>
 
           <Dialog
+            fullScreen
             classes={classes}
             open={open}
             onRequestClose={toggle}

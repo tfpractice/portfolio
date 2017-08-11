@@ -46,23 +46,19 @@ const Styled = withStyles(
 const PageCard = ({ project, show, classes, toggle, open }) =>
   (<PJCard raised headerURL={project.headerURL}>
     <Grid container align="center" justify="center" className={classes.box}>
-      <Grid item xs>
+      <Grid item xs={12}>
         <Expand
           dStyle={dStyles[project.category]}
           color="default"
           header={
-            <Grid container justify="center" align="center">
+            <Grid container justify="space-between" align="center">
               <Grid item xs>
                 <Header {...project} />
               </Grid>
-              <Grid item xs>
-                <ListItem>
-                  <img src={buildSrc} alt="" />
-                  <img src={covSource} alt="" />
-                  <IconButton target="_blank" href={project.url}>
-                    <Language />
-                  </IconButton>
-                </ListItem>
+              <Grid item xs={2}>
+                <IconButton target="_blank" href={project.url}>
+                  <Language />
+                </IconButton>
               </Grid>
             </Grid>
           }
