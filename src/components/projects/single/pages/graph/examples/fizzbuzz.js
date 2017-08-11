@@ -22,11 +22,9 @@ const joinFizz = (g, n) => addEdges(g)(n, 0)(...fizzables(nodes(g)));
 const joinBuzz = (g, n) => addEdges(g)(n, 0)(...buzzables(nodes(g)));
 
 const fizzGraph = nums => nodes(graph(...nums)).reduce(joinFizz, nums);
-const buzzGraph = nums => nodes(graph(...nums)).reduce(joinBuzz, nums);
 
-// console.log('graphString(fizzGraph(localNums))', graphString(fizzGraph(localNums)));
-// console.log('adj', adj(fizzGraph(localNums))(2));
-// console.log('fizzGraph(localNums)', fizzGraph(localNums));
+// const buzzGraph = nums => nodes(graph(...nums)).reduce(joinBuzz, nums);
+
 const dubstring = `~~~js
  const isFizz = n => n % 3 === 0;
 

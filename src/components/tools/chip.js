@@ -1,19 +1,17 @@
 import React from 'react';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
 import Chip from 'material-ui/Chip';
-import grey from 'material-ui/colors/grey';
+import { createStyleSheet, withStyles } from 'material-ui/styles';
+
 import {
   bScale,
   bTypes,
-  fScale,
-  fTypes,
   stackScale,
   stackTypes,
 } from '../landing/skills/content';
 
 const Styled = withStyles(
   createStyleSheet('SkillChip', (theme) => {
-    let sheet = { chip: { margin: theme.spacing.unit }};
+    let sheet = {};
 
     sheet = stackTypes
       .map(t => ({ [t]: { backgroundColor: stackScale(t) }}))
@@ -26,7 +24,7 @@ const Styled = withStyles(
   })
 );
 
-const ToolChip = ({ tool, classes, ...rest }) =>
+const ToolChip = ({ tool, classes }) =>
   <Chip className={classes[tool.stack]} label={tool.name} />;
 
 export default Styled(ToolChip);

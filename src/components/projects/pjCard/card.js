@@ -3,6 +3,7 @@ import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import ExpandLess from 'material-ui-icons/ExpandLess';
+import Grid from 'material-ui/Grid';
 import Language from 'material-ui-icons/Language';
 import { CardActions, CardHeader, CardMedia } from 'material-ui/Card';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
@@ -76,11 +77,8 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
       </CardMedia>
 
       <Collapse in={!open}>
-        <CardActions>
+        <CardActions disableActionSpacing>
           <ChipList tools={getChips(project)} />
-          <IconButton href={project.url} target="_blank">
-            <Language />
-          </IconButton>
         </CardActions>
       </Collapse>
 
