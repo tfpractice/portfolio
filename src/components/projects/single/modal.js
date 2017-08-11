@@ -10,7 +10,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
-import CloseIcon from 'material-ui-icons/Close';
+import Close from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
@@ -72,6 +72,11 @@ const Project = (props) => {
           >
             <DialogContent>
               <Grid container align="center" justify="center">
+                <Grid item xs={11}>
+                  <Button fab onClick={toggle}>
+                    <Close />
+                  </Button>
+                </Grid>
                 <Grid item xs={11}>
                   <PageCard project={project} />
                 </Grid>
