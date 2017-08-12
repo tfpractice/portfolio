@@ -3,9 +3,6 @@
  
  FilmRatr allows users to rate and write reviews for their favorite movies. The relevant part is that there is no 'Movies' table. All of the movies come from theMovieDB API, and the only local 'tables' are Users and Reviews. In terms of normalization, the entire application can be imagined as one big join table between my local data and that of theMovieDB. 
  
- This is where the metaphor somewhat disintegrates, because I decided to work with a mongoDB, which is NoSQL and therefore lacks tables of any sort. But conceptually it hits the exact mark I was going for. 
-
-## server rendering
-When I first discovered react, I was very excited by the notion of server rendering. Rendering the entire app on on page load seemed both difficult and impressive, and the word 'isomorphic' kept being thrown around in the literatute. I didnt have any deep technical for my excitement, but I was determined to pull it off. I did, but I wouldn't do it again.
-
-## the Datase 
+ This is where the metaphor somewhat disintegrates, because I decided to work with a mongoDB, which is NoSQL and therefore lacks tables of any sort. But conceptually it hits the exact mark I was going for.  Using axios and redux, a user can search movie titles and retrieve a list of movie results. Once they find their choice, they fill out a review form that stores the rating and content in a Reviews collection, along with the movie_id.
+ 
+ This project employed express, react-router, and axios to successfully pull -off the difficult task of server rendering. It's an exceptionally complicated process, which gave me a lot of experience, and a deeper understanding of the node-ecosystem.

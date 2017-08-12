@@ -1,8 +1,8 @@
-const tech = [
- 'firebase authentication/'
-  { caption: 'exploits remote services to runs as static site' },
-  { caption: 'provides foolproof updates with zero intermediate state' },
-];
+// const tech = [
+//  'firebase authentication/'
+//   { caption: 'exploits remote services to runs as static site' },
+//   { caption: 'provides foolproof updates with zero intermediate state' },
+// ];
 
 const strategy = {
   caption: 'calculates possible plays',
