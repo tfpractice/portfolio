@@ -30,25 +30,12 @@ export const onlineHandler = (store) => {
 const vis = {
   caption: `integrates react rendering with d3 visualization`,
   content: `### integrates react rendering with d3 visualization
-~~~js
-// React component representing node objects
-const Node = ({ node: { column, row, id, }, fill }) =>(
-  <circle 
-    id={id} 
-    className="nodeCircle"
-    cx={column * 10} cy={row * 10} 
-  />
-);
-
-// d3 selection to manipulate node objects
-export const nodeSelect = nArr =>
-  d3
-    .select('.boardVis')
-    .selectAll('.colGroup')
-    .data(cIDs(nArr))
-    .selectAll('.nodeCircle')
-    .data(byCol(nArr));
-~~~
+  [motion1]: /images/apps/connect-redux/motion1.png
+  [motion2]: /images/apps/connect-redux/motion2.png
+  <div class='images'>
+    ![motion1][motion1]
+    ![motion2][motion2]
+  </div>
 `,
 };
 

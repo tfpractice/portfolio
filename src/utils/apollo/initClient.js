@@ -1,4 +1,5 @@
 import { ApolloClient } from 'react-apollo';
+
 import networkInterface from './interface';
 
 const initClient = (headers, initialState) =>

@@ -1,7 +1,12 @@
 import React from 'react';
+import AppBar from 'material-ui/AppBar';
+import ToolBar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
+import SvgIcon from 'material-ui/SvgIcon';
+import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
+import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { CircularProgress } from 'material-ui/Progress';
 import Dialog, {
@@ -14,31 +19,19 @@ import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
-import { slug as pSlug } from '../../../utils';
+import { RawPath } from '../../visualization';
 import PageCard from './header/pageCard';
 import SkillsAndTools from './skillsAndTools';
 import PJContent from './content';
 
 const Styled = withStyles(
-  createStyleSheet('PJModal', theme => ({
-    paper: {
-      backgroundColor: 'rgba(238,238,238,0.85)',
-
-      // width: 'inherit',
-      //
-      // maxWidth: '99%',
-    },
-  }))
+  createStyleSheet('PJModal', theme => ({ paper: { backgroundColor: 'rgba(238,238,238,0.85)' }}))
 );
 const withModal = compose(
   withState('open', 'turn', false),
   withHandlers({ toggle: ({ turn }) => () => turn(x => !x) })
 );
-const mapState = ({ projects }, { project }) => ({
-  slug: pSlug(project),
-
-  project,
-});
+const mapState = ({ projects }, { project }) => ({ project });
 
 const Project = (props) => {
   const { project, classes, open, toggle, trigger } = props;
@@ -70,13 +63,22 @@ const Project = (props) => {
             transition={<Slide direction="up" />}
           >
             <DialogContent>
-              <Grid container align="center" justify="center">
-                <Grid item xs={11}>
-                  <Button fab onClick={toggle}>
-                    <Close />
+              <AppBar>
+                <ToolBar>
+                  <Button fab color="accent" onClick={toggle}>
+                    <SvgIcon viewBox="-1,-1,2,2">
+                      <RawPath />
+                    </SvgIcon>
                   </Button>
-                </Grid>
-                <Grid item xs={11}>
+                </ToolBar>
+              </AppBar>
+              <Grid
+                container
+                align="center"
+                justify="center"
+                style={{ marginTop: '3rem' }}
+              >
+                <Grid item xs={12}>
                   <PageCard project={project} />
                 </Grid>
 
@@ -94,6 +96,8 @@ const Project = (props) => {
   return view;
 };
 
-export default connect(mapState)(withModal(Styled(Project)));
+export default withModal(Styled(Project));
+
+// export default connect(mapState)(withModal(Styled(Project)));
 
 // export default connect(mapState)(WithSkills(withModal(Styled(Project))));
