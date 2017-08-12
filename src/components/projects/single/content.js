@@ -3,8 +3,8 @@ import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { MarkdownPreview } from 'react-marked-markdown';
 
-import { dStyles, slug } from '../../../utils';
 import { Expand } from '../../misc';
+import { dStyles, slug } from '../../../utils';
 import { getContent } from './pages';
 
 const mapState = (state, { project }) => ({ content: getContent(slug(project)) });

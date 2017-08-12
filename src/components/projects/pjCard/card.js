@@ -3,17 +3,16 @@ import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import ExpandLess from 'material-ui-icons/ExpandLess';
-import Grid from 'material-ui/Grid';
 import Language from 'material-ui-icons/Language';
 import { CardActions, CardHeader, CardMedia } from 'material-ui/Card';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 
 import { Expand, HexCard, SwipeTabs } from '../../misc';
-import { dStyles, lightStyles, pColors, qUtils, slug } from '../../../utils';
-import { ChipList, JustChips } from '../../tools';
+import { dStyles, lightStyles, pColors, qUtils } from '../../../utils';
+import { ChipList } from '../../tools';
 import FeatureList from '../featureList';
-import PJModal from '../single/modal';
+import PJModal from '../single';
 import PJMedia from './media';
 
 const { edgeNodes } = qUtils;

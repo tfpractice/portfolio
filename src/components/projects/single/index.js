@@ -1,2 +1,1 @@
-// export { default } from './main';
-export { default } from './modal';
+export { default } from './main';

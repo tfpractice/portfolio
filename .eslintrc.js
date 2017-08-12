@@ -178,7 +178,7 @@ module.exports = {
     'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 1 }],
     'rest-spread-spacing': ['error', 'never'],
     'sort-imports': [
-      'warn',
+      0,
       {
         ignoreCase: true,
         ignoreMemberSort: false,

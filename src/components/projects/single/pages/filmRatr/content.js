@@ -14,3 +14,9 @@ const serve = {
 };
 
 export const slides = [ sync, routes, serve ];
+const content = {
+  caption: `server rendering`,
+  content: `### server rendering
+
+when I first discovered redux, the notion of serving an entire application from `,
+};
