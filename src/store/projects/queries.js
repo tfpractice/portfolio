@@ -1,4 +1,5 @@
 import gql from 'graphql-tag';
+
 import { PROJECT_INFO } from './fragments';
 
 export const ALL_PROJECTS = gql`
