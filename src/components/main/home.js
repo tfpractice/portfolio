@@ -3,7 +3,6 @@ import Grid from 'material-ui/Grid';
 import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
-import { CircularProgress } from 'material-ui/Progress';
 
 import Landing, { Contact, TabNav } from '../landing';
 import { Projects } from '../../store';
@@ -15,9 +14,6 @@ const Styled = withStyles(
 );
 
 class Home extends Component {
-  // componentWillMount() {
-  //   console.log('componentWillMount his.props', this.props);
-  // }
   componentWillReceiveProps({ setProjects, projectsArray, projectsData }) {
     const newInfo =
       !projectsData.loading &&

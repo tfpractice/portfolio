@@ -1,7 +1,6 @@
 import React from 'react';
 import Text from 'material-ui/Typography';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import List, { ListItem, ListItemText, ListSubheader } from 'material-ui/List';
 
 import ProjectLink from './link';
