@@ -34,8 +34,8 @@ export const getSlides = slug => getProject(slug).slides || [];
 export const getTech = slug =>
   getProject(slug).tech || [
     'written in es6, transpiled with Rollup',
-    'continuous integration with Travis CI',
-    'documentation site deployed on surge',
+    'continuous integration with Jest & Travis CI',
+    'documentation site hosted on surge.sh',
   ];
 
 export const getContent = slug => getProject(slug).content || '';

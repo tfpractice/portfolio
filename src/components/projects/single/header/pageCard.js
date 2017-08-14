@@ -55,11 +55,12 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
               <Grid item xs>
                 <Header {...project} />
               </Grid>
-              <Grid item xs={2}>
-                <IconButton target="_blank" href={project.url}>
-                  <Language />
-                </IconButton>
-              </Grid>
+              {project.url &&
+                <Grid item xs={2}>
+                  <IconButton target="_blank" href={project.url}>
+                    <Language />
+                  </IconButton>
+                </Grid>}
             </Grid>
           }
         >

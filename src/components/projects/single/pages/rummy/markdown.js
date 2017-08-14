@@ -1,5 +1,5 @@
 const rules = {
-  caption: `builds a highly complex rules set onto simple two property objects`,
+  caption: 'builds a highly complex rules set onto simple two property objects',
   content: `### builds a highly complex rules set onto simple two property objects
 ~~~js
 const AH = card('a', 'HEARTS');

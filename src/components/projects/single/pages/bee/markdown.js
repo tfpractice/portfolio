@@ -74,7 +74,7 @@ In order to maitain both immutabiity and uniqueness across a collection of cards
 export const content = full;
 
 const graphs = {
-  caption: 'builds suit- and rank-based relationships via graph theory',
+  caption: 'employs modular arithmetic to build suit and rank relationships',
   content: `### builds suit- and rank-based relationships via graph theory
 ~~~js
 const AH = card('a', 'HEARTS');

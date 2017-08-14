@@ -67,8 +67,7 @@ colComps(threeGrid) Set {
 //      { column: 1, row: 2, id: '<c1_r2>' },
 //      { column: 2, row: 1, id: '<c2_r1>' } },
 //      Set { { column: 2, row: 2, id: '<c2_r2>' } } }
-  ~~~
-  
+  ~~~  
   `,
 };
 

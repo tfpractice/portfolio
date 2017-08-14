@@ -8,6 +8,7 @@ const getBG = bool => ({ headerURL }) =>
   bool ? { backgroundImage: `url(${headerURL})` } : {};
 
 const isDef = ({ headerURL }) => headerURL.endsWith('default.svg');
+
 const Styled = withStyles(
   createStyleSheet('PJMedia', theme => ({
     media: {

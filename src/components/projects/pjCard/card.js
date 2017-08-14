@@ -84,9 +84,10 @@ const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
       <Collapse in={open}>
         <CardActions>
           <PJModal project={project} label="learn more" open={false} />
-          <IconButton href={project.url} target="_blank">
-            <Language />
-          </IconButton>
+          {project.url &&
+            <IconButton href={project.url} target="_blank">
+              <Language />
+            </IconButton>}
 
           <IconButton onClick={toggle}>
             <ExpandLess />
