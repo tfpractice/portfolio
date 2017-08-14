@@ -1,10 +1,75 @@
 const adjacency = {
   caption: 'establishes node-adjacency via polar coordinates',
-  content: `### establishes node-adjacency via polar coordinates`,
+  content: `### establishes node-adjacency via polar coordinates
+  ~~~js
+const c00 = node(0, 0);
+const c00 = node(1, 1);
+const c22 = node(2, 2);
+
+tangent(c00)(c22) 1
+tangent(c00)(c11) 1
+
+angleBetween(c00)(c22) 0.7853981633974483
+angleBetween(c00)(c11) 0.7853981633974483
+
+samePVector(c00)(c22) true
+samePVector(c00)(c11) true
+
+sameNVector(c00)(c22) false
+sameNVector(c00)(c11) false
+
+isNeighbor(c00)(c11) true
+isNeighbor(c00)(c22) false
+
+~~~`,
 };
 const multiple = {
   caption: 'calculates multiple graphs given any set of nodes',
-  content: `### calculates multiple graphs given any set of nodes`,
+  content: `### calculates multiple graphs given any set of nodes
+  ~~~js
+  const threeGrid = grid(3, 3);
+ threeGrid Map {
+      { column: 0, row: 0, id: '<c0_r0>' } => Map {},
+      { column: 0, row: 1, id: '<c0_r1>' } => Map {},
+      { column: 0, row: 2, id: '<c0_r2>' } => Map {},
+      { column: 1, row: 0, id: '<c1_r0>' } => Map {},
+      { column: 1, row: 1, id: '<c1_r1>' } => Map {},
+      { column: 1, row: 2, id: '<c1_r2>' } => Map {},
+      { column: 2, row: 0, id: '<c2_r0>' } => Map {},
+      { column: 2, row: 1, id: '<c2_r1>' } => Map {},
+      { column: 2, row: 2, id: '<c2_r2>' } => Map {} }
+
+colComps(threeGrid) Set {
+    Set {
+    { column: 0, row: 0, id: '<c0_r0>' },
+    { column: 0, row: 1, id: '<c0_r1>' },
+    { column: 0, row: 2, id: '<c0_r2>' } },
+    Set {
+    { column: 1, row: 0, id: '<c1_r0>' },
+    { column: 1, row: 1, id: '<c1_r1>' },
+    { column: 1, row: 2, id: '<c1_r2>' } },
+    Set {
+    { column: 2, row: 0, id: '<c2_r0>' },
+    { column: 2, row: 1, id: '<c2_r1>' },
+    { column: 2, row: 2, id: '<c2_r2>' } } }
+
+
+// negComps(threeGrid) Set {
+//      Set { { column: 0, row: 0, id: '<c0_r0>' } },
+//      Set {
+//      { column: 0, row: 1, id: '<c0_r1>' },
+//      { column: 1, row: 0, id: '<c1_r0>' } },
+//      Set {
+//      { column: 0, row: 2, id: '<c0_r2>' },
+//      { column: 1, row: 1, id: '<c1_r1>' },
+//      { column: 2, row: 0, id: '<c2_r0>' } },
+//      Set {
+//      { column: 1, row: 2, id: '<c1_r2>' },
+//      { column: 2, row: 1, id: '<c2_r1>' } },
+//      Set { { column: 2, row: 2, id: '<c2_r2>' } } }
+  ~~~
+  
+  `,
 };
 
 const extended = {
