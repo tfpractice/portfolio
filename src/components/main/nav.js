@@ -5,7 +5,6 @@ import Text from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Hidden from 'material-ui/Hidden';
 
-import { Link } from 'react-router-dom';
 import Sidebar from './sidebar';
 
 const Nav = ({ match, ...props }) =>
