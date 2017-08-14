@@ -29,19 +29,7 @@ export const ALL_PROJECTS = gql`
       }
     }
   }
-  allFiles {
-     edges {
-       node {
-         id
-         details
-         name
-         blobUrl
-         project{
-           id
-         }
-       }
-     }
-   }
+
  
   }
 }
@@ -50,23 +38,6 @@ ${PROJECT_INFO}`;
 export const ALL_SKILLS = gql`
   query GetSkills($where:SkillWhereArgs, $orderBy:[SkillOrderByArgs]){ 
   viewer {
-    # collection:allProjects(where:$where orderBy:$orderBy){
-    #   edges{
-    #     node{
-    #       ...projectInfo
-    #       
-    #     }
-    #   }
-    # }
- #    allTools { 
- #      edges {
- #        node {
- #          id
- #          name
- #          logo
- #     }
- #   }
- # }
  allSkills {
     edges {
       node {
@@ -74,21 +45,7 @@ export const ALL_SKILLS = gql`
         id
       }
     }
-  }
-  allFiles {
-     edges {
-       node {
-         id
-         details
-         name
-         blobUrl
-         project{
-           id
-         }
-       }
-     }
-   }
- 
+  } 
   }
 }
 ${PROJECT_INFO}`;

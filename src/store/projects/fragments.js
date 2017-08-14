@@ -4,7 +4,6 @@ export const TOOL_INFO = gql`
   fragment toolInfo on Tool {
     id
     name
-    logo
     stack
   }
 `;
@@ -53,14 +52,7 @@ export const PROJECT_INFO = gql`
      }
     }
     }
-    files {
-     edges {
-       node {
-        ...fileInfo
-       }
-     }
-   }
-  }
+}
   ${TOOL_INFO}
   ${SKILL_INFO}
-  ${FILE_INFO}`;
+`;
