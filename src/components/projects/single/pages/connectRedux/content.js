@@ -1,5 +1,5 @@
 const auth = {
-  caption: `integrates redux and firebase authentication with redux store`,
+  caption: `integrates firebase authentication with redux store`,
   content: `### integrates redux and firebase authentication with redux store
 ~~~javascript
 export const onlineHandler = (store) => {
@@ -28,8 +28,8 @@ export const onlineHandler = (store) => {
 `,
 };
 const vis = {
-  caption: `integrates react rendering with d3 visualization`,
-  content: `### integrates react rendering with d3 visualization
+  caption: `integrates react render cycle with d3 visualization`,
+  content: `### integrates react render cycle with d3 visualization
   [motion1]: /images/apps/connect-redux/motion1.png
   [motion2]: /images/apps/connect-redux/motion2.png
   <div class='images'>
