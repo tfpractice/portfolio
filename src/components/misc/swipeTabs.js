@@ -1,29 +1,38 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
-import { withState } from 'recompose';
+import { withState, withHandlers, compose } from 'recompose';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import { createStyleSheet, withStyles } from 'material-ui/styles';
 
 export const withIndex = withState(
   'index',
   'setIndex',
   ({ index = 0 }) => index
 );
+
+const wIndex = compose(
+  withState('index', 'setIndex', ({ index = 0 }) => index),
+  withHandlers({
+    changeSet: ({ setIndex }) => (e, i) => setIndex(i),
+    idxSet: ({ setIndex }) => i => () => setIndex(i),
+    hPush: ({ history }) => hash => () => history.push({ pathname: '/', hash }),
+  })
+);
+
 export const ixHandler = i => prv => i;
 const sStyle = { overflow: 'none' };
 const cStyle = { maxHeight: '20rem', overflow: 'none' };
 
-const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
+const SwipeTabs = ({ children, changeSet, index, iHue = '#f0f', top = true }) =>
   (<Grid container justify="center" align="center">
     {top &&
       <Grid item xs={11}>
         <Tabs
           centered
           index={index}
-          indicatorColor={iHue}
           textColor="#fff"
-          onChange={(e, i) => setIndex(p => i)}
+          indicatorColor={iHue}
+          onChange={changeSet}
         >
           {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
         </Tabs>
@@ -46,11 +55,11 @@ const SwipeTabs = ({ children, iHue = '#f0f', index, top = true, setIndex }) =>
           index={index}
           indicatorColor={iHue}
           textColor="#fff"
-          onChange={(e, i) => setIndex(p => i)}
+          onChange={changeSet}
         >
           {children.map((c, i) => <Tab key={i} label={c.props.tabLabel} />)}
         </Tabs>
       </Grid>}
   </Grid>);
 
-export default withIndex(SwipeTabs);
+export default wIndex(SwipeTabs);

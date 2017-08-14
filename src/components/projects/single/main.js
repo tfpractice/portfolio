@@ -14,7 +14,6 @@ import Dialog, {
   DialogContent,
   DialogTitle,
 } from 'material-ui/Dialog';
-import Close from 'material-ui-icons/Close';
 import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
@@ -25,13 +24,12 @@ import SkillsAndTools from './skillsAndTools';
 import PJContent from './content';
 
 const Styled = withStyles(
-  createStyleSheet('PJModal', theme => ({ paper: { backgroundColor: 'rgba(238,238,238,0.85)' }}))
+  createStyleSheet('PJModal', { paper: { backgroundColor: 'rgba(238,238,238,0.85)' }})
 );
 const withModal = compose(
   withState('open', 'turn', false),
   withHandlers({ toggle: ({ turn }) => () => turn(x => !x) })
 );
-const mapState = ({ projects }, { project }) => ({ project });
 
 const Project = (props) => {
   const { project, classes, open, toggle, trigger } = props;
@@ -96,7 +94,3 @@ const Project = (props) => {
 };
 
 export default withModal(Styled(Project));
-
-// export default connect(mapState)(withModal(Styled(Project)));
-
-// export default connect(mapState)(WithSkills(withModal(Styled(Project))));

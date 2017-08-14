@@ -16,7 +16,7 @@ import PJModal from '../single';
 import PJMedia from './media';
 
 const { edgeNodes } = qUtils;
-const gitLogo = 'https://jarroba.com/wp-content/uploads/2014/01/gitHub.png';
+const gitLogo = '/images/gitHub.png';
 
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
