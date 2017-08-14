@@ -1,6 +1,5 @@
 import './index.css';
 import React from 'react';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import { render } from 'react-dom';
 import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -11,10 +10,9 @@ import { qUtils, styleManager, theme } from './utils';
 import { getStore } from './store';
 import Main from './components';
 
-injectTapEventPlugin();
-
 const { initClient } = qUtils;
 const client = initClient();
+
 const app = (
   <ApolloProvider client={client} store={getStore(client)}>
     <MuiThemeProvider theme={theme} styleManager={styleManager}>
