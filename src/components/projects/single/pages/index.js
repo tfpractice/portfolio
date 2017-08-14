@@ -33,9 +33,9 @@ export const hasSlides = slug => !!getProject(slug).slides;
 export const getSlides = slug => getProject(slug).slides || [];
 export const getTech = slug =>
   getProject(slug).tech || [
-    'built with es6, bundled with Rollup',
-    '90% code-coverage, tested with Jest',
-    'full documentation deployed on surge',
+    'written in es6, transpiled with Rollup',
+    'continuous integration with Travis CI',
+    'documentation site deployed on surge',
   ];
 
 export const getContent = slug => getProject(slug).content || '';

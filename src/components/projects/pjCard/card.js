@@ -29,7 +29,7 @@ const withSwitch = compose(
 
 const isApp = p => p.category === 'APP';
 
-const getChips = p => (isApp(p) ? edgeNodes(p.tools) : edgeNodes(p.skills));
+const getChips = p => edgeNodes(p.skills).concat(edgeNodes(p.tools));
 const getTech = p => (isApp(p) ? edgeNodes(p.tools) : edgeNodes(p.skills));
 
 const Styled = withStyles(

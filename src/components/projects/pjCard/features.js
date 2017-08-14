@@ -17,7 +17,7 @@ const def = {
     'full documentation deployed on surge',
   ],
 };
-const Features = ({ features, details, category } = def) =>
+const Features = ({ features, details, category }) =>
   (<SwipeTabs iHue={pColors[category]}>
     <Features tabLabel="tech" data={features} />
     <Features tabLabel="highlights" data={[ ...details ].map(d => d.caption)} />

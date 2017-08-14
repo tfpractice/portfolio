@@ -81,7 +81,6 @@ const Project = (props) => {
                 <Grid item xs={12}>
                   <PageCard project={project} />
                 </Grid>
-
                 <Grid item xs={11}>
                   <PJContent project={project} />
                 </Grid>

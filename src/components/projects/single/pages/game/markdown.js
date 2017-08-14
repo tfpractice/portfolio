@@ -1,3 +1,18 @@
+const adjacency = {
+  caption: 'establishes node-adjacency via polar coordinates',
+  content: `### establishes node-adjacency via polar coordinates`,
+};
+const multiple = {
+  caption: 'calculates multiple graphs given any set of nodes',
+  content: `### calculates multiple graphs given any set of nodes`,
+};
+
+const extended = {
+  caption: 'encourages extension via a minimal API',
+  content: `### encourages extension via a minimal API`,
+};
+
+export const slides = [ adjacency, multiple, extended ];
 export const markdown = `## Game Grid  
 
 This project applies a simple 2D matrix of rows and columns onto takes the work I've done in [Graph theory](/graph-curry). Having gone through a cadre of extensibility failures in my previous graph algorithms, (links to git repos), building this was actually lots of fun. Whereas in a more free-wheeling graph structure, the developer takes active role in assigning relationships between nodes, columns and rows have an inherent that's visible to the naked eye. Telling a computer to see that, however, proved more difficult.
