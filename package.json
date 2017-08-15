@@ -65,7 +65,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "yarn build && surge build tfp-portfolio.surge.sh",
+    "deploy": "yarn build && surge build tfpractice.surge.sh",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "analyze": "source-map-explorer build/static/js/main.*"
