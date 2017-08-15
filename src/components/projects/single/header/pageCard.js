@@ -3,8 +3,8 @@ import Grid from 'material-ui/Grid';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import Language from 'material-ui-icons/Language';
+import withWidth, { isWidthUp, isWidthDown } from 'material-ui/utils/withWidth';
 import { CardActions, CardMedia } from 'material-ui/Card';
-import { ListItem } from 'material-ui/List';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';
 
@@ -38,47 +38,47 @@ const Styled = withStyles(
   }))
 );
 
-const PageCard = ({ project, show, classes, toggle, open }) =>
-  (<PJCard raised headerURL={project.headerURL}>
-    <Grid container align="center" justify="center" className={classes.box}>
-      <Grid item xs={12}>
-        <Expand
-          dStyle={dStyles[project.category]}
-          color="default"
-          header={
-            <Grid
-              onClick={toggle}
-              container
-              justify="space-between"
-              align="center"
-            >
-              <Grid item xs>
-                <Header {...project} />
+const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
+  console.log('PageCard props', props);
+  console.log("isWidthUp('sm', props.width)", isWidthUp('sm', props.width));
+  return (
+    <PJCard raised headerURL={project.headerURL}>
+      <Grid container align="center" justify="center" className={classes.box}>
+        <Grid item xs={12}>
+          <Expand
+            dStyle={dStyles[project.category]}
+            color="default"
+            header={
+              <Grid container justify="space-between" align="center">
+                <Grid item xs>
+                  <Header {...project} />
+                </Grid>
+                {project.url &&
+                  <Grid item xs={2}>
+                    <IconButton target="_blank" href={project.url}>
+                      <Language />
+                    </IconButton>
+                  </Grid>}
               </Grid>
-              {project.url &&
-                <Grid item xs={2}>
-                  <IconButton target="_blank" href={project.url}>
-                    <Language />
-                  </IconButton>
-                </Grid>}
+            }
+          >
+            <CardMedia className={!open ? classes[project.category] : ''}>
+              <Collapse in={!open}>
+                <PageMedia project={project} {...project} />
+              </Collapse>
+            </CardMedia>
+          </Expand>
+          <CardActions>
+            <Grid container align="center" justify="center">
+              <Grid item xs={10}>
+                <ChipList tools={getChips(project)} />
+              </Grid>
             </Grid>
-          }
-        >
-          <CardMedia className={!open ? classes[project.category] : ''}>
-            <Collapse in={!open}>
-              <PageMedia project={project} {...project} />
-            </Collapse>
-          </CardMedia>
-        </Expand>
-        <CardActions>
-          <Grid container align="center" justify="center">
-            <Grid item xs={10}>
-              <ChipList tools={getChips(project)} />
-            </Grid>
-          </Grid>
-        </CardActions>
+          </CardActions>
+        </Grid>
       </Grid>
-    </Grid>
-  </PJCard>);
+    </PJCard>
+  );
+};
 
-export default withSwitch(Styled(PageCard));
+export default withSwitch(Styled(withWidth()(PageCard)));

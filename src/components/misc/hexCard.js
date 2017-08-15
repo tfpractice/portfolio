@@ -3,7 +3,7 @@ import Card from 'material-ui/Card';
 import Grid from 'material-ui/Grid';
 import Divider from 'material-ui/Divider';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import withWidth from 'material-ui/utils/withWidth';
+import withWidth, { isWidthUp, isWidthDown } from 'material-ui/utils/withWidth';
 
 const hexPath = `
   <svg>    
@@ -16,6 +16,7 @@ const rRatios = [[ 0, 0 ], [ 7 / 9, 0 ], [ 1, 1 ], [ 0, 1 ], [ 0, 0 ]];
 const dRatios = [[ 7 / 9, 0 ], [ 1, 1 ], [ 2 / 9, 1 ], [ 0, 0 ]];
 const makePath = pts =>
   pts.map(r => r.map(v => `${Math.floor(v * 100)}%`).join(' ')).join(',');
+
 const baseStyles = {
   backgroundPosition: 'center',
   backgroundSize: 'contain',
@@ -67,34 +68,17 @@ export const pjStyle = url => ({
 });
 export const getBG = url => ({ backgroundImage: `url(${url})` });
 
-const Styled = withStyles(
-  createStyleSheet('PJCard', theme => ({
-    card: {
-      [theme.breakpoints.up('md')]: { ...right },
-      [theme.breakpoints.down('md')]: {
-        backgroundPosition: 'center',
-
-        // backgroundImage: `url(${url})`,
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundColor: 'rgba(64,64,64,0.2)',
-      },
-    },
-  }))
-);
-
 export const HexCard = props => <Card {...props} style={cardStyle} />;
 export const LeftHex = props => <Card {...props} style={left} />;
 
 export const RightHex = props => <Card {...props} style={right} />;
 
 export const DoubleHex = props => <Card {...props} style={double} />;
-const PJCardBase = ({ headerURL, open, classes, ...props }) => {
-  console.log('props', props);
-  return open
-    ? <RightHex {...props} />
-    : <Card {...props} className={classes.card} style={getBG(headerURL)} />;
-};
+const PJCardBase = ({ headerURL, width, ...props }) =>
+  (<Card
+    {...props}
+    style={isWidthUp('sm', width, false) ? pjStyle(headerURL) : cardStyle}
+  />);
 
-export const PJCard = Styled(withWidth()(PJCardBase));
+export const PJCard = withWidth()(PJCardBase);
 export default RightHex;

@@ -4,7 +4,6 @@ import ToolBar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
 import SvgIcon from 'material-ui/SvgIcon';
 import Button from 'material-ui/Button';
-import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { CircularProgress } from 'material-ui/Progress';
 import Dialog, { DialogContent, DialogTitle } from 'material-ui/Dialog';
@@ -14,10 +13,8 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 
 import { RawPath } from '../../visualization';
 import PageCard from './header/pageCard';
-
 import PJSections from './sections';
 
-console.log('createStyleSheet', createStyleSheet);
 const Styled = withStyles(
   createStyleSheet('PJModal', { paper: { backgroundColor: 'rgba(238,238,238,0.85)' }})
 );
