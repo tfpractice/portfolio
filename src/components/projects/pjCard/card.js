@@ -36,11 +36,10 @@ const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
     ...lightStyles,
     SCRIPT: { backgroundColor: '#00796b' },
-    actions: { overflowX: 'auto', overflowY: 'hidden' },
   }))
 );
 
-const ProjectCard = ({ project, show, classes, toggle, open, ...props }) =>
+const ProjectCard = ({ project, show, classes, toggle, open }) =>
   (<HexCard raised>
     <Expand
       dStyle={dStyles[project.category]}

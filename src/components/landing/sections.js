@@ -3,7 +3,7 @@ import SvgIcon from 'material-ui/SvgIcon';
 import { Link, NavLink } from 'react-router-dom';
 import { RawPath } from '../visualization';
 
-export const style = { overflowX: 'hidden' };
+export const style = { color: '#fff', textDecoration: 'none' };
 
 export const sections = [
   '#frontMatter',
@@ -29,7 +29,7 @@ export const getIndex = (key = '#frontMatter') =>
 
 export const getLabel = (key = '#frontMatter') =>
   lMap.has(key)
-    ? <NavLink to={`/${key}`} style={{ color: '#fff', textDecoration: 'none' }}>
+    ? <NavLink to={`/${key}`} style={style}>
       {lMap.get(key)}
     </NavLink>
     : '';

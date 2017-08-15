@@ -45,10 +45,10 @@ const PJMedia = ({ pic, project, classes, showText, showPic }) =>
     onMouseLeave={showPic}
     className={isDef(project) ? classes.def : classes.media}
     style={getBG(pic)(project)}
-   >
+  >
     <Grid item xs={12}>
       {!pic &&
-        <Text type="subheading" align="center">
+        <Text type="headline" align="center">
           {project.description}
         </Text>}
     </Grid>
