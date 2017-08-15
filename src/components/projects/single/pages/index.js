@@ -39,3 +39,4 @@ export const getTech = slug =>
   ];
 
 export const getContent = slug => getProject(slug).content || '';
+export const getSections = slug => getProject(slug).sections || [];

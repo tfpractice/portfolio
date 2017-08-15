@@ -24,5 +24,19 @@ const PJContent = ({ content, project }) =>
       <MarkdownPreview value={content} />
     </Text>
   </Expand>;
-
+  
+// const PJSections = ({ sections, project }) =>
+//   (<Expand
+//     dStyle={dStyles[project.category]}
+//     open
+//     header={
+//       <Text color="inherit" type="title">
+//       A Closer Look      </Text>
+//     }
+//    >
+//     <Grid <Text component="div" color="inherit" type="body1">
+//       <MarkdownPreview value={content} />
+//     </Text>
+//       </Expand>);
+//       
 export default connect(mapState)(PJContent);
