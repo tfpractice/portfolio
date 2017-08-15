@@ -3,26 +3,21 @@ import AppBar from 'material-ui/AppBar';
 import ToolBar from 'material-ui/Toolbar';
 import Grid from 'material-ui/Grid';
 import SvgIcon from 'material-ui/SvgIcon';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
 import Button from 'material-ui/Button';
 import Text from 'material-ui/Typography';
 import { connect } from 'react-redux';
 import { CircularProgress } from 'material-ui/Progress';
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-} from 'material-ui/Dialog';
+import Dialog, { DialogContent, DialogTitle } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
 import { compose, withHandlers, withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
 import { RawPath } from '../../visualization';
 import PageCard from './header/pageCard';
-import SkillsAndTools from './skillsAndTools';
-import PJContent from './content';
 
+import PJSections from './sections';
+
+console.log('createStyleSheet', createStyleSheet);
 const Styled = withStyles(
   createStyleSheet('PJModal', { paper: { backgroundColor: 'rgba(238,238,238,0.85)' }})
 );
@@ -80,7 +75,7 @@ const Project = (props) => {
                   <PageCard project={project} />
                 </Grid>
                 <Grid item xs={11}>
-                  <PJContent project={project} />
+                  <PJSections project={project} />
                 </Grid>
               </Grid>
             </DialogContent>
