@@ -3,9 +3,9 @@ import Text from 'material-ui/Typography';
 import Avatar from 'material-ui/Avatar';
 import { CardHeader } from 'material-ui/Card';
 
-const gitSrc = '/images/github.png';
+const gitSrc = '/images/gitHub.png';
 
-const Header = ({ project, repo, url, title }) =>
+const Header = ({ repo, title }) =>
   (<CardHeader
     title={title}
     avatar={

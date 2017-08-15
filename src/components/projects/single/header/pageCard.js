@@ -16,10 +16,6 @@ import PageMedia from './media';
 
 const { edgeNodes } = qUtils;
 
-const gitSrc = '/images/github.png';
-const covSource = `https://coveralls.io/repos/github/tfpractice/fenugreek-collections/badge.svg?branch=master`;
-const buildSrc = `https://travis-ci.org/tfpractice/fenugreek-collections.svg?branch=master`;
-
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
   withHandlers({
@@ -29,8 +25,7 @@ const withSwitch = compose(
   })
 );
 
-const getChips = p =>
-  p.category === 'APP' ? edgeNodes(p.tools) : edgeNodes(p.skills);
+const getChips = p => edgeNodes(p.tools).concat(edgeNodes(p.skills));
 
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
@@ -51,7 +46,12 @@ const PageCard = ({ project, show, classes, toggle, open }) =>
           dStyle={dStyles[project.category]}
           color="default"
           header={
-            <Grid container justify="space-between" align="center">
+            <Grid
+              onClick={toggle}
+              container
+              justify="space-between"
+              align="center"
+            >
               <Grid item xs>
                 <Header {...project} />
               </Grid>

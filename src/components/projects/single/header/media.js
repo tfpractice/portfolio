@@ -28,7 +28,7 @@ const PJMedia = ({ headerURL, classes, project, features }) =>
     justify="space-around"
     spacing={24}
     className={classes.padded}
-  >
+   >
     <Grid item md hidden={{ mdDown: true }}>
       <Expand dStyle={dStyle} header={<Text type="title">Tech</Text>}>
         <FeatureList tabLabel="tech" data={features} />
