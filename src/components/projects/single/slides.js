@@ -10,7 +10,7 @@ import { getSlides, hasSlides } from './pages';
 
 const mergeMarkdown = sArr => (slide, i) => ({ ...sArr[i], ...slide });
 
-const mapState = (state, { project }) => ({ slides: hasSlides(slug(project)) && getSlides(slug(project)) });
+const mapState = (state, { project }) => ({ slides: getSlides(slug(project)) });
 
 const JustSlides = ({ project, slides }) =>
   slides &&

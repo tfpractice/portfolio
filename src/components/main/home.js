@@ -11,7 +11,7 @@ import { BackDrop } from '../visualization';
 const { containers: { WithAll }, actions } = Projects;
 
 const Styled = withStyles(
-  createStyleSheet('Home', { main: { marginTop: '5rem' }})
+  createStyleSheet('Home', { main: { marginTop: '5rem', paddingRight: '0px' }})
 );
 
 class Home extends Component {
@@ -28,7 +28,9 @@ class Home extends Component {
 
     return (
       <Grid container justify="center" align="center" className={classes.main}>
-        <TabNav />
+        <Grid item xs={12}>
+          <TabNav />
+        </Grid>
         <Grid item xs={12} className="homeDiv">
           <Route component={Landing} />
         </Grid>
