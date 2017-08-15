@@ -21,7 +21,7 @@ const withIndex = compose(
   })
 );
 
-const PureLanding = ({ index, changeSet, location }) => {
+const PureLanding = ({ changeSet, location }) => {
   const { hash } = location;
 
   return (
