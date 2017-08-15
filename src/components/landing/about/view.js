@@ -25,7 +25,7 @@ const About = () =>
               <img style={imgStyle} src="/images/me.jpg" alt="tfp-profile" />
             </Grid>
             <Grid item xs={11} sm={9}>
-              <Text color="secondary" type="title">
+              <Text color="secondary" type="subheading">
                 <MarkdownPreview value={content} />
               </Text>
             </Grid>

@@ -13,7 +13,7 @@ export const isIterable = o => !!o[Symbol.iterator];
 // returns the object or an Iterable<a> containging the object
 export const iterify = o => isIterable(o) ? o : [ o, ];
 ~~~`,
-}
+};
 
 const operator = {
   caption: `###interoperability`,
@@ -78,7 +78,7 @@ export const append = coll => val => [ ...iterify(coll), val, ];
 // concatenates an iterable and an object
 export const appendBin = (c, v) => append(c)(v);
 ~~~`,
-}
+};
 
 const sets = {
   caption: `### improving sets`,
@@ -99,5 +99,6 @@ export const diff = c0 => c1 => spread(c0).filter(xhasK(c1));
 export const union = c0 => c1 => spread(c0).concat(diff(c1)(c0));
 ~~~
 `,
-}
-;
+};
+
+export const sections = [ coercion, operator, rewrite, sets ];
