@@ -7,31 +7,18 @@ body {
 
 .hljs {
   padding: 1rem;
-  /*max-width: 90%;*/
-  /*margin-right: 2rem;*/
   text-align: justify;
   background: rgba(40, 44, 52, 0.8);
 }
 .slide {
-  /*margin: 1rem;*/
 }
 .slideText {
-  /*margin: 2rem;*/
 }
 .gridSlide {
-  /*padding: 2rem;*/
 }
-.pjSlide img {
+.slideText img {
   max-width: 90%;
 }
 
 .slide .images {
-  /*object-fit: contain;
-  flex-grow: 1;
-  max-width: 90%;
-  flex-basis: 0;*/
-  /*align-items: center;*/
-  /*flex: 0 0 auto;*/
-  /*margin: 1rem;*/
-  box-sizing: border-box;
 }

@@ -9,12 +9,10 @@ import Slide from './slide';
 import { getSlides, hasSlides } from './pages';
 
 const mergeMarkdown = sArr => (slide, i) => ({ ...sArr[i], ...slide });
-const mapState = (state, { project }) => ({
-  slides: hasSlides(slug(project)) && getSlides(slug(project)),
-  dslides: project.details.map(mergeMarkdown(getSlides(slug(project)))),
-});
 
-const JustSlides = ({ project, slides, dslides }) =>
+const mapState = (state, { project }) => ({ slides: hasSlides(slug(project)) && getSlides(slug(project)) });
+
+const JustSlides = ({ project, slides }) =>
   slides &&
   <SwipeTabs iHue={pColors[project.category]}>
     {slides.map((h, i) => <Slide tabLabel="." key={i} slide={h} />)}
@@ -22,7 +20,7 @@ const JustSlides = ({ project, slides, dslides }) =>
 
 const Slides = ({ data, project, slides, ...props }) =>
   slides &&
-  <Grid container justify="center" align="center">
+  <Grid container justify="center" align="center" spacing={0}>
     <Grid item xs>
       <Expand
         dStyle={dStyles[project.category]}

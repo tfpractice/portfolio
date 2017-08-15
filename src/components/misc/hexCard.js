@@ -64,7 +64,6 @@ export const pjStyle = url => ({
   backgroundImage: `url(${url})`,
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
-  backgroundColor: 'rgba(64,64,64,0.2)',
 });
 export const getBG = url => ({ backgroundImage: `url(${url})` });
 

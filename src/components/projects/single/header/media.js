@@ -8,16 +8,7 @@ import FeatureList from '../../featureList';
 import { SwipeSlides } from '../slides';
 
 const Styled = withStyles(
-  createStyleSheet('PJMedia', theme => ({
-    grid: {
-      backgroundSize: 'cover',
-      backgroundRepeat: 'no-repeat',
-      backgroundPosition: 'center',
-    },
-    padded: { padding: '1rem' },
-    pic: { maxWidth: '80%' },
-    slides: { overflow: 'none', maxHeight: '25rem' },
-  }))
+  createStyleSheet('PJMedia', theme => ({ padded: { padding: '0.5rem' }}))
 );
 const dStyle = { backgroundColor: '#fff' };
 
@@ -26,15 +17,17 @@ const PJMedia = ({ headerURL, classes, project, features }) =>
     container
     align="center"
     justify="space-around"
-    spacing={24}
     className={classes.padded}
    >
-    <Grid item md hidden={{ mdDown: true }}>
-      <Expand dStyle={dStyle} header={<Text type="title">Tech</Text>}>
+    <Grid item md hidden={{ smDown: true }}>
+      <Expand
+        dStyle={dStyle}
+        header={<Text type="subheading">Tech Details</Text>}
+      >
         <FeatureList tabLabel="tech" data={features} />
       </Expand>
     </Grid>
-    <Grid item xs={12} sm={11} md={9} className={classes.slides}>
+    <Grid item xs={12} sm={11} md={9}>
       <SwipeSlides project={project} />
     </Grid>
   </Grid>);

@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from 'material-ui/Grid';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
+import { connect } from 'react-redux';
 import Language from 'material-ui-icons/Language';
 import withWidth, { isWidthUp, isWidthDown } from 'material-ui/utils/withWidth';
 import { CardActions, CardMedia } from 'material-ui/Card';
@@ -15,6 +16,7 @@ import Header from './cardHead';
 import PageMedia from './media';
 
 const { edgeNodes } = qUtils;
+const mapState = (state, { width }) => ({ big: isWidthUp('sm', width, false) });
 
 const withSwitch = compose(
   withState('open', 'flip', ({ open }) => !!open),
@@ -30,7 +32,8 @@ const getChips = p => edgeNodes(p.tools).concat(edgeNodes(p.skills));
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
     ...lightStyles,
-    box: {
+    box: {},
+    big: {
       backgroundColor: 'rgba(66,66,66,0.8)',
       '&:hover': { backgroundColor: 'rgba(66,66,66,1)' },
     },
@@ -38,13 +41,13 @@ const Styled = withStyles(
   }))
 );
 
-const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
+const PageCard = ({ project, show, classes, big, toggle, ...props }) => {
   console.log('PageCard props', props);
-  console.log("isWidthUp('sm', props.width)", isWidthUp('sm', props.width));
+
   return (
     <PJCard raised headerURL={project.headerURL}>
-      <Grid container align="center" justify="center" className={classes.box}>
-        <Grid item xs={12}>
+      <Grid container justify="center">
+        <Grid item xs={12} className={big ? classes.big : ''}>
           <Expand
             dStyle={dStyles[project.category]}
             color="default"
@@ -62,15 +65,13 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
               </Grid>
             }
           >
-            <CardMedia className={!open ? classes[project.category] : ''}>
-              <Collapse in={!open}>
-                <PageMedia project={project} {...project} />
-              </Collapse>
+            <CardMedia className={classes[project.category]}>
+              <PageMedia project={project} {...project} />
             </CardMedia>
           </Expand>
           <CardActions>
             <Grid container align="center" justify="center">
-              <Grid item xs={10}>
+              <Grid item xs={11} md={10}>
                 <ChipList tools={getChips(project)} />
               </Grid>
             </Grid>
@@ -81,4 +82,4 @@ const PageCard = ({ project, show, classes, toggle, open, ...props }) => {
   );
 };
 
-export default withSwitch(Styled(withWidth()(PageCard)));
+export default withSwitch(Styled(withWidth()(connect(mapState)(PageCard))));
