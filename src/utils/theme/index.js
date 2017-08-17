@@ -9,14 +9,28 @@ import { createStyleManager } from 'jss-theme-reactor/styleManager';
 
 import { syntaxStyles } from './syntax';
 
+const toHex = (num) => {
+  console.log('num, num.toString(16)', num, num.toString(16));
+  return num.toString(16);
+};
+const toDec = (hex) => {
+  console.log('parseInt(hex, 16)', parseInt(hex, 16) << 4);
+  return parseInt(hex, 16) << 4;
+};
 const palette = createPalette({
   primary: grey,
   accent: pink,
   type: 'dark',
-  fuchsia: '#f0f',
+  magent: '#f0f',
 });
 
-const theme = createMuiTheme({ palette });
+const theme = createMuiTheme({
+  palette,
+  magenta: '#f0f',
+  cyan: '#0ff',
+  toHex,
+  toDec,
+});
 const styleManager = createStyleManager({
   theme,
   jss: create(jssPreset(), jssGlobal()),

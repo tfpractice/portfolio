@@ -9,17 +9,20 @@ import { Expand } from '../../misc';
 import SkillSet from './skillSet';
 
 const Styled = withStyles(
-  createStyleSheet('SkillCard', theme => ({
-    Grid: {
-      backgroundColor: 'rgba(66,66,66,0.85)',
-      backgroundImage: 'url(/images/hex05.svg)',
-      backgroundPosition: 'left',
-      backgroundSize: '200% 200%',
-      backgroundRepeat: 'no-repeat',
-      paddingBottom: '5%',
-    },
-    Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none' },
-  }))
+  createStyleSheet('SkillCard', (theme) => {
+    console.log('theme', theme, theme.toDec(theme.magenta[1]));
+    return {
+      Grid: {
+        backgroundColor: 'rgba(66,66,66,0.85)',
+        backgroundImage: 'url(/images/hex05.svg)',
+        backgroundPosition: 'left',
+        backgroundSize: '200% 200%',
+        backgroundRepeat: 'no-repeat',
+        paddingBottom: '5%',
+      },
+      Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none' },
+    };
+  })
 );
 
 const SkillCard = ({ skill, classes }) =>
