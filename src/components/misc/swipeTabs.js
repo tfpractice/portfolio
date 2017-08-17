@@ -1,18 +1,21 @@
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
-import { withState, withHandlers, compose } from 'recompose';
+import withWidth from 'material-ui/utils/withWidth';
 import Tabs, { Tab } from 'material-ui/Tabs';
-import withWidth, { isWidthUp, isWidthDown } from 'material-ui/utils/withWidth';
+import { withState, withHandlers, compose } from 'recompose';
 
 const cStyle = { maxHeight: '15rem' };
+const sStyle = {
+  overflow: 'auto',
+  WebkitOverflowScrolling: 'touch',
+};
 
 const wIndex = compose(
   withState('index', 'setIndex', ({ index = 0 }) => index),
   withHandlers({
     changeSet: ({ setIndex }) => (e, i) => setIndex(i),
     idxSet: ({ setIndex }) => i => () => setIndex(i),
-    hPush: ({ history }) => hash => () => history.push({ pathname: '/', hash }),
   })
 );
 
@@ -36,9 +39,8 @@ const SwipeTabs = ({ children, changeSet, width, index, iHue = '#f0f' }) =>
         index={index}
         containerStyle={cStyle}
         enableMouseEvents
+        slideStyle={sStyle}
         ignoreNativeScroll
-        
-        // ={isWidthUp('sm', width, false)}
       >
         {children}
       </SwipeableViews>

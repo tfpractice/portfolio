@@ -56,14 +56,11 @@ const Project = (props) => {
             <DialogContent>
               <AppBar>
                 <ToolBar>
-                  <DialogTitle>
-                    <Button fab color="accent" onClick={toggle}>
-                      <SvgIcon viewBox="-1,-1,2,2">
-                        <RawPath />
-                      </SvgIcon>
-                    </Button>
-                  </DialogTitle>
-                  Back to Main
+                  <Button fab color="accent" onClick={toggle}>
+                    <SvgIcon viewBox="-1,-1,2,2">
+                      <RawPath />
+                    </SvgIcon>
+                  </Button>
                 </ToolBar>
               </AppBar>
               <Grid
