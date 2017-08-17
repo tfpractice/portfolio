@@ -19,12 +19,10 @@ const wIndex = compose(
   })
 );
 
-const SwipeTabs = ({ children, changeSet, width, index, iHue = '#f0f' }) =>
+const SwipeTabs = ({ children, changeSet, index, iHue = '#f0f' }) =>
   (<Grid container justify="center" spacing={0}>
     <Grid item xs={11}>
       <Tabs
-        centered
-        fullWidth
         index={index}
         textColor="#fff"
         indicatorColor={iHue}
@@ -38,8 +36,8 @@ const SwipeTabs = ({ children, changeSet, width, index, iHue = '#f0f' }) =>
         disabled
         index={index}
         containerStyle={cStyle}
-        enableMouseEvents
         slideStyle={sStyle}
+        enableMouseEvents
         ignoreNativeScroll
       >
         {children}

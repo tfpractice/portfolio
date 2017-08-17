@@ -8,7 +8,7 @@ const mOpts = {
 };
 
 const Slide = ({ slide, project, ...props }) =>
-  (<Text className="slideText" type="subheading" align="center">
+  (<Text className="slideText" type="body1" align="center">
     <MarkdownPreview value={slide.content} markedOptions={mOpts} />
   </Text>);
 

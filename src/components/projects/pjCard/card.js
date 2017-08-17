@@ -2,6 +2,8 @@ import React from 'react';
 import Avatar from 'material-ui/Avatar';
 import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
+import Tabs from 'material-ui/Tabs';
+import Grid from 'material-ui/Grid';
 import ExpandLess from 'material-ui-icons/ExpandLess';
 import Language from 'material-ui-icons/Language';
 import { CardActions, CardHeader, CardMedia } from 'material-ui/Card';
@@ -10,7 +12,7 @@ import { compose, withHandlers, withState } from 'recompose';
 
 import { Expand, HexCard, SwipeTabs } from '../../misc';
 import { dStyles, lightStyles, pColors, qUtils } from '../../../utils';
-import { ChipList } from '../../tools';
+import { ChipActions } from '../../tools';
 import FeatureList from '../featureList';
 import PJModal from '../single';
 import PJMedia from './media';
@@ -35,6 +37,11 @@ const getTech = p => (isApp(p) ? edgeNodes(p.tools) : edgeNodes(p.skills));
 const Styled = withStyles(
   createStyleSheet('ProjectCard', theme => ({
     ...lightStyles,
+    scrollButton: {
+      flex: '0 0 0.25rem',
+      color: '#fff',
+      background: 'none',
+    },
     SCRIPT: { backgroundColor: '#00796b' },
   }))
 );
@@ -75,9 +82,17 @@ const ProjectCard = ({ project, show, classes, toggle, open }) =>
       </CardMedia>
 
       <Collapse in={!open}>
-        <CardActions disableActionSpacing>
-          <ChipList tools={getChips(project)} />
-        </CardActions>
+        <Tabs
+          centered
+          fullWidth
+          scrollable
+          scrollButtons="on"
+          index={false}
+          buttonClassName={classes.scrollButton}
+          onChange={e => false}
+        >
+          <ChipActions tools={getChips(project)} />
+        </Tabs>
       </Collapse>
 
       <Collapse in={open}>

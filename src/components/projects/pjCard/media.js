@@ -48,7 +48,7 @@ const PJMedia = ({ pic, project, classes, showText, showPic }) =>
   >
     <Grid item xs={12}>
       {!pic &&
-        <Text type="headline" align="center">
+        <Text type="subheading" align="center">
           {project.description}
         </Text>}
     </Grid>

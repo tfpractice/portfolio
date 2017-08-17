@@ -1,6 +1,8 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
+import Tabs, { Tab } from 'material-ui/Tabs';
+import { CardActions } from 'material-ui/Card';
 
 import { tSort } from '../landing/skills/content';
 import ToolChip from './chip';
@@ -9,6 +11,7 @@ const Styled = withStyles(
   createStyleSheet('SkillChip', theme => ({
     list: {
       overflowX: 'auto',
+      WebkitOverflowScrolling: 'touch',
       overflowY: 'none',
     },
   }))
@@ -32,5 +35,16 @@ const Chips = ({ tools, classes }) =>
     )}
   </Grid>);
 
+const StyledChips = Styled(ChipList);
+
+const CTabs = ({ tools, classes }) =>
+  (<CardActions>
+    <StyledChips tools={tools} />
+  </CardActions>);
+
 export const JustChips = Styled(Chips);
+export const ChipActions = Styled(CTabs);
 export default Styled(ChipList);
+
+// export const JustChips = Styled(Chips);
+// export default Styled(CTabs);

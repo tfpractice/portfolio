@@ -1,10 +1,9 @@
 import React from 'react';
 import Grid from 'material-ui/Grid';
-import Collapse from 'material-ui/transitions/Collapse';
 import IconButton from 'material-ui/IconButton';
 import { connect } from 'react-redux';
 import Language from 'material-ui-icons/Language';
-import withWidth, { isWidthUp, isWidthDown } from 'material-ui/utils/withWidth';
+import withWidth, { isWidthUp } from 'material-ui/utils/withWidth';
 import { CardActions, CardMedia } from 'material-ui/Card';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 import { compose, withHandlers, withState } from 'recompose';

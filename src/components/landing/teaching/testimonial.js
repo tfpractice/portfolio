@@ -57,7 +57,7 @@ const Testimonial = ({ student, open, classes, toggle, show }) =>
     <CardContent onClick={toggle} className={classes.content}>
       <Divider className={classes.div} />
       <Collapse in={!open}>
-        <Text type="headline" align="center">
+        <Text type="subheading" align="center">
           "{student.caption}..."
         </Text>
       </Collapse>

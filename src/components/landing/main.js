@@ -2,6 +2,7 @@ import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Grid from 'material-ui/Grid';
 import { compose, withHandlers, withState } from 'recompose';
+import withWidth, { isWidthDown } from 'material-ui/utils/withWidth';
 
 import About from './about';
 import FrontMatter from './frontMatter';
@@ -21,13 +22,14 @@ const withIndex = compose(
   })
 );
 
-const PureLanding = ({ changeSet, location }) => {
+const PureLanding = ({ changeSet, width, location }) => {
   const { hash } = location;
 
   return (
     <Grid container align="center" justify="center">
       <Grid item xs={12}>
         <SwipeableViews
+          animateHeight={isWidthDown('sm', width, false)}
           enableMouseEvents
           slideStyle={style}
           onChangeIndex={changeSet}
@@ -44,4 +46,4 @@ const PureLanding = ({ changeSet, location }) => {
   );
 };
 
-export default withIndex(PureLanding);
+export default withIndex(withWidth()(PureLanding));
