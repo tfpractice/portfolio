@@ -31,57 +31,64 @@ const bTech = [
   'rspec',
   'jasmine',
 ];
+const DESIGN = 'Design';
+const MARKUP = 'Markup';
+const JS = 'Javascript';
+const DATA = 'Databases';
+const TDD = 'Test Driven Development';
+const LANG = 'Languages';
+const FRAMEWORK = 'Frameworks';
 
 const design = [
-  { name: 'css3', type: 'DESIGN' },
-  { name: 'sass', type: 'DESIGN' },
-  { name: 'susy', type: 'DESIGN' },
-  { name: 'bootstrap', type: 'DESIGN' },
-  { name: 'material design', type: 'DESIGN' },
+  { name: 'css3', type: DESIGN },
+  { name: 'sass', type: DESIGN },
+  { name: 'susy', type: DESIGN },
+  { name: 'bootstrap', type: DESIGN },
+  { name: 'material design', type: DESIGN },
 ];
 
 const markup = [
-  { name: 'svg', type: 'MARKUP' },
-  { name: 'handlebars', type: 'MARKUP' },
-  { name: 'erb', type: 'MARKUP' },
-  { name: 'markdown', type: 'MARKUP' },
-  { name: 'babel', type: 'MARKUP' },
+  { name: 'svg', type: MARKUP },
+  { name: 'handlebars', type: MARKUP },
+  { name: 'erb', type: MARKUP },
+  { name: 'markdown', type: MARKUP },
+  { name: 'babel', type: MARKUP },
 ];
 
 const inter = [
-  { name: 'd3js', type: 'JS' },
-  { name: 'jquery', type: 'JS' },
-  { name: 'react', type: 'JS' },
-  { name: 'react-router', type: 'JS' },
-  { name: 'redux', type: 'JS' },
+  { name: 'd3js', type: JS },
+  { name: 'jquery', type: JS },
+  { name: 'react', type: JS },
+  { name: 'react-router', type: JS },
+  { name: 'redux', type: JS },
 ];
 
 const dbs = [
-  { name: 'mongoDB', type: 'DATA' },
-  { name: 'graphQL', type: 'DATA' },
-  { name: 'mySQL', type: 'DATA' },
-  { name: 'firebase', type: 'DATA' },
+  { name: 'mongoDB', type: DATA },
+  { name: 'graphQL', type: DATA },
+  { name: 'mySQL', type: DATA },
+  { name: 'firebase', type: DATA },
 ];
 
 const langs = [
-  { name: 'ruby', type: 'LANG' },
-  { name: 'java', type: 'LANG' },
-  { name: 'php', type: 'LANG' },
-  { name: 'javascript', type: 'LANG' },
+  { name: 'ruby', type: LANG },
+  { name: 'java', type: LANG },
+  { name: 'php', type: LANG },
+  { name: 'javascript', type: LANG },
 ];
 
 const tests = [
-  { name: 'rspec', type: 'TDD' },
-  { name: 'jest', type: 'TDD' },
-  { name: 'jasmine', type: 'TDD' },
+  { name: 'rspec', type: TDD },
+  { name: 'jest', type: TDD },
+  { name: 'jasmine', type: TDD },
 ];
 
 const bframe = [
-  { name: 'ruby on rails', type: 'FRAMEWORK' },
-  { name: 'nodejs', type: 'FRAMEWORK' },
-  { name: 'wordpress', type: 'FRAMEWORK' },
-  { name: 'express', type: 'FRAMEWORK' },
-  { name: 'redux', type: 'FRAMEWORK' },
+  { name: 'ruby on rails', type: FRAMEWORK },
+  { name: 'nodejs', type: FRAMEWORK },
+  { name: 'wordpress', type: FRAMEWORK },
+  { name: 'express', type: FRAMEWORK },
+  { name: 'redux', type: FRAMEWORK },
 ];
 
 const sortSkills = arr => arr.sort((a, b) => a.name.length - b.name.length);

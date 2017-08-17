@@ -27,7 +27,7 @@ const Styled = withStyles(
 
 const SkillCard = ({ skill, classes }) =>
   (<Grid container justify="center" className={classes.Grid}>
-    <Grid item xs={11} md>
+    <Grid item xs={12} lg>
       <Card className={classes.Card}>
         <Expand
           header={
@@ -44,7 +44,7 @@ const SkillCard = ({ skill, classes }) =>
         </Expand>
       </Card>
     </Grid>
-    <Grid item xs={11} md={5}>
+    <Grid item xs={12} lg>
       <Card className={classes.Card}>
         <Expand
           header={

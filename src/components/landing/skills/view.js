@@ -9,7 +9,7 @@ import SkillCard from './skillCard';
 const Skills = () =>
   (<Grid container justify="center">
     {skillTypes.map((t, i) =>
-      (<Grid item xs={11} sm key={i}>
+      (<Grid item xs={11} sm key={t.headline}>
         <Expand
           header={
             <Text color="inherit" type="display2" children={t.category} />
