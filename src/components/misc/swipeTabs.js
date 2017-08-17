@@ -36,7 +36,9 @@ const SwipeTabs = ({ children, changeSet, width, index, iHue = '#f0f' }) =>
         index={index}
         containerStyle={cStyle}
         enableMouseEvents
-        ignoreNativeScroll={isWidthUp('sm', width, false)}
+        ignoreNativeScroll
+        
+        // ={isWidthUp('sm', width, false)}
       >
         {children}
       </SwipeableViews>

@@ -5,6 +5,7 @@ import Grid from 'material-ui/Grid';
 import SvgIcon from 'material-ui/SvgIcon';
 import Button from 'material-ui/Button';
 import { connect } from 'react-redux';
+import LeftIcon from 'material-ui-icons/ChevronLeft';
 import { CircularProgress } from 'material-ui/Progress';
 import Dialog, { DialogContent, DialogTitle } from 'material-ui/Dialog';
 import Slide from 'material-ui/transitions/Slide';
@@ -55,11 +56,14 @@ const Project = (props) => {
             <DialogContent>
               <AppBar>
                 <ToolBar>
-                  <Button fab color="accent" onClick={toggle}>
-                    <SvgIcon viewBox="-1,-1,2,2">
-                      <RawPath />
-                    </SvgIcon>
-                  </Button>
+                  <DialogTitle>
+                    <Button fab color="accent" onClick={toggle}>
+                      <SvgIcon viewBox="-1,-1,2,2">
+                        <RawPath />
+                      </SvgIcon>
+                    </Button>
+                  </DialogTitle>
+                  Back to Main
                 </ToolBar>
               </AppBar>
               <Grid
