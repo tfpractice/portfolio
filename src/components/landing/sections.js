@@ -1,6 +1,7 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
 import { Link, NavLink } from 'react-router-dom';
+
 import { RawPath } from '../visualization';
 
 export const style = { color: '#fff', textDecoration: 'none' };
@@ -39,8 +40,7 @@ export const getIndex = (key = '#frontMatter') =>
   ixMap.has(key) ? ixMap.get(key) : 0;
 
 export const getLabel = (key = '#frontMatter') =>
-  lMap.has(key)
-    ? <NavLink to={`/${key}`} style={style}>
-      {lMap.get(key)}
-    </NavLink>
-    : '';
+  lMap.has(key) &&
+  <NavLink to={`/${key}`} style={style}>
+    {lMap.get(key)}
+  </NavLink>;

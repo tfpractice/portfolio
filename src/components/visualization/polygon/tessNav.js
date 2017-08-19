@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import Grid from 'material-ui/Grid';
 import { NavLink } from 'react-router-dom';
-import { withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
+import { withState, compose, withHandlers, withStateHandlers } from 'recompose';
 
-// import { linkName } from '../../landing/sections';
 import { appendText, viewTess } from './funcs';
 
 const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR' ];
@@ -19,6 +18,7 @@ const linkName = (k) => {
   }
   return sliced.toUpperCase();
 };
+
 const Styled = withStyles(
   createStyleSheet('TessNav', theme => ({
     container: {},
@@ -49,7 +49,16 @@ const Styled = withStyles(
   }))
 );
 
-const withLink = withState('links', 'setLinks', defPaths);
+const withTimers = compose(
+  withState('links', 'setLinks', defPaths),
+  withState('tID', 'setID', null),
+  withHandlers({
+    mouseIn: ({ tID, setLinks }) => pString => () =>
+      clearTimeout(tID) || setLinks([ linkName(pString) ]),
+    mouseOut: ({ setLinks, setID }) => () =>
+      setID(setTimeout(() => setLinks(defPaths), 750)),
+  })
+);
 
 class TessNav extends Component {
   componentDidMount() {
@@ -58,14 +67,15 @@ class TessNav extends Component {
   }
 
   render() {
-    const { classes, paths, links } = this.props;
+    const { classes, paths, mouseIn, mouseOut, links } = this.props;
 
-    const showSpan = names => names.map(p =>
-      (<tspan className={classes.span} key={p}>
-        <tspan className={`${classes.subSpan}`}> // </tspan>
-        {p}
-      </tspan>)
-    );
+    const showSpan = names =>
+      names.map(p =>
+        (<tspan className={classes.span} key={p}>
+          <tspan className={`${classes.subSpan}`}> // </tspan>
+          {p}
+        </tspan>)
+      );
 
     return (
       <Grid container align="center" justify="center">
@@ -83,14 +93,8 @@ class TessNav extends Component {
                   to={`/${c}`}
                   key={c}
                   className={classes.pathLink}
-                  onMouseOver={() => {
-                    clearTimeout(this.tID);
-                    this.props.setLinks([ linkName(c) ]);
-                  }}
-                  onMouseOut={() =>
-                    (this.tID = setTimeout(() => {
-                      this.props.setLinks(defPaths);
-                    }, 750))}
+                  onMouseOver={mouseIn(c)}
+                  onMouseOut={mouseOut}
                 >
                   <path className={classes.path} />
                   <path className={classes.filler} />
@@ -103,4 +107,4 @@ class TessNav extends Component {
     );
   }
 }
-export default Styled(withLink(TessNav));
+export default Styled(withTimers(TessNav));
