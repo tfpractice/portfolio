@@ -1,11 +1,19 @@
 const sync = {
   caption: 'synchronizes remote and local databases',
-  content: `### synchronizes remote and local databases`,
+  content: `### synchronizes remote and local databases
+  [search]: /images/apps/filmratr/search.png
+  <div class='images'>
+    ![search][search]
+  </div>`,
 };
 
 const routes = {
   caption: 'performs route based database aggregations',
-  content: `### performs route based database aggregations`,
+  content: `### performs route based database aggregations
+  [freq]: /images/apps/filmratr/freq.png
+  <div class='images'>
+    ![freq][freq]
+  </div>`,
 };
 
 const serve = {
@@ -35,6 +43,6 @@ const normal = {
    
    This project employed express, react-router, and axios to successfully pull -off the difficult task of server rendering. It's an exceptionally complicated process, which gave me a lot of experience, and a deeper understanding of the node-ecosystem.
   `,
-}
+};
 
-export const sections = [ normal ]
+export const sections = [ normal ];
