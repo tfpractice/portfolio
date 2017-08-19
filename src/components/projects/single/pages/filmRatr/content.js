@@ -1,9 +1,9 @@
 const sync = {
   caption: 'synchronizes remote and local databases',
   content: `### synchronizes remote and local databases
-  [search]: /images/apps/filmratr/search.png
+  [review]: /images/apps/filmratr/review.png
   <div class='images'>
-    ![search][search]
+    ![review][review]
   </div>`,
 };
 
@@ -18,7 +18,12 @@ const routes = {
 
 const serve = {
   caption: 'renders entirely from the server upon initial load',
-  content: `### renders entirely from the server upon initial load`,
+  content: `### renders entirely from the server upon initial load
+  [search]: /images/apps/filmratr/search.png
+  <div class='images'>
+    ![search][search]
+  </div>
+`,
 };
 
 export const slides = [ sync, routes, serve ];
