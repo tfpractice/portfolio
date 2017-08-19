@@ -8,20 +8,30 @@ import { MarkdownPreview } from 'react-marked-markdown';
 import { HexCard } from '../../misc';
 import { libFilt } from '../../../utils';
 import { CardList } from '../../projects';
-import { content } from './content';
+import { content, info } from './content';
 
-const stateToProps = ({ projects }) => ({ libs: libFilt(projects) });
+const mapState = ({ projects }) => ({ libs: libFilt(projects) });
+const Connected = connect(mapState);
+
+const tStyle = { paddingTop: '0px' };
+const hStyle = { paddingBottom: '0px' };
 
 const Libs = ({ libs }) =>
-  (<Grid container justify="center" className="libraries-info">
+  (<Grid container justify="center" align="center" className="libraries-info">
     <Grid item xs={11}>
       <HexCard raised>
-        <CardHeader title="Testable and Flexible" />
-        <CardContent>
-          <Text component="div" color="secondary" type="body2">
-            <MarkdownPreview value={content} />
-          </Text>
-        </CardContent>
+        <CardHeader
+          style={hStyle}
+          title={
+            <Text color="secondary" component="div">
+              <MarkdownPreview value={info.caption} />
+            </Text>
+          }
+        />
+
+        <Text color="secondary" component={CardContent} style={tStyle}>
+          <MarkdownPreview value={info.content} />
+        </Text>
       </HexCard>
     </Grid>
     <Grid item xs={11}>
@@ -29,4 +39,4 @@ const Libs = ({ libs }) =>
     </Grid>
   </Grid>);
 
-export default connect(stateToProps)(Libs);
+export default Connected(Libs);

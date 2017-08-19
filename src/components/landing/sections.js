@@ -12,6 +12,17 @@ export const sections = [
   '#apps',
   '#libs',
 ];
+
+export const linkName = (k) => {
+  const sliced = k.slice(1);
+
+  if (sliced === 'apps') {
+    return 'APPLICATIONS';
+  } else if (sliced === 'libs') {
+    return 'LIBRARIES';
+  }
+  return sliced.toUpperCase();
+};
 export const ixMap = new Map(sections.map((k, i) => [ k, i ]));
 
 export const hexIcon = (
@@ -21,7 +32,7 @@ export const hexIcon = (
 );
 
 export const lMap = new Map(
-  sections.map((k, i) => (i ? [ k, k.slice(1).toUpperCase() ] : [ k, hexIcon ]))
+  sections.map((k, i) => (i ? [ k, linkName(k) ] : [ k, hexIcon ]))
 );
 
 export const getIndex = (key = '#frontMatter') =>

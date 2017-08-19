@@ -8,20 +8,29 @@ import { MarkdownPreview } from 'react-marked-markdown';
 import { HexCard } from '../../misc';
 import { appFilt } from '../../../utils';
 import { CardList } from '../../projects';
-import { content } from './content';
+import { info } from './content';
 
-const stateToProps = ({ projects }) => ({ apps: appFilt(projects) });
+const mapState = ({ projects }) => ({ apps: appFilt(projects) });
+const Connected = connect(mapState);
+const tStyle = { paddingTop: '0px' };
+const hStyle = { paddingBottom: '0px' };
 
 const Apps = ({ apps }) =>
-  (<Grid container justify="center" className="apps-info">
+  (<Grid container justify="center" align="center" className="apps-info">
     <Grid item xs={11}>
       <HexCard raised>
-        <CardHeader title="Architecture and Experimentation" />
-        <CardContent>
-          <Text component="div" color="secondary" type="body2">
-            <MarkdownPreview value={content} />
-          </Text>
-        </CardContent>
+        <CardHeader
+          style={hStyle}
+          title={
+            <Text color="secondary" component="div">
+              <MarkdownPreview value={info.caption} />
+            </Text>
+          }
+        />
+
+        <Text component={CardContent} color="secondary" style={tStyle}>
+          <MarkdownPreview value={info.content} />
+        </Text>
       </HexCard>
     </Grid>
     <Grid item xs={11}>
@@ -29,4 +38,4 @@ const Apps = ({ apps }) =>
     </Grid>
   </Grid>);
 
-export default connect(stateToProps)(Apps);
+export default Connected(Apps);

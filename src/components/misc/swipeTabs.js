@@ -23,6 +23,7 @@ const SwipeTabs = ({ children, changeSet, index, iHue = '#f0f' }) =>
   (<Grid container justify="center" spacing={0}>
     <Grid item xs={11}>
       <Tabs
+        centered
         index={index}
         textColor="#fff"
         indicatorColor={iHue}

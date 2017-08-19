@@ -4,10 +4,21 @@ import { NavLink } from 'react-router-dom';
 import { withState } from 'recompose';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
+// import { linkName } from '../../landing/sections';
 import { appendText, viewTess } from './funcs';
 
 const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR' ];
 
+const linkName = (k) => {
+  const sliced = k.slice(1);
+
+  if (sliced === 'apps') {
+    return 'APPLICATIONS';
+  } else if (sliced === 'libs') {
+    return 'LIBRARIES';
+  }
+  return sliced.toUpperCase();
+};
 const Styled = withStyles(
   createStyleSheet('TessNav', theme => ({
     container: {},
@@ -49,13 +60,12 @@ class TessNav extends Component {
   render() {
     const { classes, paths, links } = this.props;
 
-    const showSpan = names =>
-      names.map(p =>
-        (<tspan className={classes.span} key={p}>
-          <tspan className={`${classes.subSpan}`}> // </tspan>
-          {p === 'libs' ? 'LIBRARIES' : p.toUpperCase()}
-        </tspan>)
-      );
+    const showSpan = names => names.map(p =>
+      (<tspan className={classes.span} key={p}>
+        <tspan className={`${classes.subSpan}`}> // </tspan>
+        {p}
+      </tspan>)
+    );
 
     return (
       <Grid container align="center" justify="center">
@@ -75,12 +85,12 @@ class TessNav extends Component {
                   className={classes.pathLink}
                   onMouseOver={() => {
                     clearTimeout(this.tID);
-                    this.props.setLinks([ c.slice(1) ]);
+                    this.props.setLinks([ linkName(c) ]);
                   }}
                   onMouseOut={() =>
                     (this.tID = setTimeout(() => {
                       this.props.setLinks(defPaths);
-                    }, 1000))}
+                    }, 750))}
                 >
                   <path className={classes.path} />
                   <path className={classes.filler} />

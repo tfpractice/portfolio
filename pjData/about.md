@@ -5,7 +5,12 @@ Coming from an arts background, I treat coding as craft, and am  constantly expl
 Having been self-taught, I've become familiar first-hand with any of the pleasures and perils of programming. This makes me an excellent educator. Ive done private tutoring for new developers, and have spent a year training full-stack Javascript development at Rutgers Coding Bootcamp. From describing command-line navigation as a Matroyshka doll, to demonstrating the power of context manipulation, working with more than 70 students has sharpened my communication skills. I work very well in teams.
 `
 
-## Ease Through Architecture 
-For me, an application should involve as little logic on the front end as possible. My applications are mostly an accumulation of separate libraries with a database and a rendering engine. This allows me to focus on more interesting architectural concerns. Not to mention the savings brought on my static deployment and server rendering.
+### Architecture and Experimentation
+Working with a separation of concerns has been a critical feature in my development process, making it easy to swap one database or rendering engine for another. This agile development process allows me to focus on more interesting architectural concerns and has lead to a plethora of play apps that take themselves too seriously.
 
-When it comes to writing in Javascript, React with redux + MongoDB have been the most fruitful for me. Redux has allowed my functional stuyle to flourish using thunks and reducers,....
+(FilmRatr)[tfp-filmratr.surge.sh] uses multiple AJAX requests to explore the limits of database normalization. (Connect Four)[tfp-connect.surge.sh] successfully integrates D3js' DOM manipulation with React's dynamic rendering cycle. And (Venery)[tfp-venery.surge.sh] is a guess the word app that became an exercise in natural language processing. I adapt very quickly and treat trivial problems as opportunities for great solutions
+
+### Testable and flexible
+I truly love programming, and I refactor obsessively. I focus on writing small, test-driven, functional code that is flexible and extensible. This facilitates grouping related functionality and organically gives rise to new libraries.
+
+This quality is exemplified in my work with graph algorithms, which I have rewritten no less than twenty times over three years, and have learned the most from. There is an [Object Oriented version](https://github.com/tfpractice/classical_graph_theory), designed for classical extension. [Factory Graph Theory](https://github.com/tfpractice/factory_graph_theory), which leverages the Factory design pattern to injection new sub-classes at runtime.  And Finally, [Graph Curry] (https://github.com/tfpractice/graph-curry) which does away with classes entirely and been my most successful version thus far. It has become the basis for a number of subsequent projects from [game boards](https://github.com/tfpractice/gamegrid) to [gin rummy](https://github.com/tfpractice/rummy-redux).`;
