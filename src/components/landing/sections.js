@@ -32,7 +32,7 @@ export const hexIcon = (
 );
 
 export const lMap = new Map(
-  sections.map((k, i) => (i ? [ k, linkName(k) ] : [ k, hexIcon ]))
+  sections.map((k, i) => (i ? [ k, k.slice(1) ] : [ k, hexIcon ]))
 );
 
 export const getIndex = (key = '#frontMatter') =>
