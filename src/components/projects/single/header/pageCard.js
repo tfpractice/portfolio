@@ -10,7 +10,7 @@ import { compose, withHandlers, withState } from 'recompose';
 
 import { ChipList } from '../../../tools';
 import { Expand, PJCard } from '../../../misc';
-import { dStyles, lightStyles, qUtils } from '../../../../utils';
+import { dStyles, lightStyles, slug, qUtils } from '../../../../utils';
 import Header from './cardHead';
 import PageMedia from './media';
 
@@ -42,7 +42,7 @@ const Styled = withStyles(
 
 const PageCard = ({ project, show, classes, big, toggle, ...props }) => {
   console.log('PageCard props', props);
-
+  console.log('slug(project)', slug(project));
   return (
     <PJCard raised headerURL={project.headerURL}>
       <Grid container justify="center">

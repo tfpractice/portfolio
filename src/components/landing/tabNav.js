@@ -25,24 +25,18 @@ const withIndex = compose(
 
 const TabNav = ({ index, hPush, set } = defProps) =>
   (<AppBar>
-    <Toolbar>
-      <Grid container justify="center" align="center">
-        <Grid item>
-          <Tabs
-            centered
-            index={index}
-            scrollButtons="on"
-            textColor="#fff"
-            indicatorColor="#f0f"
-            onChange={set}
-          >
-            {init.map((l, i) =>
-              <Tab key={i} label={getLabel(l)} onClick={hPush(l)} />
-            )}
-          </Tabs>
-        </Grid>
-      </Grid>
-    </Toolbar>
+    <Tabs
+      centered
+      index={index}
+      scrollButtons="on"
+      textColor="#fff"
+      indicatorColor="#f0f"
+      onChange={set}
+    >
+      {init.map((l, i) =>
+        <Tab key={i} label={getLabel(l)} onClick={hPush(l)} />
+      )}
+    </Tabs>
   </AppBar>);
 
 export default withRouter(withIndex(TabNav));

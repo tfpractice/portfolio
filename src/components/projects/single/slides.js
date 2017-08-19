@@ -13,7 +13,9 @@ const mapState = (state, { project }) => ({ slides: getSlides(slug(project)) });
 const JustSlides = ({ project, slides }) =>
   slides.length &&
   <SwipeTabs iHue={pColors[project.category]}>
-    {slides.map((h, i) => <Slide tabLabel="." key={i} slide={h} />)}
+    {slides.map((h, i) =>
+      <Slide project={project} tabLabel="." key={i} slide={h} />
+    )}
   </SwipeTabs>;
 
 const Slides = ({ data, project, slides, ...props }) =>

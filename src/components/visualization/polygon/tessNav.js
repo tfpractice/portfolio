@@ -22,6 +22,7 @@ const Styled = withStyles(
       backgroundColor: 'rgba(0,0,0,0.51)',
       '&:hover': { fill: '#f0f' },
     },
+    filler: { backgroundColor: 'rgba(0,0,0,0.51)' },
     mainText: {
       ...theme.typography.title,
       'font-weight': '400',
@@ -56,7 +57,7 @@ class TessNav extends Component {
       paths.map((p, i) =>
         (<tspan className={classes.span} key={p}>
           <tspan className={`${classes.subSpan}`}> // </tspan>
-          {p.toUpperCase()}
+          {p === 'libs' ? 'LIBRARIES' : p.toUpperCase()}
         </tspan>)
       );
 
