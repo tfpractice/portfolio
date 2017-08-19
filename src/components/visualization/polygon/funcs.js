@@ -9,6 +9,7 @@ const {
   surroundTix,
   tesselate,
   radius,
+  closed,
   exoRadius,
   exoTesses,
 } = Polygon;
@@ -55,24 +56,17 @@ export const backLine = (p, idx) => {
 };
 
 export const tessLine = (p, idx) => {
-  let pid;
-
-  switch (idx) {
-  case 1:
-    pid = 3;
-    break;
-  case 2:
-    pid = 4;
-
-    break;
-  default:
-    pid = 1;
-  }
-
   const centralD = centralTicks(7)(p);
   const surData = surroundTix(7)(p);
 
   return rawLine(surData);
+};
+
+export const vLine = (p, idx) => {
+  const centralD = centralTicks(7)(p);
+  const surData = surroundTix(7)(p);
+
+  return rawLine(closed(vertices(p)));
 };
 
 export const viewHex = classes => (links) => {
@@ -145,15 +139,17 @@ export const viewTess = classes => (children) => {
   const vw = radius(viewGon) * 4 * 3;
   const vh = radius(viewGon) * 4 * 3;
   const cont = `.${classes.wrapper}`;
-
-  const tessBox = d3
+  const groups = d3
     .selectAll(cont)
     .attr('viewBox', `${vx},${vy},${vw},${vh}`)
     .selectAll(`.${classes.group}`)
     .attr('transform', 'rotate(-60)')
-    .selectAll(`.${classes.path}`)
-    .data(gons.slice(1).reverse())
-    .attr('d', tessLine);
+    .attr('fill', 'rgba(239,239,239,0.01)')
+    .selectAll(`.${classes.pathLink}`)
+    .data(gons.slice(1).reverse());
+
+  groups.select(`.${classes.filler}`).attr('d', vLine);
+  groups.select(`.${classes.path}`).attr('d', tessLine);
 };
 
 export const appendText = (classes) => {

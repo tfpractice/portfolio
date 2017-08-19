@@ -6,6 +6,8 @@ import { createStyleSheet, withStyles } from 'material-ui/styles';
 
 import { appendText, viewTess } from './funcs';
 
+const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR' ];
+
 const Styled = withStyles(
   createStyleSheet('TessNav', theme => ({
     container: {},
@@ -13,20 +15,17 @@ const Styled = withStyles(
     tessGroup: {},
     group: {},
     tessText: {},
-    path: { backgroundColor: 'rgba(0,0,0,0.51)' },
-    animPath: { strokeWidth: '0.01px', stroke: '#000' },
     tessWrap: {},
     text: {},
     textGroup: {},
-    pathLink: {
-      backgroundColor: 'rgba(0,0,0,0.51)',
-      '&:hover': { fill: '#f0f' },
-    },
-    filler: { backgroundColor: 'rgba(0,0,0,0.51)' },
+    tessPath: {},
+    path: { fill: '#000' },
+    animPath: { strokeWidth: '0.01px', stroke: '#000' },
+    pathLink: { '&:hover': { '& :first-child': { fill: '#f0f' }}},
+    filler: {},
     mainText: {
       ...theme.typography.title,
       'font-weight': '400',
-
       textDecoration: '#f0f',
       textDecorationColor: '#f0f',
     },
@@ -36,11 +35,8 @@ const Styled = withStyles(
     },
     span: { textDecoration: 'none' },
     subSpan: { fill: '#f0f' },
-
-    tessPath: {},
   }))
 );
-const defPaths = [ 'DEVELOPER', 'DESIGNER', 'EDUCATOR' ];
 
 const withLink = withState('links', 'setLinks', defPaths);
 
@@ -51,10 +47,10 @@ class TessNav extends Component {
   }
 
   render() {
-    const { classes, paths } = this.props;
+    const { classes, paths, links } = this.props;
 
-    const showSpan = paths =>
-      paths.map((p, i) =>
+    const showSpan = names =>
+      names.map(p =>
         (<tspan className={classes.span} key={p}>
           <tspan className={`${classes.subSpan}`}> // </tspan>
           {p === 'libs' ? 'LIBRARIES' : p.toUpperCase()}
@@ -68,28 +64,27 @@ class TessNav extends Component {
             <g className={classes.textGroup}>
               <text className={`tessText ${classes.mainText}`}>tfpractice</text>
               <text className={`tessText ${classes.subText}`}>
-                {showSpan(this.props.links)}
+                {showSpan(links)}
               </text>
             </g>
             <g className={classes.group}>
-              {this.props.paths.map(
-                (c, k) =>
-                  k &&
-                  <NavLink
-                    to={`/${c}`}
-                    key={c}
-                    className={classes.pathLink}
-                    onMouseOver={() => {
-                      clearTimeout(this.tID);
-                      this.props.setLinks([ c.slice(1) ]);
-                    }}
-                    onMouseOut={() =>
-                      (this.tID = setTimeout(() => {
-                        this.props.setLinks(defPaths);
-                      }, 1000))}
-                  >
-                    <path className={classes.path} />
-                  </NavLink>
+              {paths.slice(1).map(c =>
+                (<NavLink
+                  to={`/${c}`}
+                  key={c}
+                  className={classes.pathLink}
+                  onMouseOver={() => {
+                    clearTimeout(this.tID);
+                    this.props.setLinks([ c.slice(1) ]);
+                  }}
+                  onMouseOut={() =>
+                    (this.tID = setTimeout(() => {
+                      this.props.setLinks(defPaths);
+                    }, 1000))}
+                >
+                  <path className={classes.path} />
+                  <path className={classes.filler} />
+                </NavLink>)
               )}
             </g>
           </svg>
