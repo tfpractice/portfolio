@@ -45,17 +45,17 @@ const SkillCard = ({ skill, classes }) =>
       </Card>
     </Grid>
     <Grid item xs={12} lg>
-      <Card className={classes.Card}>
-        <Expand
-          header={
-            <CardHeader title={<Text type="subheading" children="Tools" />} />
-          }
-        >
-          <CardMedia>
-            <SkillSet skill={skill} />
-          </CardMedia>
-        </Expand>
-      </Card>
+      {/* <Card className={classes.Card}> */}
+      <Expand
+        header={
+          <CardHeader title={<Text type="subheading" children="Tools" />} />
+        }
+      >
+        <CardMedia>
+          <SkillSet skill={skill} />
+        </CardMedia>
+      </Expand>
+      {/* </Card> */}
     </Grid>
   </Grid>);
 
