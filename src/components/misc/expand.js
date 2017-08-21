@@ -20,14 +20,14 @@ const Styled = withStyles(
   createStyleSheet('Expand', theme => ({
     Grid: { backgroundColor: 'rgba(0,0,0,0.5)', paddingBottom: '5%' },
     Header: { backgroundColor: 'rgba(0,0,0,0.5)', boxShadow: 'none' },
-    Divider: { backgroundColor: '#f0f' },
+    Divider: { backgroundColor: '#f0f', marginBottom: theme.spacing.unit },
   }))
 );
 
 const Expand = ({ open, children, dStyle, toggle, color, header, classes }) =>
-  (<Grid container justify="center" align="center">
+  (<Grid container justify="center" align="center" spacing={0}>
     <Grid item xs={11}>
-      <Grid container justify="space-between" align="center">
+      <Grid container justify="space-between" align="center" spacing={0}>
         <Grid item xs={9} onClick={toggle}>
           {header}
         </Grid>

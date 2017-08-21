@@ -126,16 +126,6 @@ const compareIDX = tools => (a, b) => sIdx(tools)(a) - sIdx(tools)(b);
 
 export const tSort = tools => [ ...tools ].sort(compareIDX(tools));
 
-//
-// export const tColorDomain = tools =>
-//   d3.scaleOrdinal().domain([ null, ...d3.extent(stackTypes) ]);
-//
-// // export const stackScales = d3.scaleOrdinal().domain(stackTypes).range()
-//
-// // [ '#00796b', '#212121', '#D81B60', '#757575' ]
-// export const tColorRange = tools => (range = [ '#fff', '#ff0000', '#000000' ]) =>
-//   tColorDomain(tools).range(range);
-
 export const fTypes = new Set(fSkills.map(s => s.type));
 export const bTypes = new Set(bSkills.map(s => s.type));
 export const fScale = d3
@@ -151,20 +141,20 @@ export const stackScale = d3
   .domain(stackTypes);
 
 const fInfo = `
-My time in the wilderness of front end development has been key to my versatility as a developer. I've chased changing standards, cobbled fussy solutions, and frequently cycled through frameworks hoping to find a system that would work consistently. Though frustrating, this process has given me a breadth of knowledge, and a set of auxilliary skill, and made me a particularly quick study.
+My time in the wilderness of frontend development has been key to my versatility as a developer. Chasing changing standards, hacking fussy solutions, and cycling through frameworks has given me a breadth of knowledge, experience, and made me a particularly quick study.
 
 I specialize in Data Visualization, Responsive Design, and Static App Deployment
 `;
 
 const bInfo = `
-Coming from an arts background, I treat coding as craft, and thrive amidst the almost limitless possibilities of what can be programmed using which techniques. This formal obsession characterizes many of my personal projects–—often spanning multiple repositories––which I treat as sketchbooks. 
+Coming from an arts background, I treat coding as craft, and thrive amidst the almost limitless solutions to programming problems. This formal obsession characterizes many of my personal projects—often spanning multiple repositories—which I treat as sketchbooks. 
 
-Being so process-driven, I've become intimately familiar with the nuances of programming across paradigms, and an expert at refactoring. I specialize in rewriting class-based object oriented code in a modular, functional style. And prioritize work that is testable, composable, and extensible. I write code constantly, and I write it well.
+Being so process-driven, I now know the nuances of programming across paradigms, and am an expert at refactoring. I especially enjoy rewriting classical object-oriented code in a functional style. I write code constantly, and I write it well.
 `;
 
 export const frontEnd = {
   category: 'Frontend',
-  headline: 'Frontend Frustrations',
+  headline: 'Frontend Frontiers',
   info: fInfo,
   skills: fTech,
   skillSet: fSkills,

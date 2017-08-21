@@ -46,6 +46,8 @@ const Styled = withStyles(
   }))
 );
 
+const hStyle = { paddingBottom: '1rem' };
+
 const ProjectCard = ({ project, show, classes, toggle, open }) =>
   (<HexCard raised>
     <Expand
@@ -54,6 +56,7 @@ const ProjectCard = ({ project, show, classes, toggle, open }) =>
       open={true}
       header={
         <CardHeader
+          style={hStyle}
           title={project.title}
           avatar={
             <a target="_blank" href={project.repo}>

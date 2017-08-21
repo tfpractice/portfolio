@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import { bScale, bTypes, fScale, fTypes } from './content';
 
 const mapState = (s, { skill }) => {
-  console.log('skill', skill);
   const groups = [ ...new Set(skill.skillSet.map(s => s.type)) ];
   const byType = sArr => t => sArr.filter(s => s.type === t);
 
