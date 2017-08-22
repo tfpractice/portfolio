@@ -3,5 +3,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
    width="432px" height="288px" viewBox="0 0 432 288" enable-background="new 0 0 432 288" xml:space="preserve">
-<text fill="#fff" transform="matrix(1 0 0 1 36.521 163.5742)" font-family="'Courier'" font-size="85.4525">&#x1F0A0;&#x1F0A0;&#x1F0A0;&#x1F0A0;&#x1F0A0;&#x1F0A0; </text>
+<text style='font-weight: 400;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    line-height: 24px;' fill="#fff" transform="matrix(1 0 0 1 36.521 163.5742)" font-family="'Courier'" font-size="85.4525">&#x1F0A0;&#x1F0A0;&#x1F0A0;&#x1F0A0;&#x1F0A0;&#x1F0A0; </text>
 </svg>

@@ -4,21 +4,30 @@ body {
   font-family: sans-serif;
   background-color: #efefef;
 }
-
+.slide h3 {
+  color: rgba(255, 255, 255, 1);
+  margin: 0;
+  padding-top: 0.5rem;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  line-height: 24px;
+}
 .hljs {
   padding: 1rem;
   text-align: justify;
   background: rgba(40, 44, 52, 0.8);
 }
-.slide {
-}
+
 .slideText {
 }
 .gridSlide {
 }
-.slideText img {
+.slide img {
   max-width: 90%;
 }
 
-.slide .images {
+.slide pre {
+  margin: 0;
+  padding-top: 0.5rem;
 }
