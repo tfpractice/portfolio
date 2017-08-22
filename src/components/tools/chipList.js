@@ -12,7 +12,7 @@ const Styled = withStyles(
     list: {
       overflowX: 'auto',
       WebkitOverflowScrolling: 'touch',
-      overflowY: 'none',
+      overflowY: 'hidden',
     },
   }))
 );
@@ -45,6 +45,3 @@ const CTabs = ({ tools, classes }) =>
 export const JustChips = Styled(Chips);
 export const ChipActions = Styled(CTabs);
 export default Styled(ChipList);
-
-// export const JustChips = Styled(Chips);
-// export default Styled(CTabs);

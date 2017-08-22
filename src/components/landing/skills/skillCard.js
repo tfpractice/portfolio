@@ -6,7 +6,7 @@ import { MarkdownPreview } from 'react-marked-markdown';
 import { createStyleSheet, withStyles } from 'material-ui/styles';
 
 import { Expand } from '../../misc';
-import SkillSet from './skillSet';
+import SkillSet, { SkillTabs } from './skillSet';
 
 const Styled = withStyles(
   createStyleSheet('SkillCard', (theme) => {
@@ -19,6 +19,11 @@ const Styled = withStyles(
         backgroundSize: '200% 200%',
         backgroundRepeat: 'no-repeat',
         paddingBottom: '5%',
+      },
+      scrollButton: {
+        flex: '0 0 0.25rem',
+        color: '#fff',
+        background: 'none',
       },
       Card: { backgroundColor: 'rgba(0,0,0,0)', boxShadow: 'none' },
     };
@@ -45,17 +50,15 @@ const SkillCard = ({ skill, classes }) =>
       </Card>
     </Grid>
     <Grid item xs={12} lg>
-      {/* <Card className={classes.Card}> */}
       <Expand
         header={
           <CardHeader title={<Text type="subheading" children="Tools" />} />
         }
       >
         <CardMedia>
-          <SkillSet skill={skill} />
+          <SkillTabs skill={skill} />
         </CardMedia>
       </Expand>
-      {/* </Card> */}
     </Grid>
   </Grid>);
 

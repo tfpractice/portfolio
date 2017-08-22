@@ -35,7 +35,7 @@ const DESIGN = 'Design';
 const MARKUP = 'Markup';
 const JS = 'Javascript';
 const DATA = 'Databases';
-const TDD = 'Test Driven Development';
+const TDD = 'Testing';
 const LANG = 'Languages';
 const FRAMEWORK = 'Frameworks';
 
